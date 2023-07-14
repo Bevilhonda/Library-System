@@ -2,7 +2,12 @@ package com.teste.implementabiblioteca.repository;
 
 import com.teste.implementabiblioteca.Model.AutorEntity;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -10,9 +15,12 @@ import java.time.ZoneOffset;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
 @DataJpaTest
-class RepositorySQLTest {
+@RunWith(SpringRunner.class)
+@ComponentScan()
+class RepositoryBibliotecaTest {
+    @Autowired
+    private TestEntityManager entityManager;
     @Autowired
     RepositoryBiblioteca repository;
     @Test
