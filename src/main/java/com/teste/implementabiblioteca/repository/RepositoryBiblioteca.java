@@ -1,5 +1,6 @@
 package com.teste.implementabiblioteca.repository;
 
+import com.teste.implementabiblioteca.Model.AutorEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -14,7 +15,7 @@ import java.util.List;
 @Repository
 @Transactional
 @Service
-public interface RepositorySQL extends JpaRepository<AutorEntity, Integer> {
+public interface RepositoryBiblioteca extends JpaRepository<AutorEntity, Integer> {
     @Query(value = "SELECT * from Autor where id_autor = :id_autor ", nativeQuery = true)
     AutorEntity GetAutor(Integer id_autor);
 
