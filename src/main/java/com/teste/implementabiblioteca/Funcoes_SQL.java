@@ -1,8 +1,5 @@
 package com.teste.implementabiblioteca;
 
-import com.teste.implementabiblioteca.Autor;
-import com.teste.implementabiblioteca.Livro;
-
 import java.sql.*;
 import java.time.ZoneOffset;
 
@@ -18,7 +15,7 @@ public class Funcoes_SQL {
             Statement nova_conexao = conecta_banco.createStatement();
 
             ResultSet executa_query = nova_conexao.executeQuery
-                    ("select * from com.teste.implementabiblioteca.Livro join com.teste.implementabiblioteca.Autor on (com.teste.implementabiblioteca.Livro.fk_autor = com.teste.implementabiblioteca.Autor.id_autor )");
+                    ("select * from Livro join Autor on (Livro.fk_autor = Autor.id_autor )");
 
             while (executa_query.next()) {
 
@@ -42,10 +39,10 @@ public class Funcoes_SQL {
     }
     //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-    public void Inserir_Livros(Livro novo_livro) {
+    public void Comando_Insert(Livro novo_livro) {
 
         String inserir_livro =
-                "insert into com.teste.implementabiblioteca.Livro (titulo,edicao,fk_autor,fk_biblioteca,data_publication) values(?,?,?,?,?)";
+                "insert into Livro (titulo,edicao,fk_autor,fk_biblioteca,data_publication) values(?,?,?,?,?)";
 
         try {
 
@@ -71,10 +68,10 @@ public class Funcoes_SQL {
 
     //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-    public void Atualiza_Livros(Livro livro) {
+    public void Comando_Update(Livro livro) {
 
         String atualiza_dados_livro =
-                "update com.teste.implementabiblioteca.Livro set titulo = ? , edicao = ? , data_publication = ? where id_Livro = ? ";
+                "update Livro set titulo = ? , edicao = ? , data_publication = ? where id_Livro = ? ";
 
         try {
             Conection_Mysql conecta_banco = new Conection_Mysql();
@@ -97,7 +94,7 @@ public class Funcoes_SQL {
     }
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-    public void Exclui_Livro(int id_livro) {
+    public void Comando_Delete(int id_livro) {
         String comando_excluir = "delete from com.teste.implementabiblioteca.Livro where id_Livro = ? ";
 
         try {
@@ -118,7 +115,7 @@ public class Funcoes_SQL {
     }
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-    public void Seleciona_um_Livro() {
+    public void Comando_Select_Por_Id() {
         try {
             Conection_Mysql conectando_banco = new Conection_Mysql();
 
@@ -149,7 +146,7 @@ public class Funcoes_SQL {
     }
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-    public void Seleciona_TodosLivros_Autor() {
+    public void Comando_Select_Autores() {
 
         try {
             Conection_Mysql conectando_banco = new Conection_Mysql();
@@ -183,7 +180,7 @@ public class Funcoes_SQL {
     }
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-    public void Incluir_Autor(Autor novo_autor) {
+    public void Comando_Insert_Autor(Autor novo_autor) {
 
         String adiciona_autor =
                 "insert into com.teste.implementabiblioteca.Autor (nome,sobrenome,data_nascimento) values (?,?,?)";
@@ -209,7 +206,7 @@ public class Funcoes_SQL {
     }
     //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-    public void Update_Autor(Autor novos_dados) {
+    public void Comando_Update_Autor(Autor novos_dados) {
 
         String atualiza_dados_autor =
                 "UPDATE com.teste.implementabiblioteca.Autor set nome = ? ,sobrenome = ? , data_nascimento = ? WHERE id_autor = ? ";
