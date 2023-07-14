@@ -1,15 +1,13 @@
 package com.teste.implementabiblioteca;
 
-import com.teste.implementabiblioteca.Conection_Mysql;
-
 import java.sql.*;
 import java.util.Scanner;
 
-public class Pesquisa_LivroBanco {
+public class Seleciona_Dados_Livro_No_Banco {
     int id_livro;
 
     public void Seleciona_LivroBanco() {
-        String busca_livro = "select * from com.teste.implementabiblioteca.Livro where id_Livro = ? ";
+        String busca_livro = "select * from Livro where id_Livro = ? ";
 
         try {
             Scanner input_id_livro = new Scanner(System.in);
