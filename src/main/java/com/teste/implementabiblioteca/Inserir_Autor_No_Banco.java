@@ -1,7 +1,5 @@
 package com.teste.implementabiblioteca;
 
-import com.teste.implementabiblioteca.Conection_Mysql;
-
 import java.sql.*;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -9,14 +7,14 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class Input_Dados_Autor {
+public class Inserir_Autor_No_Banco {
     String nome_autor;
     String sobrenome_autor;
     Instant data_nascimento ;
 
     public void Inserir_Autor() {
         String adiciona_autor =
-                "insert into com.teste.implementabiblioteca.Autor (nome,sobrenome,data_nascimento) values (?,?,?)";
+                "insert into Autor (nome,sobrenome,data_nascimento) values (?,?,?)";
 
         try {
             Scanner dados_autor = new Scanner(System.in);
