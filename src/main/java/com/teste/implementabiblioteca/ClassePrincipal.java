@@ -1,10 +1,5 @@
 package com.teste.implementabiblioteca;
 
-import com.teste.implementabiblioteca.Autor;
-import com.teste.implementabiblioteca.Biblioteca;
-import com.teste.implementabiblioteca.Endereco;
-import com.teste.implementabiblioteca.Livro;
-
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -32,6 +27,6 @@ public class ClassePrincipal {
         livros.add(livro);
 
         Biblioteca maringa = new Biblioteca
-                ("com.teste.implementabiblioteca.Biblioteca do Povo ", livros, endereco_da_biblioteca, 1);
+                (" Biblioteca do Povo ", livros, endereco_da_biblioteca, 1);
     }
 }
