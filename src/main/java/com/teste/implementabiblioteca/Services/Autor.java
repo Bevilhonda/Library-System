@@ -22,15 +22,17 @@ public class Autor {
     @Autowired
     private RepositoryBiblioteca repository;
 
+
     public ResponseEntity<?> GetAutorById(Integer id) {
         try {
             // int a = 5 / 0 ;
-            AutorEntity autor = repository.GetAutor(id);
+            AutorEntity autor = repository.GetAutor(id);;
 
             if (autor == null) {
-                AutorNotFound idnull = new AutorNotFound();
-                idnull.setId(id);
-                throw idnull;
+                AutorNotFound exception = new AutorNotFound();
+                exception.setId(id);
+                throw exception;
+
             }
             return RetornoDetalhesAutor(autor.getId_autor() + " " +
                     autor.getNome() + " " +
