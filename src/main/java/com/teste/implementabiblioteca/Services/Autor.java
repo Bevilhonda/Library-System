@@ -26,10 +26,10 @@ public class Autor {
     public ResponseEntity<?> GetAutorById(Integer id) {
         try {
             // int a = 5 / 0 ;
-            AutorEntity autor = repository.GetAutor(id);;
+            AutorEntity autor = repository.GetAutor(id);
+            AutorNotFound exception = new AutorNotFound();
 
             if (autor == null) {
-                AutorNotFound exception = new AutorNotFound();
                 exception.setId(id);
                 throw exception;
 
