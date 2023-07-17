@@ -27,7 +27,6 @@ public class Controler {
 
         return autores.GetAutorById(id);
     }
-
     @GetMapping("/GetAllAutores")
     public ResponseEntity<?> GetAll_Autores() {
         return autores.getAll_Autores();
@@ -36,42 +35,6 @@ public class Controler {
     @GetMapping("/GetAutorLastName")
     public ResponseEntity<?> GetAutorByLastName(@RequestParam(value = "sobrenome") String sobrenome) {
         return autores.GetAutorByLastName(sobrenome);
-    }
-
-    @GetMapping("/Autor")
-    public ResponseEntity<?> busca_Autor_por_Id(@RequestParam(value = "id_autor") Integer id) {
-        AutorEntity autor = repository.GetAutor(id);
-
-        if (autor == null) {
-            return RetornoDetalhesAutor("Não contem autor com o id :" + id + " no banco.", HttpStatus.NOT_FOUND);
-        }
-        return RetornoDetalhesAutor(autor.getId_autor() + " " +
-                autor.getNome() + " " +
-                autor.getSobrenome() + " " +
-                autor.getData_nascimento(), HttpStatus.OK);
-    }
-
-    @GetMapping("/Todos_Autores")
-    public ResponseEntity<?> getAll_Autores() {
-
-        List<AutorEntity> autores = repository.TodosAutores();
-
-        if (autores.isEmpty()) {
-            return RetornoDetalhesAutor("Lista vazia", HttpStatus.NOT_FOUND);
-        } else {
-            return DetalhesTodosAutores(autores, HttpStatus.OK);
-        }
-    }
-
-    @GetMapping("Sobrenomes")
-    public ResponseEntity<?> BuscaAutores_por_Sobrenome(@RequestParam(value = "sobrenome") String sobrenome) {
-
-        List<AutorEntity> autores = repository.getAutorByLastname(sobrenome);
-        if (autores.isEmpty()) {
-            return RetornoDetalhesAutor("Não consta autor com este sobrenome.", HttpStatus.NOT_FOUND);
-        } else {
-            return DetalhesTodosAutores(autores, HttpStatus.OK);
-        }
     }
 
     @GetMapping("/BuscaAutorDataNascimento")// rever sobre datas de nascimento no banco
