@@ -1,6 +1,6 @@
 package com.teste.implementabiblioteca.Services;
 
-import com.teste.implementabiblioteca.ListEmptyException;
+import com.teste.implementabiblioteca.LastNameNotFound;
 import com.teste.implementabiblioteca.Model.AutorEntity;
 import com.teste.implementabiblioteca.AutorNotFound;
 import com.teste.implementabiblioteca.ResponseTypeExceptions;
@@ -15,7 +15,6 @@ import java.util.List;
 import static com.teste.implementabiblioteca.Controler.HelperMetodResponse.DetalhesTodosAutores;
 import static com.teste.implementabiblioteca.Controler.HelperMetodResponse.RetornoDetalhesAutor;
 import static com.teste.implementabiblioteca.ExceptionsFactory.map;
-import static com.teste.implementabiblioteca.ExceptionsFactory.maplist;
 
 @Service
 public class Autor {
@@ -27,12 +26,9 @@ public class Autor {
         try {
             // int a = 5 / 0 ;
             AutorEntity autor = repository.GetAutor(id);
-            AutorNotFound exception = new AutorNotFound();
 
             if (autor == null) {
-                exception.setId(id);
-                throw exception;
-
+                throw new AutorNotFound(id);
             }
             return RetornoDetalhesAutor(autor.getId_autor() + " " +
                     autor.getNome() + " " +
@@ -44,38 +40,9 @@ public class Autor {
         }
     }
 
-    public ResponseEntity<?> GetAutorById_2(Integer id) {
-        try {
-            //int a = 5 / 0;
-            AutorEntity autor = repository.GetAutor(id);
-
-            if (autor == null) {
-                throw new AutorNotFound();
-            }
-            return RetornoDetalhesAutor(autor.getId_autor() + " " +
-                    autor.getNome() + " " +
-                    autor.getSobrenome() + " " +
-                    autor.getData_nascimento(), HttpStatus.OK);
-
-        } catch (Exception | AutorNotFound e) {
-            return map(e);
-        }
-    }
-
     public ResponseEntity<?> getAll_Autores() {
-
-        try {
-
-            List<AutorEntity> autores = repository.TodosAutores();
-
-            if (autores.isEmpty()) {
-                throw new ListEmptyException();
-            } else {
-                return DetalhesTodosAutores(autores, HttpStatus.OK);
-            }
-        }  catch (ResponseTypeExceptions e) {
-            return maplist(e);
-        }
+        List<AutorEntity> autores = repository.TodosAutores();
+        return DetalhesTodosAutores(autores, HttpStatus.OK);
     }
 
     public ResponseEntity<?> GetAutorByLastName(String sobrenome) {
@@ -83,9 +50,7 @@ public class Autor {
             List<AutorEntity> autores = repository.getAutorByLastname(sobrenome);
 
             if (autores.isEmpty()) {
-                ListEmptyException listempty = new ListEmptyException();
-                listempty.setSobrenome(sobrenome);
-                throw listempty;
+                throw new LastNameNotFound(sobrenome);
             } else {
                 return DetalhesTodosAutores(autores, HttpStatus.OK);
             }
