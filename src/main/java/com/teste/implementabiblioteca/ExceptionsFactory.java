@@ -48,8 +48,8 @@ public class ExceptionsFactory {
     }
 
     public static ResponseEntity<?> convert(ListEmptyException e) {
-        HttpStatus tipo_erro = HttpStatus.NO_CONTENT;
-        String mensagem_de_erro = "A Lista com o sobrenome " + e.getSobrenome() + " é vazia ";
+        HttpStatus tipo_erro = HttpStatus.NOT_FOUND;
+        String mensagem_de_erro = "Não existe o sobrenome " + e.getSobrenome() + " no cadastro ";
         return ResponseEntity.status(tipo_erro).body(mensagem_de_erro);
     }
 }
