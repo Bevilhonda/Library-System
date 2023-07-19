@@ -4,7 +4,7 @@ import com.teste.implementabiblioteca.LastNameNotFound;
 import com.teste.implementabiblioteca.Model.AutorEntity;
 import com.teste.implementabiblioteca.AutorNotFound;
 import com.teste.implementabiblioteca.ResponseTypeExceptions;
-import com.teste.implementabiblioteca.repository.RepositoryBiblioteca;
+import com.teste.implementabiblioteca.repository.RepositoryAutor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,14 +12,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.teste.implementabiblioteca.Controler.HelperMetodResponse.DetalhesTodosAutores;
-import static com.teste.implementabiblioteca.Controler.HelperMetodResponse.RetornoDetalhesAutor;
+import static com.teste.implementabiblioteca.Services.HelperMetodResponse.DetalhesTodosAutores;
+import static com.teste.implementabiblioteca.Services.HelperMetodResponse.RetornoDetalhesAutor;
 import static com.teste.implementabiblioteca.ExceptionsFactory.map;
 
 @Service
 public class Autor {
     @Autowired
-    private RepositoryBiblioteca repository;
+    private RepositoryAutor repository;
 
 
     public ResponseEntity<?> GetAutorById(Integer id) {
