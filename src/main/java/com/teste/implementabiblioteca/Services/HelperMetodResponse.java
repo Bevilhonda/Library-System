@@ -1,4 +1,4 @@
-package com.teste.implementabiblioteca.Controler;
+package com.teste.implementabiblioteca.Services;
 
 import com.teste.implementabiblioteca.Model.AutorEntity;
 import org.springframework.http.HttpStatus;
