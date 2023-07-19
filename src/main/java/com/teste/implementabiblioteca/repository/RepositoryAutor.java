@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 @Transactional
 @Service
-public interface RepositoryBiblioteca extends JpaRepository<AutorEntity, Integer> {
+public interface RepositoryAutor extends JpaRepository<AutorEntity, Integer> {
     @Query(value = "SELECT * from Autor where id_autor = :id_autor ", nativeQuery = true)
     AutorEntity GetAutor(Integer id_autor);
 
