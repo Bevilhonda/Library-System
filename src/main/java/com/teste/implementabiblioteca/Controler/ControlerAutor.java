@@ -2,7 +2,7 @@ package com.teste.implementabiblioteca.Controler;
 
 import com.teste.implementabiblioteca.Model.AutorEntity;
 import com.teste.implementabiblioteca.Services.Autor;
-import com.teste.implementabiblioteca.repository.RepositoryBiblioteca;
+import com.teste.implementabiblioteca.repository.RepositoryAutor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,31 +11,33 @@ import org.springframework.web.bind.annotation.*;
 import java.time.Instant;
 import java.util.List;
 
-import static com.teste.implementabiblioteca.Controler.HelperMetodResponse.DetalhesTodosAutores;
-import static com.teste.implementabiblioteca.Controler.HelperMetodResponse.RetornoDetalhesAutor;
+import static com.teste.implementabiblioteca.Services.HelperMetodResponse.DetalhesTodosAutores;
+import static com.teste.implementabiblioteca.Services.HelperMetodResponse.RetornoDetalhesAutor;
 
 @RestController
-public class Controler {
+public class ControlerAutor {
     @Autowired
-    private RepositoryBiblioteca repository;
+    private RepositoryAutor repository;
 
     @Autowired
     private Autor autores;
 
-    @GetMapping("/GetAutor_ID")
+    @GetMapping("/Autor_ID")
     public ResponseEntity<?> BuscaAutorByID(@RequestParam(value = "id_autor") Integer id) {
 
         return autores.GetAutorById(id);
     }
-    @GetMapping("/GetAllAutores")
+    @GetMapping("/AllAutores")
     public ResponseEntity<?> GetAll_Autores() {
         return autores.getAll_Autores();
     }
 
-    @GetMapping("/GetAutorLastName")
+    @GetMapping("/AutorLastName")
     public ResponseEntity<?> GetAutorByLastName(@RequestParam(value = "sobrenome") String sobrenome) {
         return autores.GetAutorByLastName(sobrenome);
     }
+
+
 
     @GetMapping("/BuscaAutorDataNascimento")// rever sobre datas de nascimento no banco
     public ResponseEntity<?> getDataNascimentoAutor(@RequestParam(value = "dataInicial") Instant datainicial,
