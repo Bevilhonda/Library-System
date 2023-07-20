@@ -18,11 +18,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataJpaTest
 @RunWith(SpringRunner.class)
 @ComponentScan()
-class RepositoryBibliotecaTest {
+class RepositoryAutorTest {
     @Autowired
     private TestEntityManager entityManager;
     @Autowired
-    RepositoryBiblioteca repository;
+    RepositoryAutor repository;
     @Test
     public void Mostra_autor(){
         Instant data_nascimento_autor = LocalDateTime.parse("2018-10-15t20:30:00").toInstant(ZoneOffset.UTC);
