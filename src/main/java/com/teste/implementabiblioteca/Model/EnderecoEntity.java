@@ -8,7 +8,7 @@ import javax.persistence.Table;
 @Entity
 @Table
 
-public class Create_Endereco {
+public class EnderecoEntity {
     @Id
     @GeneratedValue
 
