@@ -5,12 +5,13 @@ import java.time.Instant;
 
 @Entity
 @Table(name = "Autor")
-public class AutorEntity {
+public class AuthorEntity {
 
-    public AutorEntity() {
+    public AuthorEntity() {
     }
 
-    public AutorEntity(Integer id_autor ,String nome, String sobrenome, Instant data_nascimento) {
+    public AuthorEntity(Integer id_autor , String nome, String sobrenome,
+                        Instant data_nascimento) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.data_nascimento = data_nascimento;
@@ -23,6 +24,22 @@ public class AutorEntity {
     private String nome;
     private String sobrenome;
     private Instant data_nascimento;
+
+    public Integer getIdAuthor() {
+        return id_autor;
+    }
+
+    public String getName() {
+        return nome;
+    }
+
+    public String getLastname() {
+        return sobrenome;
+    }
+
+    public Instant getDateOfBirth() {
+        return data_nascimento;
+    }
 
     public Integer getId_autor() {
         return id_autor;

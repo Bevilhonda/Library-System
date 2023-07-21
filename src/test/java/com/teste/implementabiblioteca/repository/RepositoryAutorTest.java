@@ -1,6 +1,6 @@
 package com.teste.implementabiblioteca.repository;
 
-import com.teste.implementabiblioteca.Model.AutorEntity;
+import com.teste.implementabiblioteca.Model.AuthorEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,22 +22,22 @@ class RepositoryAutorTest {
     @Autowired
     private TestEntityManager entityManager;
     @Autowired
-    RepositoryAutor repository;
+    RepositoryAuthor repository;
     @Test
     public void Mostra_autor(){
         Instant data_nascimento_autor = LocalDateTime.parse("2018-10-15t20:30:00").toInstant(ZoneOffset.UTC);
-        repository.Inclui_Autor(1,"Jorge", "Batista", data_nascimento_autor);
+        repository.saveAuthor(1,"Jorge", "Batista", data_nascimento_autor);
 
-        List<AutorEntity> autorlist = repository.TodosAutores(); // testando a função que retorna todos autores
+        List<AuthorEntity> autorlist = repository.GetAllAuthors(); // testando a função que retorna todos autores
         assertThat(autorlist).isNotNull();
         assertThat(autorlist.size()).isEqualTo(1);
-        AutorEntity atual = autorlist.get(0);
-        repository.GetAutor(1);
+        AuthorEntity atual = autorlist.get(0);
+        repository.GetAuthor(1);
 
-        assertThat(atual.getData_nascimento()).isEqualTo(data_nascimento_autor);
-        assertThat(atual.getId_autor()).isEqualTo(1);
-        assertThat(atual.getNome()).isEqualTo("Jorge");
-        assertThat(atual.getSobrenome()).isEqualTo("Batista");
+        assertThat(atual.getDateOfBirth()).isEqualTo(data_nascimento_autor);
+        assertThat(atual.getIdAuthor()).isEqualTo(1);
+        assertThat(atual.getName()).isEqualTo("Jorge");
+        assertThat(atual.getLastname()).isEqualTo("Batista");
 
     }
 
@@ -46,34 +46,34 @@ class RepositoryAutorTest {
 
         Instant data_nascimento_autor = LocalDateTime.parse("2018-10-15t20:30:00").toInstant(ZoneOffset.UTC);
 
-        repository.Inclui_Autor(1,"Lucas", "Batista", data_nascimento_autor);
+        repository.saveAuthor(1,"Lucas", "Batista", data_nascimento_autor);
 
-        List<AutorEntity> autorlist = repository.TodosAutores(); // testando a função que retorna todos autores
+        List<AuthorEntity> autorlist = repository.GetAllAuthors(); // testando a função que retorna todos autores
         assertThat(autorlist).isNotNull();
         assertThat(autorlist.size()).isEqualTo(1);
-        AutorEntity atual = autorlist.get(0);
+        AuthorEntity atual = autorlist.get(0);
 
-        assertThat(atual.getData_nascimento()).isEqualTo(data_nascimento_autor);
-        assertThat(atual.getId_autor()).isEqualTo(1);
-        assertThat(atual.getNome()).isEqualTo("Lucas");
-        assertThat(atual.getSobrenome()).isEqualTo("Batista");
+        assertThat(atual.getDateOfBirth()).isEqualTo(data_nascimento_autor);
+        assertThat(atual.getIdAuthor()).isEqualTo(1);
+        assertThat(atual.getName()).isEqualTo("Lucas");
+        assertThat(atual.getLastname()).isEqualTo("Batista");
     }
 
     @Test
     public void Update_Autor(){
         Instant data_nascimento_autor = LocalDateTime.parse("2018-10-15t20:30:00").toInstant(ZoneOffset.UTC);
-        repository.Inclui_Autor(1,"Pedro","Batista",data_nascimento_autor);
-        List<AutorEntity> lista_de_autores = repository.TodosAutores();
+        repository.saveAuthor(1,"Pedro","Batista",data_nascimento_autor);
+        List<AuthorEntity> lista_de_autores = repository.GetAllAuthors();
 
-        repository.Update_Autor("Pedro","Batista",data_nascimento_autor,1);
+        repository.updateAuthor("Pedro","Batista",data_nascimento_autor,1);
         assertThat(lista_de_autores).isNotNull();
         assertThat(lista_de_autores.size()).isEqualTo(1);
-        AutorEntity atual = lista_de_autores.get(0);
+        AuthorEntity atual = lista_de_autores.get(0);
 
-        assertThat(atual.getData_nascimento()).isEqualTo(data_nascimento_autor);
-        assertThat(atual.getId_autor()).isEqualTo(1);
-        assertThat(atual.getNome()).isEqualTo("Pedro");
-        assertThat(atual.getSobrenome()).isEqualTo("Batista");
+        assertThat(atual.getDateOfBirth()).isEqualTo(data_nascimento_autor);
+        assertThat(atual.getIdAuthor()).isEqualTo(1);
+        assertThat(atual.getName()).isEqualTo("Pedro");
+        assertThat(atual.getLastname()).isEqualTo("Batista");
 
     }
 
@@ -81,11 +81,11 @@ class RepositoryAutorTest {
     public void Deletar_autor(){
         // Incluir um autor no banco
         Instant data_nascimento_autor = LocalDateTime.parse("2018-10-15t20:30:00").toInstant(ZoneOffset.UTC);
-        repository.Inclui_Autor(1,"Pedro","Batista",data_nascimento_autor);
+        repository.saveAuthor(1,"Pedro","Batista",data_nascimento_autor);
         // deletar o autor do banco
-        repository.Delete_Autor(1);
+        repository.deleteAuthor(1);
         //olhar no banco se tem algum autor
-        List<AutorEntity> novo = repository.TodosAutores();
+        List<AuthorEntity> novo = repository.GetAllAuthors();
         assertThat(novo).isEmpty();
     }
 
@@ -93,11 +93,11 @@ class RepositoryAutorTest {
     @Test
     public void Test_Delete_Autor(){
         Instant data_nascimento_autor = LocalDateTime.parse("2018-10-15t20:30:00").toInstant(ZoneOffset.UTC);
-        repository.Inclui_Autor(1,"Pedro","Batista",data_nascimento_autor);
+        repository.saveAuthor(1,"Pedro","Batista",data_nascimento_autor);
 
-        repository.Delete_Autor(1);
+        repository.deleteAuthor(1);
 
-        List<AutorEntity> lista_de_autores = repository.TodosAutores();
+        List<AuthorEntity> lista_de_autores = repository.GetAllAuthors();
         assertThat(lista_de_autores.size()).isEqualTo(0);
 
     }
@@ -106,27 +106,27 @@ class RepositoryAutorTest {
     @Test
     public void Delete_Um_Autor(){
         Instant data_nascimento_autor = LocalDateTime.parse("2018-10-15t20:30:00").toInstant(ZoneOffset.UTC);
-        repository.Inclui_Autor(1,"Pedro","Batista",data_nascimento_autor);
-        repository.Inclui_Autor(2,"Jorge","Batista",data_nascimento_autor);
-        repository.Inclui_Autor(3,"Lucas","Batista",data_nascimento_autor);
+        repository.saveAuthor(1,"Pedro","Batista",data_nascimento_autor);
+        repository.saveAuthor(2,"Jorge","Batista",data_nascimento_autor);
+        repository.saveAuthor(3,"Lucas","Batista",data_nascimento_autor);
 
-        repository.Delete_Autor(2);
-        List<AutorEntity> lista_de_autores = repository.TodosAutores();
+        repository.deleteAuthor(2);
+        List<AuthorEntity> lista_de_autores = repository.GetAllAuthors();
         assertThat(lista_de_autores.size()).isEqualTo(2);
 
-        AutorEntity atual = lista_de_autores.get(0);
+        AuthorEntity atual = lista_de_autores.get(0);
 
-        assertThat(atual.getData_nascimento()).isEqualTo(data_nascimento_autor);
-        assertThat(atual.getId_autor()).isEqualTo(1);
-        assertThat(atual.getNome()).isEqualTo("Pedro");
-        assertThat(atual.getSobrenome()).isEqualTo("Batista");
+        assertThat(atual.getDateOfBirth()).isEqualTo(data_nascimento_autor);
+        assertThat(atual.getIdAuthor()).isEqualTo(1);
+        assertThat(atual.getName()).isEqualTo("Pedro");
+        assertThat(atual.getLastname()).isEqualTo("Batista");
 
-        AutorEntity atual1 = lista_de_autores.get(1);
+        AuthorEntity atual1 = lista_de_autores.get(1);
 
-        assertThat(atual1.getData_nascimento()).isEqualTo(data_nascimento_autor);
-        assertThat(atual1.getId_autor()).isEqualTo(3);
-        assertThat(atual1.getNome()).isEqualTo("Lucas");
-        assertThat(atual1.getSobrenome()).isEqualTo("Batista");
+        assertThat(atual1.getDateOfBirth()).isEqualTo(data_nascimento_autor);
+        assertThat(atual1.getIdAuthor()).isEqualTo(3);
+        assertThat(atual1.getName()).isEqualTo("Lucas");
+        assertThat(atual1.getLastname()).isEqualTo("Batista");
 
     }
 }
