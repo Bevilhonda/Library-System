@@ -1,5 +1,7 @@
 package com.teste.implementabiblioteca.Model;
 
+import com.teste.implementabiblioteca.Autor;
+
 import javax.persistence.*;
 import java.time.Instant;
 
@@ -12,15 +14,14 @@ public class BookEntity {
 
     }
 
-    public BookEntity(Integer idBook , String title, Integer bookEdition,
-                      AuthorEntity author, LibraryEntity library, AddressEntity address,
-                      Instant releaseDate) {
-        this.id_Livro = idBook;
-        this.titulo = title;
-        this.edicao = bookEdition;
-        this.data_publication = releaseDate;
-        this.fk_autor = author.getIdAuthor();
-        this.fk_biblioteca = library.getIdLibrary();
+    public BookEntity(String titulo, Autor autor,
+                      Instant data_publication, int edicao, int id_biblioteca, int id_livro) {
+        this.id_Livro = id_livro;
+        this.titulo = titulo;
+        this.edicao = edicao;
+        this.data_publication = data_publication;
+        this.fk_autor = autor.getId_autor();
+        this.fk_biblioteca = id_biblioteca;
 
     }
 
@@ -50,7 +51,7 @@ public class BookEntity {
         return fk_biblioteca;
     }
 
-    public Instant getReleaseDate() {
+    public Instant getData_publication() {
         return data_publication;
     }
 

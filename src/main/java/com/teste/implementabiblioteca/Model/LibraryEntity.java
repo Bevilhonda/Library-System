@@ -10,10 +10,10 @@ public class LibraryEntity {
     public LibraryEntity(){
 
     }
-    public LibraryEntity(Integer idLibrary , String name , Integer fkEndereco){
-        this.id_biblioteca = idLibrary;
-        this.nome = name;
-        this.fk_endereco = fkEndereco;
+    public LibraryEntity(Integer id_biblioteca , String nome , Integer fk_endereco){
+        this.id_biblioteca = id_biblioteca;
+        this.nome = nome;
+        this.fk_endereco = fk_endereco;
     }
 
     @Id
@@ -23,15 +23,15 @@ public class LibraryEntity {
     String nome;
     Integer fk_endereco;
 
-    public String getNameLibrary() {
-        return nome;
-    }
-
-    public Integer getIdLibrary() {
+    public Integer getId_biblioteca() {
         return id_biblioteca;
     }
 
-    public Integer getAddressLibrary() {
+    public String getNome() {
+        return nome;
+    }
+
+    public Integer getFk_endereco() {
         return fk_endereco;
     }
 }

@@ -18,7 +18,6 @@ public class ExceptionsFactory {
             }
         }
     }
-//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     public static ResponseEntity<?> Convert(AuthorNotFound e) {
         HttpStatus statusCode = HttpStatus.NOT_FOUND;
         String message = "O Autor com o id " + e.getId() + " não  foi encontrado.";
@@ -31,11 +30,16 @@ public class ExceptionsFactory {
         return ResponseEntity.status(statusCode).body(message);
     }
 
+
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     public static ResponseEntity<?> MapLibrary(Throwable e) {
 
         switch (e.getClass().getSimpleName()) {
-            case "BibliotecaNotFound" -> {
+            case "LibraryNotFound" -> {
                 return Convert((LibraryNotFound) e);
+            }
+            case "NameLibraryNotFound" ->{
+                return Convert((NameLibraryNotFound)e);
             }
 
             default -> {
@@ -46,6 +50,11 @@ public class ExceptionsFactory {
     public static ResponseEntity<?> Convert(LibraryNotFound e) {
         HttpStatus statusCode = HttpStatus.NOT_FOUND;
         String message = "A Biblioteca com o id " + e.getId() + " não  foi encontrada.";
+        return ResponseEntity.status(statusCode).body(message);
+    }
+    public static ResponseEntity<?> Convert(NameLibraryNotFound e) {
+        HttpStatus statusCode = HttpStatus.NOT_FOUND;
+        String message = "A Biblioteca com o nome " + e.getNome() + " não  foi encontrada.";
         return ResponseEntity.status(statusCode).body(message);
     }
  //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

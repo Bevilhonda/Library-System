@@ -9,11 +9,11 @@ public class Biblioteca {
     private final Endereco endereco;
     private final int id_biblioteca;
 
-    public Biblioteca(String nome, List<Livro> lista_de_livro, Endereco endereco, int id_Biblioteca) {
+    public Biblioteca(String nome, List<Livro> lista_de_livro, Endereco endereco, int id_biblioteca) {
         this.nome_da_biblioteca = nome;
         this.lista_de_livro = lista_de_livro;
         this.endereco = endereco;
-        this.id_biblioteca = id_Biblioteca;
+        this.id_biblioteca = id_biblioteca;
     }
 
     public String getNome_da_biblioteca() {

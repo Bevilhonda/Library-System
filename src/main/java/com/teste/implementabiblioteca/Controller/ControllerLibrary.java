@@ -21,4 +21,14 @@ public class ControllerLibrary {
     public ResponseEntity<?> GetLibraryById(@RequestParam (value = "id_biblioteca") Integer id){
         return library.GetLibraryById(id);
     }
+
+    @GetMapping("/Name")
+    public ResponseEntity<?> GetNameLibrary(@RequestParam(value = "nome") String nome){
+        return library.GetLibraryByName(nome);
+    }
+
+    @GetMapping("/Name/Address")
+    public ResponseEntity<?> GetNameAndAddresLibrary(@RequestParam(value = "nome") String nome){
+        return library.GetNameAndAddress(nome);
+    }
 }

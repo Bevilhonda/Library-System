@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -15,4 +16,11 @@ public interface RepositoryLibrary extends JpaRepository<LibraryEntity, Integer>
 
     @Query(value = "select * from Biblioteca where id_biblioteca = :id_biblioteca " , nativeQuery = true)
     LibraryEntity GetLibrary(Integer id_biblioteca);
+
+    @Query(value = "select * from Biblioteca where nome = :nome",nativeQuery = true)
+    List<LibraryEntity> GetName(String nome);
+
+    @Query(value = "select * from Biblioteca join Endereco on " +
+            "(Biblioteca.fk_endereco = Endereco.id_endereco) where nome = :nome ", nativeQuery = true)
+    List<LibraryEntity> GetLibraryByName(String nome);
 }
