@@ -10,12 +10,12 @@ public class AuthorEntity {
     public AuthorEntity() {
     }
 
-    public AuthorEntity(Integer id_autor , String nome, String sobrenome,
-                        Instant data_nascimento) {
-        this.nome = nome;
-        this.sobrenome = sobrenome;
-        this.data_nascimento = data_nascimento;
-        this.id_autor = id_autor;
+    public AuthorEntity(Integer idAuthor , String name, String lastName,
+                        Instant dateBirth) {
+        this.nome = name;
+        this.sobrenome = lastName;
+        this.data_nascimento = dateBirth;
+        this.id_autor = idAuthor;
     }
 
     @Id

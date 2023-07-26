@@ -23,7 +23,7 @@ public class ControllerAuthor {
     private Author author;
 
     @GetMapping("/Author/Id")
-    public ResponseEntity<?> BuscaAutorByID(@RequestParam(value = "id_autor") Integer id) {
+    public ResponseEntity<?> GetAuthorById(@RequestParam(value = "id_autor") Integer id) {
 
         return author.GetAutorById(id);
     }
@@ -40,8 +40,8 @@ public class ControllerAuthor {
 
 
     @GetMapping("/BuscaAutorDataNascimento")// rever sobre datas de nascimento no banco
-    public ResponseEntity<?> getDataNascimentoAutor(@RequestParam(value = "dataInicial") Instant datainicial,
-                                                    @RequestParam(value = "dataFinal") Instant datafinal) {
+    public ResponseEntity<?> GetAuthorByDateBirth(@RequestParam(value = "dataInicial") Instant datainicial,
+                                                  @RequestParam(value = "dataFinal") Instant datafinal) {
         List<AuthorEntity> autores = repositoryAuthor.selectAuthorByDate(datainicial, datafinal);
 
         if (autores.isEmpty()) {
@@ -53,14 +53,14 @@ public class ControllerAuthor {
     }
 
     @PostMapping("/Incluir_Autor") // se data for errada por exemplo 25/05/1300 ?
-    public ResponseEntity<?> insere_autor(@RequestBody AuthorEntity novo_autor) {
+    public ResponseEntity<?> IncludeAuthor(@RequestBody AuthorEntity novo_autor) {
         repositoryAuthor.saveAuthor(novo_autor.getIdAuthor(), novo_autor.getName(), novo_autor.getLastname(),
                 novo_autor.getDateOfBirth());
         return ReturnDetailsAuthor("Autor adicionado com sucesso", HttpStatus.OK);
     }
 
     @PutMapping("/Update_novo")
-    public ResponseEntity<?> new_update_autor(@RequestParam(value = "id_autor") Integer id, @RequestBody AuthorEntity novo_autor) {
+    public ResponseEntity<?> NewUpdateAuthor(@RequestParam(value = "id_autor") Integer id, @RequestBody AuthorEntity novo_autor) {
         List<AuthorEntity> todos_autores = repositoryAuthor.GetAllAuthors();
         boolean autorEncontrado = false;
 
@@ -79,9 +79,9 @@ public class ControllerAuthor {
     }
 
     @PutMapping("/Update")
-    public ResponseEntity<?> update_autor(@RequestParam(value = "id_autor") Integer id, @RequestBody AuthorEntity novoautor) {
-        AuthorEntity autor_atual = repositoryAuthor.GetAuthor(id);
-        if (autor_atual == null) {
+    public ResponseEntity<?> UpdateAuthor(@RequestParam(value = "id_autor") Integer id, @RequestBody AuthorEntity novoautor) {
+        AuthorEntity currentAuthor = repositoryAuthor.GetAuthor(id);
+        if (currentAuthor == null) {
             return ReturnDetailsAuthor("Não consta na lista este autor.", HttpStatus.NOT_FOUND);
         } else {
             repositoryAuthor.updateAuthor(novoautor.getName(), novoautor.getLastname(), novoautor.getDateOfBirth(), id);
@@ -90,9 +90,9 @@ public class ControllerAuthor {
     }
 
     @DeleteMapping("/Delete")
-    public ResponseEntity<?> deleta_autor(@RequestParam(value = "id_autor") Integer id) {
-        AuthorEntity autor = repositoryAuthor.GetAuthor(id);
-        if (autor == null) {
+    public ResponseEntity<?> DeleteAuthor(@RequestParam(value = "id_autor") Integer id) {
+        AuthorEntity author = repositoryAuthor.GetAuthor(id);
+        if (author == null) {
             return ReturnDetailsAuthor("Não consta na lista este autor.", HttpStatus.NOT_FOUND);
         }
         repositoryAuthor.deleteAuthor(id);

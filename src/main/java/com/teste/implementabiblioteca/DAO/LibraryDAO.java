@@ -27,18 +27,18 @@ public class LibraryDAO {
     public LibraryDAO() {
     }
 
-    public ResponseEntity<?> GetAllLibrary(String nome) {
+    public ResponseEntity<?> GetAllLibrary(String name) {
         try {
             List<LibraryEntity> libraries = repositoryLibrary.GetAllLibrary();
 
             if (libraries.isEmpty()) {
-                throw new NameLibraryNotFound(nome);
+                throw new NameLibraryNotFound(name);
             }
 
 
             List<String> libraryDetailsList = new ArrayList<>();
             for (LibraryEntity library : libraries) {
-                if (Objects.equals(library.getName(), nome)) {
+                if (Objects.equals(library.getName(), name)) {
                     AddressEntity address = repositoryAddress.GetAddress(library.getFkAddress());
                     String addressDetails = ", ID Endereço: " + library.getFkAddress()
                             + ", Rua: " + address.getstreet()
