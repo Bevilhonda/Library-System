@@ -1,5 +1,6 @@
 package com.teste.implementabiblioteca.Controller;
 
+import com.teste.implementabiblioteca.DAO.LibraryDAO;
 import com.teste.implementabiblioteca.Services.Library;
 import com.teste.implementabiblioteca.repository.RepositoryLibrary;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,19 +17,21 @@ public class ControllerLibrary {
 
     @Autowired
     private Library library;
+    @Autowired
+    private LibraryDAO libraryDAO;
 
     @GetMapping("/Library/id")
-    public ResponseEntity<?> GetLibraryById(@RequestParam (value = "id_biblioteca") Integer id){
+    public ResponseEntity<?> GetLibraryById(@RequestParam(value = "id_biblioteca") Integer id) {
         return library.GetLibraryById(id);
     }
 
     @GetMapping("/Name")
-    public ResponseEntity<?> GetNameLibrary(@RequestParam(value = "nome") String nome){
+    public ResponseEntity<?> GetNameLibrary(@RequestParam(value = "nome") String nome) {
         return library.GetLibraryByName(nome);
     }
 
     @GetMapping("/Name/Address")
-    public ResponseEntity<?> GetNameAndAddresLibrary(@RequestParam(value = "nome") String nome){
-        return library.GetNameAndAddress(nome);
+    public ResponseEntity<?> GetNameAndAddresLibrary(@RequestParam(value = "nome") String nome) {
+        return libraryDAO.GetAllLibrary(nome);
     }
 }
