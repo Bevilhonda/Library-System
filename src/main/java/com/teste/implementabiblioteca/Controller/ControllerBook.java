@@ -1,5 +1,6 @@
 package com.teste.implementabiblioteca.Controller;
 
+import com.teste.implementabiblioteca.DAO.BookDAO;
 import com.teste.implementabiblioteca.Model.BookEntity;
 import com.teste.implementabiblioteca.Services.Book;
 import com.teste.implementabiblioteca.repository.RepositoryBook;
@@ -14,6 +15,8 @@ public class ControllerBook {
     @Autowired
     private RepositoryBook repositoryBook;
     @Autowired
+    private BookDAO bookDAO;
+    @Autowired
     private Book books;
 
     @GetMapping("/Book/Id")
@@ -21,4 +24,14 @@ public class ControllerBook {
         return books.GetBookById(id);
 
     }
+    @GetMapping("/AllBooks")
+    public ResponseEntity<?> GetAllBooks(){
+        return books.GetAllBooks();
+    }
+    @GetMapping("/Book/ID")
+    public ResponseEntity<?> GetBookByName(@RequestParam(name = "id_Livro") Integer id_Livro){
+        return bookDAO.GetBookByName(id_Livro);
+
+    }
+
 }
