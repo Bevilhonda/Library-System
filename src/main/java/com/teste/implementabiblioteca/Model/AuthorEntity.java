@@ -41,19 +41,4 @@ public class AuthorEntity {
         return data_nascimento;
     }
 
-    public Integer getId_autor() {
-        return id_autor;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public String getSobrenome() {
-        return sobrenome;
-    }
-
-    public Instant getData_nascimento() {
-        return data_nascimento;
-    }
 }

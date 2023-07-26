@@ -41,7 +41,7 @@ public class Library {
 
     public ResponseEntity<?> GetLibraryByName(String nome) {
         try {
-            List<LibraryEntity> name = repositorylibrary.GetName(nome);
+            List<LibraryEntity> name = repositorylibrary.GetAllName(nome);
             if (name.isEmpty()) {
                 throw new NameLibraryNotFound(nome);
             }

@@ -14,14 +14,14 @@ public class BookEntity {
 
     }
 
-    public BookEntity(String titulo, Autor autor,
-                      Instant data_publication, int edicao, int id_biblioteca, int id_livro) {
-        this.id_Livro = id_livro;
-        this.titulo = titulo;
-        this.edicao = edicao;
-        this.data_publication = data_publication;
-        this.fk_autor = autor.getId_autor();
-        this.fk_biblioteca = id_biblioteca;
+    public BookEntity(String title, Autor author,
+                      Instant publicationDate, int edition, int idLibrary, int idBook) {
+        this.id_Livro = idBook;
+        this.titulo = title;
+        this.edicao = edition;
+        this.data_publication = publicationDate;
+        this.fk_autor = author.getId_autor();
+        this.fk_biblioteca = idLibrary;
 
     }
 

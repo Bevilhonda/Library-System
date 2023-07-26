@@ -85,7 +85,7 @@ public class ExceptionsFactory {
     public static ResponseEntity<?> MapBook(Throwable e) {
 
         switch (e.getClass().getSimpleName()) {
-            case "AddressNotFound" -> {
+            case "BookNotFound" -> {
                 return Convert((BookNotFound) e);
             }
 

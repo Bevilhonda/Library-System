@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static com.teste.implementabiblioteca.MonitorExceptions.ExceptionsFactory.MapLibrary;
 
@@ -28,7 +29,7 @@ public class LibraryDAO {
 
     public ResponseEntity<?> GetAllLibrary(String nome) {
         try {
-            List<LibraryEntity> libraries = repositoryLibrary.GetAllLibrary(nome);
+            List<LibraryEntity> libraries = repositoryLibrary.GetAllLibrary();
 
             if (libraries.isEmpty()) {
                 throw new NameLibraryNotFound(nome);
@@ -37,19 +38,21 @@ public class LibraryDAO {
 
             List<String> libraryDetailsList = new ArrayList<>();
             for (LibraryEntity library : libraries) {
-                AddressEntity address = repositoryAddress.GetAddress(library.getFkAddress());
-                String addressDetails = "ID Endereço: " + library.getFkAddress()
-                        + ", Rua: " + address.getstreet()
-                        + ", Número: " + address.getNumber()
-                        + ", Bairro: " + address.getZone()
-                        + ", Cidade: " + address.getCity()
-                        + ", Estado: " + address.getState();
+                if (Objects.equals(library.getName(), nome)) {
+                    AddressEntity address = repositoryAddress.GetAddress(library.getFkAddress());
+                    String addressDetails = ", ID Endereço: " + library.getFkAddress()
+                            + ", Rua: " + address.getstreet()
+                            + ", Número: " + address.getNumber()
+                            + ", Bairro: " + address.getZone()
+                            + ", Cidade: " + address.getCity()
+                            + ", Estado: " + address.getState();
 
-                String libraryDetails = "ID Biblioteca: " + library.getIdLibrary()
-                        + ", Nome: " + library.getName()
-                        + ", Endereço: " + addressDetails;
+                    String libraryDetails = ", ID Biblioteca: " + library.getIdLibrary()
+                            + ", Nome: " + library.getName()
+                            + ", Endereço: " + addressDetails;
 
-                libraryDetailsList.add(libraryDetails);
+                    libraryDetailsList.add(libraryDetails);
+                }
             }
 
             return new ResponseEntity<>(libraryDetailsList, HttpStatus.OK);

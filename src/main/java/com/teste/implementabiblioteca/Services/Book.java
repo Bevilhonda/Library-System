@@ -9,7 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import static com.teste.implementabiblioteca.MonitorExceptions.ExceptionsFactory.MapBook;
+import static com.teste.implementabiblioteca.Services.HelperResponseBook.DetailsAllBook;
 import static com.teste.implementabiblioteca.Services.HelperResponseBook.ReturnDetailsBook;
 
 @Service
@@ -32,7 +35,11 @@ public class Book {
         } catch (ResponseTypeExceptions e) {
             return MapBook(e);
         }
+    }
 
+    public ResponseEntity<?> GetAllBooks() {
+        List<BookEntity> books = repositoryBook.GetAllBooks();
+        return DetailsAllBook(books,HttpStatus.OK);
     }
 }
 

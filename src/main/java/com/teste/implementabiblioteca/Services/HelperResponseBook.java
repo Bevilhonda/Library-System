@@ -1,6 +1,7 @@
 package com.teste.implementabiblioteca.Services;
 
 import com.teste.implementabiblioteca.Model.AuthorEntity;
+import com.teste.implementabiblioteca.Model.BookEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -13,15 +14,17 @@ public class HelperResponseBook {
         return ResponseEntity.status(responsestatus).body(message);
     }
 
-    public static ResponseEntity<?> DetailsAllBook(List<AuthorEntity> bookList, HttpStatus currentStatus) {
+    public static ResponseEntity<?> DetailsAllBook(List<BookEntity> bookList, HttpStatus currentStatus) {
 
         List<String> detailsBook = new ArrayList<>();
 
-        for (AuthorEntity book : bookList) {
+        for (BookEntity book : bookList) {
 
-            String detailabBook = "Id: " + book.getIdAuthor() + "\n Nome: " +
-                    book.getName() + "\n Sobrenome: " + book.getLastname()
-                    + "\n Data Nascimento: " + book.getDateOfBirth();
+            String detailabBook =
+                    "Id: " + book.getIdBook() + " Biblioteca " + book.getFkLibrary() +
+                            " Titulo: " + book.geTitle() + " Edição: " + book.getEdition()
+                            + " Data Publicação: " + book.getData_publication() + " Autor: " +
+                            book.getFkAuthor();
             detailsBook.add(detailabBook);
         }
         return ResponseEntity.status(currentStatus).body(detailsBook);
