@@ -3,35 +3,37 @@ package com.teste.implementabiblioteca.Model;
 import javax.persistence.*;
 
 @Entity
-@Table(name =  "Biblioteca")
+@Table(name = "Biblioteca")
 
 public class LibraryEntity {
 
-    public LibraryEntity(){
+    public LibraryEntity() {
 
     }
-    public LibraryEntity(Integer id_biblioteca , String nome , Integer fk_endereco){
-        this.id_biblioteca = id_biblioteca;
-        this.nome = nome;
-        this.fk_endereco = fk_endereco;
+
+    public LibraryEntity(Integer idLibrary, String name, Integer address) {
+        this.id_biblioteca = idLibrary;
+        this.nome = name;
+        this.fk_endereco = address;
+
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    Integer id_biblioteca ;
+    Integer id_biblioteca;
     String nome;
     Integer fk_endereco;
 
-    public Integer getId_biblioteca() {
+    public Integer getIdLibrary() {
         return id_biblioteca;
     }
 
-    public String getNome() {
+    public String getName() {
         return nome;
     }
 
-    public Integer getFk_endereco() {
+    public Integer getFkAddress() {
         return fk_endereco;
     }
 }
