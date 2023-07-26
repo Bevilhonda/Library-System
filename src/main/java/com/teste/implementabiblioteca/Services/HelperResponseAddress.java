@@ -1,7 +1,6 @@
 package com.teste.implementabiblioteca.Services;
 
 import com.teste.implementabiblioteca.Model.AddressEntity;
-import com.teste.implementabiblioteca.Model.AuthorEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -22,7 +21,7 @@ public class HelperResponseAddress {
         for (AddressEntity address : addresslist) {
 
             String detailaddress = "Id: " + address.getIdAddress() + "\n Street:  " +
-                    address.getAddress() + "\n Number:  " +
+                    address.getstreet() + "\n Number:  " +
                     address.getNumber() + "\n Zone: " + address.getZone() + "\n City: " +
                     address.getCity() + "\n State: " + address.getState();
 
