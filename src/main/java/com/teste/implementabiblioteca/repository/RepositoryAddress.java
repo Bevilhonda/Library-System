@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 @Repository
 @Transactional
 @Service
-public interface RepositoryAddress extends JpaRepository<AddressEntity , Integer> {
+public interface RepositoryAddress extends JpaRepository<AddressEntity, Integer> {
 
     @Query(value = "select * from Endereco where id_endereco = :id_endereco ", nativeQuery = true)
     AddressEntity GetAddress(Integer id_endereco);
