@@ -26,7 +26,7 @@ public class Address {
                 throw new AddressNotFound(id);
             }
             return ReturnDetailsAuthor("Id: " + address.getIdAddress()+ "\n Street:  " +
-                    address.getAddress() + "\n Number:  " +
+                    address.getstreet() + "\n Number:  " +
                     address.getNumber() + "\n Zone: " + address.getZone() + "\n City: " +
                     address.getCity() + "\n State: " + address.getState()
                     , HttpStatus.OK);

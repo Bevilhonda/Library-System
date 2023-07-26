@@ -3,11 +3,11 @@ package com.teste.implementabiblioteca.MonitorExceptions;
 public class NameLibraryNotFound extends ResponseTypeExceptions{
 
     private String nome ;
-    public NameLibraryNotFound(String nome){
-        this.nome = nome;
+    public NameLibraryNotFound(String name){
+        this.nome = name;
     }
 
-    public String getNome() {
+    public String getName() {
         return nome;
     }
 }

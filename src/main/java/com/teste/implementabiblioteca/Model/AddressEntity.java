@@ -11,10 +11,10 @@ public class AddressEntity {
 
     }
 
-    public AddressEntity(Integer idAddress , String streetName, String cityName,
+    public AddressEntity(Integer idAddress , String street, String city,
                          Integer number, String zone , String state ) {
-        this.cidade = cityName;
-        this.rua = streetName;
+        this.cidade = city;
+        this.rua = street;
         this.numero = number;
         this.id_endereco = idAddress;
         this.estado = state;
@@ -35,7 +35,7 @@ public class AddressEntity {
         return id_endereco;
     }
 
-    public String getAddress() {
+    public String getstreet() {
         return rua;
     }
 
