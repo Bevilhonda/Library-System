@@ -29,7 +29,7 @@ public interface RepositoryAuthor extends JpaRepository<AuthorEntity, Integer> {
     @Query(value = "Insert into Autor (id_autor ,nome, sobrenome, data_nascimento) values " +
             "(:id_autor ,:nome, :sobrenome, :data_nascimento)", nativeQuery = true)
     @Modifying
-    Integer saveAuthor(Integer id_autor,String nome,String sobrenome,Instant data_nascimento);
+    Integer Save(Integer id_autor, String nome, String sobrenome, Instant data_nascimento);
 
     @Modifying
     @Query(value = "UPDATE Autor set nome = :nome , sobrenome = :sobrenome , data_nascimento = :data_nascimento " +

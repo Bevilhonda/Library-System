@@ -26,7 +26,7 @@ class RepositoryAutorTest {
     @Test
     public void Mostra_autor(){
         Instant data_nascimento_autor = LocalDateTime.parse("2018-10-15t20:30:00").toInstant(ZoneOffset.UTC);
-        repository.saveAuthor(1,"Jorge", "Batista", data_nascimento_autor);
+        repository.Save(1,"Jorge", "Batista", data_nascimento_autor);
 
         List<AuthorEntity> autorlist = repository.GetAllAuthors(); // testando a função que retorna todos autores
         assertThat(autorlist).isNotNull();
@@ -46,7 +46,7 @@ class RepositoryAutorTest {
 
         Instant data_nascimento_autor = LocalDateTime.parse("2018-10-15t20:30:00").toInstant(ZoneOffset.UTC);
 
-        repository.saveAuthor(1,"Lucas", "Batista", data_nascimento_autor);
+        repository.Save(1,"Lucas", "Batista", data_nascimento_autor);
 
         List<AuthorEntity> autorlist = repository.GetAllAuthors(); // testando a função que retorna todos autores
         assertThat(autorlist).isNotNull();
@@ -62,7 +62,7 @@ class RepositoryAutorTest {
     @Test
     public void Update_Autor(){
         Instant data_nascimento_autor = LocalDateTime.parse("2018-10-15t20:30:00").toInstant(ZoneOffset.UTC);
-        repository.saveAuthor(1,"Pedro","Batista",data_nascimento_autor);
+        repository.Save(1,"Pedro","Batista",data_nascimento_autor);
         List<AuthorEntity> lista_de_autores = repository.GetAllAuthors();
 
         repository.updateAuthor("Pedro","Batista",data_nascimento_autor,1);
@@ -81,7 +81,7 @@ class RepositoryAutorTest {
     public void Deletar_autor(){
         // Incluir um autor no banco
         Instant data_nascimento_autor = LocalDateTime.parse("2018-10-15t20:30:00").toInstant(ZoneOffset.UTC);
-        repository.saveAuthor(1,"Pedro","Batista",data_nascimento_autor);
+        repository.Save(1,"Pedro","Batista",data_nascimento_autor);
         // deletar o autor do banco
         repository.deleteAuthor(1);
         //olhar no banco se tem algum autor
@@ -93,7 +93,7 @@ class RepositoryAutorTest {
     @Test
     public void Test_Delete_Autor(){
         Instant data_nascimento_autor = LocalDateTime.parse("2018-10-15t20:30:00").toInstant(ZoneOffset.UTC);
-        repository.saveAuthor(1,"Pedro","Batista",data_nascimento_autor);
+        repository.Save(1,"Pedro","Batista",data_nascimento_autor);
 
         repository.deleteAuthor(1);
 
@@ -106,9 +106,9 @@ class RepositoryAutorTest {
     @Test
     public void Delete_Um_Autor(){
         Instant data_nascimento_autor = LocalDateTime.parse("2018-10-15t20:30:00").toInstant(ZoneOffset.UTC);
-        repository.saveAuthor(1,"Pedro","Batista",data_nascimento_autor);
-        repository.saveAuthor(2,"Jorge","Batista",data_nascimento_autor);
-        repository.saveAuthor(3,"Lucas","Batista",data_nascimento_autor);
+        repository.Save(1,"Pedro","Batista",data_nascimento_autor);
+        repository.Save(2,"Jorge","Batista",data_nascimento_autor);
+        repository.Save(3,"Lucas","Batista",data_nascimento_autor);
 
         repository.deleteAuthor(2);
         List<AuthorEntity> lista_de_autores = repository.GetAllAuthors();

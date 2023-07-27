@@ -22,24 +22,24 @@ public class ControllerAuthor {
     @Autowired
     private Author author;
 
-    @GetMapping("/Author/Id")
-    public ResponseEntity<?> GetAuthorById(@RequestParam(value = "id_autor") Integer id) {
+    @GetMapping("/Author/{id}")
+    public ResponseEntity<?> GetAuthorById(@PathVariable Integer id) {
 
         return author.GetAutorById(id);
     }
-    @GetMapping("/AllAuthors")
+    @GetMapping("/Authors")
     public ResponseEntity<?> GetAll_Authors() {
         return author.GetAllAuthors();
     }
 
-    @GetMapping("/AuthorLastName")
-    public ResponseEntity<?> GetAutorByLastName(@RequestParam(value = "sobrenome") String sobrenome) {
-        return author.GetAutorByLastName(sobrenome);
+    @GetMapping("/Author/LastName/{lastname}")
+    public ResponseEntity<?> GetAutorByLastName(@PathVariable String lastname) {
+        return author.GetAutorByLastName(lastname);
     }
 
 
 
-    @GetMapping("/BuscaAutorDataNascimento")// rever sobre datas de nascimento no banco
+    @GetMapping("/Autor/DataNascimento")// rever sobre datas de nascimento no banco
     public ResponseEntity<?> GetAuthorByDateBirth(@RequestParam(value = "dataInicial") Instant datainicial,
                                                   @RequestParam(value = "dataFinal") Instant datafinal) {
         List<AuthorEntity> autores = repositoryAuthor.selectAuthorByDate(datainicial, datafinal);
@@ -54,7 +54,7 @@ public class ControllerAuthor {
 
     @PostMapping("/Incluir_Autor") // se data for errada por exemplo 25/05/1300 ?
     public ResponseEntity<?> IncludeAuthor(@RequestBody AuthorEntity novo_autor) {
-        repositoryAuthor.saveAuthor(novo_autor.getIdAuthor(), novo_autor.getName(), novo_autor.getLastname(),
+        repositoryAuthor.Save(novo_autor.getIdAuthor(), novo_autor.getName(), novo_autor.getLastname(),
                 novo_autor.getDateOfBirth());
         return ReturnDetailsAuthor("Autor adicionado com sucesso", HttpStatus.OK);
     }
@@ -80,8 +80,8 @@ public class ControllerAuthor {
 
     @PutMapping("/Update")
     public ResponseEntity<?> UpdateAuthor(@RequestParam(value = "id_autor") Integer id, @RequestBody AuthorEntity novoautor) {
-        AuthorEntity currentAuthor = repositoryAuthor.GetAuthor(id);
-        if (currentAuthor == null) {
+        AuthorEntity author = repositoryAuthor.GetAuthor(id);
+        if (author == null) {
             return ReturnDetailsAuthor("Não consta na lista este autor.", HttpStatus.NOT_FOUND);
         } else {
             repositoryAuthor.updateAuthor(novoautor.getName(), novoautor.getLastname(), novoautor.getDateOfBirth(), id);
