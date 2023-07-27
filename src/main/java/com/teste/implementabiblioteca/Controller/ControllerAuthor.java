@@ -42,7 +42,7 @@ public class ControllerAuthor {
 
 
 
-    @GetMapping("/Autor/DataNascimento")// rever sobre datas de nascimento no banco
+    @GetMapping("/Author/DateBirth")// rever sobre datas de nascimento no banco
     public ResponseEntity<?> GetAuthorByDateBirth(@RequestParam(value = "dataInicial") String startDate,
                                                   @RequestParam(value = "dataFinal") String finalDate) {
         return author.GetAuthorByDateBirth(startDate,finalDate);

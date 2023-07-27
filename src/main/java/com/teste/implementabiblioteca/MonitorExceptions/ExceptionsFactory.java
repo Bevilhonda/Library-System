@@ -102,4 +102,24 @@ public class ExceptionsFactory {
     }
 
 
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+    public static ResponseEntity<?> MapDateBirth(Throwable e) {
+
+        switch (e.getClass().getSimpleName()) {
+            case "DateBirthNotFound" -> {
+                return Convert((DateBirthNotFound) e);
+            }
+
+            default -> {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ocorreu um erro ao buscar o autor.");
+            }
+        }
+    }
+
+    public static ResponseEntity<?> Convert(DateBirthNotFound e) {
+        HttpStatus statusCode = HttpStatus.NOT_FOUND;
+        String message = "Não contém as datas Inicio: " + e.getStartDate()+" Fim: "  + e.getFinalDate();
+        return ResponseEntity.status(statusCode).body(message);
+    }
 }
