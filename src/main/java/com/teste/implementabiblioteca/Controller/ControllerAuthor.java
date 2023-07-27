@@ -9,6 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static com.teste.implementabiblioteca.Services.HelperResponseAuthor.DetailsAllAuthors;
@@ -40,16 +43,9 @@ public class ControllerAuthor {
 
 
     @GetMapping("/Autor/DataNascimento")// rever sobre datas de nascimento no banco
-    public ResponseEntity<?> GetAuthorByDateBirth(@RequestParam(value = "dataInicial") Instant datainicial,
-                                                  @RequestParam(value = "dataFinal") Instant datafinal) {
-        List<AuthorEntity> autores = repositoryAuthor.selectAuthorByDate(datainicial, datafinal);
-
-        if (autores.isEmpty()) {
-            return ReturnDetailsAuthor("Não constam autores entre essas datas.", HttpStatus.NOT_FOUND);
-
-        } else {
-            return DetailsAllAuthors(autores, HttpStatus.OK);
-        }
+    public ResponseEntity<?> GetAuthorByDateBirth(@RequestParam(value = "dataInicial") String startDate,
+                                                  @RequestParam(value = "dataFinal") String finalDate) {
+        return author.GetAuthorByDateBirth(startDate,finalDate);
     }
 
     @PostMapping("/Incluir_Autor") // se data for errada por exemplo 25/05/1300 ?
