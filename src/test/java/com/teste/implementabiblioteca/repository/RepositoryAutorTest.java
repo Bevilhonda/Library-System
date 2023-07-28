@@ -9,9 +9,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,16 +24,16 @@ class RepositoryAutorTest {
     RepositoryAuthor repository;
     @Test
     public void Mostra_autor(){
-        Instant data_nascimento_autor = LocalDateTime.parse("2018-10-15t20:30:00").toInstant(ZoneOffset.UTC);
+        LocalDate data_nascimento_autor = LocalDate.from(LocalDateTime.parse("2018-10-15"));
         repository.Save(1,"Jorge", "Batista", data_nascimento_autor);
 
         List<AuthorEntity> autorlist = repository.GetAllAuthors(); // testando a função que retorna todos autores
         assertThat(autorlist).isNotNull();
         assertThat(autorlist.size()).isEqualTo(1);
-        AuthorEntity atual = autorlist.get(0);
+        AuthorEntity atual = autorlist.get(1);
         repository.GetAuthor(1);
 
-        assertThat(atual.getDateOfBirth()).isEqualTo(data_nascimento_autor);
+        assertThat(atual.getDateBirth().isEqual(data_nascimento_autor));
         assertThat(atual.getIdAuthor()).isEqualTo(1);
         assertThat(atual.getName()).isEqualTo("Jorge");
         assertThat(atual.getLastname()).isEqualTo("Batista");
@@ -44,7 +43,7 @@ class RepositoryAutorTest {
     @Test
     public void Save_Autor() {
 
-        Instant data_nascimento_autor = LocalDateTime.parse("2018-10-15t20:30:00").toInstant(ZoneOffset.UTC);
+        LocalDate data_nascimento_autor = LocalDate.from(LocalDateTime.parse("2018-10-15"));
 
         repository.Save(1,"Lucas", "Batista", data_nascimento_autor);
 
@@ -53,7 +52,7 @@ class RepositoryAutorTest {
         assertThat(autorlist.size()).isEqualTo(1);
         AuthorEntity atual = autorlist.get(0);
 
-        assertThat(atual.getDateOfBirth()).isEqualTo(data_nascimento_autor);
+        assertThat(atual.getDateBirth().isEqual(data_nascimento_autor));
         assertThat(atual.getIdAuthor()).isEqualTo(1);
         assertThat(atual.getName()).isEqualTo("Lucas");
         assertThat(atual.getLastname()).isEqualTo("Batista");
@@ -61,7 +60,7 @@ class RepositoryAutorTest {
 
     @Test
     public void Update_Autor(){
-        Instant data_nascimento_autor = LocalDateTime.parse("2018-10-15t20:30:00").toInstant(ZoneOffset.UTC);
+        LocalDate data_nascimento_autor = LocalDate.from(LocalDateTime.parse("2018-10-15"));
         repository.Save(1,"Pedro","Batista",data_nascimento_autor);
         List<AuthorEntity> lista_de_autores = repository.GetAllAuthors();
 
@@ -70,7 +69,7 @@ class RepositoryAutorTest {
         assertThat(lista_de_autores.size()).isEqualTo(1);
         AuthorEntity atual = lista_de_autores.get(0);
 
-        assertThat(atual.getDateOfBirth()).isEqualTo(data_nascimento_autor);
+        assertThat(atual.getDateBirth().isEqual(data_nascimento_autor));
         assertThat(atual.getIdAuthor()).isEqualTo(1);
         assertThat(atual.getName()).isEqualTo("Pedro");
         assertThat(atual.getLastname()).isEqualTo("Batista");
@@ -80,7 +79,7 @@ class RepositoryAutorTest {
     @Test
     public void Deletar_autor(){
         // Incluir um autor no banco
-        Instant data_nascimento_autor = LocalDateTime.parse("2018-10-15t20:30:00").toInstant(ZoneOffset.UTC);
+        LocalDate data_nascimento_autor = LocalDate.from(LocalDateTime.parse("2018-10-15"));
         repository.Save(1,"Pedro","Batista",data_nascimento_autor);
         // deletar o autor do banco
         repository.deleteAuthor(1);
@@ -92,7 +91,7 @@ class RepositoryAutorTest {
 
     @Test
     public void Test_Delete_Autor(){
-        Instant data_nascimento_autor = LocalDateTime.parse("2018-10-15t20:30:00").toInstant(ZoneOffset.UTC);
+        LocalDate data_nascimento_autor = LocalDate.from(LocalDateTime.parse("2018-10-15"));
         repository.Save(1,"Pedro","Batista",data_nascimento_autor);
 
         repository.deleteAuthor(1);
@@ -105,7 +104,7 @@ class RepositoryAutorTest {
 
     @Test
     public void Delete_Um_Autor(){
-        Instant data_nascimento_autor = LocalDateTime.parse("2018-10-15t20:30:00").toInstant(ZoneOffset.UTC);
+        LocalDate data_nascimento_autor = LocalDate.from(LocalDateTime.parse("2018-10-15"));
         repository.Save(1,"Pedro","Batista",data_nascimento_autor);
         repository.Save(2,"Jorge","Batista",data_nascimento_autor);
         repository.Save(3,"Lucas","Batista",data_nascimento_autor);
@@ -116,14 +115,14 @@ class RepositoryAutorTest {
 
         AuthorEntity atual = lista_de_autores.get(0);
 
-        assertThat(atual.getDateOfBirth()).isEqualTo(data_nascimento_autor);
+        assertThat(atual.getDateBirth()).isEqualTo(data_nascimento_autor);
         assertThat(atual.getIdAuthor()).isEqualTo(1);
         assertThat(atual.getName()).isEqualTo("Pedro");
         assertThat(atual.getLastname()).isEqualTo("Batista");
 
         AuthorEntity atual1 = lista_de_autores.get(1);
 
-        assertThat(atual1.getDateOfBirth()).isEqualTo(data_nascimento_autor);
+        assertThat(atual1.getDateBirth()).isEqualTo(data_nascimento_autor);
         assertThat(atual1.getIdAuthor()).isEqualTo(3);
         assertThat(atual1.getName()).isEqualTo("Lucas");
         assertThat(atual1.getLastname()).isEqualTo("Batista");

@@ -1,4 +1,4 @@
-import com.teste.implementabiblioteca.Autor;
+import com.teste.implementabiblioteca.Author;
 import com.teste.implementabiblioteca.Livro;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ class LivroTest {
     public void Test_Livro() {
 
         Instant data_nascimento_autor = LocalDateTime.parse("2018-10-15t20:30:00").toInstant(ZoneOffset.UTC);
-        Autor atual = new Autor("Marcelo", "Honda", data_nascimento_autor, 1);
+        Author atual = new Author("Marcelo", "Honda", data_nascimento_autor, 1);
 
         Instant data_publicacao = LocalDateTime.parse("2018-10-15t20:30:00").toInstant(ZoneOffset.UTC);
         Livro livro_atual = new Livro

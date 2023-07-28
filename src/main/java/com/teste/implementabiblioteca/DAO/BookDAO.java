@@ -55,7 +55,7 @@ public class BookDAO {
                     AddressEntity address = repositoryAddress.GetAddress(library.getFkAddress());
 
                     String authorDetails = "Id: " + author.getIdAuthor() + ", Nome: " + author.getName() +
-                            ", Sobrenome: " + author.getLastname() + ", Data Nascimento: " + author.getDateOfBirth();
+                            ", Sobrenome: " + author.getLastname() + ", Data Nascimento: " + author.getDateBirth();
 
                     String addressDetails = ", ID Endereço: " + library.getFkAddress()
                             + ", Rua: " + address.getstreet()

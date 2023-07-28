@@ -10,8 +10,8 @@ public class Classe_Main_SQL {
         Instant data_nascimento_autor1 = LocalDateTime.parse("1975-03-10t20:30:00").toInstant(ZoneOffset.UTC);
         Instant data_nascimento_autor5 = LocalDateTime.parse("1965-01-10t20:30:00").toInstant(ZoneOffset.UTC);
 
-        Autor autor = new Autor("Mendes", "Sá", data_nascimento_autor1, 251);
-        Autor autor1 = new Autor("Fred", "Smith", data_nascimento_autor5, 272);
+        Author autor = new Author("Mendes", "Sá", data_nascimento_autor1, 251);
+        Author autor1 = new Author("Fred", "Smith", data_nascimento_autor5, 272);
 
         Instant data_publicacao = LocalDateTime.parse("1990-05-25t20:30:00").toInstant(ZoneOffset.UTC);
 

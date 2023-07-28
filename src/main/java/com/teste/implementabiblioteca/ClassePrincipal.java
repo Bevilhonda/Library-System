@@ -15,7 +15,7 @@ public class ClassePrincipal {
         Instant data_nascimento = LocalDateTime.parse
                 ("2018-10-15t20:30:00").toInstant(ZoneOffset.UTC);
 
-        Autor autor = new Autor(
+        Author autor = new Author(
                 "Jorge", "Lima", data_nascimento, 1);
 
         Instant data_publicacao = LocalDateTime.parse("2018-10-15t20:30:00").toInstant(ZoneOffset.UTC);

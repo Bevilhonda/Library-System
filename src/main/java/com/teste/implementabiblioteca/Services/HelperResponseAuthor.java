@@ -21,7 +21,7 @@ public class HelperResponseAuthor {
         for (AuthorEntity author : authorlist) {
 
             String detailauthor = author.getIdAuthor() + " " + author.getName() + " " + author.getLastname() + " "
-                    + author.getDateOfBirth();
+                    + author.getDateBirth();
             detailsauthor.add(detailauthor);
         }
         return ResponseEntity.status(currentstatus).body(detailsauthor);

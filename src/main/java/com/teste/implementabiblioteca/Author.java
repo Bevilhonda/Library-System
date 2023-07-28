@@ -2,14 +2,14 @@ package com.teste.implementabiblioteca;
 
 import java.time.Instant;
 
-public class Autor {
+public class Author {
 
     private final String nome;
     private final String sobrenome;
     private final Instant data_nascimento;
     private final int id_autor;
 
-    public Autor(String nome, String sobrenome, Instant data_nascimento, int id_autor) {
+    public Author(String nome, String sobrenome, Instant data_nascimento, int id_autor) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.data_nascimento = data_nascimento;

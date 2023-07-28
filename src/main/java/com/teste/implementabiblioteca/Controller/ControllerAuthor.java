@@ -8,13 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 
-import static com.teste.implementabiblioteca.Services.HelperResponseAuthor.DetailsAllAuthors;
 import static com.teste.implementabiblioteca.Services.HelperResponseAuthor.ReturnDetailsAuthor;
 
 @RestController
@@ -40,38 +34,15 @@ public class ControllerAuthor {
         return author.GetAutorByLastName(lastname);
     }
 
-
-
-    @GetMapping("/Author/DateBirth")// rever sobre datas de nascimento no banco
+    @GetMapping("/Autor/DataNascimento")// rever sobre datas de nascimento no banco
     public ResponseEntity<?> GetAuthorByDateBirth(@RequestParam(value = "dataInicial") String startDate,
                                                   @RequestParam(value = "dataFinal") String finalDate) {
         return author.GetAuthorByDateBirth(startDate,finalDate);
     }
 
-    @PostMapping("/Incluir_Autor") // se data for errada por exemplo 25/05/1300 ?
-    public ResponseEntity<?> IncludeAuthor(@RequestBody AuthorEntity novo_autor) {
-        repositoryAuthor.Save(novo_autor.getIdAuthor(), novo_autor.getName(), novo_autor.getLastname(),
-                novo_autor.getDateOfBirth());
-        return ReturnDetailsAuthor("Autor adicionado com sucesso", HttpStatus.OK);
-    }
-
-    @PutMapping("/Update_novo")
-    public ResponseEntity<?> NewUpdateAuthor(@RequestParam(value = "id_autor") Integer id, @RequestBody AuthorEntity novo_autor) {
-        List<AuthorEntity> todos_autores = repositoryAuthor.GetAllAuthors();
-        boolean autorEncontrado = false;
-
-        for (AuthorEntity index_autor : todos_autores) {
-            if (index_autor.getIdAuthor().equals(id)) {
-                repositoryAuthor.updateAuthor(novo_autor.getName(), novo_autor.getLastname(), novo_autor.getDateOfBirth(), id);
-                autorEncontrado = true;
-                break;
-            }
-        }
-        if (autorEncontrado) {
-            return ReturnDetailsAuthor("Alterado com sucesso ", HttpStatus.OK);
-        } else {
-            return ReturnDetailsAuthor("Não consta este autor.", HttpStatus.NOT_FOUND);
-        }
+    @PostMapping("/Incluir_Autor")
+    public ResponseEntity<?> InsertAuthor(@RequestBody AuthorEntity novo_autor) {
+        return author.InsertAuthors(novo_autor);
     }
 
     @PutMapping("/Update")
@@ -80,7 +51,7 @@ public class ControllerAuthor {
         if (author == null) {
             return ReturnDetailsAuthor("Não consta na lista este autor.", HttpStatus.NOT_FOUND);
         } else {
-            repositoryAuthor.updateAuthor(novoautor.getName(), novoautor.getLastname(), novoautor.getDateOfBirth(), id);
+            repositoryAuthor.updateAuthor(novoautor.getName(), novoautor.getLastname(), novoautor.getDateBirth(), id);
             return ReturnDetailsAuthor("Autor atualizado com sucesso", HttpStatus.OK);
         }
     }

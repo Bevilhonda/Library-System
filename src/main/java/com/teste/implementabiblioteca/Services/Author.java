@@ -11,9 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
+import javax.transaction.Transactional;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -27,7 +26,6 @@ public class Author {
     @Autowired
     private RepositoryAuthor repositoryAuthor;
 
-
     public ResponseEntity<?> GetAutorById(Integer id) {
         try {
             // int a = 5 / 0 ;
@@ -36,10 +34,10 @@ public class Author {
             if (author == null) {
                 throw new AuthorNotFound(id);
             }
-            return ReturnDetailsAuthor("Id: " +author.getIdAuthor() + "\n Nome: " +
+            return ReturnDetailsAuthor("Id: " + author.getIdAuthor() + "\n Nome: " +
                     author.getName() + "\n Sobrenome: " +
                     author.getLastname() + "\n Data Nascimento: " +
-                    author.getDateOfBirth(), HttpStatus.OK);
+                    author.getDateBirth(), HttpStatus.OK);
 
         } catch (ResponseTypeExceptions e) {
             return MapAuthor(e);
@@ -65,20 +63,14 @@ public class Author {
         }
     }
 
-    public ResponseEntity<?> GetAuthorByDateBirth(String startDate , String finalDate){
+    public ResponseEntity<?> GetAuthorByDateBirth(String startDate, String finalDate) {
         try {
-
-
-            LocalDate dataInicialLocalDate = LocalDate.parse(startDate, DateTimeFormatter.ISO_DATE);
-            Instant dataInicial = dataInicialLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant();
-
-            LocalDate dataFinalLocalDate = LocalDate.parse(finalDate, DateTimeFormatter.ISO_DATE);
-            Instant dataFinal = dataFinalLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant();
-
+            LocalDate dataInicial = LocalDate.parse(startDate, DateTimeFormatter.ISO_DATE);
+            LocalDate dataFinal = LocalDate.parse(finalDate, DateTimeFormatter.ISO_DATE);
             List<AuthorEntity> autores = repositoryAuthor.selectAuthorByDate(dataInicial, dataFinal);
 
             if (autores.isEmpty()) {
-                throw new  DateBirthNotFound(startDate,finalDate);
+                throw new DateBirthNotFound(startDate, finalDate);
 
             } else {
                 return DetailsAllAuthors(autores, HttpStatus.OK);
@@ -86,6 +78,12 @@ public class Author {
         } catch (ResponseTypeExceptions e) {
             return MapDateBirth(e);
         }
-
     }
+
+    public ResponseEntity<?> InsertAuthors(AuthorEntity author){
+       AuthorEntity newauthor = repositoryAuthor.save(author);
+
+        return ReturnDetailsAuthor("Adicionado" + newauthor, HttpStatus.OK);
+    }
+
 }

@@ -1,7 +1,7 @@
 package com.teste.implementabiblioteca.Model;
 
 import javax.persistence.*;
-import java.time.Instant;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "Autor")
@@ -10,12 +10,11 @@ public class AuthorEntity {
     public AuthorEntity() {
     }
 
-    public AuthorEntity(Integer idAuthor , String name, String lastName,
-                        Instant dateBirth) {
-        this.nome = name;
-        this.sobrenome = lastName;
-        this.data_nascimento = dateBirth;
-        this.id_autor = idAuthor;
+    public AuthorEntity(Integer id_autor, String nome, String sobrenome, LocalDate data_nascimento) {
+        this.id_autor = id_autor;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.data_nascimento = data_nascimento;
     }
 
     @Id
@@ -23,7 +22,7 @@ public class AuthorEntity {
     private Integer id_autor;
     private String nome;
     private String sobrenome;
-    private Instant data_nascimento;
+    private LocalDate data_nascimento;
 
     public Integer getIdAuthor() {
         return id_autor;
@@ -37,8 +36,7 @@ public class AuthorEntity {
         return sobrenome;
     }
 
-    public Instant getDateOfBirth() {
+    public LocalDate getDateBirth() {
         return data_nascimento;
     }
-
 }
