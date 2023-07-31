@@ -21,7 +21,7 @@ public class HelperResponseAddress {
         for (AddressEntity address : addresslist) {
 
             String detailaddress = "Id: " + address.getIdAddress() + "\n Street:  " +
-                    address.getstreet() + "\n Number:  " +
+                    address.getStreet() + "\n Number:  " +
                     address.getNumber() + "\n Zone: " + address.getZone() + "\n City: " +
                     address.getCity() + "\n State: " + address.getState();
 

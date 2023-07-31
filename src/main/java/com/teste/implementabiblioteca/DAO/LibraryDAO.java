@@ -41,7 +41,7 @@ public class LibraryDAO {
                 if (Objects.equals(library.getName(), name)) {
                     AddressEntity address = repositoryAddress.GetAddress(library.getFkAddress());
                     String addressDetails = ", ID Endereço: " + library.getFkAddress()
-                            + ", Rua: " + address.getstreet()
+                            + ", Rua: " + address.getStreet()
                             + ", Número: " + address.getNumber()
                             + ", Bairro: " + address.getZone()
                             + ", Cidade: " + address.getCity()

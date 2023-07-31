@@ -116,7 +116,6 @@ public class ExceptionsFactory {
             }
         }
     }
-
     public static ResponseEntity<?> Convert(DateBirthNotFound e) {
         HttpStatus statusCode = HttpStatus.NOT_FOUND;
         String message = "Não contém as datas Inicio: " + e.getStartDate()+" Fim: "  + e.getFinalDate();
