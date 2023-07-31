@@ -2,16 +2,16 @@ package com.teste.implementabiblioteca;
 
 import java.time.Instant;
 
-public class Livro {
+public class Livro {/*
 
     private final String titulo_livro;
-    private final Author autor;
+    private final Autor autor;
     private final Instant data_publication;
     private final int edicao;
     private final int id_livro;
     private final int id_biblioteca;
 
-    public Livro(String titulo, Author autor, Instant data_publication, int edicao, int id_biblioteca, int id_livro) {
+    public Livro(String titulo, Autor autor, Instant data_publication, int edicao, int id_biblioteca, int id_livro) {
         this.titulo_livro = titulo;
         this.autor = autor;
         this.data_publication = data_publication;
@@ -31,7 +31,7 @@ public class Livro {
         return titulo_livro;
     }
 
-    public Author getAutor() {
+    public Autor getAutor() {
         return autor;
     }
 
@@ -50,4 +50,5 @@ public class Livro {
     public int getId_livro() {
         return id_livro;
     }
+    */
 }

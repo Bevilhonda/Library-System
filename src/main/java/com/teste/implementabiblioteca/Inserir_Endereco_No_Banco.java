@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class Inserir_Endereco_No_Banco {
+public class Inserir_Endereco_No_Banco {/*
     private String rua;
     private int numero;
     private String bairro;
@@ -72,4 +72,5 @@ public class Inserir_Endereco_No_Banco {
     public String getEstado() {
         return estado;
     }
+    */
 }

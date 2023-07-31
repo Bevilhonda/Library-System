@@ -1,6 +1,6 @@
 package com.teste.implementabiblioteca;
 
-public class Endereco {
+public class Endereco {/*
 
     private final String rua;
     private final int numero;
@@ -42,4 +42,5 @@ public class Endereco {
     public int getId_endereco() {
         return id_endereco;
     }
+    */
 }

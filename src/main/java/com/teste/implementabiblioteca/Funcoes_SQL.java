@@ -4,8 +4,9 @@ import java.sql.*;
 import java.time.ZoneOffset;
 
 public class Funcoes_SQL {
-
+/*
     public void Comando_Select() {
+
 
         try {
             Conection_Mysql conectando_banco = new Conection_Mysql();
@@ -19,7 +20,7 @@ public class Funcoes_SQL {
 
             while (executa_query.next()) {
 
-                Author autor1 = new Author(executa_query.getString("nome"),
+                Autor autor1 = new Autor(executa_query.getString("nome"),
                         executa_query.getString("sobrenome"),
                         executa_query.getTimestamp("data_nascimento").toInstant(),
                         executa_query.getInt("id_autor"));
@@ -128,7 +129,7 @@ public class Funcoes_SQL {
 
             while (executa_query.next()) {
 
-                Author autor1 = new Author(executa_query.getString("nome"),
+                Autor autor1 = new Autor(executa_query.getString("nome"),
                         executa_query.getString("sobrenome"),
                         executa_query.getTimestamp("data_nascimento").toInstant(),
                         executa_query.getInt("id_autor"));
@@ -160,7 +161,7 @@ public class Funcoes_SQL {
 
             while (executa_query.next()) {
 
-                Author autor1 = new Author(executa_query.getString("nome"),
+                Autor autor1 = new Autor(executa_query.getString("nome"),
                         executa_query.getString("sobrenome"),
                         executa_query.getTimestamp("data_nascimento").toInstant(),
                         executa_query.getInt("id_autor"));
@@ -180,7 +181,7 @@ public class Funcoes_SQL {
     }
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-    public void Comando_Insert_Autor(Author novo_autor) {
+    public void Comando_Insert_Autor(Autor novo_autor) {
 
         String adiciona_autor =
                 "insert into com.teste.implementabiblioteca.Autor (nome,sobrenome,data_nascimento) values (?,?,?)";
@@ -206,7 +207,7 @@ public class Funcoes_SQL {
     }
     //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-    public void Comando_Update_Autor(Author novos_dados) {
+    public void Comando_Update_Autor(Autor novos_dados) {
 
         String atualiza_dados_autor =
                 "UPDATE com.teste.implementabiblioteca.Autor set nome = ? ,sobrenome = ? , data_nascimento = ? WHERE id_autor = ? ";
@@ -231,4 +232,8 @@ public class Funcoes_SQL {
             e.printStackTrace();
         }
     }
+
+
+
+ */
 }

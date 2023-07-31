@@ -3,7 +3,7 @@ package com.teste.implementabiblioteca;
 import java.sql.*;
 import java.util.Scanner;
 
-public class Seleciona_Dados_Livro_No_Banco {
+public class Seleciona_Dados_Livro_No_Banco {/*
     int id_livro;
 
     public void Seleciona_LivroBanco() {
@@ -37,4 +37,5 @@ public class Seleciona_Dados_Livro_No_Banco {
     public int getId_livro() {
         return id_livro;
     }
+    */
 }

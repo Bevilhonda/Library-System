@@ -2,7 +2,7 @@ package com.teste.implementabiblioteca;
 
 import java.util.List;
 
-public class Biblioteca {
+public class Biblioteca {/*
 
     private final String nome_da_biblioteca;
     private final List<Livro> lista_de_livro;
@@ -31,4 +31,5 @@ public class Biblioteca {
     public int getId_biblioteca() {
         return id_biblioteca;
     }
+    */
 }

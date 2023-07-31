@@ -7,7 +7,7 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class Inserir_Autor_No_Banco {
+public class Inserir_Autor_No_Banco { /*
     String nome_autor;
     String sobrenome_autor;
     Instant data_nascimento ;
@@ -60,4 +60,7 @@ public class Inserir_Autor_No_Banco {
     public Instant getData_nascimento() {
         return data_nascimento;
     }
+    */
+
+
 }

@@ -24,6 +24,7 @@ public class ControllerAuthor {
 
         return author.GetAutorById(id);
     }
+
     @GetMapping("/Authors")
     public ResponseEntity<?> GetAll_Authors() {
         return author.GetAllAuthors();
@@ -37,7 +38,7 @@ public class ControllerAuthor {
     @GetMapping("/Autor/DataNascimento")// rever sobre datas de nascimento no banco
     public ResponseEntity<?> GetAuthorByDateBirth(@RequestParam(value = "dataInicial") String startDate,
                                                   @RequestParam(value = "dataFinal") String finalDate) {
-        return author.GetAuthorByDateBirth(startDate,finalDate);
+        return author.GetAuthorByDateBirth(startDate, finalDate);
     }
 
     @PostMapping("/Incluir_Autor")
@@ -45,24 +46,13 @@ public class ControllerAuthor {
         return author.InsertAuthors(novo_autor);
     }
 
-    @PutMapping("/Update")
+    @PutMapping("/UpdateAuthor")
     public ResponseEntity<?> UpdateAuthor(@RequestParam(value = "id_autor") Integer id, @RequestBody AuthorEntity novoautor) {
-        AuthorEntity author = repositoryAuthor.GetAuthor(id);
-        if (author == null) {
-            return ReturnDetailsAuthor("Não consta na lista este autor.", HttpStatus.NOT_FOUND);
-        } else {
-            repositoryAuthor.updateAuthor(novoautor.getName(), novoautor.getLastname(), novoautor.getDateBirth(), id);
-            return ReturnDetailsAuthor("Autor atualizado com sucesso", HttpStatus.OK);
-        }
+        return author.UpdateAuthor(id, novoautor);
     }
 
-    @DeleteMapping("/Delete")
+    @DeleteMapping("/DeleteAuthor")
     public ResponseEntity<?> DeleteAuthor(@RequestParam(value = "id_autor") Integer id) {
-        AuthorEntity author = repositoryAuthor.GetAuthor(id);
-        if (author == null) {
-            return ReturnDetailsAuthor("Não consta na lista este autor.", HttpStatus.NOT_FOUND);
-        }
-        repositoryAuthor.deleteAuthor(id);
-        return ReturnDetailsAuthor("Autor do id " + id + " foi deletado do banco", HttpStatus.OK);
+        return author.Delete(id);
     }
 }
