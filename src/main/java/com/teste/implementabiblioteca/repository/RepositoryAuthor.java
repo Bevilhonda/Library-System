@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -29,7 +28,7 @@ public interface RepositoryAuthor extends JpaRepository<AuthorEntity, Integer> {
     @Modifying
     @Query(value = "insert into Autor (id_autor, nome, sobrenome, data_nascimento)" +
             " values (:id_autor , :nome , :sobrenome, :data_nascimento)", nativeQuery = true)
-    Integer Save( Integer id_autor,  String nome,String sobrenome,  LocalDate data_nascimento);
+    Integer saveAuthor(Integer id_autor, String nome, String sobrenome, LocalDate data_nascimento);
 
     @Modifying
     @Query(value = "UPDATE Autor set nome = :nome , sobrenome = :sobrenome , data_nascimento = :data_nascimento " +
