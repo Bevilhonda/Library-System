@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import static com.teste.implementabiblioteca.MonitorExceptions.ExceptionsFactory.MapAddress;
-import static com.teste.implementabiblioteca.Services.HelperResponseAuthor.ReturnDetailsAuthor;
+import static com.teste.implementabiblioteca.Services.HelperResponseAddress.ReturnDetailsAddress;
 
 @Service
 public class Address {
@@ -25,14 +25,25 @@ public class Address {
             if (address == null) {
                 throw new AddressNotFound(id);
             }
-            return ReturnDetailsAuthor("Id: " + address.getIdAddress()+ "\n Street:  " +
-                    address.getstreet() + "\n Number:  " +
-                    address.getNumber() + "\n Zone: " + address.getZone() + "\n City: " +
-                    address.getCity() + "\n State: " + address.getState()
-                    , HttpStatus.OK);
+            return ReturnDetailsAddress("Id: "+ address.getIdAddress() + "\n Rua: " +
+                    address.getStreet() + "\n Numero: " + address.getNumber() + "\n Cidade: "
+                    + address.getCity()+ "\n Bairro: " + address.getZone() + "\n Estado: " +
+                    address.getState() , HttpStatus.OK);
 
         } catch (ResponseTypeExceptions e) {
             return MapAddress(e);
+        }
+    }
+
+    public ResponseEntity<?> InsertAddress(AddressEntity address){
+        try {
+            repositoryAddress.Insert(address.getStreet(),address.getNumber(),address.getZone(),
+                    address.getCity(),address.getState());
+
+            return ReturnDetailsAddress("Adicionado",HttpStatus.OK);
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }

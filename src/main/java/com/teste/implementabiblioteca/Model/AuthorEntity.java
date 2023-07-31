@@ -1,5 +1,7 @@
 package com.teste.implementabiblioteca.Model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -19,9 +21,13 @@ public class AuthorEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("id_autor")
     private Integer id_autor;
+    @JsonProperty("nome")
     private String nome;
+    @JsonProperty("sobrenome")
     private String sobrenome;
+    @JsonProperty("data_nascimento")
     private LocalDate data_nascimento;
 
     public Integer getIdAuthor() {

@@ -1,5 +1,7 @@
 package com.teste.implementabiblioteca.Model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,31 +13,39 @@ public class AddressEntity {
 
     }
 
-    public AddressEntity(Integer idAddress , String street, String city,
-                         Integer number, String zone , String state ) {
-        this.cidade = city;
-        this.rua = street;
-        this.numero = number;
-        this.id_endereco = idAddress;
-        this.estado = state;
-        this.bairro= zone;
+    public AddressEntity(Integer id_endereco, String rua, Integer numero,
+                         String cidade, String bairro, String estado) {
+        this.cidade = cidade;
+        this.rua = rua;
+        this.numero = numero;
+        this.id_endereco = id_endereco;
+        this.estado = estado;
+        this.bairro = bairro;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    Integer id_endereco;
-    String rua;
-    Integer numero;
-    String bairro;
-    String cidade;
-    String estado;
+
+    @JsonProperty("id_endereco")
+    private Integer id_endereco;
+
+    private String rua;
+    @JsonProperty("numero")
+    private Integer numero;
+
+    @JsonProperty("bairro")
+    private String bairro;
+    @JsonProperty("cidade")
+    private String cidade;
+    @JsonProperty("estado")
+    private String estado;
 
     public Integer getIdAddress() {
         return id_endereco;
     }
 
-    public String getstreet() {
+    public String getStreet() {
         return rua;
     }
 

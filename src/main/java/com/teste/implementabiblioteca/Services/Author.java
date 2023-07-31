@@ -11,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -80,10 +79,38 @@ public class Author {
         }
     }
 
-    public ResponseEntity<?> InsertAuthors(AuthorEntity author){
-       AuthorEntity newauthor = repositoryAuthor.save(author);
+    public ResponseEntity<?> InsertAuthors(AuthorEntity author) {
+        repositoryAuthor.saveAuthor(author.getIdAuthor(),author.getName(),
+                author.getLastname(),author.getDateBirth());
 
-        return ReturnDetailsAuthor("Adicionado" + newauthor, HttpStatus.OK);
+        return ReturnDetailsAuthor("Adicionado" , HttpStatus.OK);
+    }
+    public ResponseEntity<?> UpdateAuthor(Integer id , AuthorEntity author){
+       try {
+           AuthorEntity dataAuthor = repositoryAuthor.GetAuthor(id);
+           if (dataAuthor == null){
+               throw new AuthorNotFound(id);
+           }
+           repositoryAuthor.updateAuthor(author.getName(), author.getLastname(),
+                   author.getDateBirth(), id);
+
+       } catch (ResponseTypeExceptions e) {
+           return MapAuthor(e);
+       }
+        return ReturnDetailsAuthor("Autor atualizado com sucesso", HttpStatus.OK);
+    }
+
+    public ResponseEntity<?> Delete(Integer id ){
+        try {
+            AuthorEntity dataAuthor = repositoryAuthor.GetAuthor(id);
+            if (dataAuthor == null){
+                throw new AuthorNotFound(id);
+            }
+            repositoryAuthor.deleteAuthor(id);
+        } catch (ResponseTypeExceptions e) {
+            return MapAuthor(e);
+        }
+        return ReturnDetailsAuthor("Autor do id " + id + " foi deletado do banco", HttpStatus.OK);
     }
 
 }

@@ -58,7 +58,7 @@ public class BookDAO {
                             ", Sobrenome: " + author.getLastname() + ", Data Nascimento: " + author.getDateBirth();
 
                     String addressDetails = ", ID Endereço: " + library.getFkAddress()
-                            + ", Rua: " + address.getstreet()
+                            + ", Rua: " + address.getStreet()
                             + ", Número: " + address.getNumber()
                             + ", Bairro: " + address.getZone()
                             + ", Cidade: " + address.getCity()

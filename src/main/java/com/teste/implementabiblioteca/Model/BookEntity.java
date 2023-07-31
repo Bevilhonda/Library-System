@@ -1,6 +1,6 @@
 package com.teste.implementabiblioteca.Model;
 
-import com.teste.implementabiblioteca.Author;
+import com.teste.implementabiblioteca.Autor;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -14,13 +14,12 @@ public class BookEntity {
 
     }
 
-    public BookEntity(String title, Author author,
-                      Instant publicationDate, int edition, int idLibrary, int idBook) {
+    public BookEntity(String title, AuthorEntity author, Instant publicationDate, int edition, int idLibrary, int idBook) {
         this.id_Livro = idBook;
         this.titulo = title;
         this.edicao = edition;
         this.data_publication = publicationDate;
-        this.fk_autor = author.getId_autor();
+        this.fk_autor = author.getIdAuthor();
         this.fk_biblioteca = idLibrary;
 
     }
