@@ -12,11 +12,11 @@ public class AuthorEntity {
     public AuthorEntity() {
     }
 
-    public AuthorEntity(Integer id_autor, String nome, String sobrenome, LocalDate data_nascimento) {
-        this.id_autor = id_autor;
-        this.nome = nome;
-        this.sobrenome = sobrenome;
-        this.data_nascimento = data_nascimento;
+    public AuthorEntity(Integer idAuthor, String name, String lastName, LocalDate dateBirth) {
+        this.id_autor = idAuthor;
+        this.nome = name;
+        this.sobrenome = lastName;
+        this.data_nascimento = dateBirth;
     }
 
     @Id

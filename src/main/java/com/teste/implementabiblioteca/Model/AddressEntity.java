@@ -13,14 +13,14 @@ public class AddressEntity {
 
     }
 
-    public AddressEntity(Integer id_endereco, String rua, Integer numero,
-                         String cidade, String bairro, String estado) {
-        this.cidade = cidade;
-        this.rua = rua;
-        this.numero = numero;
-        this.id_endereco = id_endereco;
-        this.estado = estado;
-        this.bairro = bairro;
+    public AddressEntity(Integer idAddress, String street, Integer number,
+                         String city, String zone, String state) {
+        this.cidade = city;
+        this.rua = street;
+        this.numero = number;
+        this.id_endereco = idAddress;
+        this.estado = state;
+        this.bairro = zone;
     }
 
     @Id

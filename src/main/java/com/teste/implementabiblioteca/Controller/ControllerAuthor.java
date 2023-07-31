@@ -46,13 +46,13 @@ public class ControllerAuthor {
         return author.InsertAuthors(novo_autor);
     }
 
-    @PutMapping("/UpdateAuthor")
-    public ResponseEntity<?> UpdateAuthor(@RequestParam(value = "id_autor") Integer id, @RequestBody AuthorEntity novoautor) {
+    @PutMapping("/UpdateAuthor/{id}")
+    public ResponseEntity<?> UpdateAuthor(@PathVariable Integer id, @RequestBody AuthorEntity novoautor) {
         return author.UpdateAuthor(id, novoautor);
     }
 
-    @DeleteMapping("/DeleteAuthor")
-    public ResponseEntity<?> DeleteAuthor(@RequestParam(value = "id_autor") Integer id) {
+    @DeleteMapping("/DeleteAuthor/{id}")
+    public ResponseEntity<?> DeleteAuthor(@PathVariable Integer id) {
         return author.Delete(id);
     }
 }

@@ -4,6 +4,7 @@ import com.teste.implementabiblioteca.Autor;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.time.LocalDate;
 
 
 @Entity
@@ -14,7 +15,7 @@ public class BookEntity {
 
     }
 
-    public BookEntity(String title, AuthorEntity author, Instant publicationDate, int edition, int idLibrary, int idBook) {
+    public BookEntity(String title, AuthorEntity author, LocalDate publicationDate, int edition, int idLibrary, int idBook) {
         this.id_Livro = idBook;
         this.titulo = title;
         this.edicao = edition;
@@ -32,7 +33,7 @@ public class BookEntity {
     private Integer edicao;
     private Integer fk_autor;
     private Integer fk_biblioteca;
-    private Instant data_publication;
+    private LocalDate data_publication;
 
     public String geTitle() {
         return titulo;
@@ -50,7 +51,7 @@ public class BookEntity {
         return fk_biblioteca;
     }
 
-    public Instant getData_publication() {
+    public LocalDate getData_publication() {
         return data_publication;
     }
 
