@@ -7,11 +7,27 @@ import org.springframework.http.ResponseEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HelperResponseAddress {
+public class TypesResponseAddress {
 
     public static ResponseEntity<?> ReturnDetailsAddress(String message, HttpStatus currentstatus) {
 
         return ResponseEntity.status(currentstatus).body(message);
+    }
+
+    public static ResponseEntity<?> SaveAddressSucessfull() {
+        String mensagem = "Endereço adicionado com sucesso.";
+        HttpStatus status = HttpStatus.OK;
+        return ResponseEntity.status(status).body(mensagem);
+    }
+    public static ResponseEntity<?> UpdateAddressSucessfull(Integer id) {
+        String mensagem = "O endereço com o id: " + id + " foi atualizado com sucesso.";
+        HttpStatus status = HttpStatus.OK;
+        return ResponseEntity.status(status).body(mensagem);
+    }
+    public static ResponseEntity<?> DeleteAddressSucessfull(Integer id) {
+        String mensagem = "O endereço com o id: " + id + " foi excluido.";
+        HttpStatus status = HttpStatus.OK;
+        return ResponseEntity.status(status).body(mensagem);
     }
 
     public static ResponseEntity<?> DetailsAllAddress(List<AddressEntity> addresslist, HttpStatus currentstatus) {
