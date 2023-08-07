@@ -19,6 +19,7 @@ dependencies {
     implementation 'mysql:mysql-connector-java:8.0.30'
 
     implementation 'junit:junit:4.13.1'
+    implementation 'org.json:json:20230227' // adicionei essa dependencia para usar o objeto JSON
 
 
     testImplementation 'com.h2database:h2:2.2.220'
