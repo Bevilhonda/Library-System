@@ -7,6 +7,7 @@ import com.teste.implementabiblioteca.repository.RepositoryBook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,17 +20,16 @@ public class ControllerBook {
     @Autowired
     private Book books;
 
-    @GetMapping("/Book/Id")
-    public ResponseEntity<?> GetBookById(@RequestParam(name = "id_Livro") Integer id){
+    @GetMapping("/Book/{id}")
+    public ResponseEntity<?> GetBookById(@PathVariable Integer id){
         return books.GetBookById(id);
-
     }
     @GetMapping("/AllBooks")
     public ResponseEntity<?> GetAllBooks(){
         return books.GetAllBooks();
     }
     @GetMapping("/Book/ID")
-    public ResponseEntity<?> GetBookByName(@RequestParam(name = "id_Livro") Integer id_Livro){
+    public ResponseEntity<?> GetBookByName(@PathVariable Integer id_Livro){
         return bookDAO.GetBookByName(id_Livro);
 
     }

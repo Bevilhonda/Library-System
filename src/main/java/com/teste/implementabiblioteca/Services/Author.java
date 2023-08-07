@@ -1,13 +1,9 @@
 package com.teste.implementabiblioteca.Services;
 
-import com.teste.implementabiblioteca.MonitorExceptions.DateBirthNotFound;
-import com.teste.implementabiblioteca.MonitorExceptions.LastNameNotFound;
+import com.teste.implementabiblioteca.MonitorExceptions.*;
 import com.teste.implementabiblioteca.Model.AuthorEntity;
-import com.teste.implementabiblioteca.MonitorExceptions.AuthorNotFound;
-import com.teste.implementabiblioteca.MonitorExceptions.ResponseTypeExceptions;
 import com.teste.implementabiblioteca.repository.RepositoryAuthor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +12,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static com.teste.implementabiblioteca.MonitorExceptions.ExceptionsFactory.MapDateBirth;
-import static com.teste.implementabiblioteca.Services.HelperResponseAuthor.DetailsAllAuthors;
-import static com.teste.implementabiblioteca.Services.HelperResponseAuthor.ReturnDetailsAuthor;
 import static com.teste.implementabiblioteca.MonitorExceptions.ExceptionsFactory.MapAuthor;
+import static com.teste.implementabiblioteca.FormatterResponses.ResponseFormatterAuthor.FormatAuthorResponse;
+import static com.teste.implementabiblioteca.Services.TypesResponseAuthor.*;
 
 @Service
 public class Author {
@@ -27,16 +23,13 @@ public class Author {
 
     public ResponseEntity<?> GetAutorById(Integer id) {
         try {
-            // int a = 5 / 0 ;
+
             AuthorEntity author = repositoryAuthor.GetAuthor(id);
 
             if (author == null) {
                 throw new AuthorNotFound(id);
             }
-            return ReturnDetailsAuthor("Id: " + author.getIdAuthor() + "\n Nome: " +
-                    author.getName() + "\n Sobrenome: " +
-                    author.getLastname() + "\n Data Nascimento: " +
-                    author.getDateBirth(), HttpStatus.OK);
+            return FormatAuthorResponse(author);
 
         } catch (ResponseTypeExceptions e) {
             return MapAuthor(e);
@@ -45,7 +38,7 @@ public class Author {
 
     public ResponseEntity<?> GetAllAuthors() {
         List<AuthorEntity> authors = repositoryAuthor.GetAllAuthors();
-        return DetailsAllAuthors(authors, HttpStatus.OK);
+        return DetailsAuthors(authors);
     }
 
     public ResponseEntity<?> GetAutorByLastName(String lastName) {
@@ -55,7 +48,7 @@ public class Author {
             if (authors.isEmpty()) {
                 throw new LastNameNotFound(lastName);
             } else {
-                return DetailsAllAuthors(authors, HttpStatus.OK);
+                return DetailsAuthors(authors);
             }
         } catch (ResponseTypeExceptions e) {
             return MapAuthor(e);
@@ -66,51 +59,63 @@ public class Author {
         try {
             LocalDate dataInicial = LocalDate.parse(startDate, DateTimeFormatter.ISO_DATE);
             LocalDate dataFinal = LocalDate.parse(finalDate, DateTimeFormatter.ISO_DATE);
-            List<AuthorEntity> autores = repositoryAuthor.selectAuthorByDate(dataInicial, dataFinal);
+            List<AuthorEntity> authors = repositoryAuthor.selectAuthorByDate(dataInicial, dataFinal);
 
-            if (autores.isEmpty()) {
+            if (authors.isEmpty()) {
                 throw new DateBirthNotFound(startDate, finalDate);
 
             } else {
-                return DetailsAllAuthors(autores, HttpStatus.OK);
+                return DetailsAuthors(authors);
             }
         } catch (ResponseTypeExceptions e) {
             return MapDateBirth(e);
         }
     }
 
-    public ResponseEntity<?> InsertAuthors(AuthorEntity author) {
-        repositoryAuthor.saveAuthor(author.getIdAuthor(),author.getName(),
-                author.getLastname(),author.getDateBirth());
 
-        return ReturnDetailsAuthor("Adicionado" , HttpStatus.OK);
-    }
-    public ResponseEntity<?> UpdateAuthor(Integer id , AuthorEntity author){
-       try {
-           AuthorEntity dataAuthor = repositoryAuthor.GetAuthor(id);
-           if (dataAuthor == null){
-               throw new AuthorNotFound(id);
-           }
-           repositoryAuthor.updateAuthor(author.getName(), author.getLastname(),
-                   author.getDateBirth(), id);
 
-       } catch (ResponseTypeExceptions e) {
-           return MapAuthor(e);
-       }
-        return ReturnDetailsAuthor("Autor atualizado com sucesso", HttpStatus.OK);
+    public ResponseEntity<?> Insert(AuthorEntity author) {
+        try {
+            Integer insertData = repositoryAuthor.Save(author.getIdAuthor(), author.getName(),
+                    author.getLastname(), author.getDateBirth());
+            if (insertData == null) {
+                throw new ErrorSavingAuthor();
+            }
+            return SaveSucessfull();
+
+        } catch (ResponseTypeExceptions e) {
+            return MapAuthor(e);
+        }
+
     }
 
-    public ResponseEntity<?> Delete(Integer id ){
+
+    public ResponseEntity<?> UpdateAuthor(Integer id, AuthorEntity author) {
         try {
             AuthorEntity dataAuthor = repositoryAuthor.GetAuthor(id);
-            if (dataAuthor == null){
+            if (dataAuthor == null) {
+                throw new AuthorNotFound(id);
+            }
+            repositoryAuthor.updateAuthor(author.getName(), author.getLastname(),
+                    author.getDateBirth(), id);
+
+        } catch (ResponseTypeExceptions e) {
+            return MapAuthor(e);
+        }
+        return UpdateSucessfull(id);
+    }
+
+    public ResponseEntity<?> Delete(Integer id) {
+        try {
+            AuthorEntity dataAuthor = repositoryAuthor.GetAuthor(id);
+            if (dataAuthor == null) {
                 throw new AuthorNotFound(id);
             }
             repositoryAuthor.deleteAuthor(id);
         } catch (ResponseTypeExceptions e) {
             return MapAuthor(e);
         }
-        return ReturnDetailsAuthor("Autor do id " + id + " foi deletado do banco", HttpStatus.OK);
+        return DeleteSucessfull(id);
     }
 
 }

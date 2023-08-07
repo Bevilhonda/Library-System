@@ -2,20 +2,14 @@ package com.teste.implementabiblioteca.Controller;
 
 import com.teste.implementabiblioteca.Model.AuthorEntity;
 import com.teste.implementabiblioteca.Services.Author;
-import com.teste.implementabiblioteca.repository.RepositoryAuthor;
+import com.teste.implementabiblioteca.Services.DataAuthorEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-import static com.teste.implementabiblioteca.Services.HelperResponseAuthor.ReturnDetailsAuthor;
-
 @RestController
 public class ControllerAuthor {
-    @Autowired
-    private RepositoryAuthor repositoryAuthor;
-
     @Autowired
     private Author author;
 
@@ -35,15 +29,16 @@ public class ControllerAuthor {
         return author.GetAutorByLastName(lastname);
     }
 
-    @GetMapping("/Autor/DataNascimento")// rever sobre datas de nascimento no banco
-    public ResponseEntity<?> GetAuthorByDateBirth(@RequestParam(value = "dataInicial") String startDate,
-                                                  @RequestParam(value = "dataFinal") String finalDate) {
+    @GetMapping("/Autor/DateBirth/{startDate}/{finalDate}")
+    public ResponseEntity<?> GetAuthorByDateBirth(@PathVariable String startDate,
+                                                  @PathVariable String finalDate) {
         return author.GetAuthorByDateBirth(startDate, finalDate);
     }
 
-    @PostMapping("/Incluir_Autor")
-    public ResponseEntity<?> InsertAuthor(@RequestBody AuthorEntity novo_autor) {
-        return author.InsertAuthors(novo_autor);
+    @PostMapping("/InsertAuthor")
+    public ResponseEntity<?> Insert(@RequestBody DataAuthorEntity newAuthor) {
+
+        return author.Insert(newAuthor.toModel());
     }
 
     @PutMapping("/UpdateAuthor/{id}")

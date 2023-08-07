@@ -13,6 +13,9 @@ public class ExceptionsFactory {
             case "ListEmptyException" -> {
                 return Convert((LastNameNotFound) e);
             }
+            case "ErrorSavingAuthor" -> {
+                return Convert((ErrorSavingAuthor) e);
+            }
             default -> {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ocorreu um erro ao buscar o autor.");
             }
@@ -28,6 +31,12 @@ public class ExceptionsFactory {
     public static ResponseEntity<?> Convert(LastNameNotFound e) {
         HttpStatus statusCode = HttpStatus.NOT_FOUND;
         String message = "Não existe o sobrenome " + e.GetLastName() + " no cadastro ";
+        return ResponseEntity.status(statusCode).body(message);
+    }
+
+    public static ResponseEntity<?> Convert(ErrorSavingAuthor e) {
+        HttpStatus statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
+        String message = ("Não foi possivel inserir o autor.");
         return ResponseEntity.status(statusCode).body(message);
     }
 
@@ -68,6 +77,9 @@ public class ExceptionsFactory {
             case "AddressNotFound" -> {
                 return Convert((AddressNotFound) e);
             }
+            case "ErrorSavingAddress" -> {
+                return Convert((ErrorSavingAddress) e);
+            }
 
             default -> {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ocorreu um erro ao buscar o autor.");
@@ -78,6 +90,12 @@ public class ExceptionsFactory {
     public static ResponseEntity<?> Convert(AddressNotFound e) {
         HttpStatus statusCode = HttpStatus.NOT_FOUND;
         String message = "O endereço com o id " + e.getId() + " não  foi encontrado.";
+        return ResponseEntity.status(statusCode).body(message);
+    }
+
+    public static ResponseEntity<?> Convert(ErrorSavingAddress e) {
+        HttpStatus statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
+        String message = ("Não foi possivel inserir o endereço.");
         return ResponseEntity.status(statusCode).body(message);
     }
     //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -116,9 +134,10 @@ public class ExceptionsFactory {
             }
         }
     }
+
     public static ResponseEntity<?> Convert(DateBirthNotFound e) {
         HttpStatus statusCode = HttpStatus.NOT_FOUND;
-        String message = "Não contém as datas Inicio: " + e.getStartDate()+" Fim: "  + e.getFinalDate();
+        String message = "Não contém as datas Inicio: " + e.getStartDate() + " Fim: " + e.getFinalDate();
         return ResponseEntity.status(statusCode).body(message);
     }
 }
