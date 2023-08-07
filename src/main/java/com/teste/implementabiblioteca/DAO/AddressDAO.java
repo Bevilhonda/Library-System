@@ -6,12 +6,12 @@ import com.teste.implementabiblioteca.MonitorExceptions.ResponseTypeExceptions;
 import com.teste.implementabiblioteca.Services.Address;
 import com.teste.implementabiblioteca.repository.RepositoryAddress;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import static com.teste.implementabiblioteca.MonitorExceptions.ExceptionsFactory.MapAddress;
-import static com.teste.implementabiblioteca.Services.HelperResponseAddress.ReturnDetailsAddress;
+
+import static com.teste.implementabiblioteca.Services.TypesResponseAddress.UpdateAddressSucessfull;
 
 @Service
 public class AddressDAO {
@@ -19,15 +19,17 @@ public class AddressDAO {
     private RepositoryAddress repositoryAddress;
     @Autowired
     private Address addressTemporary;
-    public ResponseEntity<?> UpdateAddress(Integer id, AddressEntity address){
+
+    public ResponseEntity<?> UpdateAddress(Integer id, AddressEntity address) {
         try {
             addressTemporary.GetAddressById(id);
-            if (id == null){
+            if (id == null) {
                 throw new AddressNotFound(id);
             }
-            repositoryAddress.UpdateAddress(address.getStreet(),address.getNumber(),address.getZone(),
-                    address.getCity(),address.getState(),id);
-            return ReturnDetailsAddress("Endereço atualizado com sucesso.", HttpStatus.OK);
+            repositoryAddress.UpdateAddress(address.getStreet(), address.getNumber(), address.getZone(),
+                    address.getCity(), address.getState(), id);
+
+            return UpdateAddressSucessfull(id);
 
         } catch (ResponseTypeExceptions e) {
             return MapAddress(e);
