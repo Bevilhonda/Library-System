@@ -1,7 +1,5 @@
 package com.teste.implementabiblioteca.Model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 
 @Entity
@@ -27,18 +25,11 @@ public class AddressEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
 
-    @JsonProperty("id_endereco")
     private Integer id_endereco;
-
     private String rua;
-    @JsonProperty("numero")
     private Integer numero;
-
-    @JsonProperty("bairro")
     private String bairro;
-    @JsonProperty("cidade")
     private String cidade;
-    @JsonProperty("estado")
     private String estado;
 
     public Integer getIdAddress() {
