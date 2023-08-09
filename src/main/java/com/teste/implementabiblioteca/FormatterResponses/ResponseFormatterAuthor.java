@@ -8,8 +8,6 @@ public class ResponseFormatterAuthor {
 
     public static ResponseEntity<?> FormatAuthorResponse(AuthorEntity author) {
         HttpStatus status = HttpStatus.OK;
-
-
-        return ResponseEntity.status(status).body(author);
+        return ResponseEntity.status(status).body(new Body(author));
     }
 }
