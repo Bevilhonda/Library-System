@@ -9,25 +9,21 @@ public class Body {
     private final Name nome;
     private final LocalDate data_nascimento;
 
-    public Body(Integer id, Name nome, LocalDate data_nascimento) {
-        this.id = id;
-        this.nome = nome;
-        this.data_nascimento = data_nascimento;
+    public Body(AuthorEntity newAuthor) {
+        this.id = newAuthor.getIdAuthor();
+        this.nome = new Name(newAuthor);
+        this.data_nascimento = newAuthor.getDateBirth();
     }
 
-    public AuthorEntity from(AuthorEntity author) {
-        return new AuthorEntity(id, nome.getPrimeiro(), nome.getSegundo(), data_nascimento);
-    }
-
-    public Integer getIds() {
+    public Integer getId() {
         return id;
     }
 
-    public Name getNames() {
+    public Name getName() {
         return nome;
     }
 
-    public LocalDate getDateBirths() {
+    public LocalDate getDateBirth() {
         return data_nascimento;
     }
 }
