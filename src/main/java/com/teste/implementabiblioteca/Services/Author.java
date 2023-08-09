@@ -2,7 +2,7 @@ package com.teste.implementabiblioteca.Services;
 
 import com.teste.implementabiblioteca.MonitorExceptions.*;
 import com.teste.implementabiblioteca.Model.AuthorEntity;
-import com.teste.implementabiblioteca.repository.RepositoryAuthor;
+import com.teste.implementabiblioteca.Repository.RepositoryAuthor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

@@ -5,7 +5,7 @@ import com.teste.implementabiblioteca.Model.LibraryEntity;
 import com.teste.implementabiblioteca.MonitorExceptions.LibraryNotFound;
 import com.teste.implementabiblioteca.MonitorExceptions.NameLibraryNotFound;
 import com.teste.implementabiblioteca.MonitorExceptions.ResponseTypeExceptions;
-import com.teste.implementabiblioteca.repository.RepositoryLibrary;
+import com.teste.implementabiblioteca.Repository.RepositoryLibrary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

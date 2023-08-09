@@ -3,7 +3,7 @@ package com.teste.implementabiblioteca.Services;
 import com.teste.implementabiblioteca.Model.BookEntity;
 import com.teste.implementabiblioteca.MonitorExceptions.BookNotFound;
 import com.teste.implementabiblioteca.MonitorExceptions.ResponseTypeExceptions;
-import com.teste.implementabiblioteca.repository.RepositoryBook;
+import com.teste.implementabiblioteca.Repository.RepositoryBook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

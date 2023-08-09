@@ -1,4 +1,4 @@
-package com.teste.implementabiblioteca.repository;
+package com.teste.implementabiblioteca.Repository;
 
 import com.teste.implementabiblioteca.Model.BookEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

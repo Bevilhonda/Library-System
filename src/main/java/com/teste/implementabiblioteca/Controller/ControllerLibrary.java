@@ -2,7 +2,7 @@ package com.teste.implementabiblioteca.Controller;
 
 import com.teste.implementabiblioteca.DAO.LibraryDAO;
 import com.teste.implementabiblioteca.Services.Library;
-import com.teste.implementabiblioteca.repository.RepositoryLibrary;
+import com.teste.implementabiblioteca.Repository.RepositoryLibrary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

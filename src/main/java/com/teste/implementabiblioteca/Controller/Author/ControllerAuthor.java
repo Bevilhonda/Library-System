@@ -1,4 +1,4 @@
-package com.teste.implementabiblioteca.Controller;
+package com.teste.implementabiblioteca.Controller.Author;
 
 import com.teste.implementabiblioteca.Model.AuthorEntity;
 import com.teste.implementabiblioteca.Services.Author;
