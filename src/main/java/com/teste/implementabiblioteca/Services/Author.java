@@ -13,7 +13,7 @@ import java.util.List;
 
 import static com.teste.implementabiblioteca.MonitorExceptions.ExceptionsFactory.MapDateBirth;
 import static com.teste.implementabiblioteca.MonitorExceptions.ExceptionsFactory.MapAuthor;
-import static com.teste.implementabiblioteca.FormatterResponses.ResponseFormatterAuthor.FormatAuthorResponse;
+import static com.teste.implementabiblioteca.Controller.Author.FormatterResponse.ResponseFormatterAuthor.FormatAuthorResponse;
 import static com.teste.implementabiblioteca.Services.TypesResponseAuthor.*;
 
 @Service

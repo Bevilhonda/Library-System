@@ -1,5 +1,6 @@
-package com.teste.implementabiblioteca.FormatterResponses;
+package com.teste.implementabiblioteca.Controller.Author.FormatterResponse;
 
+import com.teste.implementabiblioteca.FormatterResponses.Body;
 import com.teste.implementabiblioteca.Model.AuthorEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
