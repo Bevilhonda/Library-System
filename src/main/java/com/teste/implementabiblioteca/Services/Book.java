@@ -1,7 +1,7 @@
 package com.teste.implementabiblioteca.Services;
 
 import com.teste.implementabiblioteca.Model.BookEntity;
-import com.teste.implementabiblioteca.MonitorExceptions.BookNotFound;
+import com.teste.implementabiblioteca.Controller.Book.MonitorExeptions.BookNotFound;
 import com.teste.implementabiblioteca.MonitorExceptions.ResponseTypeExceptions;
 import com.teste.implementabiblioteca.Repository.RepositoryBook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import static com.teste.implementabiblioteca.MonitorExceptions.ExceptionsFactory.MapBook;
-import static com.teste.implementabiblioteca.Services.HelperResponseBook.DetailsAllBook;
-import static com.teste.implementabiblioteca.Services.HelperResponseBook.ReturnDetailsBook;
+import static com.teste.implementabiblioteca.Controller.Book.FormatterResponse.HelperResponseBook.DetailsAllBook;
+import static com.teste.implementabiblioteca.Controller.Book.FormatterResponse.HelperResponseBook.ReturnDetailsBook;
 
 @Service
 public class Book {

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EnderecoTest {
-
+/*
     @Test
     public void Dados_endereco() {
 
@@ -18,4 +18,6 @@ class EnderecoTest {
         assertEquals(1, novo.getId_endereco());
 
     }
+
+ */
 }

@@ -36,7 +36,7 @@ public interface RepositoryAuthor extends JpaRepository<AuthorEntity, Integer> {
     Integer updateAuthor(String nome, String sobrenome, LocalDate data_nascimento, Integer id_autor);
 
     @Modifying
-    @Query(value = "Delete from Autor where id_autor = :id_autor", nativeQuery = true)
+    @Query(value = "Delete * from Autor where id_autor = :id_autor", nativeQuery = true)
     Integer deleteAuthor(Integer id_autor);
 
     @Modifying

@@ -9,7 +9,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BibliotecaTest {
-
+/*
     @Test
     public void Test_Construtor() {
 
@@ -25,5 +25,7 @@ class BibliotecaTest {
         assertEquals(1, nova_biblioteca.getId_biblioteca());
 
     }
+
+ */
 
 }

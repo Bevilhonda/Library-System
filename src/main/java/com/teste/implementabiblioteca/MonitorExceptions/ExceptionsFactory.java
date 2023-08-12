@@ -1,5 +1,14 @@
 package com.teste.implementabiblioteca.MonitorExceptions;
 
+import com.teste.implementabiblioteca.Controller.Address.MonitorExeptions.AddressNotFound;
+import com.teste.implementabiblioteca.Controller.Address.MonitorExeptions.ErrorSavingAddress;
+import com.teste.implementabiblioteca.Controller.Author.MonitorExceptions.AuthorNotFound;
+import com.teste.implementabiblioteca.Controller.Author.MonitorExceptions.DateBirthNotFound;
+import com.teste.implementabiblioteca.Controller.Author.MonitorExceptions.ErrorSavingAuthor;
+import com.teste.implementabiblioteca.Controller.Author.MonitorExceptions.LastNameNotFound;
+import com.teste.implementabiblioteca.Controller.Book.MonitorExeptions.BookNotFound;
+import com.teste.implementabiblioteca.Controller.Library.MonittorExceptions.LibraryNotFound;
+import com.teste.implementabiblioteca.Controller.Library.MonittorExceptions.NameLibraryNotFound;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 

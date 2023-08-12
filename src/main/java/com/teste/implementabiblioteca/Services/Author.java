@@ -1,5 +1,9 @@
 package com.teste.implementabiblioteca.Services;
 
+import com.teste.implementabiblioteca.Controller.Author.MonitorExceptions.AuthorNotFound;
+import com.teste.implementabiblioteca.Controller.Author.MonitorExceptions.DateBirthNotFound;
+import com.teste.implementabiblioteca.Controller.Author.MonitorExceptions.ErrorSavingAuthor;
+import com.teste.implementabiblioteca.Controller.Author.MonitorExceptions.LastNameNotFound;
 import com.teste.implementabiblioteca.MonitorExceptions.*;
 import com.teste.implementabiblioteca.Model.AuthorEntity;
 import com.teste.implementabiblioteca.Repository.RepositoryAuthor;
@@ -13,27 +17,22 @@ import java.util.List;
 
 import static com.teste.implementabiblioteca.MonitorExceptions.ExceptionsFactory.MapDateBirth;
 import static com.teste.implementabiblioteca.MonitorExceptions.ExceptionsFactory.MapAuthor;
-import static com.teste.implementabiblioteca.Controller.Author.FormatterResponse.ResponseFormatter.FormatAuthorResponse;
-import static com.teste.implementabiblioteca.Services.TypesResponseAuthor.*;
+import static com.teste.implementabiblioteca.Controller.Author.FormatterResponse.TypesResponseAuthor.*;
 
 @Service
 public class Author {
     @Autowired
     private RepositoryAuthor repositoryAuthor;
 
-    public ResponseEntity<?> GetAutorById(Integer id) {
-        try {
+    public AuthorEntity GetAutorById(Integer id) throws AuthorNotFound {
 
             AuthorEntity author = repositoryAuthor.GetAuthor(id);
 
             if (author == null) {
                 throw new AuthorNotFound(id);
             }
-            return FormatAuthorResponse(author);
+            return author;
 
-        } catch (ResponseTypeExceptions e) {
-            return MapAuthor(e);
-        }
     }
 
     public ResponseEntity<?> GetAllAuthors() {
