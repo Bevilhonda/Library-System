@@ -17,25 +17,29 @@ public class TypesResponseAuthor {
                 author.getDateBirth());
         return ResponseEntity.status(status).body(mensagem);
     }
-//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     public static ResponseEntity<?> SaveSucessfull() {
         String mensagem = "Autor adicionado com sucesso.";
         HttpStatus status = HttpStatus.OK;
         return ResponseEntity.status(status).body(mensagem);
     }
-//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     public static ResponseEntity<?> UpdateSucessfull(Integer id) {
         String mensagem = "O autor com o id: " + id + " foi atualizado com sucesso.";
         HttpStatus status = HttpStatus.OK;
         return ResponseEntity.status(status).body(mensagem);
     }
-//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     public static ResponseEntity<?> DeleteSucessfull(Integer id) {
         String mensagem = "O autor com o id: " + id + " foi excluido.";
         HttpStatus status = HttpStatus.OK;
         return ResponseEntity.status(status).body(mensagem);
     }
-//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx
+
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx
     public static ResponseEntity<?> DetailsAuthors(List<AuthorEntity> authorlist) {
 
         List<String> detailsauthor = new ArrayList<>();
@@ -51,10 +55,10 @@ public class TypesResponseAuthor {
     }
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-    public static ResponseEntity<?> AllAuthors (List<AuthorEntity> authorlist){
+    public static ResponseEntity<?> AllAuthors(List<AuthorEntity> authorlist) {
         List<Body> authorDetailsList = authorlist.stream().map(author ->
                 new Body(author.getIdAuthor(),
-                        new Name(author.getName(),author.getLastname()),
+                        new Name(author.getName(), author.getLastname()),
                         author.getDateBirth())).toList();
         return ResponseEntity.status(HttpStatus.OK).body(authorDetailsList);
     }

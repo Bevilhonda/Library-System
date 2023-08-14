@@ -26,15 +26,15 @@ public class Author {
 
     public AuthorEntity GetAutorById(Integer id) throws AuthorNotFound {
 
-            AuthorEntity author = repositoryAuthor.GetAuthor(id);
+        AuthorEntity author = repositoryAuthor.GetAuthor(id);
 
-            if (author == null) {
-                throw new AuthorNotFound(id);
-            }
-            return author;
-
+        if (author == null) {
+            throw new AuthorNotFound(id);
+        }
+        return author;
     }
-//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     public ResponseEntity<?> GetAllAuthors() {
         List<AuthorEntity> authors = repositoryAuthor.GetAllAuthors();
         return DetailsAuthors(authors);
@@ -45,7 +45,8 @@ public class Author {
         List<AuthorEntity> authors = repositoryAuthor.GetAllAuthors();
         return AllAuthors(authors);
     }
-//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     public ResponseEntity<?> GetAutorByLastName(String lastName) {
         try {
             List<AuthorEntity> authors = repositoryAuthor.GetAuthorByLastName(lastName);
@@ -59,7 +60,8 @@ public class Author {
             return MapAuthor(e);
         }
     }
-//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx
+
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx
     public ResponseEntity<?> GetAuthorByDateBirth(String startDate, String finalDate) {
         try {
             LocalDate dataInicial = LocalDate.parse(startDate, DateTimeFormatter.ISO_DATE);
@@ -94,7 +96,7 @@ public class Author {
 
     }
 
-//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     public ResponseEntity<?> UpdateAuthor(Integer id, AuthorEntity author) {
         try {
             AuthorEntity dataAuthor = repositoryAuthor.GetAuthor(id);
@@ -109,7 +111,8 @@ public class Author {
         }
         return UpdateSucessfull(id);
     }
-//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     public ResponseEntity<?> Delete(Integer id) {
         try {
             AuthorEntity dataAuthor = repositoryAuthor.GetAuthor(id);
