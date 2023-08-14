@@ -56,7 +56,7 @@ public class TypesResponseAuthor {
                 new Body(author.getIdAuthor(),
                         new Name(author.getName(),author.getLastname()),
                         author.getDateBirth())).toList();
-        return ResponseEntity.ok(authorDetailsList);
+        return ResponseEntity.status(HttpStatus.OK).body(authorDetailsList);
     }
 
 }
