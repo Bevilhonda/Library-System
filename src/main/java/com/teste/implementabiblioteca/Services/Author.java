@@ -34,12 +34,18 @@ public class Author {
             return author;
 
     }
-
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     public ResponseEntity<?> GetAllAuthors() {
         List<AuthorEntity> authors = repositoryAuthor.GetAllAuthors();
         return DetailsAuthors(authors);
     }
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
+    public ResponseEntity<?> GetAllAuthor() {
+        List<AuthorEntity> authors = repositoryAuthor.GetAllAuthors();
+        return AllAuthors(authors);
+    }
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     public ResponseEntity<?> GetAutorByLastName(String lastName) {
         try {
             List<AuthorEntity> authors = repositoryAuthor.GetAuthorByLastName(lastName);
@@ -53,7 +59,7 @@ public class Author {
             return MapAuthor(e);
         }
     }
-
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx
     public ResponseEntity<?> GetAuthorByDateBirth(String startDate, String finalDate) {
         try {
             LocalDate dataInicial = LocalDate.parse(startDate, DateTimeFormatter.ISO_DATE);
@@ -70,7 +76,7 @@ public class Author {
             return MapDateBirth(e);
         }
     }
-
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 
     public ResponseEntity<?> Insert(AuthorEntity author) {
@@ -88,7 +94,7 @@ public class Author {
 
     }
 
-
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     public ResponseEntity<?> UpdateAuthor(Integer id, AuthorEntity author) {
         try {
             AuthorEntity dataAuthor = repositoryAuthor.GetAuthor(id);
@@ -103,7 +109,7 @@ public class Author {
         }
         return UpdateSucessfull(id);
     }
-
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     public ResponseEntity<?> Delete(Integer id) {
         try {
             AuthorEntity dataAuthor = repositoryAuthor.GetAuthor(id);

@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class AllAuthors {
     @Autowired
@@ -13,6 +15,6 @@ public class AllAuthors {
 
     @GetMapping("/Authors")
     public ResponseEntity<?> GetAll_Authors() {
-        return author.GetAllAuthors();
+        return author.GetAllAuthor();
     }
 }
