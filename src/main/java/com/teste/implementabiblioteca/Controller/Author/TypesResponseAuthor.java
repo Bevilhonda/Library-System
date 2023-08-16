@@ -40,16 +40,12 @@ public class TypesResponseAuthor {
 
     public static ResponseEntity<?> DetailsAuthors(List<AuthorEntity> authorlist) {
 
-        List<String> detailsauthor = new ArrayList<>();
-        HttpStatus currentstatus = HttpStatus.OK;
+        List<Body> detailsauthor = authorlist.stream().map(author ->
+                new Body(author.getIdAuthor(),
+                new Name(author.getName(), author.getLastname()),
+                author.getDateBirth())).toList();
 
-        for (AuthorEntity author : authorlist) {
-
-            String details = author.getIdAuthor() + " " + author.getName() + " " + author.getLastname() + " "
-                    + author.getDateBirth();
-            detailsauthor.add(details);
-        }
-        return ResponseEntity.status(currentstatus).body(detailsauthor);
+        return ResponseEntity.status(HttpStatus.OK).body(detailsauthor);
     }
 
 

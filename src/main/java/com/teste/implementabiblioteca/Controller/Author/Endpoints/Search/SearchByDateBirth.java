@@ -2,9 +2,9 @@ package com.teste.implementabiblioteca.Controller.Author.Endpoints.Search;
 
 import com.teste.implementabiblioteca.Controller.Author.TypesResponseAuthor;
 import com.teste.implementabiblioteca.Model.AuthorEntity;
-import com.teste.implementabiblioteca.Services.Author.ClassServices.AuthorByLastName;
+import com.teste.implementabiblioteca.Services.Author.ClassServices.AuthorByDateBirth;
 import com.teste.implementabiblioteca.Services.Author.Exceptions.ErrorHandling.AuthorExceptions;
-import com.teste.implementabiblioteca.Services.Author.Exceptions.TypeExceptions.ListEmpty;
+import com.teste.implementabiblioteca.Services.Author.Exceptions.TypeExceptions.DateBirthNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,21 +16,24 @@ import java.util.List;
 import static com.teste.implementabiblioteca.Services.Author.Exceptions.ErrorHandling.ErrorHandlingAuthor.MapAuthor;
 
 @RestController
-public class ByLastname {
+public class SearchByDateBirth {
     @Autowired
-    private AuthorByLastName author;
+    private AuthorByDateBirth author;
 
-    @GetMapping("/Author/LastName/{lastname}")
-    public ResponseEntity<?> GetAutorByLastName(@PathVariable String lastname) {
+    @GetMapping("/Autor/DateBirth/{startDate}/{finalDate}")
+    public ResponseEntity<?> GetAuthorByDateBirth(@PathVariable String startDate,
+                                                  @PathVariable String finalDate) {
         try {
-            List<AuthorEntity> listAuthor = author.GetAuthorByLastName(lastname);
-            if (listAuthor.isEmpty()) {
-                throw new ListEmpty();
+            List<AuthorEntity> authors =  author.GetAuthorByDateBirth(startDate, finalDate);
+
+            if (authors.isEmpty()) {
+                throw new DateBirthNotFound(startDate, finalDate);
+
             }
-            return TypesResponseAuthor.AllAuthors(listAuthor);
+            return TypesResponseAuthor.DetailsAuthors(authors);
+
         } catch (AuthorExceptions e) {
             return MapAuthor(e);
         }
-
     }
 }
