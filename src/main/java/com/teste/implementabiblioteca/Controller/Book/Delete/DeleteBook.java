@@ -1,6 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Book.Delete;
 
-import com.teste.implementabiblioteca.Services.Book;
+import com.teste.implementabiblioteca.Services.Book.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

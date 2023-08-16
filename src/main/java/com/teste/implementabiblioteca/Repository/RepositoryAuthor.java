@@ -1,5 +1,6 @@
 package com.teste.implementabiblioteca.Repository;
 
+import com.teste.implementabiblioteca.Controller.Author.DAO.DataAuthorEntity;
 import com.teste.implementabiblioteca.Model.AuthorEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -36,7 +37,7 @@ public interface RepositoryAuthor extends JpaRepository<AuthorEntity, Integer> {
     Integer updateAuthor(String nome, String sobrenome, LocalDate data_nascimento, Integer id_autor);
 
     @Modifying
-    @Query(value = "Delete * from Autor where id_autor = :id_autor", nativeQuery = true)
+    @Query(value = "Delete from Autor where id_autor = :id_autor", nativeQuery = true)
     Integer deleteAuthor(Integer id_autor);
 
     @Modifying

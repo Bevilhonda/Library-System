@@ -15,10 +15,10 @@ public class DataAuthorEntity {
     @JsonProperty("data_nascimento")
     private LocalDate dateBirth;
 
-    public DataAuthorEntity(Integer id_autor, String name, String lastName, String dateBirth) {
+    public DataAuthorEntity(Integer id_autor, String name, String lastName, LocalDate dateBirth) {
         this.name = name;
         this.lastname = lastName;
-        this.dateBirth = LocalDate.parse(dateBirth);
+        this.dateBirth = dateBirth;
         this.idAuthor = id_autor;
     }
 

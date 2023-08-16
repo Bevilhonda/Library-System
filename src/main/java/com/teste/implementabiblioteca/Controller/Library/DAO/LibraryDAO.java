@@ -2,8 +2,9 @@ package com.teste.implementabiblioteca.Controller.Library.DAO;
 
 import com.teste.implementabiblioteca.Model.AddressEntity;
 import com.teste.implementabiblioteca.Model.LibraryEntity;
-import com.teste.implementabiblioteca.Controller.Library.MonittorExceptions.NameLibraryNotFound;
-import com.teste.implementabiblioteca.MonitorExceptions.ResponseTypeExceptions;
+import com.teste.implementabiblioteca.Services.Library.Exceptions.ErrorHandling.LibraryExceptions;
+import com.teste.implementabiblioteca.Services.Library.Exceptions.TypeExceptions.NameLibraryNotFound;
+
 import com.teste.implementabiblioteca.Repository.RepositoryAddress;
 import com.teste.implementabiblioteca.Repository.RepositoryLibrary;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-import static com.teste.implementabiblioteca.MonitorExceptions.ExceptionsFactory.MapLibrary;
+import static com.teste.implementabiblioteca.Services.Library.Exceptions.ErrorHandling.ErrorHandlingLibrary.MapLibrary;
 
 @Service
 public class LibraryDAO {
@@ -57,7 +57,7 @@ public class LibraryDAO {
 
             return new ResponseEntity<>(libraryDetailsList, HttpStatus.OK);
 
-        } catch (ResponseTypeExceptions e) {
+        } catch (LibraryExceptions e) {
             return MapLibrary(e);
         }
     }

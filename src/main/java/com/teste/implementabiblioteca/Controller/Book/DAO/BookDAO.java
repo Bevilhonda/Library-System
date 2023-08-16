@@ -1,11 +1,12 @@
 package com.teste.implementabiblioteca.Controller.Book.DAO;
 
+import com.teste.implementabiblioteca.Controller.Author.DAO.DataAuthorEntity;
 import com.teste.implementabiblioteca.Model.AddressEntity;
 import com.teste.implementabiblioteca.Model.AuthorEntity;
 import com.teste.implementabiblioteca.Model.BookEntity;
 import com.teste.implementabiblioteca.Model.LibraryEntity;
-import com.teste.implementabiblioteca.Controller.Book.MonitorExeptions.BookNotFound;
-import com.teste.implementabiblioteca.MonitorExceptions.ResponseTypeExceptions;
+import com.teste.implementabiblioteca.Services.Book.Exceptions.ErrorHandling.BookExceptions;
+import com.teste.implementabiblioteca.Services.Book.Exceptions.TypeExceptions.BookNotFound;
 import com.teste.implementabiblioteca.Repository.RepositoryAddress;
 import com.teste.implementabiblioteca.Repository.RepositoryAuthor;
 import com.teste.implementabiblioteca.Repository.RepositoryBook;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static com.teste.implementabiblioteca.MonitorExceptions.ExceptionsFactory.MapBook;
+import static com.teste.implementabiblioteca.Services.Book.Exceptions.ErrorHandling.ErrorHandlingBook.MapBook;
 
 @Service
 public class BookDAO {
@@ -72,7 +73,7 @@ public class BookDAO {
                 }
             }
             return new ResponseEntity<>(bookDetailsList, HttpStatus.OK);
-        } catch (ResponseTypeExceptions e) {
+        } catch (BookExceptions e) {
             return MapBook(e);
         }
     }

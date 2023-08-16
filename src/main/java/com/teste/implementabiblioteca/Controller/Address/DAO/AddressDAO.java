@@ -1,17 +1,17 @@
 package com.teste.implementabiblioteca.Controller.Address.DAO;
 
 import com.teste.implementabiblioteca.Model.AddressEntity;
-import com.teste.implementabiblioteca.Controller.Address.MonitorExeptions.AddressNotFound;
-import com.teste.implementabiblioteca.MonitorExceptions.ResponseTypeExceptions;
-import com.teste.implementabiblioteca.Services.Address;
+import com.teste.implementabiblioteca.Services.Address.Exceptions.ErrorHandling.AddressExceptions;
+import com.teste.implementabiblioteca.Services.Address.Exceptions.TypeExceptions.AddressNotFound;
+import com.teste.implementabiblioteca.Services.Address.Address;
 import com.teste.implementabiblioteca.Repository.RepositoryAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import static com.teste.implementabiblioteca.MonitorExceptions.ExceptionsFactory.MapAddress;
 
 import static com.teste.implementabiblioteca.Controller.Address.FormatterResponse.TypesResponseAddress.UpdateAddressSucessfull;
+import static com.teste.implementabiblioteca.Services.Address.Exceptions.ErrorHandling.ErrorHandlingAddress.MapAddress;
 
 @Service
 public class AddressDAO {
@@ -31,7 +31,7 @@ public class AddressDAO {
 
             return UpdateAddressSucessfull(id);
 
-        } catch (ResponseTypeExceptions e) {
+        } catch (AddressExceptions e) {
             return MapAddress(e);
         }
     }
