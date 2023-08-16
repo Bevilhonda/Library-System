@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import static com.teste.implementabiblioteca.Services.Author.Exceptions.ErrorHandling.ErrorHandlingAuthor.MapAuthor;
 
 @RestController
-public class SearchByIdAuthor {
+public class SearchById {
     @Autowired
     private AuthorByID author;
 
