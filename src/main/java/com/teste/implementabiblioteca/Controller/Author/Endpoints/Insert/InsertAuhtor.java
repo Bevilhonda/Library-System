@@ -29,6 +29,6 @@ public class InsertAuhtor {
         } catch (AuthorExceptions e) {
             return MapAuthor(e);
         }
-        return TypesResponseAuthor.SaveSucessfull();
+        return TypesResponseAuthor.saveSucessfull();
     }
 }

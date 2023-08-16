@@ -26,7 +26,7 @@ public class UpdateAuthor {
            if (author == null){
                throw  new AuthorNotFound(id);
            }
-           return TypesResponseAuthor.UpdateSucessfull(id);
+           return TypesResponseAuthor.updateSucessfull(id);
 
        } catch (AuthorExceptions e) {
            return MapAuthor(e);

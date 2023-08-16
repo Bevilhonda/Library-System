@@ -28,6 +28,6 @@ public class DeleteAuthor {
         } catch (AuthorExceptions e) {
             return MapAuthor(e);
         }
-        return TypesResponseAuthor.DeleteSucessfull(id);
+        return TypesResponseAuthor.deleteSucessfull(id);
     }
 }

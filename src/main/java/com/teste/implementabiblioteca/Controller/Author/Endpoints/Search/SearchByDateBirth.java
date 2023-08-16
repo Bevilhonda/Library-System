@@ -30,7 +30,7 @@ public class SearchByDateBirth {
                 throw new DateBirthNotFound(startDate, finalDate);
 
             }
-            return TypesResponseAuthor.DetailsAuthors(authors);
+            return TypesResponseAuthor.SearchAuthorsDatePeriod(authors);
 
         } catch (AuthorExceptions e) {
             return MapAuthor(e);

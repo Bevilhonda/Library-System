@@ -6,7 +6,6 @@ import com.teste.implementabiblioteca.Model.AuthorEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TypesResponseAuthor {
@@ -17,35 +16,35 @@ public class TypesResponseAuthor {
     }
 
 
-    public static ResponseEntity<?> SaveSucessfull() {
-        String mensagem = "Autor adicionado com sucesso.";
+    public static ResponseEntity<?> saveSucessfull() {
+        String message = "Autor adicionado com sucesso.";
         HttpStatus status = HttpStatus.OK;
-        return ResponseEntity.status(status).body(mensagem);
+        return ResponseEntity.status(status).body(message);
     }
 
 
-    public static ResponseEntity<?> UpdateSucessfull(Integer id) {
-        String mensagem = "O autor com o id: " + id + " foi atualizado com sucesso.";
+    public static ResponseEntity<?> updateSucessfull(Integer id) {
+        String message = "O autor com o id: " + id + " foi atualizado com sucesso.";
         HttpStatus status = HttpStatus.OK;
-        return ResponseEntity.status(status).body(mensagem);
+        return ResponseEntity.status(status).body(message);
     }
 
 
-    public static ResponseEntity<?> DeleteSucessfull(Integer id) {
-        String mensagem = "O autor com o id: " + id + " foi excluido.";
+    public static ResponseEntity<?> deleteSucessfull(Integer id) {
+        String message = "O autor com o id: " + id + " foi excluido.";
         HttpStatus status = HttpStatus.OK;
-        return ResponseEntity.status(status).body(mensagem);
+        return ResponseEntity.status(status).body(message);
     }
 
 
-    public static ResponseEntity<?> DetailsAuthors(List<AuthorEntity> authorlist) {
+    public static ResponseEntity<?> SearchAuthorsDatePeriod(List<AuthorEntity> authorList) {
 
-        List<Body> detailsauthor = authorlist.stream().map(author ->
+        List<Body> detailsAuthor = authorList.stream().map(author ->
                 new Body(author.getIdAuthor(),
                 new Name(author.getName(), author.getLastname()),
                 author.getDateBirth())).toList();
 
-        return ResponseEntity.status(HttpStatus.OK).body(detailsauthor);
+        return ResponseEntity.status(HttpStatus.OK).body(detailsAuthor);
     }
 
 
