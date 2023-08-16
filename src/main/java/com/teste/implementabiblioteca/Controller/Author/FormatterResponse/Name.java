@@ -1,4 +1,4 @@
-package com.teste.implementabiblioteca.Controller.Author.DTO.FormatterResponse;
+package com.teste.implementabiblioteca.Controller.Author.FormatterResponse;
 
 public class Name {
     private final String primeiro;

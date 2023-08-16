@@ -1,7 +1,7 @@
 package com.teste.implementabiblioteca.Controller.Author.Endpoints.Delete;
 
 
-import com.teste.implementabiblioteca.Controller.Author.DTO.FormatterResponse.TypesResponseAuthor;
+import com.teste.implementabiblioteca.Controller.Author.TypesResponseAuthor;
 
 import com.teste.implementabiblioteca.Services.Author.ClassServices.DoDeleteAuthor;
 import com.teste.implementabiblioteca.Services.Author.Exceptions.ErrorHandling.AuthorExceptions;

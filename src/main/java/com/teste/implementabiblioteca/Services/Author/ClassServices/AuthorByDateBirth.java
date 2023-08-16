@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import static com.teste.implementabiblioteca.Controller.Author.DTO.FormatterResponse.TypesResponseAuthor.DetailsAuthors;
+import static com.teste.implementabiblioteca.Controller.Author.TypesResponseAuthor.DetailsAuthors;
 import static com.teste.implementabiblioteca.Services.Author.Exceptions.ErrorHandling.ErrorHandlingAuthor.MapAuthor;
 
 @Service

@@ -1,6 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Author.Endpoints.Search;
 
-import com.teste.implementabiblioteca.Controller.Author.DTO.FormatterResponse.TypesResponseAuthor;
+import com.teste.implementabiblioteca.Controller.Author.TypesResponseAuthor;
 import com.teste.implementabiblioteca.Model.AuthorEntity;
 import com.teste.implementabiblioteca.Services.Author.ClassServices.AuthorByLastName;
 import com.teste.implementabiblioteca.Services.Author.Exceptions.ErrorHandling.AuthorExceptions;

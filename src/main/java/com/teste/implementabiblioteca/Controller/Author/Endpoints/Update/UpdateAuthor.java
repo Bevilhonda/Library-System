@@ -1,7 +1,7 @@
 package com.teste.implementabiblioteca.Controller.Author.Endpoints.Update;
 
 import com.teste.implementabiblioteca.Controller.Author.DAO.DataAuthorEntity;
-import com.teste.implementabiblioteca.Controller.Author.DTO.FormatterResponse.TypesResponseAuthor;
+import com.teste.implementabiblioteca.Controller.Author.TypesResponseAuthor;
 import com.teste.implementabiblioteca.Model.AuthorEntity;
 import com.teste.implementabiblioteca.Services.Author.ClassServices.DoUpdateAuthor;
 import com.teste.implementabiblioteca.Services.Author.Exceptions.ErrorHandling.AuthorExceptions;
