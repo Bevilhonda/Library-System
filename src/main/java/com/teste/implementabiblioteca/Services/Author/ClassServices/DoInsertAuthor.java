@@ -12,7 +12,7 @@ public class DoInsertAuthor {
     private RepositoryAuthor repositoryAuthor;
     public AuthorEntity Insert(AuthorEntity author) throws ErrorSavingAuthor {
 
-            Integer insertData = repositoryAuthor.Save(author.getIdAuthor(), author.getName(),
+            Integer insertData = repositoryAuthor.Save( author.getName(),
                     author.getLastname(), author.getDateBirth());
             if (insertData == null) {
                 throw new ErrorSavingAuthor();
