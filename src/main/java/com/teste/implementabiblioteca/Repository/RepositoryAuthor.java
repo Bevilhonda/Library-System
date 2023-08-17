@@ -26,9 +26,9 @@ public interface RepositoryAuthor extends JpaRepository<AuthorEntity, Integer> {
     List<AuthorEntity> GetAuthorByLastName(String sobrenome);
 
     @Modifying
-    @Query(value = "insert into Autor (id_autor, nome, sobrenome, data_nascimento)" +
-            " values (:id_autor , :nome , :sobrenome, :data_nascimento)", nativeQuery = true)
-    Integer Save(Integer id_autor, String nome, String sobrenome, LocalDate data_nascimento);
+    @Query(value = "insert into Autor ( nome, sobrenome, data_nascimento)" +
+            " values ( :nome , :sobrenome, :data_nascimento)", nativeQuery = true)
+    Integer Save( String nome, String sobrenome, LocalDate data_nascimento);
 
     @Modifying
     @Query(value = "UPDATE Autor set nome = :nome , sobrenome = :sobrenome , data_nascimento = :data_nascimento " +
