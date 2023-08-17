@@ -1,6 +1,5 @@
 package com.teste.implementabiblioteca.Repository;
 
-import com.teste.implementabiblioteca.Controller.Author.DAO.DataAuthorEntity;
 import com.teste.implementabiblioteca.Model.AuthorEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

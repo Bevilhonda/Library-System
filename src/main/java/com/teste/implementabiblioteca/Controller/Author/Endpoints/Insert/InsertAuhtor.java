@@ -1,12 +1,12 @@
 package com.teste.implementabiblioteca.Controller.Author.Endpoints.Insert;
 
-import com.teste.implementabiblioteca.Controller.Author.DAO.DataAuthorEntity;
-import com.teste.implementabiblioteca.Controller.Author.TypesResponseAuthor;
+import com.teste.implementabiblioteca.Controller.Author.Endpoints.Insert.DAO.DataAuthorEntity;
 import com.teste.implementabiblioteca.Model.AuthorEntity;
 import com.teste.implementabiblioteca.Services.Author.ClassServices.DoInsertAuthor;
 import com.teste.implementabiblioteca.Services.Author.Exceptions.ErrorHandling.AuthorExceptions;
 import com.teste.implementabiblioteca.Services.Author.Exceptions.TypeExceptions.ErrorSavingAuthor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,6 +29,6 @@ public class InsertAuhtor {
         } catch (AuthorExceptions e) {
             return MapAuthor(e);
         }
-        return TypesResponseAuthor.saveSucessfull();
+        return ResponseEntity.status(HttpStatus.OK).body("Ok");
     }
 }

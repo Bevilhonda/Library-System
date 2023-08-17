@@ -1,6 +1,5 @@
 package com.teste.implementabiblioteca.Controller.Book.DAO;
 
-import com.teste.implementabiblioteca.Controller.Author.DAO.DataAuthorEntity;
 import com.teste.implementabiblioteca.Model.AddressEntity;
 import com.teste.implementabiblioteca.Model.AuthorEntity;
 import com.teste.implementabiblioteca.Model.BookEntity;
