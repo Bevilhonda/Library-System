@@ -1,6 +1,6 @@
-package com.teste.implementabiblioteca.Controller.Author.Endpoints.Search;
+package com.teste.implementabiblioteca.Controller.Author.Endpoints.Search.ById;
 
-import com.teste.implementabiblioteca.Controller.Author.TypesResponseAuthor;
+import com.teste.implementabiblioteca.Controller.Author.Endpoints.Search.ById.Response.FormatResponseById;
 import com.teste.implementabiblioteca.Model.AuthorEntity;
 import com.teste.implementabiblioteca.Services.Author.ClassServices.AuthorByID;
 import com.teste.implementabiblioteca.Services.Author.Exceptions.ErrorHandling.AuthorExceptions;
@@ -26,7 +26,7 @@ public class SearchById {
             if (authorEntity == null) {
                 throw new AuthorNotFound(id);
             }
-            return TypesResponseAuthor.Ok(authorEntity);
+            return FormatResponseById.responseById(authorEntity);
         } catch (AuthorExceptions e) {
             return MapAuthor(e);
         }

@@ -1,6 +1,5 @@
-package com.teste.implementabiblioteca.Controller.Author.Endpoints.Search;
+package com.teste.implementabiblioteca.Controller.Author.Endpoints.Search.ByLastName;
 
-import com.teste.implementabiblioteca.Controller.Author.TypesResponseAuthor;
 import com.teste.implementabiblioteca.Model.AuthorEntity;
 import com.teste.implementabiblioteca.Services.Author.ClassServices.AuthorByLastName;
 import com.teste.implementabiblioteca.Services.Author.Exceptions.ErrorHandling.AuthorExceptions;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static com.teste.implementabiblioteca.Controller.Author.Endpoints.Search.ByLastName.Response.FormatResponseByLastname.AllAuthors;
 import static com.teste.implementabiblioteca.Services.Author.Exceptions.ErrorHandling.ErrorHandlingAuthor.MapAuthor;
 
 @RestController
@@ -27,7 +27,7 @@ public class SearchByLastname {
             if (listAuthor.isEmpty()) {
                 throw new ListEmpty();
             }
-            return TypesResponseAuthor.AllAuthors(listAuthor);
+            return AllAuthors(listAuthor);
         } catch (AuthorExceptions e) {
             return MapAuthor(e);
         }

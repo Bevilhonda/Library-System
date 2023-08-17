@@ -1,4 +1,4 @@
-package com.teste.implementabiblioteca.Controller.Author.DAO;
+package com.teste.implementabiblioteca.Controller.Author.Endpoints.Insert.DAO;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.teste.implementabiblioteca.Model.AuthorEntity;
