@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class SearchAllAuthors {
+public class DoAllAuthors {
     @Autowired
     private RepositoryAuthor repositoryAuthor;
 
