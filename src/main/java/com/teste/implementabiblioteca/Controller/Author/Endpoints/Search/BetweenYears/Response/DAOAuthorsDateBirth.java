@@ -6,32 +6,28 @@ import java.time.LocalDate;
 
 public class DAOAuthorsDateBirth {
     private final Integer id;
-    private final String name;
-    private final String lastName;
+    private final Name nameAndLastname;
     private final LocalDate data_nascimento;
 
-    public DAOAuthorsDateBirth(Integer id, String name, String lastName, LocalDate data_nascimento) {
+    public DAOAuthorsDateBirth(Integer id, Name nameLastname, LocalDate data_nascimento) {
         this.id = id;
-        this.name = name;
-        this.lastName = lastName;
+        this.nameAndLastname = nameLastname;
         this.data_nascimento = data_nascimento;
     }
 
     public static DAOAuthorsDateBirth from(AuthorEntity author) {
-        return new DAOAuthorsDateBirth(author.getIdAuthor(), author.getName(),
-                author.getLastname(), author.getDateBirth());
+
+        return new DAOAuthorsDateBirth(author.getIdAuthor(),
+                new Name(author.getName()+ " " + author.getLastname())
+                ,author.getDateBirth());
     }
 
     public Integer getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getLastName() {
-        return lastName;
+    public Name getNameAndLastname() {
+        return nameAndLastname;
     }
 
     public LocalDate getData_nascimento() {

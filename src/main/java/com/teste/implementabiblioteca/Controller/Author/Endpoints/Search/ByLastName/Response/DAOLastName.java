@@ -7,19 +7,19 @@ import java.time.LocalDate;
 public class DAOLastName {
     private final Integer id;
     private final String name;
-    private final String lastName;
+    private final LastName lastName;
     private final LocalDate data_nascimento;
 
-    public DAOLastName(Integer id, String name, String lastName, LocalDate data_nascimento) {
+    public DAOLastName(Integer id, String name, LastName lastname, LocalDate data_nascimento) {
         this.id = id;
         this.name = name;
-        this.lastName = lastName;
+        this.lastName = lastname;
         this.data_nascimento = data_nascimento;
     }
 
     public static DAOLastName from(AuthorEntity author){
         return new DAOLastName(author.getIdAuthor(),author.getName(),
-                author.getLastname(),author.getDateBirth());
+                new LastName(author.getLastname()),author.getDateBirth());
     }
 
     public Integer getId() {
@@ -30,7 +30,7 @@ public class DAOLastName {
         return name;
     }
 
-    public String getLastName() {
+    public LastName getLastName() {
         return lastName;
     }
 
