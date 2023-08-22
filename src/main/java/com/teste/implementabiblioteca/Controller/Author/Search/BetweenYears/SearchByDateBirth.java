@@ -14,24 +14,22 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 import static com.teste.implementabiblioteca.Services.Author.Exceptions.ErrorHandling.ErrorHandlingAuthor.MapAuthor;
+import static org.springframework.http.HttpStatus.*;
 
 @RestController
 public class SearchByDateBirth {
     @Autowired
-    private AuthorByDateBirth author;
+    private AuthorByDateBirth service;
 
     @GetMapping("/Autor/DateBirth/{startDate}/{finalDate}")
     public ResponseEntity<?> GetAuthorByDateBirth(@PathVariable String startDate,
                                                   @PathVariable String finalDate) {
         try {
-            List<AuthorEntity> authors = author.GetAuthorByDateBirth(startDate, finalDate);
-
+            List<AuthorEntity> authors = service.from(startDate, finalDate);
             if (authors.isEmpty()) {
                 throw new DateBirthNotFound(startDate, finalDate);
-
             }
-            return Response.AllAuthorsByDateBirth(authors);
-
+            return ResponseEntity.status(OK).body(Response.from(authors));
         } catch (AuthorExceptions e) {
             return MapAuthor(e);
         }

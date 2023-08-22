@@ -13,12 +13,12 @@ import java.util.List;
 @Service
 public class AuthorByDateBirth {
     @Autowired
-    private RepositoryAuthor repositoryAuthor;
-    public List<AuthorEntity> GetAuthorByDateBirth(String startDate, String finalDate) throws DateBirthNotFound {
+    private RepositoryAuthor repository;
+    public List<AuthorEntity> from(String startDate, String finalDate) throws DateBirthNotFound {
 
             LocalDate dataInicial = LocalDate.parse(startDate, DateTimeFormatter.ISO_DATE);
             LocalDate dataFinal = LocalDate.parse(finalDate, DateTimeFormatter.ISO_DATE);
-            List<AuthorEntity> authors = repositoryAuthor.selectAuthorByDate(dataInicial, dataFinal);
+            List<AuthorEntity> authors = repository.selectAuthorByDate(dataInicial, dataFinal);
 
             if (authors.isEmpty()) {
                 throw new DateBirthNotFound(startDate, finalDate);

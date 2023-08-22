@@ -24,7 +24,7 @@ public class DeleteAuthor {
             if (authorId == null){
                 throw new AuthorNotFound(id);
             }
-            return ResponseEntity.status(HttpStatus.OK).body("Ok");
+            return ResponseEntity.status(HttpStatus.OK).build();
         } catch (AuthorExceptions e) {
             return MapAuthor(e);
         }

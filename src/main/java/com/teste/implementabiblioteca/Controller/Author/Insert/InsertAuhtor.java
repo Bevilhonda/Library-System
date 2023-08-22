@@ -29,6 +29,6 @@ public class InsertAuhtor {
         } catch (AuthorExceptions e) {
             return MapAuthor(e);
         }
-        return ResponseEntity.status(HttpStatus.OK).body("Ok");
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

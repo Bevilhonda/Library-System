@@ -30,6 +30,5 @@ public class SearchById {
         } catch (AuthorExceptions e) {
             return MapAuthor(e);
         }
-
     }
 }
