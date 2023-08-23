@@ -10,14 +10,12 @@ import org.springframework.stereotype.Service;
 public class ById {
     @Autowired
     private RepositoryAddress repositoryAddress;
-    public AddressEntity UpdateAddress(Integer id, AddressEntity addressEntity) throws AddressNotFound {
-        AddressEntity addressId = repositoryAddress.getAddress(id);
-
-            if (id == null) {
-                throw new AddressNotFound(id);
-            }
-            repositoryAddress.updateAddress(addressEntity.getStreet(), addressEntity.getNumber(),
-                    addressEntity.getZone(),addressEntity.getCity(), addressEntity.getState(), id);
-            return addressEntity;
+    public AddressEntity getAddresById(Integer id) throws AddressNotFound{
+        AddressEntity addressEntity = repositoryAddress.getAddress(id);
+        if (addressEntity == null){
+            throw new AddressNotFound(id);
         }
+        return addressEntity;
+    }
+
 }
