@@ -1,4 +1,4 @@
-package com.teste.implementabiblioteca.Controller.Address.EndPoints.Search;
+package com.teste.implementabiblioteca.Controller.Address.Search;
 
 import com.teste.implementabiblioteca.Services.Address.Address;
 import org.springframework.beans.factory.annotation.Autowired;

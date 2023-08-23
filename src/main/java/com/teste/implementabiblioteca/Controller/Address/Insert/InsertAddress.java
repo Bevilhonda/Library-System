@@ -1,4 +1,4 @@
-package com.teste.implementabiblioteca.Controller.Address.EndPoints.Insert;
+package com.teste.implementabiblioteca.Controller.Address.Insert;
 
 import com.teste.implementabiblioteca.Services.Address.Address;
 import com.teste.implementabiblioteca.Controller.Address.DAO.DataAddressEntity;

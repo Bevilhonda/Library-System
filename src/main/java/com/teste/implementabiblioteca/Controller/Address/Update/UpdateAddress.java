@@ -1,4 +1,4 @@
-package com.teste.implementabiblioteca.Controller.Address.EndPoints.Update;
+package com.teste.implementabiblioteca.Controller.Address.Update;
 
 import com.teste.implementabiblioteca.Controller.Address.DAO.AddressDAO;
 import com.teste.implementabiblioteca.Model.AddressEntity;
