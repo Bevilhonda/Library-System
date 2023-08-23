@@ -1,4 +1,4 @@
-package com.teste.implementabiblioteca.Controller.Address.DAO;
+package com.teste.implementabiblioteca.Controller.Address.Update.DTO;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.teste.implementabiblioteca.Model.AddressEntity;
@@ -31,7 +31,8 @@ public class DataAddressEntity {
     }
 
     public AddressEntity toModel() {
-        return new AddressEntity(id_endereco, rua, numero, cidade, bairro, estado);
+        return new AddressEntity(id_endereco, rua, numero,
+                cidade, bairro, estado);
     }
 
     public Integer getIdAddress() {
