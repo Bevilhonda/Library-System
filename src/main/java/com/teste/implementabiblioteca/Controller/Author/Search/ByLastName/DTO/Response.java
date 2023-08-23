@@ -3,6 +3,7 @@ package com.teste.implementabiblioteca.Controller.Author.Search.ByLastName.DTO;
 import com.teste.implementabiblioteca.Model.AuthorEntity;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Response {
     private final Integer id;
@@ -17,9 +18,10 @@ public class Response {
         this.data_nascimento = data_nascimento;
     }
 
-    public static Response from(AuthorEntity author){
-        return new Response(author.getIdAuthor(),author.getName(),
-                new LastName(author.getLastname()),author.getDateBirth());
+    public static List<Response> from(List<AuthorEntity> listAuthor){
+        return listAuthor.stream().map
+                (author -> new Response(author.getIdAuthor(),author.getName(),
+                new LastName(author.getLastname()),author.getDateBirth())).toList();
     }
 
     public Integer getId() {

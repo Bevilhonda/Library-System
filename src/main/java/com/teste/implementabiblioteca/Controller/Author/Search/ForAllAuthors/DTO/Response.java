@@ -1,8 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Author.Search.ForAllAuthors.DTO;
 
 import com.teste.implementabiblioteca.Model.AuthorEntity;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -18,12 +16,11 @@ public class Response {
         this.data_nascimento = data_nascimento;
     }
 
-    public static ResponseEntity<?> ListAllAuthors(List<AuthorEntity> authorlist) {
-        List<Response> authorDetailsList = authorlist.stream().map
+    public static List<Response> from(List<AuthorEntity> authorlist) {
+        return authorlist.stream().map
                 (author -> new Response(author.getIdAuthor(),
                         new Name(author.getName(), author.getLastname()),
                         author.getDateBirth())).toList();
-        return ResponseEntity.status(HttpStatus.OK).body(authorDetailsList);
     }
 
     public Integer getId() {
