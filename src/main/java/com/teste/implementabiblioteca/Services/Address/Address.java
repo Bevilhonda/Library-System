@@ -1,9 +1,9 @@
 package com.teste.implementabiblioteca.Services.Address;
 
 import com.teste.implementabiblioteca.Model.AddressEntity;
-import com.teste.implementabiblioteca.Services.Address.Exceptions.ErrorHandling.AddressExceptions;
-import com.teste.implementabiblioteca.Services.Address.Exceptions.TypeExceptions.AddressNotFound;
-import com.teste.implementabiblioteca.Services.Address.Exceptions.TypeExceptions.ErrorSavingAddress;
+import com.teste.implementabiblioteca.Controller.Address.Exceptions.ErrorHandling.AddressExceptions;
+import com.teste.implementabiblioteca.Controller.Address.Exceptions.TypeExceptions.AddressNotFound;
+import com.teste.implementabiblioteca.Controller.Address.Exceptions.TypeExceptions.ErrorSavingAddress;
 import com.teste.implementabiblioteca.Repository.RepositoryAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import static com.teste.implementabiblioteca.Controller.Address.FormatterResponse.ResponseFormatterAddress.FormatterAddressResponse;
 import static com.teste.implementabiblioteca.Controller.Address.FormatterResponse.TypesResponseAddress.*;
-import static com.teste.implementabiblioteca.Services.Address.Exceptions.ErrorHandling.ErrorHandlingAddress.MapAddress;
+import static com.teste.implementabiblioteca.Controller.Address.Exceptions.ErrorHandling.ErrorHandlingAddress.MapAddress;
 
 @Service
 public class Address {

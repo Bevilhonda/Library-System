@@ -2,9 +2,9 @@ package com.teste.implementabiblioteca.Services.Library;
 
 
 import com.teste.implementabiblioteca.Model.LibraryEntity;
-import com.teste.implementabiblioteca.Services.Library.Exceptions.ErrorHandling.LibraryExceptions;
-import com.teste.implementabiblioteca.Services.Library.Exceptions.TypeExceptions.LibraryNotFound;
-import com.teste.implementabiblioteca.Services.Library.Exceptions.TypeExceptions.NameLibraryNotFound;
+import com.teste.implementabiblioteca.Controller.Library.Exceptions.ErrorHandling.LibraryExceptions;
+import com.teste.implementabiblioteca.Controller.Library.Exceptions.TypeExceptions.LibraryNotFound;
+import com.teste.implementabiblioteca.Controller.Library.Exceptions.TypeExceptions.NameLibraryNotFound;
 import com.teste.implementabiblioteca.Repository.RepositoryLibrary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import static com.teste.implementabiblioteca.Controller.Library.FormatterResponse.HelperResponseLibrary.DetailsAllLibrary;
 import static com.teste.implementabiblioteca.Controller.Library.FormatterResponse.HelperResponseLibrary.DetailsLibrary;
-import static com.teste.implementabiblioteca.Services.Library.Exceptions.ErrorHandling.ErrorHandlingLibrary.MapLibrary;
+import static com.teste.implementabiblioteca.Controller.Library.Exceptions.ErrorHandling.ErrorHandlingLibrary.MapLibrary;
 
 @Service
 public class Library {
