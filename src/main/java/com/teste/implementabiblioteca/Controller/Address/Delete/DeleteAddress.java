@@ -1,6 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Address.Delete;
 
-import com.teste.implementabiblioteca.Services.Address.Address;
+import com.teste.implementabiblioteca.Services.Address.ClassServices.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DeleteAddress {
     @Autowired
-    private Address address;
+    private Delete service;
     @DeleteMapping("/DeleteAddress/{id}")
     public ResponseEntity<?> deleteAddress(@PathVariable Integer id) {
-        return address.DeleteAddress(id);
+        return service.DeleteAddress(id);
     }
 }
