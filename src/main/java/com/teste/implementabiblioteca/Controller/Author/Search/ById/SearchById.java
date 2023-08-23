@@ -1,6 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Author.Search.ById;
 
-import com.teste.implementabiblioteca.Controller.Author.Search.ById.DTO.FormatResponseById;
+import com.teste.implementabiblioteca.Controller.Author.Search.ById.DTO.Response;
 import com.teste.implementabiblioteca.Model.AuthorEntity;
 import com.teste.implementabiblioteca.Services.Author.ClassServices.AuthorByID;
 import com.teste.implementabiblioteca.Services.Author.Exceptions.ErrorHandling.AuthorExceptions;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import static com.teste.implementabiblioteca.Services.Author.Exceptions.ErrorHandling.ErrorHandlingAuthor.MapAuthor;
+import static org.springframework.http.HttpStatus.*;
 
 @RestController
 public class SearchById {
@@ -26,7 +27,7 @@ public class SearchById {
             if (authorEntity == null) {
                 throw new AuthorNotFound(id);
             }
-            return FormatResponseById.responseById(authorEntity);
+            return ResponseEntity.status(OK).body(Response.from(authorEntity));
         } catch (AuthorExceptions e) {
             return MapAuthor(e);
         }
