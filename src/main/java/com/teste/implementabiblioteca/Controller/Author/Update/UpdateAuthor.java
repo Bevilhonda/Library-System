@@ -18,16 +18,16 @@ import static com.teste.implementabiblioteca.Controller.Author.Exceptions.ErrorH
 @RestController
 public class UpdateAuthor {
     @Autowired
-    private DoUpdateAuthor update;
+    private DoUpdateAuthor service;
 
     @PutMapping("/UpdateAuthor/{id}")
     public ResponseEntity<?> updateAuthor(@PathVariable Integer id, @RequestBody DataAuthorUpdate novoautor) {
         try {
-            AuthorEntity author = update.updateAuthor(id, novoautor.toModel());
+            AuthorEntity author = service.updateAuthor(id, novoautor.toModel());
             if (author == null) {
                 throw new AuthorNotFound(id);
             }
-            return ResponseEntity.status(HttpStatus.OK).body("Ok");
+            return ResponseEntity.status(HttpStatus.OK).build();
 
         } catch (AuthorExceptions e) {
             return MapAuthor(e);

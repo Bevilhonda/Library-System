@@ -17,18 +17,18 @@ import static com.teste.implementabiblioteca.Controller.Author.Exceptions.ErrorH
 @RestController
 public class InsertAuhtor {
     @Autowired
-    private DoInsertAuthor author;
+    private DoInsertAuthor service;
 
     @PostMapping("/InsertAuthor")
     public ResponseEntity<?> Insert(@RequestBody DataAuthorEntity newAuthor) {
         try {
-            AuthorEntity dataAuthor = author.Insert(newAuthor.toModel());
+            AuthorEntity dataAuthor = service.Insert(newAuthor.toModel());
             if (dataAuthor == null) {
                 throw new ErrorSavingAuthor();
             }
+            return ResponseEntity.status(HttpStatus.OK).build();
         } catch (AuthorExceptions e) {
             return MapAuthor(e);
         }
-        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

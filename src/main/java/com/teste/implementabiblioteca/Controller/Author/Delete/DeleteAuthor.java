@@ -15,12 +15,12 @@ import static com.teste.implementabiblioteca.Controller.Author.Exceptions.ErrorH
 @RestController
 public class DeleteAuthor {
     @Autowired
-    private DoDeleteAuthor deleteAuthor ;
+    private DoDeleteAuthor service;
 
     @DeleteMapping("/DeleteAuthor/{id}")
     public ResponseEntity<?> deleteAuthor(@PathVariable Integer id) {
         try {
-            Integer authorId = deleteAuthor.Delete(id);
+            Integer authorId = service.Delete(id);
             if (authorId == null){
                 throw new AuthorNotFound(id);
             }
