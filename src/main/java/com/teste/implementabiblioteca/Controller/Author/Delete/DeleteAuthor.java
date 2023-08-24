@@ -20,10 +20,8 @@ public class DeleteAuthor {
     @DeleteMapping("/DeleteAuthor/{id}")
     public ResponseEntity<?> deleteAuthor(@PathVariable Integer id) {
         try {
-            Integer authorId = service.Delete(id);
-            if (authorId == null){
-                throw new AuthorNotFound(id);
-            }
+             service.Delete(id);
+
             return ResponseEntity.status(HttpStatus.OK).build();
         } catch (AuthorExceptions e) {
             return MapAuthor(e);

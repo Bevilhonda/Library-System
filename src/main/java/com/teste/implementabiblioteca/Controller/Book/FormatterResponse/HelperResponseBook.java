@@ -1,6 +1,5 @@
 package com.teste.implementabiblioteca.Controller.Book.FormatterResponse;
 
-import com.teste.implementabiblioteca.Model.AuthorEntity;
 import com.teste.implementabiblioteca.Model.BookEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
