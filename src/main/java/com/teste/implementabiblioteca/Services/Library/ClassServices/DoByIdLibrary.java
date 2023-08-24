@@ -13,7 +13,7 @@ import static com.teste.implementabiblioteca.Controller.Library.Exceptions.Error
 import static com.teste.implementabiblioteca.Controller.Library.FormatterResponse.HelperResponseLibrary.DetailsLibrary;
 
 @Service
-public class ById {
+public class DoByIdLibrary {
     @Autowired
     private RepositoryLibrary repositorylibrary;
 

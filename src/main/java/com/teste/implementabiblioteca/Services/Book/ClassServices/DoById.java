@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import static com.teste.implementabiblioteca.Controller.Book.Exceptions.ErrorHandling.ErrorHandlingBook.MapBook;
 import static com.teste.implementabiblioteca.Controller.Book.FormatterResponse.HelperResponseBook.ReturnDetailsBook;
 @Service
-public class ById {
+public class DoById {
     @Autowired
     private RepositoryBook repositoryBook;
 

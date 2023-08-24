@@ -3,5 +3,5 @@ package com.teste.implementabiblioteca.Services.Library.ClassServices;
 import org.springframework.stereotype.Service;
 
 @Service
-public class Update {
+public class DoDeleteLibrary {
 }

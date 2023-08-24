@@ -15,7 +15,7 @@ import static com.teste.implementabiblioteca.Controller.Library.Exceptions.Error
 import static com.teste.implementabiblioteca.Controller.Library.FormatterResponse.HelperResponseLibrary.DetailsAllLibrary;
 
 @Service
-public class ByName {
+public class DoByNameLibrary {
     @Autowired
     private RepositoryLibrary repositorylibrary;
     public ResponseEntity<?> GetLibraryByName(String nome) {

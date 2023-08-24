@@ -11,7 +11,7 @@ import java.util.List;
 
 import static com.teste.implementabiblioteca.Controller.Book.FormatterResponse.HelperResponseBook.DetailsAllBook;
 @Service
-public class AllBooks {
+public class DoAllBooks {
     @Autowired
     private RepositoryBook repositoryBook;
 
