@@ -11,13 +11,12 @@ public class DoDeleteAuthor {
     @Autowired
     private RepositoryAuthor repositoryAuthor;
 
-    public Integer Delete(Integer id) throws AuthorNotFound {
+    public void Delete(Integer id) throws AuthorNotFound {
 
         AuthorEntity idAuthor = repositoryAuthor.GetAuthor(id);
         if (idAuthor == null) {
             throw new AuthorNotFound(id);
         }
         repositoryAuthor.deleteAuthor(id);
-        return id;
     }
 }
