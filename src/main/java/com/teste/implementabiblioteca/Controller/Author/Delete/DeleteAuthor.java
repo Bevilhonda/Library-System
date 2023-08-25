@@ -19,7 +19,7 @@ public class DeleteAuthor {
     @DeleteMapping("/DeleteAuthor/{id}")
     public ResponseEntity<?> deleteAuthor(@PathVariable Integer id) {
         try {
-             service.Delete(id);
+             service.delete(id);
 
             return ResponseEntity.status(HttpStatus.OK).build();
         } catch (AuthorExceptions e) {

@@ -4,7 +4,7 @@ import com.teste.implementabiblioteca.Controller.Address.Exceptions.ErrorHandlin
 import com.teste.implementabiblioteca.Controller.Address.Exceptions.TypeExceptions.ErrorSavingAddress;
 import com.teste.implementabiblioteca.Controller.Address.Update.DTO.DataAddressEntity;
 import com.teste.implementabiblioteca.Model.AddressEntity;
-import com.teste.implementabiblioteca.Services.Address.ClassServices.Insert;
+import com.teste.implementabiblioteca.Services.Address.Services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,13 +16,13 @@ import static org.springframework.http.HttpStatus.*;
 @RestController
 public class InsertAddress {
     @Autowired
-    private Insert service;
+    private Services service;
 
     @PostMapping("/InsertAddress")
     public ResponseEntity<?> insertAddress(@RequestBody DataAddressEntity newAddress) {
         try {
-            AddressEntity addressEntity = service.InsertAddress(newAddress.toModel());
-            if (addressEntity == null ){
+            AddressEntity addressEntity = service.insertAddress(newAddress.toModel());
+            if (addressEntity == null) {
                 throw new ErrorSavingAddress();
             }
             return ResponseEntity.status(OK).build();

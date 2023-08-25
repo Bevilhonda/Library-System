@@ -23,7 +23,7 @@ public class SearchById {
     public ResponseEntity<?> GetAuthorById(@PathVariable Integer id) {
 
         try {
-            AuthorEntity authorEntity = services.GetAutorById(id);
+            AuthorEntity authorEntity = services.getAutorById(id);
             if (authorEntity == null) {
                 throw new AuthorNotFound(id);
             }

@@ -25,7 +25,7 @@ public class SearchAllAuthors {
     @GetMapping("/Authors")
     public ResponseEntity<?> GetAll_Authors() {
         try {
-            List<AuthorEntity> listAuthor = services.GetAllAuthor();
+            List<AuthorEntity> listAuthor = services.getAllAuthor();
 
             if (listAuthor.isEmpty()) {
                 throw new ListEmpty();

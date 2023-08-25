@@ -23,7 +23,7 @@ public class SearchByLastname {
     @GetMapping("/Author/LastName/{lastname}")
     public ResponseEntity<?> GetAutorByLastName(@PathVariable String lastname) {
         try {
-            List<AuthorEntity> listAuthor = services.GetAuthorByLastName(lastname);
+            List<AuthorEntity> listAuthor = services.getAuthorByLastName(lastname);
             if (listAuthor.isEmpty()) {
                 throw new ListEmpty();
             }

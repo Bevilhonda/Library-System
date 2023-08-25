@@ -25,7 +25,7 @@ public class SearchByDateBirth {
     public ResponseEntity<?> GetAuthorByDateBirth(@PathVariable String startDate,
                                                   @PathVariable String finalDate) {
         try {
-            List<AuthorEntity> authors = service.getAuthorByDateBirth(startDate, finalDate);
+            List<AuthorEntity> authors = service.getauthorbydatebirth(startDate, finalDate);
             if (authors.isEmpty()) {
                 throw new DateBirthNotFound(startDate, finalDate);
             }

@@ -22,7 +22,7 @@ public class InsertAuhtor {
     @PostMapping("/InsertAuthor")
     public ResponseEntity<?> Insert(@RequestBody DataAuthorEntity newAuthor) {
         try {
-            AuthorEntity dataAuthor = service.Insert(newAuthor.toModel());
+            AuthorEntity dataAuthor = service.insert(newAuthor.toModel());
             if (dataAuthor == null) {
                 throw new ErrorSavingAuthor();
             }

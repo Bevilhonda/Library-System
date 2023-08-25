@@ -4,7 +4,7 @@ import com.teste.implementabiblioteca.Controller.Address.Exceptions.ErrorHandlin
 import com.teste.implementabiblioteca.Controller.Address.Exceptions.TypeExceptions.AddressNotFound;
 import com.teste.implementabiblioteca.Controller.Address.Search.ById.DTO.Response;
 import com.teste.implementabiblioteca.Model.AddressEntity;
-import com.teste.implementabiblioteca.Services.Address.ClassServices.ById;
+import com.teste.implementabiblioteca.Services.Address.Services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,7 @@ import static org.springframework.http.HttpStatus.*;
 @RestController
 public class ByIdAddress {
     @Autowired
-    private ById services;
+    private Services services;
     @GetMapping("/Address/{id}")
     public ResponseEntity<?> GetAddressById(@PathVariable Integer id) {
         try {

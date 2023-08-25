@@ -18,7 +18,7 @@ public class Services {
     @Autowired
     private RepositoryAuthor repository;
 
-    public AuthorEntity GetAutorById(Integer id) throws AuthorNotFound {
+    public AuthorEntity getAutorById(Integer id) throws AuthorNotFound {
 
         AuthorEntity author = repository.GetAuthor(id);
 
@@ -28,11 +28,11 @@ public class Services {
         return author;
     }
 
-    public List<AuthorEntity> GetAllAuthor() {
+    public List<AuthorEntity> getAllAuthor() {
         return repository.GetAllAuthors();
     }
 
-    public List<AuthorEntity> GetAuthorByLastName(String lastName) throws ListEmpty {
+    public List<AuthorEntity> getAuthorByLastName(String lastName) throws ListEmpty {
         List<AuthorEntity> listAuthor = repository.GetAuthorByLastName(lastName);
         if (listAuthor.isEmpty()) {
             throw new ListEmpty();
@@ -40,7 +40,7 @@ public class Services {
         return listAuthor;
     }
 
-    public List<AuthorEntity> getAuthorByDateBirth(String startDate, String finalDate) throws DateBirthNotFound {
+    public List<AuthorEntity> getauthorbydatebirth(String startDate, String finalDate) throws DateBirthNotFound {
 
         LocalDate dataInicial = LocalDate.parse(startDate, DateTimeFormatter.ISO_DATE);
         LocalDate dataFinal = LocalDate.parse(finalDate, DateTimeFormatter.ISO_DATE);
@@ -52,7 +52,7 @@ public class Services {
         return authors;
     }
 
-    public AuthorEntity Insert(AuthorEntity author) throws ErrorSavingAuthor {
+    public AuthorEntity insert(AuthorEntity author) throws ErrorSavingAuthor {
 
         Integer insertData = repository.Save(author.getName(),
                 author.getLastname(), author.getDateBirth());
@@ -74,7 +74,7 @@ public class Services {
         return newauthor;
     }
 
-    public void Delete(Integer id) throws AuthorNotFound {
+    public void delete(Integer id) throws AuthorNotFound {
 
         AuthorEntity idAuthor = repository.GetAuthor(id);
         if (idAuthor == null) {
