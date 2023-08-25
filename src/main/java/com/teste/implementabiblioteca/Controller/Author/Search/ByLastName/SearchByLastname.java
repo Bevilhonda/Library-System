@@ -2,9 +2,9 @@ package com.teste.implementabiblioteca.Controller.Author.Search.ByLastName;
 
 import com.teste.implementabiblioteca.Controller.Author.Search.ByLastName.DTO.Response;
 import com.teste.implementabiblioteca.Model.AuthorEntity;
-import com.teste.implementabiblioteca.Services.Author.ClassServices.LastName;
 import com.teste.implementabiblioteca.Controller.Author.Exceptions.ErrorHandling.AuthorExceptions;
 import com.teste.implementabiblioteca.Controller.Author.Exceptions.TypeExceptions.ListEmpty;
+import com.teste.implementabiblioteca.Services.Author.Services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,12 +18,12 @@ import static org.springframework.http.HttpStatus.*;
 @RestController
 public class SearchByLastname {
     @Autowired
-    private LastName author;
+    private Services services;
 
     @GetMapping("/Author/LastName/{lastname}")
     public ResponseEntity<?> GetAutorByLastName(@PathVariable String lastname) {
         try {
-            List<AuthorEntity> listAuthor = author.GetAuthorByLastName(lastname);
+            List<AuthorEntity> listAuthor = services.GetAuthorByLastName(lastname);
             if (listAuthor.isEmpty()) {
                 throw new ListEmpty();
             }

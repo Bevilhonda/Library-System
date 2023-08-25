@@ -2,9 +2,9 @@ package com.teste.implementabiblioteca.Controller.Author.Search.BetweenYears;
 
 import com.teste.implementabiblioteca.Controller.Author.Search.BetweenYears.DTO.Response;
 import com.teste.implementabiblioteca.Model.AuthorEntity;
-import com.teste.implementabiblioteca.Services.Author.ClassServices.DateBirth;
 import com.teste.implementabiblioteca.Controller.Author.Exceptions.ErrorHandling.AuthorExceptions;
 import com.teste.implementabiblioteca.Controller.Author.Exceptions.TypeExceptions.DateBirthNotFound;
+import com.teste.implementabiblioteca.Services.Author.Services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,13 +19,13 @@ import static org.springframework.http.HttpStatus.*;
 @RestController
 public class SearchByDateBirth {
     @Autowired
-    private DateBirth service;
+    private Services service;
 
     @GetMapping("/Autor/DateBirth/{startDate}/{finalDate}")
     public ResponseEntity<?> GetAuthorByDateBirth(@PathVariable String startDate,
                                                   @PathVariable String finalDate) {
         try {
-            List<AuthorEntity> authors = service.from(startDate, finalDate);
+            List<AuthorEntity> authors = service.getAuthorByDateBirth(startDate, finalDate);
             if (authors.isEmpty()) {
                 throw new DateBirthNotFound(startDate, finalDate);
             }

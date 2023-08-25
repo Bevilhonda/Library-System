@@ -2,9 +2,9 @@ package com.teste.implementabiblioteca.Controller.Author.Update;
 
 import com.teste.implementabiblioteca.Controller.Author.Update.DTO.DataAuthorUpdate;
 import com.teste.implementabiblioteca.Model.AuthorEntity;
-import com.teste.implementabiblioteca.Services.Author.ClassServices.DoUpdateAuthor;
 import com.teste.implementabiblioteca.Controller.Author.Exceptions.ErrorHandling.AuthorExceptions;
 import com.teste.implementabiblioteca.Controller.Author.Exceptions.TypeExceptions.AuthorNotFound;
+import com.teste.implementabiblioteca.Services.Author.Services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ import static com.teste.implementabiblioteca.Controller.Author.Exceptions.ErrorH
 @RestController
 public class UpdateAuthor {
     @Autowired
-    private DoUpdateAuthor service;
+    private Services service;
 
     @PutMapping("/UpdateAuthor/{id}")
     public ResponseEntity<?> updateAuthor(@PathVariable Integer id, @RequestBody DataAuthorUpdate novoautor) {
