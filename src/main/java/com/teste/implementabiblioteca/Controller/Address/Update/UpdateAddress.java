@@ -4,7 +4,7 @@ import com.teste.implementabiblioteca.Controller.Address.Update.DTO.DataAddressE
 import com.teste.implementabiblioteca.Controller.Address.Exceptions.ErrorHandling.AddressExceptions;
 import com.teste.implementabiblioteca.Controller.Address.Exceptions.TypeExceptions.AddressNotFound;
 import com.teste.implementabiblioteca.Model.AddressEntity;
-import com.teste.implementabiblioteca.Services.Address.Services;
+import com.teste.implementabiblioteca.Services.Address.ServicesAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ import static org.springframework.http.HttpStatus.*;
 @RestController
 public class UpdateAddress {
     @Autowired
-    private Services service;
+    private ServicesAddress service;
 
     @PutMapping("/UpdateAddress/{id}")
     public ResponseEntity<?> updateAddress(@PathVariable Integer id,
