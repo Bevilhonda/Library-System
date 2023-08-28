@@ -1,7 +1,7 @@
 package com.teste.implementabiblioteca.Controller.Address.Delete;
 
 import com.teste.implementabiblioteca.Controller.Address.Exceptions.ErrorHandling.AddressExceptions;
-import com.teste.implementabiblioteca.Services.Address.Services;
+import com.teste.implementabiblioteca.Services.Address.ServicesAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,7 +14,7 @@ import static org.springframework.http.HttpStatus.*;
 @RestController
 public class DeleteAddress {
     @Autowired
-    private Services service;
+    private ServicesAddress service;
 
     @DeleteMapping("/DeleteAddress/{id}")
     public ResponseEntity<?> deleteAddress(@PathVariable Integer id) {

@@ -2,7 +2,7 @@ package com.teste.implementabiblioteca.Controller.Author.Delete;
 
 
 import com.teste.implementabiblioteca.Controller.Author.Exceptions.ErrorHandling.AuthorExceptions;
-import com.teste.implementabiblioteca.Services.Author.Services;
+import com.teste.implementabiblioteca.Services.Author.ServicesAuthor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import static com.teste.implementabiblioteca.Controller.Author.Exceptions.ErrorH
 @RestController
 public class DeleteAuthor {
     @Autowired
-    private Services service;
+    private ServicesAuthor service;
 
     @DeleteMapping("/DeleteAuthor/{id}")
     public ResponseEntity<?> deleteAuthor(@PathVariable Integer id) {

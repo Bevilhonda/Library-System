@@ -1,6 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Book.Delete;
 
-import com.teste.implementabiblioteca.Services.Book.ClassServices.BookDelete;
+import com.teste.implementabiblioteca.Services.Book.ServicesBook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DeleteBook {
     @Autowired
-    private BookDelete book;
+    private ServicesBook book;
     @DeleteMapping("/Delete/Book/{id}")
     public ResponseEntity<?> deleteBook(@PathVariable Integer id){
         return deleteBook(id);
