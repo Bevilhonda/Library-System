@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
-public class Services {
+public class ServicesAuthor {
     @Autowired
     private RepositoryAuthor repository;
 
