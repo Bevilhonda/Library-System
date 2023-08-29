@@ -1,7 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Book.Search.ById.DTO;
 
-import com.teste.implementabiblioteca.Model.AuthorEntity;
-import com.teste.implementabiblioteca.Model.BookEntity;
+import com.teste.implementabiblioteca.Model.Book.BookEntity;
 
 import java.time.LocalDate;
 
