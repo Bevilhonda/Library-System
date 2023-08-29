@@ -1,9 +1,8 @@
 package com.teste.implementabiblioteca.Controller.Book.Search.ById;
 
-import com.teste.implementabiblioteca.Controller.Book.Exceptions.ErrorHandling.BookExceptions;
-import com.teste.implementabiblioteca.Controller.Book.Exceptions.TypeExceptions.BookNotFound;
+import com.teste.implementabiblioteca.Model.Book.TypeExceptions.BookExceptions;
 import com.teste.implementabiblioteca.Controller.Book.Search.ById.DTO.Response;
-import com.teste.implementabiblioteca.Model.BookEntity;
+import com.teste.implementabiblioteca.Model.Book.BookEntity;
 import com.teste.implementabiblioteca.Services.Book.ServicesBook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

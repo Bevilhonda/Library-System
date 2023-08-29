@@ -1,9 +1,9 @@
 package com.teste.implementabiblioteca.Controller.Address.Search.ById;
 
-import com.teste.implementabiblioteca.Controller.Address.Exceptions.ErrorHandling.AddressExceptions;
-import com.teste.implementabiblioteca.Controller.Address.Exceptions.TypeExceptions.AddressNotFound;
+import com.teste.implementabiblioteca.Model.Address.TypeExceptions.Address.AddressExceptions;
+import com.teste.implementabiblioteca.Model.Address.TypeExceptions.Address.AddressNotFound;
 import com.teste.implementabiblioteca.Controller.Address.Search.ById.DTO.Response;
-import com.teste.implementabiblioteca.Model.AddressEntity;
+import com.teste.implementabiblioteca.Model.Address.AddressEntity;
 import com.teste.implementabiblioteca.Services.Address.ServicesAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

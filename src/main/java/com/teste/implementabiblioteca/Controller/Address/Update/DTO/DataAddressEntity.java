@@ -1,7 +1,7 @@
 package com.teste.implementabiblioteca.Controller.Address.Update.DTO;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.teste.implementabiblioteca.Model.AddressEntity;
+import com.teste.implementabiblioteca.Model.Address.AddressEntity;
 
 public class DataAddressEntity {
 

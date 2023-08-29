@@ -1,9 +1,8 @@
 package com.teste.implementabiblioteca.Controller.Address.Insert;
 
-import com.teste.implementabiblioteca.Controller.Address.Exceptions.ErrorHandling.AddressExceptions;
-import com.teste.implementabiblioteca.Controller.Address.Exceptions.TypeExceptions.ErrorSavingAddress;
+import com.teste.implementabiblioteca.Model.Address.TypeExceptions.Address.AddressExceptions;
 import com.teste.implementabiblioteca.Controller.Address.Update.DTO.DataAddressEntity;
-import com.teste.implementabiblioteca.Model.AddressEntity;
+
 import com.teste.implementabiblioteca.Services.Address.ServicesAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,10 +21,8 @@ public class InsertAddress {
     @PostMapping("/Insert/Address")
     public ResponseEntity<?> insertAddress(@RequestBody DataAddressEntity newAddress) {
         try {
-            AddressEntity addressEntity = service.insertAddress(newAddress.toModel());
-            if (addressEntity == null) {
-                throw new ErrorSavingAddress();
-            }
+            service.insertAddress(newAddress.toModel());
+
             return ResponseEntity.status(OK).build();
 
         } catch (AddressExceptions e) {

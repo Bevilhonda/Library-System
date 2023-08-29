@@ -1,7 +1,7 @@
 package com.teste.implementabiblioteca.Controller.Author.Update.DTO;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.teste.implementabiblioteca.Model.AuthorEntity;
+import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 
 import java.time.LocalDate;
 

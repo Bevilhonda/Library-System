@@ -1,9 +1,9 @@
 package com.teste.implementabiblioteca.Controller.Author.Search.ById;
 
 import com.teste.implementabiblioteca.Controller.Author.Search.ById.DTO.Response;
-import com.teste.implementabiblioteca.Model.AuthorEntity;
-import com.teste.implementabiblioteca.Controller.Author.Exceptions.ErrorHandling.AuthorExceptions;
-import com.teste.implementabiblioteca.Controller.Author.Exceptions.TypeExceptions.AuthorNotFound;
+import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
+import com.teste.implementabiblioteca.Model.Author.TypeExceptions.AuthorExceptions;
+import com.teste.implementabiblioteca.Model.Author.TypeExceptions.AuthorNotFound;
 import com.teste.implementabiblioteca.Services.Author.ServicesAuthor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class SearchById {
     private ServicesAuthor services;
 
     @GetMapping("/Author/{id}")
-    public ResponseEntity<?> GetAuthorById(@PathVariable Integer id) {
+    public ResponseEntity<?> getAuthorById(@PathVariable Integer id) {
 
         try {
             AuthorEntity authorEntity = services.getAutorById(id);

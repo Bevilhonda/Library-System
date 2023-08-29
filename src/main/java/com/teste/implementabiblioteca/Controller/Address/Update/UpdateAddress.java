@@ -1,9 +1,7 @@
 package com.teste.implementabiblioteca.Controller.Address.Update;
 
 import com.teste.implementabiblioteca.Controller.Address.Update.DTO.DataAddressEntity;
-import com.teste.implementabiblioteca.Controller.Address.Exceptions.ErrorHandling.AddressExceptions;
-import com.teste.implementabiblioteca.Controller.Address.Exceptions.TypeExceptions.AddressNotFound;
-import com.teste.implementabiblioteca.Model.AddressEntity;
+import com.teste.implementabiblioteca.Model.Address.TypeExceptions.Address.AddressExceptions;
 import com.teste.implementabiblioteca.Services.Address.ServicesAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,15 +19,12 @@ public class UpdateAddress {
     public ResponseEntity<?> updateAddress(@PathVariable Integer id,
                                            @RequestBody DataAddressEntity dataAddress) {
         try {
-            AddressEntity address = service.updateAddress(id, dataAddress.toModel());
-            if (address == null){
-                throw new AddressNotFound(id);
-            }
+             service.updateAddress(id, dataAddress.toModel());
+
             return ResponseEntity.status(OK).build();
 
         } catch (AddressExceptions e) {
             return MapAddress(e);
         }
-
     }
 }
