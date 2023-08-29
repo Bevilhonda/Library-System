@@ -1,6 +1,6 @@
 package com.teste.implementabiblioteca.Repository;
 
-import com.teste.implementabiblioteca.Model.AuthorEntity;
+import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -17,18 +17,18 @@ import java.util.List;
 @Service
 public interface RepositoryAuthor extends JpaRepository<AuthorEntity, Integer> {
     @Query(value = "SELECT * from Autor where id_autor = :id_autor ", nativeQuery = true)
-    AuthorEntity GetAuthor(Integer id_autor);
+    AuthorEntity getAuthor(Integer id_autor);
 
     @Query(value = "SELECT * from Autor ", nativeQuery = true)
-    List<AuthorEntity> GetAllAuthors();
+    List<AuthorEntity> getAllAuthors();
 
     @Query(value = "Select * from Autor where sobrenome = :sobrenome", nativeQuery = true)
-    List<AuthorEntity> GetAuthorByLastName(String sobrenome);
+    List<AuthorEntity> getAuthorByLastName(String sobrenome);
 
     @Modifying
     @Query(value = "insert into Autor ( nome, sobrenome, data_nascimento)" +
             " values ( :nome , :sobrenome, :data_nascimento)", nativeQuery = true)
-    Integer Save( String nome, String sobrenome, LocalDate data_nascimento);
+    Integer save(String nome, String sobrenome, LocalDate data_nascimento);
 
     @Modifying
     @Query(value = "UPDATE Autor set nome = :nome , sobrenome = :sobrenome , data_nascimento = :data_nascimento " +
@@ -39,7 +39,6 @@ public interface RepositoryAuthor extends JpaRepository<AuthorEntity, Integer> {
     @Query(value = "Delete from Autor where id_autor = :id_autor", nativeQuery = true)
     Integer deleteAuthor(Integer id_autor);
 
-    @Modifying
     @Query(value = "SELECT * FROM Autor WHERE data_nascimento BETWEEN :dataInicial AND :dataFinal ", nativeQuery = true)
     List<AuthorEntity> selectAuthorByDate(@Param("dataInicial") LocalDate dataInicial, @Param("dataFinal") LocalDate dataFinal);
 }

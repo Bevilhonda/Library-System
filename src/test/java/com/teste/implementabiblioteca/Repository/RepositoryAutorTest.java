@@ -1,6 +1,6 @@
 package com.teste.implementabiblioteca.Repository;
 
-import com.teste.implementabiblioteca.Model.AuthorEntity;
+import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +27,11 @@ class RepositoryAutorTest {
         LocalDate data_nascimento_autor = LocalDate.from(LocalDateTime.parse("2018-10-15"));
         repository.saveAuthor(1,"Jorge", "Batista", data_nascimento_autor);
 
-        List<AuthorEntity> autorlist = repository.GetAllAuthors(); // testando a função que retorna todos autores
+        List<AuthorEntity> autorlist = repository.getAllAuthors(); // testando a função que retorna todos autores
         assertThat(autorlist).isNotNull();
         assertThat(autorlist.size()).isEqualTo(1);
         AuthorEntity atual = autorlist.get(1);
-        repository.GetAuthor(1);
+        repository.getAuthor(1);
 
         assertThat(atual.getDateBirth().isEqual(data_nascimento_autor));
         assertThat(atual.getIdAuthor()).isEqualTo(1);
@@ -47,7 +47,7 @@ class RepositoryAutorTest {
 
         repository.saveAuthor(1,"Lucas", "Batista", data_nascimento_autor);
 
-        List<AuthorEntity> autorlist = repository.GetAllAuthors(); // testando a função que retorna todos autores
+        List<AuthorEntity> autorlist = repository.getAllAuthors(); // testando a função que retorna todos autores
         assertThat(autorlist).isNotNull();
         assertThat(autorlist.size()).isEqualTo(1);
         AuthorEntity atual = autorlist.get(0);
@@ -62,7 +62,7 @@ class RepositoryAutorTest {
     public void Update_Autor(){
         LocalDate data_nascimento_autor = LocalDate.from(LocalDateTime.parse("2018-10-15"));
         repository.saveAuthor(1,"Pedro","Batista",data_nascimento_autor);
-        List<AuthorEntity> lista_de_autores = repository.GetAllAuthors();
+        List<AuthorEntity> lista_de_autores = repository.getAllAuthors();
 
         repository.updateAuthor("Pedro","Batista",data_nascimento_autor,1);
         assertThat(lista_de_autores).isNotNull();
@@ -84,7 +84,7 @@ class RepositoryAutorTest {
         // deletar o autor do banco
         repository.deleteAuthor(1);
         //olhar no banco se tem algum autor
-        List<AuthorEntity> novo = repository.GetAllAuthors();
+        List<AuthorEntity> novo = repository.getAllAuthors();
         assertThat(novo).isEmpty();
     }
 
@@ -96,7 +96,7 @@ class RepositoryAutorTest {
 
         repository.deleteAuthor(1);
 
-        List<AuthorEntity> lista_de_autores = repository.GetAllAuthors();
+        List<AuthorEntity> lista_de_autores = repository.getAllAuthors();
         assertThat(lista_de_autores.size()).isEqualTo(0);
 
     }
@@ -110,7 +110,7 @@ class RepositoryAutorTest {
         repository.saveAuthor(3,"Lucas","Batista",data_nascimento_autor);
 
         repository.deleteAuthor(2);
-        List<AuthorEntity> lista_de_autores = repository.GetAllAuthors();
+        List<AuthorEntity> lista_de_autores = repository.getAllAuthors();
         assertThat(lista_de_autores.size()).isEqualTo(2);
 
         AuthorEntity atual = lista_de_autores.get(0);

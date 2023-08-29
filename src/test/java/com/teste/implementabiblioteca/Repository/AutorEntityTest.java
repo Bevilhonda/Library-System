@@ -1,6 +1,6 @@
 package com.teste.implementabiblioteca.Repository;
 
-import com.teste.implementabiblioteca.Model.AuthorEntity;
+import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

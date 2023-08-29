@@ -1,6 +1,6 @@
 package com.teste.implementabiblioteca.Repository;
 
-import com.teste.implementabiblioteca.Model.AddressEntity;
+import com.teste.implementabiblioteca.Model.Address.AddressEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
