@@ -1,6 +1,4 @@
-package com.teste.implementabiblioteca.Controller.Author.Exceptions.TypeExceptions;
-
-import com.teste.implementabiblioteca.Controller.Author.Exceptions.ErrorHandling.AuthorExceptions;
+package com.teste.implementabiblioteca.Model.Author.TypeExceptions;
 
 public class AuthorNotFound extends AuthorExceptions {
     private Integer id;

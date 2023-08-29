@@ -1,4 +1,4 @@
-package com.teste.implementabiblioteca.Model;
+package com.teste.implementabiblioteca.Model.Address;
 
 import javax.persistence.*;
 

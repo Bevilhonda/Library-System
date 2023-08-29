@@ -1,6 +1,6 @@
-package com.teste.implementabiblioteca.Controller.Library.Exceptions.TypeExceptions;
+package com.teste.implementabiblioteca.Model.Library.TypeExceptions;
 
-import com.teste.implementabiblioteca.Controller.Library.Exceptions.ErrorHandling.LibraryExceptions;
+import com.teste.implementabiblioteca.Model.Library.TypeExceptions.LibraryExceptions;
 
 public class NameLibraryNotFound extends LibraryExceptions {
 

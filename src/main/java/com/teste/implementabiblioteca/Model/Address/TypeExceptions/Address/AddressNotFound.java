@@ -1,6 +1,4 @@
-package com.teste.implementabiblioteca.Controller.Address.Exceptions.TypeExceptions;
-
-import com.teste.implementabiblioteca.Controller.Address.Exceptions.ErrorHandling.AddressExceptions;
+package com.teste.implementabiblioteca.Model.Address.TypeExceptions.Address;
 
 public class AddressNotFound extends AddressExceptions {
     private Integer id ;

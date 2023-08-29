@@ -1,4 +1,4 @@
-package com.teste.implementabiblioteca.Model;
+package com.teste.implementabiblioteca.Model.Library;
 
 import javax.persistence.*;
 

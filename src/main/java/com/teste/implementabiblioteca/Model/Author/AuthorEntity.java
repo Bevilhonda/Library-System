@@ -1,4 +1,4 @@
-package com.teste.implementabiblioteca.Model;
+package com.teste.implementabiblioteca.Model.Author;
 
 import javax.persistence.*;
 import java.time.LocalDate;
