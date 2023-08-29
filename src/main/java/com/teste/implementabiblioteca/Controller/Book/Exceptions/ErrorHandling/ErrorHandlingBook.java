@@ -1,9 +1,8 @@
 package com.teste.implementabiblioteca.Controller.Book.Exceptions.ErrorHandling;
 
-import com.teste.implementabiblioteca.Controller.Address.Exceptions.TypeExceptions.ErrorSavingAddress;
-import com.teste.implementabiblioteca.Controller.Author.Exceptions.TypeExceptions.ListEmpty;
-import com.teste.implementabiblioteca.Controller.Book.Exceptions.TypeExceptions.BookNotFound;
-import com.teste.implementabiblioteca.Controller.Book.Exceptions.TypeExceptions.ErrorSavingBook;
+import com.teste.implementabiblioteca.Model.Author.TypeExceptions.ListEmpty;
+import com.teste.implementabiblioteca.Model.Book.TypeExceptions.BookNotFound;
+import com.teste.implementabiblioteca.Model.Book.TypeExceptions.ErrorSavingBook;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 

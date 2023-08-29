@@ -1,7 +1,8 @@
 package com.teste.implementabiblioteca.Controller.Library.Exceptions.ErrorHandling;
 
-import com.teste.implementabiblioteca.Controller.Library.Exceptions.TypeExceptions.LibraryNotFound;
-import com.teste.implementabiblioteca.Controller.Library.Exceptions.TypeExceptions.NameLibraryNotFound;
+import com.teste.implementabiblioteca.Model.Library.TypeExceptions.ErrorSavingLibrary;
+import com.teste.implementabiblioteca.Model.Library.TypeExceptions.LibraryNotFound;
+import com.teste.implementabiblioteca.Model.Library.TypeExceptions.NameLibraryNotFound;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -14,6 +15,9 @@ public class ErrorHandlingLibrary {
             }
             case "NameLibraryNotFound" -> {
                 return Convert((NameLibraryNotFound) e);
+            }
+            case "ErrorSavingLibrary" -> {
+                return Convert((ErrorSavingLibrary) e);
             }
 
             default -> {
@@ -31,6 +35,11 @@ public class ErrorHandlingLibrary {
     public static ResponseEntity<?> Convert(NameLibraryNotFound e) {
         HttpStatus statusCode = HttpStatus.NOT_FOUND;
         String message = "A Biblioteca com o nome " + e.getName() + " não  foi encontrada.";
+        return ResponseEntity.status(statusCode).body(message);
+    }
+    public static ResponseEntity<?> Convert(ErrorSavingLibrary e) {
+        HttpStatus statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
+        String message = ("Não foi possivel inserir o autor.");
         return ResponseEntity.status(statusCode).body(message);
     }
 

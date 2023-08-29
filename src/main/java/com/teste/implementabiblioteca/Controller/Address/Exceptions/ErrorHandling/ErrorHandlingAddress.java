@@ -1,7 +1,7 @@
 package com.teste.implementabiblioteca.Controller.Address.Exceptions.ErrorHandling;
 
-import com.teste.implementabiblioteca.Controller.Address.Exceptions.TypeExceptions.AddressNotFound;
-import com.teste.implementabiblioteca.Controller.Address.Exceptions.TypeExceptions.ErrorSavingAddress;
+import com.teste.implementabiblioteca.Model.Address.TypeExceptions.Address.AddressNotFound;
+import com.teste.implementabiblioteca.Model.Address.TypeExceptions.Address.ErrorSavingAddress;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
