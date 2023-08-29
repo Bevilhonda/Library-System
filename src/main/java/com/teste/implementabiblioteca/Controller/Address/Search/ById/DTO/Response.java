@@ -1,6 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Address.Search.ById.DTO;
 
-import com.teste.implementabiblioteca.Model.AddressEntity;
+import com.teste.implementabiblioteca.Model.Address.AddressEntity;
 
 public class Response {
     private final Integer id_endereco;

@@ -1,6 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Book.Search.AllBooks.DTO;
 
-import com.teste.implementabiblioteca.Model.BookEntity;
+import com.teste.implementabiblioteca.Model.Book.BookEntity;
 
 import java.util.List;
 

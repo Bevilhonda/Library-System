@@ -1,6 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Author.Search.BetweenYears.DTO;
 
-import com.teste.implementabiblioteca.Model.AuthorEntity;
+import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 
 import java.time.LocalDate;
 import java.util.List;
