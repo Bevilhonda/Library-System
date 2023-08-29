@@ -1,9 +1,9 @@
 package com.teste.implementabiblioteca.Services.Book;
 
-import com.teste.implementabiblioteca.Controller.Book.Exceptions.TypeExceptions.BookNotFound;
-import com.teste.implementabiblioteca.Controller.Book.Exceptions.TypeExceptions.ErrorSavingBook;
-import com.teste.implementabiblioteca.Controller.Book.Exceptions.TypeExceptions.ListEmpty;
-import com.teste.implementabiblioteca.Model.BookEntity;
+import com.teste.implementabiblioteca.Model.Book.TypeExceptions.BookNotFound;
+import com.teste.implementabiblioteca.Model.Book.TypeExceptions.ErrorSavingBook;
+import com.teste.implementabiblioteca.Model.Book.TypeExceptions.ListEmpty;
+import com.teste.implementabiblioteca.Model.Book.BookEntity;
 import com.teste.implementabiblioteca.Repository.RepositoryBook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,13 +28,30 @@ public class ServicesBook {
         return books;
     }
 
-    public BookEntity insert(BookEntity book) throws ErrorSavingBook {
+    public void insert(BookEntity book) throws ErrorSavingBook {
 
         Integer insertData = repository.save(book.geTitle(),book.getData_publication(),book.getEdition(),
                 book.getFkAuthor(),book.getFkLibrary());
         if (insertData == null) {
             throw new ErrorSavingBook();
         }
-        return book;
+
+    }
+    public void update(Integer id , BookEntity book) throws BookNotFound{
+        BookEntity dataBook = repository.getBook(id);
+        if (dataBook == null){
+            throw new BookNotFound(id);
+        }
+        repository.update(book.geTitle(),book.getData_publication(),
+                book.getEdition(), book.getIdBook());
+    }
+
+    public void delete(Integer id) throws  BookNotFound {
+        BookEntity dataBook = repository.getBook(id);
+
+        if (dataBook== null){
+            throw new  BookNotFound(id);
+        }
+        repository.delete(id);
     }
 }

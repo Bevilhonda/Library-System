@@ -1,8 +1,8 @@
 package com.teste.implementabiblioteca.Services.Address;
 
-import com.teste.implementabiblioteca.Controller.Address.Exceptions.TypeExceptions.AddressNotFound;
-import com.teste.implementabiblioteca.Controller.Address.Exceptions.TypeExceptions.ErrorSavingAddress;
-import com.teste.implementabiblioteca.Model.AddressEntity;
+import com.teste.implementabiblioteca.Model.Address.TypeExceptions.Address.AddressNotFound;
+import com.teste.implementabiblioteca.Model.Address.TypeExceptions.Address.ErrorSavingAddress;
+import com.teste.implementabiblioteca.Model.Address.AddressEntity;
 import com.teste.implementabiblioteca.Repository.RepositoryAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,17 +26,16 @@ public class ServicesAddress {
         return null;
     }
 
-    public AddressEntity insertAddress(AddressEntity address) throws ErrorSavingAddress {
+    public void insertAddress(AddressEntity address) throws ErrorSavingAddress {
 
         Integer insertAddress = repository.saveAddress(address.getIdAddress(), address.getStreet(), address.getNumber(), address.getZone(),
                 address.getCity(), address.getState());
         if (insertAddress == null) {
             throw new ErrorSavingAddress();
         }
-        return address;
     }
 
-    public AddressEntity updateAddress(Integer id, AddressEntity addressEntity) throws AddressNotFound {
+    public void updateAddress(Integer id, AddressEntity addressEntity) throws AddressNotFound {
         AddressEntity addressId = repository.getAddress(id);
 
         if (id == null) {
@@ -44,7 +43,6 @@ public class ServicesAddress {
         }
         repository.updateAddress(addressEntity.getStreet(), addressEntity.getNumber(),
                 addressEntity.getZone(),addressEntity.getCity(), addressEntity.getState(), id);
-        return addressEntity;
     }
     public void deleteAddress(Integer id) throws AddressNotFound {
 

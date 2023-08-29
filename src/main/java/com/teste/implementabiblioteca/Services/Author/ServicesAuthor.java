@@ -1,10 +1,10 @@
 package com.teste.implementabiblioteca.Services.Author;
 
-import com.teste.implementabiblioteca.Controller.Author.Exceptions.TypeExceptions.AuthorNotFound;
-import com.teste.implementabiblioteca.Controller.Author.Exceptions.TypeExceptions.DateBirthNotFound;
-import com.teste.implementabiblioteca.Controller.Author.Exceptions.TypeExceptions.ErrorSavingAuthor;
-import com.teste.implementabiblioteca.Controller.Author.Exceptions.TypeExceptions.ListEmpty;
-import com.teste.implementabiblioteca.Model.AuthorEntity;
+import com.teste.implementabiblioteca.Model.Author.TypeExceptions.AuthorNotFound;
+import com.teste.implementabiblioteca.Model.Author.TypeExceptions.DateBirthNotFound;
+import com.teste.implementabiblioteca.Model.Author.TypeExceptions.ErrorSavingAuthor;
+import com.teste.implementabiblioteca.Model.Author.TypeExceptions.ListEmpty;
+import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 import com.teste.implementabiblioteca.Repository.RepositoryAuthor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class ServicesAuthor {
 
     public AuthorEntity getAutorById(Integer id) throws AuthorNotFound {
 
-        AuthorEntity author = repository.GetAuthor(id);
+        AuthorEntity author = repository.getAuthor(id);
 
         if (author == null) {
             throw new AuthorNotFound(id);
@@ -29,11 +29,11 @@ public class ServicesAuthor {
     }
 
     public List<AuthorEntity> getAllAuthor() {
-        return repository.GetAllAuthors();
+        return repository.getAllAuthors();
     }
 
     public List<AuthorEntity> getAuthorByLastName(String lastName) throws ListEmpty {
-        List<AuthorEntity> listAuthor = repository.GetAuthorByLastName(lastName);
+        List<AuthorEntity> listAuthor = repository.getAuthorByLastName(lastName);
         if (listAuthor.isEmpty()) {
             throw new ListEmpty();
         }
@@ -52,31 +52,26 @@ public class ServicesAuthor {
         return authors;
     }
 
-    public AuthorEntity insert(AuthorEntity author) throws ErrorSavingAuthor {
+    public void insert(AuthorEntity author) throws ErrorSavingAuthor {
 
-        Integer insertData = repository.Save(author.getName(),
+        Integer insertData = repository.save(author.getName(),
                 author.getLastname(), author.getDateBirth());
         if (insertData == null) {
             throw new ErrorSavingAuthor();
         }
-        return author;
     }
 
-    public AuthorEntity updateAuthor(Integer id, AuthorEntity newauthor) throws AuthorNotFound {
+    public void updateAuthor(Integer id, AuthorEntity newauthor) throws AuthorNotFound {
 
-        AuthorEntity author = repository.GetAuthor(id);
+        AuthorEntity author = repository.getAuthor(id);
 
-        if (author == null) {
-            throw new AuthorNotFound(id);
-        }
         repository.updateAuthor(newauthor.getName(), newauthor.getLastname(),
                 newauthor.getDateBirth(), id);
-        return newauthor;
     }
 
     public void delete(Integer id) throws AuthorNotFound {
 
-        AuthorEntity idAuthor = repository.GetAuthor(id);
+        AuthorEntity idAuthor = repository.getAuthor(id);
         if (idAuthor == null) {
             throw new AuthorNotFound(id);
         }
