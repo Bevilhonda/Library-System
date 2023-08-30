@@ -1,5 +1,7 @@
 package com.teste.implementabiblioteca.Controller.Library.Search.ByName;
 
+import com.teste.implementabiblioteca.Controller.Library.Search.ByName.DTO.ListLibrary;
+import com.teste.implementabiblioteca.Controller.Library.Search.ByName.DTO.Response;
 import com.teste.implementabiblioteca.Model.Library.Exceptions.TypeExceptions.LibraryExceptions;
 import com.teste.implementabiblioteca.Model.Library.LibraryEntity;
 import com.teste.implementabiblioteca.Services.Library.ServicesLibrary;
@@ -23,7 +25,7 @@ public class ByName {
         try {
             List<LibraryEntity> list = service.getLibraryByName(name);
 
-            return ResponseEntity.status(OK).body(list);
+            return ResponseEntity.status(OK).body(ListLibrary.from(list));
 
         } catch (LibraryExceptions e) {
             return MapLibrary(e);

@@ -1,5 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Library.Search.ById;
 
+import com.teste.implementabiblioteca.Controller.Library.Search.ById.DTO.Response;
 import com.teste.implementabiblioteca.Model.Library.Exceptions.TypeExceptions.LibraryExceptions;
 import com.teste.implementabiblioteca.Model.Library.LibraryEntity;
 import com.teste.implementabiblioteca.Services.Library.ServicesLibrary;
@@ -20,7 +21,7 @@ public class ByIdLibrary {
     public ResponseEntity<?> GetLibraryById(@PathVariable Integer id) {
         try {
             LibraryEntity library = service.getLibraryById(id);
-            return ResponseEntity.status(OK).body(library);
+            return ResponseEntity.status(OK).body(Response.from(library));
 
         } catch (LibraryExceptions e) {
             throw new RuntimeException(e);
