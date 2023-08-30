@@ -1,7 +1,8 @@
-package com.teste.implementabiblioteca.Controller.Author.Search.ForAllAuthors;
+package com.teste.implementabiblioteca.Controller.Author.Search.AllAuthors;
 
 
-import com.teste.implementabiblioteca.Controller.Author.Search.ForAllAuthors.DTO.Response;
+import com.teste.implementabiblioteca.Controller.Author.Search.AllAuthors.DTO.ListAllAuthors;
+import com.teste.implementabiblioteca.Controller.Author.Search.AllAuthors.DTO.Response;
 import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 
 import com.teste.implementabiblioteca.Model.Author.Exceptions.TypeExceptions.AuthorExceptions;
@@ -30,7 +31,7 @@ public class SearchAllAuthors {
             if (listAuthor.isEmpty()) {
                 throw new ListEmpty();
             }
-            return ResponseEntity.status(OK).body(Response.from(listAuthor));
+            return ResponseEntity.status(OK).body(ListAllAuthors.from(listAuthor));
 
         } catch (AuthorExceptions e) {
             return MapAuthor(e);

@@ -1,4 +1,4 @@
-package com.teste.implementabiblioteca.Controller.Author.Search.ForAllAuthors.DTO;
+package com.teste.implementabiblioteca.Controller.Author.Search.AllAuthors.DTO;
 
 import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 
@@ -16,11 +16,10 @@ public class Response {
         this.data_nascimento = data_nascimento;
     }
 
-    public static List<Response> from(List<AuthorEntity> authorlist) {
-        return authorlist.stream().map
-                (author -> new Response(author.getIdAuthor(),
+    public static Response from(AuthorEntity author) {
+        return  new Response(author.getIdAuthor(),
                         new Name(author.getName(), author.getLastname()),
-                        author.getDateBirth())).toList();
+                        author.getDateBirth());
     }
 
     public Integer getId() {

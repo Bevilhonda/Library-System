@@ -1,4 +1,4 @@
-package com.teste.implementabiblioteca.Controller.Author.Search.ForAllAuthors.DTO;
+package com.teste.implementabiblioteca.Controller.Author.Search.AllAuthors.DTO;
 
 public class Name {
     private final String name;
