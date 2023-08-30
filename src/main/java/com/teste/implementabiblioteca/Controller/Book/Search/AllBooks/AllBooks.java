@@ -1,5 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Book.Search.AllBooks;
 
+import com.teste.implementabiblioteca.Controller.Book.Search.AllBooks.DTO.ListBook;
 import com.teste.implementabiblioteca.Model.Book.Exceptions.TypeExceptions.BookExceptions;
 import com.teste.implementabiblioteca.Controller.Book.Search.AllBooks.DTO.Response;
 import com.teste.implementabiblioteca.Model.Book.BookEntity;
@@ -24,7 +25,7 @@ public class AllBooks {
         try {
             List<BookEntity> listBook = service.getAllBooks();
 
-            return ResponseEntity.status(OK).body(Response.from(listBook));
+            return ResponseEntity.status(OK).body(ListBook.from(listBook));
 
         } catch (BookExceptions e) {
            return MapBook(e);
