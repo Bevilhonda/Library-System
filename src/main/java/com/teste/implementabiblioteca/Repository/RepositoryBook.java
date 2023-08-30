@@ -34,12 +34,12 @@ public interface RepositoryBook extends JpaRepository<BookEntity, Integer> {
 
     @Modifying
     @Query(value = "Insert into Livro (titulo,data_publication,edicao,fk_autor,fk_biblioteca)" +
-            "values (:titulo,:data_publication,:edicao,:fk_autor,:fk_biblioteca)",nativeQuery = true)
+            "values (:titulo ,:data_publication ,:edicao ,:fk_autor ,:fk_biblioteca )",nativeQuery = true)
     Integer save(String titulo, LocalDate data_publication,Integer edicao,Integer fk_autor,Integer fk_biblioteca);
 
     @Modifying
-    @Query(value = "Update Livro set titulo= :titulo ,data_publication= :data_publication ,edicao= :edicao " +
-            "where id_Livro = id_Livro ", nativeQuery = true )
+    @Query(value = "Update Livro set titulo = :titulo , data_publication = :data_publication , edicao = :edicao " +
+            "where id_Livro = :id_Livro ", nativeQuery = true )
     Integer update(String titulo, LocalDate data_publication,Integer edicao,Integer id_Livro);
 
     @Modifying

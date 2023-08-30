@@ -1,6 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Address.Delete;
 
-import com.teste.implementabiblioteca.Model.Address.TypeExceptions.Address.AddressExceptions;
+import com.teste.implementabiblioteca.Model.Address.Exceptions.TypeExceptions.AddressExceptions;
 import com.teste.implementabiblioteca.Services.Address.ServicesAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import static com.teste.implementabiblioteca.Controller.Address.Exceptions.ErrorHandling.ErrorHandlingAddress.MapAddress;
+import static com.teste.implementabiblioteca.Model.Address.Exceptions.ErrorHandling.ErrorHandlingAddress.MapAddress;
 import static org.springframework.http.HttpStatus.*;
 
 @RestController

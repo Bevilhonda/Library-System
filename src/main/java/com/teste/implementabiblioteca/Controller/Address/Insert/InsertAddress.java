@@ -1,6 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Address.Insert;
 
-import com.teste.implementabiblioteca.Model.Address.TypeExceptions.Address.AddressExceptions;
+import com.teste.implementabiblioteca.Model.Address.Exceptions.TypeExceptions.AddressExceptions;
 import com.teste.implementabiblioteca.Controller.Address.Update.DTO.DataAddressEntity;
 
 import com.teste.implementabiblioteca.Services.Address.ServicesAddress;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import static com.teste.implementabiblioteca.Controller.Book.Exceptions.ErrorHandling.ErrorHandlingBook.MapBook;
+import static com.teste.implementabiblioteca.Model.Book.Exceptions.ErrorHandling.ErrorHandlingBook.MapBook;
 import static org.springframework.http.HttpStatus.*;
 
 @RestController

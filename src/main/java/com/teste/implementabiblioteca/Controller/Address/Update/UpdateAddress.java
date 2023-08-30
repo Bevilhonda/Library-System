@@ -1,13 +1,13 @@
 package com.teste.implementabiblioteca.Controller.Address.Update;
 
 import com.teste.implementabiblioteca.Controller.Address.Update.DTO.DataAddressEntity;
-import com.teste.implementabiblioteca.Model.Address.TypeExceptions.Address.AddressExceptions;
+import com.teste.implementabiblioteca.Model.Address.Exceptions.TypeExceptions.AddressExceptions;
 import com.teste.implementabiblioteca.Services.Address.ServicesAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import static com.teste.implementabiblioteca.Controller.Address.Exceptions.ErrorHandling.ErrorHandlingAddress.MapAddress;
+import static com.teste.implementabiblioteca.Model.Address.Exceptions.ErrorHandling.ErrorHandlingAddress.MapAddress;
 import static org.springframework.http.HttpStatus.*;
 
 @RestController

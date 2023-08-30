@@ -1,6 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Library.Search.ById;
 
-import com.teste.implementabiblioteca.Model.Library.TypeExceptions.LibraryExceptions;
+import com.teste.implementabiblioteca.Model.Library.Exceptions.TypeExceptions.LibraryExceptions;
 import com.teste.implementabiblioteca.Model.Library.LibraryEntity;
 import com.teste.implementabiblioteca.Services.Library.ServicesLibrary;
 import org.springframework.beans.factory.annotation.Autowired;

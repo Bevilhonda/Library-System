@@ -1,7 +1,7 @@
 package com.teste.implementabiblioteca.Services.Address;
 
-import com.teste.implementabiblioteca.Model.Address.TypeExceptions.Address.AddressNotFound;
-import com.teste.implementabiblioteca.Model.Address.TypeExceptions.Address.ErrorSavingAddress;
+import com.teste.implementabiblioteca.Model.Address.Exceptions.TypeExceptions.AddressNotFound;
+import com.teste.implementabiblioteca.Model.Address.Exceptions.TypeExceptions.ErrorSavingAddress;
 import com.teste.implementabiblioteca.Model.Address.AddressEntity;
 import com.teste.implementabiblioteca.Repository.RepositoryAddress;
 import org.springframework.beans.factory.annotation.Autowired;

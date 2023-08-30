@@ -27,7 +27,7 @@ public interface RepositoryAddress extends JpaRepository<AddressEntity, Integer>
     Integer updateAddress(String rua , Integer numero, String bairro, String cidade, String estado, Integer id_endereco);
 
     @Modifying
-    @Query(value = "Delete * from Endereco where id_endereco = :id_endereco",nativeQuery = true)
+    @Query(value = "Delete from Endereco where id_endereco = :id_endereco",nativeQuery = true)
     Integer deleteAddress(Integer id_endereco);
 
 }

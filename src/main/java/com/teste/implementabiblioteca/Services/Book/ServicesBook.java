@@ -1,8 +1,8 @@
 package com.teste.implementabiblioteca.Services.Book;
 
-import com.teste.implementabiblioteca.Model.Book.TypeExceptions.BookNotFound;
-import com.teste.implementabiblioteca.Model.Book.TypeExceptions.ErrorSavingBook;
-import com.teste.implementabiblioteca.Model.Book.TypeExceptions.ListEmpty;
+import com.teste.implementabiblioteca.Model.Book.Exceptions.TypeExceptions.BookNotFound;
+import com.teste.implementabiblioteca.Model.Book.Exceptions.TypeExceptions.ErrorSavingBook;
+import com.teste.implementabiblioteca.Model.Book.Exceptions.TypeExceptions.ListEmpty;
 import com.teste.implementabiblioteca.Model.Book.BookEntity;
 import com.teste.implementabiblioteca.Repository.RepositoryBook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +42,9 @@ public class ServicesBook {
         if (dataBook == null){
             throw new BookNotFound(id);
         }
+
         repository.update(book.geTitle(),book.getData_publication(),
-                book.getEdition(), book.getIdBook());
+                book.getEdition(),id);
     }
 
     public void delete(Integer id) throws  BookNotFound {

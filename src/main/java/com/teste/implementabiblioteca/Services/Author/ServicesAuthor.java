@@ -1,9 +1,9 @@
 package com.teste.implementabiblioteca.Services.Author;
 
-import com.teste.implementabiblioteca.Model.Author.TypeExceptions.AuthorNotFound;
-import com.teste.implementabiblioteca.Model.Author.TypeExceptions.DateBirthNotFound;
-import com.teste.implementabiblioteca.Model.Author.TypeExceptions.ErrorSavingAuthor;
-import com.teste.implementabiblioteca.Model.Author.TypeExceptions.ListEmpty;
+import com.teste.implementabiblioteca.Model.Author.Exceptions.TypeExceptions.AuthorNotFound;
+import com.teste.implementabiblioteca.Model.Author.Exceptions.TypeExceptions.DateBirthNotFound;
+import com.teste.implementabiblioteca.Model.Author.Exceptions.TypeExceptions.ErrorSavingAuthor;
+import com.teste.implementabiblioteca.Model.Author.Exceptions.TypeExceptions.ListEmpty;
 import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 import com.teste.implementabiblioteca.Repository.RepositoryAuthor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,12 +61,15 @@ public class ServicesAuthor {
         }
     }
 
-    public void updateAuthor(Integer id, AuthorEntity newauthor) throws AuthorNotFound {
+    public void updateAuthor(Integer id, AuthorEntity authorEntity) throws AuthorNotFound {
 
         AuthorEntity author = repository.getAuthor(id);
+        if (author == null){
+            throw new AuthorNotFound(id);
+        }
 
-        repository.updateAuthor(newauthor.getName(), newauthor.getLastname(),
-                newauthor.getDateBirth(), id);
+        repository.updateAuthor(authorEntity.getName(), authorEntity.getLastname(),
+                authorEntity.getDateBirth(), id);
     }
 
     public void delete(Integer id) throws AuthorNotFound {

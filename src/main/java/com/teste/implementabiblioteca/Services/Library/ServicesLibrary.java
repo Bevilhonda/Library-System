@@ -1,9 +1,9 @@
 package com.teste.implementabiblioteca.Services.Library;
 
 
-import com.teste.implementabiblioteca.Model.Library.TypeExceptions.ErrorSavingLibrary;
-import com.teste.implementabiblioteca.Model.Library.TypeExceptions.LibraryNotFound;
-import com.teste.implementabiblioteca.Model.Library.TypeExceptions.NameLibraryNotFound;
+import com.teste.implementabiblioteca.Model.Library.Exceptions.TypeExceptions.ErrorSavingLibrary;
+import com.teste.implementabiblioteca.Model.Library.Exceptions.TypeExceptions.LibraryNotFound;
+import com.teste.implementabiblioteca.Model.Library.Exceptions.TypeExceptions.NameLibraryNotFound;
 import com.teste.implementabiblioteca.Model.Library.LibraryEntity;
 import com.teste.implementabiblioteca.Repository.RepositoryLibrary;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,27 +37,27 @@ public class ServicesLibrary {
     }
 
     public void insert(LibraryEntity library) throws ErrorSavingLibrary {
-        Integer dataLibrary = repository.save(library.getName(),library.getFkAddress(),
-                library.getIdLibrary());
-        if (dataLibrary == null){
+        Integer dataLibrary = repository.save(library.getName(), library.getFkAddress());
+        if (dataLibrary == null) {
             throw new ErrorSavingLibrary();
         }
 
     }
-    public void update(Integer id, LibraryEntity library) throws LibraryNotFound{
+
+    public void update(Integer id, LibraryEntity library) throws LibraryNotFound {
         LibraryEntity dataLibrary = repository.getLibrary(id);
-        if (dataLibrary ==null){
+        if (dataLibrary == null) {
             throw new LibraryNotFound(id);
         }
-         repository.update(dataLibrary.getName(),dataLibrary.getFkAddress(),
-                dataLibrary.getIdLibrary());
+        repository.update(library.getName(), library.getFkAddress(), id);
     }
 
     public void delete(Integer id) throws LibraryNotFound {
         LibraryEntity library = repository.getLibrary(id);
-        if (library == null){
+
+        if (library == null) {
             throw new LibraryNotFound(id);
         }
-        repository.delete(id);
+        repository.deleteLibrary(id);
     }
 }

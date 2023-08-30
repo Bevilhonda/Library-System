@@ -1,6 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Book.Search.AllBooks;
 
-import com.teste.implementabiblioteca.Model.Book.TypeExceptions.BookExceptions;
+import com.teste.implementabiblioteca.Model.Book.Exceptions.TypeExceptions.BookExceptions;
 import com.teste.implementabiblioteca.Controller.Book.Search.AllBooks.DTO.Response;
 import com.teste.implementabiblioteca.Model.Book.BookEntity;
 import com.teste.implementabiblioteca.Services.Book.ServicesBook;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static com.teste.implementabiblioteca.Controller.Book.Exceptions.ErrorHandling.ErrorHandlingBook.MapBook;
+import static com.teste.implementabiblioteca.Model.Book.Exceptions.ErrorHandling.ErrorHandlingBook.MapBook;
 import static org.springframework.http.HttpStatus.*;
 
 @RestController
