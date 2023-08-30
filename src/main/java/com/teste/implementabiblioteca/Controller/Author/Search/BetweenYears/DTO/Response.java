@@ -16,11 +16,10 @@ public class Response {
         this.data_nascimento = data_nascimento;
     }
 
-    public static List<Response> from(List<AuthorEntity> authorlist) {
-        return authorlist.stream().map
-                (author -> new Response(author.getIdAuthor(),
-                        new Name(author.getName()+ " " + author.getLastname())
-                        ,author.getDateBirth())).toList();
+    public static Response from(AuthorEntity authorEntity) {
+        return new Response(authorEntity.getIdAuthor(),
+                        new Name(authorEntity.getName()+ " " + authorEntity.getLastname())
+                        ,authorEntity.getDateBirth());
     }
 
     public Integer getId() {

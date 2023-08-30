@@ -16,7 +16,7 @@ public class DeleteAddress {
     @Autowired
     private ServicesAddress service;
 
-    @DeleteMapping("/DeleteAddress/{id}")
+    @DeleteMapping("/Delete/{id}")
     public ResponseEntity<?> deleteAddress(@PathVariable Integer id) {
         try {
             service.deleteAddress(id);

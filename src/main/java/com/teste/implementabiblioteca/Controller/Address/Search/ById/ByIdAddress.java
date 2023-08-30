@@ -22,7 +22,7 @@ public class ByIdAddress {
     public ResponseEntity<?> GetAddressById(@PathVariable Integer id) {
         try {
             AddressEntity addressEntity = services.getAddresById(id);
-            if (addressEntity== null){
+            if (addressEntity == null){
                 throw new AddressNotFound(id);
             }
             return ResponseEntity.status(OK).body(Response.from(addressEntity));

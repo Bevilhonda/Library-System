@@ -1,5 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Author.Search.BetweenYears;
 
+import com.teste.implementabiblioteca.Controller.Author.Search.BetweenYears.DTO.ListNames;
 import com.teste.implementabiblioteca.Controller.Author.Search.BetweenYears.DTO.Response;
 import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 import com.teste.implementabiblioteca.Model.Author.Exceptions.TypeExceptions.AuthorExceptions;
@@ -29,7 +30,7 @@ public class SearchByDateBirth {
             if (authors.isEmpty()) {
                 throw new DateBirthNotFound(startDate, finalDate);
             }
-            return ResponseEntity.status(OK).body(Response.from(authors));
+            return ResponseEntity.status(OK).body(ListNames.from(authors));
         } catch (AuthorExceptions e) {
             return MapAuthor(e);
         }
