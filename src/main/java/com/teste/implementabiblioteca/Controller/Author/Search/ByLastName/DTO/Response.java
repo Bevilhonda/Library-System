@@ -18,10 +18,9 @@ public class Response {
         this.data_nascimento = data_nascimento;
     }
 
-    public static List<Response> from(List<AuthorEntity> listAuthor){
-        return listAuthor.stream().map
-                (author -> new Response(author.getIdAuthor(),author.getName(),
-                new LastName(author.getLastname()),author.getDateBirth())).toList();
+    public static Response from(AuthorEntity author){
+        return  new Response(author.getIdAuthor(),author.getName(),
+                new LastName(author.getLastname()),author.getDateBirth());
     }
 
     public Integer getId() {

@@ -1,5 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Author.Search.ByLastName;
 
+import com.teste.implementabiblioteca.Controller.Author.Search.ByLastName.DTO.ListAuthors;
 import com.teste.implementabiblioteca.Controller.Author.Search.ByLastName.DTO.Response;
 import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 import com.teste.implementabiblioteca.Model.Author.Exceptions.TypeExceptions.AuthorExceptions;
@@ -27,7 +28,7 @@ public class SearchByLastname {
             if (listAuthor.isEmpty()) {
                 throw new ListEmpty();
             }
-            return ResponseEntity.status(OK).body(Response.from(listAuthor));
+            return ResponseEntity.status(OK).body(ListAuthors.from(listAuthor));
         } catch (AuthorExceptions e) {
             return MapAuthor(e);
         }
