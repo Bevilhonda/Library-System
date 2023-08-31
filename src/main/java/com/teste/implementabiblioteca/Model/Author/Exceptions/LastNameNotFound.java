@@ -1,4 +1,4 @@
-package com.teste.implementabiblioteca.Model.Author.Exceptions.TypeExceptions;
+package com.teste.implementabiblioteca.Model.Author.Exceptions;
 
 public class LastNameNotFound extends AuthorExceptions {
 

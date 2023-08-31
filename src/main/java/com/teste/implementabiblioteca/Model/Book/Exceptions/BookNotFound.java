@@ -1,4 +1,4 @@
-package com.teste.implementabiblioteca.Model.Book.Exceptions.TypeExceptions;
+package com.teste.implementabiblioteca.Model.Book.Exceptions;
 
 public class BookNotFound extends BookExceptions {
     private Integer id;

@@ -1,4 +1,4 @@
-package com.teste.implementabiblioteca.Model.Library.Exceptions.TypeExceptions;
+package com.teste.implementabiblioteca.Model.Library.Exceptions;
 
 public class LibraryNotFound extends LibraryExceptions {
 
