@@ -23,7 +23,7 @@ public interface RepositoryAuthor extends JpaRepository<AuthorEntity, Integer> {
     List<AuthorEntity> getAllAuthors();
 
     @Query(value = "Select * from Autor where sobrenome = :sobrenome", nativeQuery = true)
-    List<AuthorEntity> getAuthorByLastName(String sobrenome);
+    List<AuthorEntity> getByLastName(String sobrenome);
 
     @Modifying
     @Query(value = "insert into Autor ( nome, sobrenome, data_nascimento)" +
@@ -40,5 +40,5 @@ public interface RepositoryAuthor extends JpaRepository<AuthorEntity, Integer> {
     Integer deleteAuthor(Integer id_autor);
 
     @Query(value = "SELECT * FROM Autor WHERE data_nascimento BETWEEN :dataInicial AND :dataFinal ", nativeQuery = true)
-    List<AuthorEntity> selectAuthorByDate(@Param("dataInicial") LocalDate dataInicial, @Param("dataFinal") LocalDate dataFinal);
+    List<AuthorEntity> getByDate(@Param("dataInicial") LocalDate dataInicial, @Param("dataFinal") LocalDate dataFinal);
 }

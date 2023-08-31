@@ -2,26 +2,17 @@ package com.teste.implementabiblioteca.Controller.Book.Search.AllBooks.DTO;
 
 import com.teste.implementabiblioteca.Model.Book.BookEntity;
 
+import java.util.List;
 
 public class Response {
-    private final Integer id;
-    private final Name book;
+    private final List<Response> list;
 
-    public Response(Integer id, Name book) {
-        this.id = id;
-        this.book = book;
+    public Response(List<Response> list) {
+        this.list = list;
     }
 
-    public static Response from(BookEntity book ){
-        return new Response(book.getIdBook(),
-                new Name(book.geTitle(),book.getEdition(),book.getData_publication()));
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public Name getBook() {
-        return book;
+    public static List<Book> from(List<BookEntity> list ){
+        return list.stream().map(book -> new Book(book.getIdBook(),
+                new Name(book.geTitle(),book.getEdition(),book.getData_publication()))).toList();
     }
 }

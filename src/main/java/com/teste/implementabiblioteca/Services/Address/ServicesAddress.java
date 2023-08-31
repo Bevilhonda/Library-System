@@ -1,7 +1,7 @@
 package com.teste.implementabiblioteca.Services.Address;
 
-import com.teste.implementabiblioteca.Model.Address.Exceptions.TypeExceptions.AddressNotFound;
-import com.teste.implementabiblioteca.Model.Address.Exceptions.TypeExceptions.ErrorSavingAddress;
+import com.teste.implementabiblioteca.Model.Address.Exceptions.AddressNotFound;
+import com.teste.implementabiblioteca.Model.Address.Exceptions.ErrorSavingAddress;
 import com.teste.implementabiblioteca.Model.Address.AddressEntity;
 import com.teste.implementabiblioteca.Repository.RepositoryAddress;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ public class ServicesAddress {
     @Autowired
     private RepositoryAddress repository;
 
-    public AddressEntity getAddresById(Integer id) throws AddressNotFound {
+    public AddressEntity getById(Integer id) throws AddressNotFound {
         AddressEntity addressEntity = repository.getAddress(id);
         if (addressEntity == null) {
             throw new AddressNotFound(id);
@@ -22,7 +22,7 @@ public class ServicesAddress {
         return addressEntity;
     }
 
-    public List<AddressEntity> allAddress() {
+    public List<AddressEntity> getAll() {
         return null;
     }
 

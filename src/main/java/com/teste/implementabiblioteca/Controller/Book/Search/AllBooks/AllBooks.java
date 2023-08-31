@@ -1,8 +1,7 @@
 package com.teste.implementabiblioteca.Controller.Book.Search.AllBooks;
 
-import com.teste.implementabiblioteca.Controller.Book.Search.AllBooks.DTO.ListBook;
-import com.teste.implementabiblioteca.Model.Book.Exceptions.TypeExceptions.BookExceptions;
 import com.teste.implementabiblioteca.Controller.Book.Search.AllBooks.DTO.Response;
+import com.teste.implementabiblioteca.Model.Book.Exceptions.BookExceptions;
 import com.teste.implementabiblioteca.Model.Book.BookEntity;
 import com.teste.implementabiblioteca.Services.Book.ServicesBook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static com.teste.implementabiblioteca.Model.Book.Exceptions.ErrorHandling.ErrorHandlingBook.MapBook;
+import static com.teste.implementabiblioteca.Controller.Book.ExceptionHandler.Handler.map;
 import static org.springframework.http.HttpStatus.*;
 
 @RestController
@@ -21,14 +20,14 @@ public class AllBooks {
     private ServicesBook service;
 
     @GetMapping("/AllBooks")
-    public ResponseEntity<?> GetAllBooks(){
+    public ResponseEntity<?> getAllBooks(){
         try {
             List<BookEntity> listBook = service.getAllBooks();
 
-            return ResponseEntity.status(OK).body(ListBook.from(listBook));
+            return ResponseEntity.status(OK).body(Response.from(listBook));
 
         } catch (BookExceptions e) {
-           return MapBook(e);
+           return map(e);
         }
     }
 

@@ -1,10 +1,9 @@
 package com.teste.implementabiblioteca.Controller.Author.Search.ByLastName;
 
-import com.teste.implementabiblioteca.Controller.Author.Search.ByLastName.DTO.ListAuthors;
 import com.teste.implementabiblioteca.Controller.Author.Search.ByLastName.DTO.Response;
 import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
-import com.teste.implementabiblioteca.Model.Author.Exceptions.TypeExceptions.AuthorExceptions;
-import com.teste.implementabiblioteca.Model.Author.Exceptions.TypeExceptions.ListEmpty;
+import com.teste.implementabiblioteca.Model.Author.Exceptions.AuthorExceptions;
+import com.teste.implementabiblioteca.Model.Author.Exceptions.ListEmpty;
 import com.teste.implementabiblioteca.Services.Author.ServicesAuthor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,24 +12,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import static com.teste.implementabiblioteca.Model.Author.Exceptions.ErrorHandling.ErrorHandlingAuthor.MapAuthor;
+import static com.teste.implementabiblioteca.Controller.Author.ExceptionHandler.Handler.map;
 import static org.springframework.http.HttpStatus.*;
 
 @RestController
-public class SearchByLastname {
+public class ByLastname {
     @Autowired
     private ServicesAuthor services;
 
     @GetMapping("/Author/LastName/{lastname}")
-    public ResponseEntity<?> GetAutorByLastName(@PathVariable String lastname) {
+    public ResponseEntity<?> byLastName(@PathVariable String lastname) {
         try {
-            List<AuthorEntity> listAuthor = services.getAuthorByLastName(lastname);
+            List<AuthorEntity> listAuthor = services.getByLastName(lastname);
             if (listAuthor.isEmpty()) {
                 throw new ListEmpty();
             }
-            return ResponseEntity.status(OK).body(ListAuthors.from(listAuthor));
+            return ResponseEntity.status(OK).body(Response.from(listAuthor));
         } catch (AuthorExceptions e) {
-            return MapAuthor(e);
+            return map(e);
         }
 
     }

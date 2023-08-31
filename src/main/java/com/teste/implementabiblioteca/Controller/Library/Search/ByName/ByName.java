@@ -1,8 +1,7 @@
 package com.teste.implementabiblioteca.Controller.Library.Search.ByName;
 
-import com.teste.implementabiblioteca.Controller.Library.Search.ByName.DTO.ListLibrary;
 import com.teste.implementabiblioteca.Controller.Library.Search.ByName.DTO.Response;
-import com.teste.implementabiblioteca.Model.Library.Exceptions.TypeExceptions.LibraryExceptions;
+import com.teste.implementabiblioteca.Model.Library.Exceptions.LibraryExceptions;
 import com.teste.implementabiblioteca.Model.Library.LibraryEntity;
 import com.teste.implementabiblioteca.Services.Library.ServicesLibrary;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static com.teste.implementabiblioteca.Model.Library.Exceptions.ErrorHandling.ErrorHandlingLibrary.MapLibrary;
+import static com.teste.implementabiblioteca.Controller.Library.ExceptionHandler.Handler.map;
 import static org.springframework.http.HttpStatus.*;
 
 @RestController
@@ -25,10 +24,10 @@ public class ByName {
         try {
             List<LibraryEntity> list = service.getLibraryByName(name);
 
-            return ResponseEntity.status(OK).body(ListLibrary.from(list));
+            return ResponseEntity.status(OK).body(Response.from(list));
 
         } catch (LibraryExceptions e) {
-            return MapLibrary(e);
+            return map(e);
         }
 
     }

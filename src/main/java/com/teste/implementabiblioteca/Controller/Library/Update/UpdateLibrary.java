@@ -1,6 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Library.Update;
 
-import com.teste.implementabiblioteca.Model.Library.Exceptions.TypeExceptions.LibraryExceptions;
+import com.teste.implementabiblioteca.Model.Library.Exceptions.LibraryExceptions;
 import com.teste.implementabiblioteca.Controller.Library.Update.DTO.DataLibraryUpdate;
 import com.teste.implementabiblioteca.Services.Library.ServicesLibrary;
 import org.springframework.beans.factory.annotation.Autowired;

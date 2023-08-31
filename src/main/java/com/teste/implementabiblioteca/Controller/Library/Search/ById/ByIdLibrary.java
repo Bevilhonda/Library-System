@@ -1,7 +1,7 @@
 package com.teste.implementabiblioteca.Controller.Library.Search.ById;
 
 import com.teste.implementabiblioteca.Controller.Library.Search.ById.DTO.Response;
-import com.teste.implementabiblioteca.Model.Library.Exceptions.TypeExceptions.LibraryExceptions;
+import com.teste.implementabiblioteca.Model.Library.Exceptions.LibraryExceptions;
 import com.teste.implementabiblioteca.Model.Library.LibraryEntity;
 import com.teste.implementabiblioteca.Services.Library.ServicesLibrary;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +18,9 @@ public class ByIdLibrary {
     private ServicesLibrary service;
 
     @GetMapping("/Library/{id}")
-    public ResponseEntity<?> GetLibraryById(@PathVariable Integer id) {
+    public ResponseEntity<?> getLibraryById(@PathVariable Integer id) {
         try {
-            LibraryEntity library = service.getLibraryById(id);
+            LibraryEntity library = service.getById(id);
             return ResponseEntity.status(OK).body(Response.from(library));
 
         } catch (LibraryExceptions e) {

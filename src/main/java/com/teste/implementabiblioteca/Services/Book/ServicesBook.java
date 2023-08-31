@@ -1,8 +1,8 @@
 package com.teste.implementabiblioteca.Services.Book;
 
-import com.teste.implementabiblioteca.Model.Book.Exceptions.TypeExceptions.BookNotFound;
-import com.teste.implementabiblioteca.Model.Book.Exceptions.TypeExceptions.ErrorSavingBook;
-import com.teste.implementabiblioteca.Model.Book.Exceptions.TypeExceptions.ListEmpty;
+import com.teste.implementabiblioteca.Model.Book.Exceptions.BookNotFound;
+import com.teste.implementabiblioteca.Model.Book.Exceptions.ErrorSavingBook;
+import com.teste.implementabiblioteca.Model.Book.Exceptions.ListEmpty;
 import com.teste.implementabiblioteca.Model.Book.BookEntity;
 import com.teste.implementabiblioteca.Repository.RepositoryBook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import java.util.List;
 public class ServicesBook {
     @Autowired
     private RepositoryBook repository;
-    public BookEntity getBookById(Integer id) throws BookNotFound {
+    public BookEntity getById(Integer id) throws BookNotFound {
         BookEntity book = repository.getBook(id);
         if (book == null){
             throw new BookNotFound(id);
@@ -30,7 +30,7 @@ public class ServicesBook {
 
     public void insert(BookEntity book) throws ErrorSavingBook {
 
-        Integer insertData = repository.save(book.geTitle(),book.getData_publication(),book.getEdition(),
+        Integer insertData = repository.insert(book.geTitle(),book.getData_publication(),book.getEdition(),
                 book.getFkAuthor(),book.getFkLibrary());
         if (insertData == null) {
             throw new ErrorSavingBook();

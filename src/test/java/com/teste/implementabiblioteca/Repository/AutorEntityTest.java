@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AutorEntityTest {
 
+
     @Test
     public void Teste_Autor_Entity(){
         LocalDate data_nascimento_autor = LocalDate.from(LocalDate.parse("2018-10-15"));
@@ -19,5 +20,7 @@ class AutorEntityTest {
         assertEquals("Batista",novo.getLastname());
         assertEquals(data_nascimento_autor,novo.getDateBirth());
     }
+
+
 
 }

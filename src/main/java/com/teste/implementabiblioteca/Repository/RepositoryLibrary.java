@@ -29,7 +29,7 @@ public interface RepositoryLibrary extends JpaRepository<LibraryEntity, Integer>
     @Modifying
     @Query(value = "Insert into Biblioteca (nome,fk_endereco) values " +
             "(:nome , :fk_endereco) ",nativeQuery = true)
-    Integer save(String nome , Integer fk_endereco);
+    Integer insert(String nome , Integer fk_endereco);
 
     @Modifying
     @Query(value = "Update Biblioteca set nome = :nome , fk_endereco = :fk_endereco " +
@@ -38,5 +38,5 @@ public interface RepositoryLibrary extends JpaRepository<LibraryEntity, Integer>
 
     @Modifying
     @Query(value = "Delete from Biblioteca where id_biblioteca = :id_biblioteca",nativeQuery = true)
-    Integer deleteLibrary(Integer id_biblioteca);
+    void deleteLibrary(Integer id_biblioteca);
 }

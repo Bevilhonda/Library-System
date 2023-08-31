@@ -1,9 +1,9 @@
 package com.teste.implementabiblioteca.Services.Author;
 
-import com.teste.implementabiblioteca.Model.Author.Exceptions.TypeExceptions.AuthorNotFound;
-import com.teste.implementabiblioteca.Model.Author.Exceptions.TypeExceptions.DateBirthNotFound;
-import com.teste.implementabiblioteca.Model.Author.Exceptions.TypeExceptions.ErrorSavingAuthor;
-import com.teste.implementabiblioteca.Model.Author.Exceptions.TypeExceptions.ListEmpty;
+import com.teste.implementabiblioteca.Model.Author.Exceptions.AuthorNotFound;
+import com.teste.implementabiblioteca.Model.Author.Exceptions.DateBirthNotFound;
+import com.teste.implementabiblioteca.Model.Author.Exceptions.ErrorSavingAuthor;
+import com.teste.implementabiblioteca.Model.Author.Exceptions.ListEmpty;
 import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 import com.teste.implementabiblioteca.Repository.RepositoryAuthor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class ServicesAuthor {
     @Autowired
     private RepositoryAuthor repository;
 
-    public AuthorEntity getAutorById(Integer id) throws AuthorNotFound {
+    public AuthorEntity getById(Integer id) throws AuthorNotFound {
 
         AuthorEntity author = repository.getAuthor(id);
 
@@ -28,23 +28,23 @@ public class ServicesAuthor {
         return author;
     }
 
-    public List<AuthorEntity> getAllAuthor() {
+    public List<AuthorEntity> getAll() {
         return repository.getAllAuthors();
     }
 
-    public List<AuthorEntity> getAuthorByLastName(String lastName) throws ListEmpty {
-        List<AuthorEntity> listAuthor = repository.getAuthorByLastName(lastName);
+    public List<AuthorEntity> getByLastName(String lastName) throws ListEmpty {
+        List<AuthorEntity> listAuthor = repository.getByLastName(lastName);
         if (listAuthor.isEmpty()) {
             throw new ListEmpty();
         }
         return listAuthor;
     }
 
-    public List<AuthorEntity> getauthorbydatebirth(String startDate, String finalDate) throws DateBirthNotFound {
+    public List<AuthorEntity> getByDateBirth(String startDate, String finalDate) throws DateBirthNotFound {
 
         LocalDate dataInicial = LocalDate.parse(startDate, DateTimeFormatter.ISO_DATE);
         LocalDate dataFinal = LocalDate.parse(finalDate, DateTimeFormatter.ISO_DATE);
-        List<AuthorEntity> authors = repository.selectAuthorByDate(dataInicial, dataFinal);
+        List<AuthorEntity> authors = repository.getByDate(dataInicial, dataFinal);
 
         if (authors.isEmpty()) {
             throw new DateBirthNotFound(startDate, finalDate);

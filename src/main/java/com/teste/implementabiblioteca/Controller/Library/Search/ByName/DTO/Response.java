@@ -2,30 +2,18 @@ package com.teste.implementabiblioteca.Controller.Library.Search.ByName.DTO;
 
 import com.teste.implementabiblioteca.Model.Library.LibraryEntity;
 
+import java.util.List;
+
 public class Response {
-    Integer id_biblioteca;
-    String nome;
-    Integer fk_endereco;
+    private final List<com.teste.implementabiblioteca.Controller.Library.Search.ById.DTO.Response> list;
 
-    public Response(Integer id_biblioteca, String nome, Integer fk_endereco) {
-        this.id_biblioteca = id_biblioteca;
-        this.nome = nome;
-        this.fk_endereco = fk_endereco;
-    }
-    public static Response from(LibraryEntity library){
-        return new Response(library.getIdLibrary(),library.getName(),
-                library.getFkAddress());
+    public Response(List<com.teste.implementabiblioteca.Controller.Library.Search.ById.DTO.Response> list) {
+        this.list = list;
     }
 
-    public Integer getId_biblioteca() {
-        return id_biblioteca;
-    }
+    public static List<com.teste.implementabiblioteca.Controller.Library.Search.ById.DTO.Response> from(List<LibraryEntity> listLibrary){
+        return listLibrary.stream().map(library -> new com.teste.implementabiblioteca.Controller.Library.Search.ById.DTO.Response(library.getIdLibrary(),
+                library.getName(),library.getFkAddress())).toList();
 
-    public String getNome() {
-        return nome;
-    }
-
-    public Integer getFk_endereco() {
-        return fk_endereco;
     }
 }

@@ -7,7 +7,7 @@ public class FullAddress {
         FullNameAddress = fullNameAddress;
     }
 
-    public String getFullNameAddress() {
+    public String getFullName() {
         return FullNameAddress;
     }
 }
