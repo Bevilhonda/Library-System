@@ -1,9 +1,9 @@
 package com.teste.implementabiblioteca.Model.Author.Exceptions;
 
-public class ListNotFound extends AuthorExceptions {
+public class EmptyList extends AuthorExceptions {
     private final String message ;
 
-    public ListNotFound() {
+    public EmptyList() {
         message = "Lista vazia";
     }
 

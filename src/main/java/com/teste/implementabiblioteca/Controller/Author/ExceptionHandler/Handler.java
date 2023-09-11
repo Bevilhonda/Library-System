@@ -23,7 +23,7 @@ public class Handler {
                 return convert((DateBirthNotFound) e);
             }
             case "ListNotFound" -> {
-                return convert((ListNotFound) e);
+                return convert((EmptyList) e);
             }
             default -> {
                 return ResponseEntity.status(INTERNAL_SERVER_ERROR).body("Ocorreu um erro durante a operação.");
@@ -48,7 +48,7 @@ public class Handler {
                 "Não contém as datas Inicio: " + e.getStartDate() +
                         " Fim: " + e.getFinalDate());
     }
-    public static ResponseEntity<?> convert(ListNotFound e) {
+    public static ResponseEntity<?> convert(EmptyList e) {
         return ResponseEntity.status(NOT_FOUND).body(e.getMessage());
     }
 }

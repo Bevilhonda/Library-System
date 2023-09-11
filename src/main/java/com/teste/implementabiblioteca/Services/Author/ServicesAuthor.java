@@ -25,10 +25,10 @@ public class ServicesAuthor {
         return author;
     }
 
-    public List<AuthorEntity> getAllAuthors() throws ListNotFound {
+    public List<AuthorEntity> getAllAuthors() throws EmptyList {
         List<AuthorEntity> listAuthor = repository.getAllAuthors();
         if (listAuthor == null ){
-            throw new ListNotFound();
+            throw new EmptyList();
         }
         return listAuthor;
     }
