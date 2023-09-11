@@ -23,7 +23,7 @@ public class Handler {
 
             default -> {
                 return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(
-                        "Ocorreu um erro no servidor.");
+                        "Ocorreu um erro durante a operação.");
             }
         }
     }
@@ -35,12 +35,11 @@ public class Handler {
 
     public static ResponseEntity<?> convert(ListNotFound e) {
 
-        return ResponseEntity.status(NOT_FOUND).body("A lista é vazia ");
+        return ResponseEntity.status(NOT_FOUND).body(e.getMessage());
     }
 
     public static ResponseEntity<?> convert(ErrorSavingBook e) {
 
-        return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(
-                "Não foi possivel inserir o Livro.");
+        return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(e.getMessage());
     }
 }

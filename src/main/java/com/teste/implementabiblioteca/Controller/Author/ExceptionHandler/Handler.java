@@ -26,7 +26,7 @@ public class Handler {
                 return convert((ListNotFound) e);
             }
             default -> {
-                return ResponseEntity.status(INTERNAL_SERVER_ERROR).body("Ocorreu um erro no servidor.");
+                return ResponseEntity.status(INTERNAL_SERVER_ERROR).body("Ocorreu um erro durante a operação.");
             }
         }
     }

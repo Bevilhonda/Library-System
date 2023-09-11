@@ -19,7 +19,7 @@ public class Handler {
 
             default -> {
                 return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(
-                        "Ocorreu um erro no servidor.");
+                        "Ocorreu um erro durante a operação.");
             }
         }
     }
@@ -30,7 +30,6 @@ public class Handler {
     }
 
     public static ResponseEntity<?> Convert(ErrorSavingAddress e) {
-        return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(
-                "Não foi possivel inserir o endereço.");
+        return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(e.getMessage());
     }
 }
