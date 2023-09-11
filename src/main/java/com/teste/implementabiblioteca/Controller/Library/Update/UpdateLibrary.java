@@ -22,7 +22,7 @@ public class UpdateLibrary {
             service.update(id,dataLibrary.toModel());
             return ResponseEntity.status(OK).build();
 
-        } catch (LibraryExceptions e) {
+        } catch (Throwable e) {
             throw new RuntimeException(e);
         }
     }

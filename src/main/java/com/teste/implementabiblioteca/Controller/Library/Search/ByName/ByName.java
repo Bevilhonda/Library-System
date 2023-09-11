@@ -26,7 +26,7 @@ public class ByName {
 
             return ResponseEntity.status(OK).body(Response.from(list));
 
-        } catch (LibraryExceptions e) {
+        } catch (Throwable e) {
             return map(e);
         }
 

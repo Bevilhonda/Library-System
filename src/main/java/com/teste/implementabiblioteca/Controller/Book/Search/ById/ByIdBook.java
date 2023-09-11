@@ -25,7 +25,7 @@ public class ByIdBook {
 
             return ResponseEntity.status(OK).body(Response.from(book));
 
-        } catch (BookExceptions e) {
+        } catch (Throwable e) {
             return map(e);
         }
     }

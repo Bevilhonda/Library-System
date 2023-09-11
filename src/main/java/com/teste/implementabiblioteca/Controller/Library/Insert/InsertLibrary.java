@@ -22,7 +22,7 @@ public class InsertLibrary {
              service.insert(dataLibrary.toModel());
 
              return ResponseEntity.status(OK).build();
-        } catch (LibraryExceptions e) {
+        } catch (Throwable e) {
             return map(e);
         }
     }

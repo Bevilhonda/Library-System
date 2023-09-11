@@ -23,7 +23,7 @@ public class ByIdLibrary {
             LibraryEntity library = service.getById(id);
             return ResponseEntity.status(OK).body(Response.from(library));
 
-        } catch (LibraryExceptions e) {
+        } catch (Throwable e) {
             throw new RuntimeException(e);
         }
     }

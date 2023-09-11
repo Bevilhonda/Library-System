@@ -26,11 +26,9 @@ public class SearchByDateBirth {
                                          @PathVariable String finalDate) {
         try {
             List<AuthorEntity> authors = service.getByDateBirth(startDate, finalDate);
-            if (authors.isEmpty()) {
-                throw new DateBirthNotFound(startDate, finalDate);
-            }
+
             return ResponseEntity.status(OK).body(Response.from(authors));
-        } catch (AuthorExceptions e) {
+        } catch (Throwable e) {
             return map(e);
         }
     }

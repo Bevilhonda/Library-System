@@ -23,7 +23,7 @@ public class UpdateAddress {
 
             return ResponseEntity.status(OK).build();
 
-        } catch (AddressExceptions e) {
+        } catch (Throwable e) {
             return map(e);
         }
     }

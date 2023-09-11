@@ -1,9 +1,6 @@
 package com.teste.implementabiblioteca.Services.Author;
 
-import com.teste.implementabiblioteca.Model.Author.Exceptions.AuthorNotFound;
-import com.teste.implementabiblioteca.Model.Author.Exceptions.DateBirthNotFound;
-import com.teste.implementabiblioteca.Model.Author.Exceptions.ErrorSavingAuthor;
-import com.teste.implementabiblioteca.Model.Author.Exceptions.ListEmpty;
+import com.teste.implementabiblioteca.Model.Author.Exceptions.*;
 import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 import com.teste.implementabiblioteca.Repository.RepositoryAuthor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,14 +25,19 @@ public class ServicesAuthor {
         return author;
     }
 
-    public List<AuthorEntity> getAll() {
-        return repository.getAllAuthors();
+    public List<AuthorEntity> getAllAuthors() throws ListNotFound {
+        List<AuthorEntity> listAuthor = repository.getAllAuthors();
+        if (listAuthor == null ){
+            throw new ListNotFound();
+        }
+        return listAuthor;
     }
 
-    public List<AuthorEntity> getByLastName(String lastName) throws ListEmpty {
+    public List<AuthorEntity> getByLastName(String lastName) throws LastNameNotFound {
         List<AuthorEntity> listAuthor = repository.getByLastName(lastName);
+
         if (listAuthor.isEmpty()) {
-            throw new ListEmpty();
+            throw new LastNameNotFound(lastName);
         }
         return listAuthor;
     }

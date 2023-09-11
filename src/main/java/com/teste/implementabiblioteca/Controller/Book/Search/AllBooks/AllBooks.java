@@ -26,7 +26,7 @@ public class AllBooks {
 
             return ResponseEntity.status(OK).body(Response.from(listBook));
 
-        } catch (BookExceptions e) {
+        } catch (Throwable e) {
            return map(e);
         }
     }

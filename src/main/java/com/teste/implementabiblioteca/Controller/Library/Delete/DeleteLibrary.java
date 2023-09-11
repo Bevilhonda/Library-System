@@ -21,7 +21,7 @@ public class DeleteLibrary {
             services.delete(id);
             return ResponseEntity.status(OK).build();
 
-        } catch (LibraryExceptions e) {
+        } catch (Throwable e) {
             return map(e);
         }
     }

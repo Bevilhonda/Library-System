@@ -22,7 +22,7 @@ public class Update {
             service.update(id, book.toModel());
 
             return ResponseEntity.status(OK).build();
-        } catch (BookExceptions e) {
+        } catch (Throwable e) {
             return map(e);
         }
     }

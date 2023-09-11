@@ -22,12 +22,10 @@ public class ByIdAddress {
     public ResponseEntity<?> getAddressById(@PathVariable Integer id) {
         try {
             AddressEntity addressEntity = services.getById(id);
-            if (addressEntity == null){
-                throw new AddressNotFound(id);
-            }
+
             return ResponseEntity.status(OK).body(Response.from(addressEntity));
 
-        } catch (AddressExceptions e) {
+        } catch (Throwable e) {
             return map(e);
         }
     }

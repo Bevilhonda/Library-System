@@ -23,7 +23,7 @@ public class InsertAuhtor {
             service.insert(author.toModel());
 
             return ResponseEntity.status(OK).build();
-        } catch (AuthorExceptions e) {
+        } catch (Throwable e) {
             return map(e);
         }
     }

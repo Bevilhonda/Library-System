@@ -24,11 +24,9 @@ public class SearchById {
 
         try {
             AuthorEntity authorEntity = services.getById(id);
-            if (authorEntity == null) {
-                throw new AuthorNotFound(id);
-            }
+
             return ResponseEntity.status(OK).body(Response.from(authorEntity));
-        } catch (AuthorExceptions e) {
+        } catch (Throwable e) {
             return map(e);
         }
     }

@@ -22,11 +22,11 @@ public class Handler {
             case "DateBirthNotFound" -> {
                 return convert((DateBirthNotFound) e);
             }
-            case "ListEmpty" -> {
-                return convert((ListEmpty) e);
+            case "ListNotFound" -> {
+                return convert((ListNotFound) e);
             }
             default -> {
-                return ResponseEntity.status(INTERNAL_SERVER_ERROR).body("Ocorreu um erro ao buscar o autor.");
+                return ResponseEntity.status(INTERNAL_SERVER_ERROR).body("Ocorreu um erro no servidor.");
             }
         }
     }
@@ -41,15 +41,14 @@ public class Handler {
     }
 
     public static ResponseEntity<?> convert(ErrorSavingAuthor e) {
-        return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(
-                "Não foi possivel inserir o autor.");
+        return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(e.getMessage());
     }
     public static ResponseEntity<?> convert(DateBirthNotFound e) {
         return ResponseEntity.status(NOT_FOUND).body(
                 "Não contém as datas Inicio: " + e.getStartDate() +
                         " Fim: " + e.getFinalDate());
     }
-    public static ResponseEntity<?> convert(ListEmpty e) {
-        return ResponseEntity.status(NOT_FOUND).body("A lista é vazia ");
+    public static ResponseEntity<?> convert(ListNotFound e) {
+        return ResponseEntity.status(NOT_FOUND).body(e.getMessage());
     }
 }

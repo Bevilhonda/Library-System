@@ -2,8 +2,6 @@ package com.teste.implementabiblioteca.Controller.Author.Search.ByLastName;
 
 import com.teste.implementabiblioteca.Controller.Author.Search.ByLastName.DTO.Response;
 import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
-import com.teste.implementabiblioteca.Model.Author.Exceptions.AuthorExceptions;
-import com.teste.implementabiblioteca.Model.Author.Exceptions.ListEmpty;
 import com.teste.implementabiblioteca.Services.Author.ServicesAuthor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,11 +22,9 @@ public class ByLastname {
     public ResponseEntity<?> byLastName(@PathVariable String lastname) {
         try {
             List<AuthorEntity> listAuthor = services.getByLastName(lastname);
-            if (listAuthor.isEmpty()) {
-                throw new ListEmpty();
-            }
+
             return ResponseEntity.status(OK).body(Response.from(listAuthor));
-        } catch (AuthorExceptions e) {
+        } catch (Throwable e) {
             return map(e);
         }
 

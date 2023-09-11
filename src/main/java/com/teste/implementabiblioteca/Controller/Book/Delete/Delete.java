@@ -21,7 +21,7 @@ public class Delete {
             service.delete(id);
             return ResponseEntity.status(OK).build();
 
-        } catch (BookExceptions e) {
+        } catch (Throwable e) {
             return map(e);
         }
     }

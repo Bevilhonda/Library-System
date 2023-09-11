@@ -22,7 +22,7 @@ public class DeleteAuthor {
              service.delete(id);
 
             return ResponseEntity.status(OK).build();
-        } catch (AuthorExceptions e) {
+        } catch (Throwable e) {
             return map(e);
         }
     }

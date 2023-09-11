@@ -1,9 +1,8 @@
 package com.teste.implementabiblioteca.Controller.Book.ExceptionHandler;
 
-import com.teste.implementabiblioteca.Model.Author.Exceptions.ListEmpty;
+import com.teste.implementabiblioteca.Model.Author.Exceptions.ListNotFound;
 import com.teste.implementabiblioteca.Model.Book.Exceptions.BookNotFound;
 import com.teste.implementabiblioteca.Model.Book.Exceptions.ErrorSavingBook;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import static org.springframework.http.HttpStatus.*;
@@ -16,7 +15,7 @@ public class Handler {
                 return convert((BookNotFound) e);
             }
             case "ListEmpty" -> {
-                return convert((ListEmpty) e);
+                return convert((ListNotFound) e);
             }
             case "ErrorSavingBook" -> {
                 return convert((ErrorSavingBook) e);
@@ -34,7 +33,7 @@ public class Handler {
                 "O Livro com o id " + e.getId() + " não  foi encontrado.");
     }
 
-    public static ResponseEntity<?> convert(ListEmpty e) {
+    public static ResponseEntity<?> convert(ListNotFound e) {
 
         return ResponseEntity.status(NOT_FOUND).body("A lista é vazia ");
     }

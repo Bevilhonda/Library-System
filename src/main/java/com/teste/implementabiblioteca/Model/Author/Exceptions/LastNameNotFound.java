@@ -2,7 +2,7 @@ package com.teste.implementabiblioteca.Model.Author.Exceptions;
 
 public class LastNameNotFound extends AuthorExceptions {
 
-    private String sobrenome ;
+    private final String sobrenome ;
 
     public LastNameNotFound(String lastName) {
         this.sobrenome = lastName;

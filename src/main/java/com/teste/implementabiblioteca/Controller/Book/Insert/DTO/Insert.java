@@ -21,7 +21,7 @@ public class Insert {
              service.insert(book.toModel());
             return ResponseEntity.status(OK).build();
 
-        } catch (BookExceptions e) {
+        } catch (Throwable e) {
             return map(e);
         }
     }
