@@ -24,7 +24,7 @@ public class Handler {
 
             default -> {
                 return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(
-                        "Ocorreu um erro ao buscar o autor.");
+                        "Ocorreu um erro no servidor.");
             }
         }
     }
