@@ -1,6 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Book.ExceptionHandler;
 
-import com.teste.implementabiblioteca.Model.Author.Exceptions.EmptyList;
+import com.teste.implementabiblioteca.Model.Author.Exceptions.RegisterNotFound;
 import com.teste.implementabiblioteca.Model.Book.Exceptions.BookNotFound;
 import com.teste.implementabiblioteca.Model.Book.Exceptions.ErrorSavingBook;
 import org.springframework.http.ResponseEntity;
@@ -8,38 +8,36 @@ import org.springframework.http.ResponseEntity;
 import static org.springframework.http.HttpStatus.*;
 
 public class Handler {
-    public static ResponseEntity<?> map(Throwable e) {
+    public static ResponseEntity<?> map(Throwable standard) {
 
-        switch (e.getClass().getSimpleName()) {
+        switch (standard.getClass().getSimpleName()) {
             case "BookNotFound" -> {
-                return convert((BookNotFound) e);
+                return convert((BookNotFound) standard);
             }
             case "ListEmpty" -> {
-                return convert((EmptyList) e);
+                return convert((RegisterNotFound) standard);
             }
             case "ErrorSavingBook" -> {
-                return convert((ErrorSavingBook) e);
+                return convert((ErrorSavingBook) standard);
             }
 
             default -> {
-                return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(
-                        "Ocorreu um erro durante a operação.");
+                return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(standard.getMessage());
             }
         }
     }
 
-    public static ResponseEntity<?> convert(BookNotFound e) {
-        return ResponseEntity.status(NOT_FOUND).body(
-                "O Livro com o id " + e.getId() + " não  foi encontrado.");
+    public static ResponseEntity<?> convert(BookNotFound notFound) {
+        return ResponseEntity.status(NOT_FOUND).body(notFound.getMessage());
     }
 
-    public static ResponseEntity<?> convert(EmptyList e) {
+    public static ResponseEntity<?> convert(RegisterNotFound e) {
 
         return ResponseEntity.status(NOT_FOUND).body(e.getMessage());
     }
 
-    public static ResponseEntity<?> convert(ErrorSavingBook e) {
+    public static ResponseEntity<?> convert(ErrorSavingBook errorSavingBook) {
 
-        return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(e.getMessage());
+        return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(errorSavingBook.getMessage());
     }
 }

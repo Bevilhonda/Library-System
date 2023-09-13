@@ -4,7 +4,7 @@ public class ErrorSavingAuthor extends AuthorExceptions {
     private final String message ;
 
     public ErrorSavingAuthor() {
-        message = "Não foi possivel salvar este autor.";
+        message = "Preencha os campos novamente.";
     }
 
     @Override

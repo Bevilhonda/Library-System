@@ -7,48 +7,54 @@ import static org.springframework.http.HttpStatus.*;
 
 public class Handler {
 
-    public static ResponseEntity<?> map(Throwable e) {
+    public static ResponseEntity<?> map(Throwable pattern) {
 
-        switch (e.getClass().getSimpleName()) {
+        switch (pattern.getClass().getSimpleName()) {
             case "AuthorNotFound" -> {
-                return convert((AuthorNotFound) e);
+                return convert((AuthorNotFound) pattern);
+                /* quando a exceção for alguns dos casos ,
+                vai converter a exceção padrão chamada de pattern para o tipo personalizado
+                 descrito na string */
             }
             case "ListEmptyException" -> {
-                return convert((LastNameNotFound) e);
+                return convert((LastNameNotFound) pattern);
             }
             case "ErrorSavingAuthor" -> {
-                return convert((ErrorSavingAuthor) e);
+                return convert((ErrorSavingAuthor) pattern);
             }
             case "DateBirthNotFound" -> {
-                return convert((DateBirthNotFound) e);
+                return convert((DateBirthNotFound) pattern);
             }
             case "ListNotFound" -> {
-                return convert((EmptyList) e);
+                return convert((RegisterNotFound) pattern);
             }
             default -> {
-                return ResponseEntity.status(INTERNAL_SERVER_ERROR).body("Ocorreu um erro durante a operação.");
+                return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(pattern.getMessage());
+                //quando nenhum dos casos no switch corresponde a uma exceção específica criada,
+                // ele cai no caso padrão(default)  e cria uma resposta de erro com status
+                // INTERNAL_SERVER_ERROR ,  e usa pattern.getMessage() para obter a mensagem
+                // de erro da exceção não tratada.
+                // Se a exceção não tiver uma mensagem personalizada, o método .getMessage()
+                // retornará null ou uma representação padrão da exceção,
+                // que pode não ser muito informativa.
             }
         }
     }
-    public static ResponseEntity<?> convert(AuthorNotFound e) {
-        return ResponseEntity.status(NOT_FOUND).body(
-                "O Autor com o id " + e.getId() + " não  foi encontrado.");
+    public static ResponseEntity<?> convert(AuthorNotFound notFound) {
+        return ResponseEntity.status(NOT_FOUND).body(notFound.getMessage());
     }
 
-    public static ResponseEntity<?> convert(LastNameNotFound e) {
-        return ResponseEntity.status(NOT_FOUND).body(
-                "Não existe o sobrenome " + e.GetLastName() + " no cadastro ");
+    public static ResponseEntity<?> convert(LastNameNotFound lastNameNotFound) {
+        return ResponseEntity.status(NOT_FOUND).body(lastNameNotFound.getMessage());
     }
 
     public static ResponseEntity<?> convert(ErrorSavingAuthor e) {
         return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(e.getMessage());
     }
-    public static ResponseEntity<?> convert(DateBirthNotFound e) {
-        return ResponseEntity.status(NOT_FOUND).body(
-                "Não contém as datas Inicio: " + e.getStartDate() +
-                        " Fim: " + e.getFinalDate());
+    public static ResponseEntity<?> convert(DateBirthNotFound birthNotFound) {
+        return ResponseEntity.status(NOT_FOUND).body(birthNotFound.getMessage());
     }
-    public static ResponseEntity<?> convert(EmptyList e) {
-        return ResponseEntity.status(NOT_FOUND).body(e.getMessage());
+    public static ResponseEntity<?> convert(RegisterNotFound emptyRegistration) {
+        return ResponseEntity.status(NOT_FOUND).body(emptyRegistration.getMessage());
     }
 }

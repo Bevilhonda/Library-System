@@ -7,26 +7,24 @@ import org.springframework.http.ResponseEntity;
 import static org.springframework.http.HttpStatus.*;
 
 public class Handler {
-    public static ResponseEntity<?> map(Throwable e) {
+    public static ResponseEntity<?> map(Throwable pattern) {
 
-        switch (e.getClass().getSimpleName()) {
+        switch (pattern.getClass().getSimpleName()) {
             case "AddressNotFound" -> {
-                return Convert((AddressNotFound) e);
+                return Convert((AddressNotFound) pattern);
             }
             case "ErrorSavingAddress" -> {
-                return Convert((ErrorSavingAddress) e);
+                return Convert((ErrorSavingAddress) pattern);
             }
 
             default -> {
-                return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(
-                        "Ocorreu um erro durante a operação.");
+                return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(pattern.getMessage());
             }
         }
     }
 
-    public static ResponseEntity<?> Convert(AddressNotFound e) {
-        return ResponseEntity.status(NOT_FOUND).body("O endereço com o id " + e.getId() +
-                " não  foi encontrado.");
+    public static ResponseEntity<?> Convert(AddressNotFound notFound) {
+        return ResponseEntity.status(NOT_FOUND).body(notFound.getMessage());
     }
 
     public static ResponseEntity<?> Convert(ErrorSavingAddress e) {

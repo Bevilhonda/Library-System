@@ -4,7 +4,7 @@ public class ErrorSavingAddress extends AddressExceptions {
     private final String message ;
 
     public ErrorSavingAddress() {
-        message = "Não foi possivel salvar este endereço.";
+        message = "Erro ao salvar endereço , preencha os campos novamente. ";
     }
 
     @Override
