@@ -6,7 +6,7 @@ public class AddressNotFound extends AddressExceptions {
     public AddressNotFound(Integer id ){
         this.id = id;
         message = "O endereço com o id " + getId() +
-                " não  foi encontrado.";
+                " não foi encontrado.";
     }
 
     @Override

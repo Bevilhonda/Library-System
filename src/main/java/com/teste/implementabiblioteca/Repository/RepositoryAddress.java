@@ -18,9 +18,9 @@ public interface RepositoryAddress extends JpaRepository<AddressEntity, Integer>
     AddressEntity getAddress(Integer id_endereco);
 
     @Modifying
-    @Query(value = "Insert into Endereco( id_endereco,rua,numero,bairro,cidade,estado) values " +
-            "(:id_endereco,:rua,:numero,:bairro,:cidade,:estado)",nativeQuery = true)
-    Integer saveAddress(Integer id_endereco, String rua , Integer numero, String bairro, String cidade, String estado);
+    @Query(value = "Insert into Endereco( rua,numero,bairro,cidade,estado) values " +
+            "(:rua,:numero,:bairro,:cidade,:estado)",nativeQuery = true)
+    Integer saveAddress( String rua , Integer numero, String bairro, String cidade, String estado);
     @Modifying
     @Query(value = "UPDATE Endereco set rua = :rua , numero = :numero , bairro = :bairro ," +
             " cidade = :cidade , estado = :estado  where id_endereco = :id_endereco", nativeQuery = true)

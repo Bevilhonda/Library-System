@@ -28,7 +28,7 @@ public class ServicesAddress {
 
     public void insertAddress(AddressEntity address) throws ErrorSavingAddress {
 
-        Integer insertAddress = repository.saveAddress(address.getIdAddress(), address.getStreet(), address.getNumber(), address.getZone(),
+        Integer insertAddress = repository.saveAddress( address.getStreet(), address.getNumber(), address.getZone(),
                 address.getCity(), address.getState());
         if (insertAddress == null) {
             throw new ErrorSavingAddress();

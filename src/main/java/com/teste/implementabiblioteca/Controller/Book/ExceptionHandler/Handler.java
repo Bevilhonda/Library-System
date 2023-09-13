@@ -1,6 +1,5 @@
 package com.teste.implementabiblioteca.Controller.Book.ExceptionHandler;
 
-import com.teste.implementabiblioteca.Model.Author.Exceptions.RegisterNotFound;
 import com.teste.implementabiblioteca.Model.Book.Exceptions.BookNotFound;
 import com.teste.implementabiblioteca.Model.Book.Exceptions.ErrorSavingBook;
 import com.teste.implementabiblioteca.Model.Book.Exceptions.RegisterBookNotFound;
