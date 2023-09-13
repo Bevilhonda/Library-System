@@ -3,6 +3,7 @@ package com.teste.implementabiblioteca.Controller.Book.ExceptionHandler;
 import com.teste.implementabiblioteca.Model.Author.Exceptions.RegisterNotFound;
 import com.teste.implementabiblioteca.Model.Book.Exceptions.BookNotFound;
 import com.teste.implementabiblioteca.Model.Book.Exceptions.ErrorSavingBook;
+import com.teste.implementabiblioteca.Model.Book.Exceptions.RegisterBookNotFound;
 import org.springframework.http.ResponseEntity;
 
 import static org.springframework.http.HttpStatus.*;
@@ -15,7 +16,7 @@ public class Handler {
                 return convert((BookNotFound) standard);
             }
             case "ListEmpty" -> {
-                return convert((RegisterNotFound) standard);
+                return convert((RegisterBookNotFound) standard);
             }
             case "ErrorSavingBook" -> {
                 return convert((ErrorSavingBook) standard);
@@ -31,9 +32,9 @@ public class Handler {
         return ResponseEntity.status(NOT_FOUND).body(notFound.getMessage());
     }
 
-    public static ResponseEntity<?> convert(RegisterNotFound e) {
+    public static ResponseEntity<?> convert(RegisterBookNotFound notRegister) {
 
-        return ResponseEntity.status(NOT_FOUND).body(e.getMessage());
+        return ResponseEntity.status(NOT_FOUND).body(notRegister.getMessage());
     }
 
     public static ResponseEntity<?> convert(ErrorSavingBook errorSavingBook) {

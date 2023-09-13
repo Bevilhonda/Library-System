@@ -1,8 +1,6 @@
 package com.teste.implementabiblioteca.Model.Author.Exceptions;
 
-import com.teste.implementabiblioteca.Model.Book.Exceptions.BookExceptions;
-
-public class RegisterNotFound extends BookExceptions {
+public class RegisterNotFound extends AuthorExceptions {
     private final String message ;
 
     public RegisterNotFound() {

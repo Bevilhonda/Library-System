@@ -3,40 +3,36 @@ package com.teste.implementabiblioteca.Controller.Library.ExceptionHandler;
 import com.teste.implementabiblioteca.Model.Library.Exceptions.ErrorSavingLibrary;
 import com.teste.implementabiblioteca.Model.Library.Exceptions.LibraryNotFound;
 import com.teste.implementabiblioteca.Model.Library.Exceptions.NameLibraryNotFound;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import static org.springframework.http.HttpStatus.*;
 
 public class Handler {
-    public static ResponseEntity<?> map(Throwable e) {
+    public static ResponseEntity<?> map(Throwable standard) {
 
-        switch (e.getClass().getSimpleName()) {
+        switch (standard.getClass().getSimpleName()) {
             case "LibraryNotFound" -> {
-                return convert((LibraryNotFound) e);
+                return convert((LibraryNotFound) standard);
             }
             case "NameLibraryNotFound" -> {
-                return convert((NameLibraryNotFound) e);
+                return convert((NameLibraryNotFound) standard);
             }
             case "ErrorSavingLibrary" -> {
-                return convert((ErrorSavingLibrary) e);
+                return convert((ErrorSavingLibrary) standard);
             }
 
             default -> {
-                return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(
-                        "Ocorreu um erro durante a operação.");
+                return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(standard.getMessage());
             }
         }
     }
 
     public static ResponseEntity<?> convert(LibraryNotFound e) {
-        return ResponseEntity.status(NOT_FOUND).body(
-                "A Biblioteca com o id " + e.getId() + " não  foi encontrada.");
+        return ResponseEntity.status(NOT_FOUND).body(e.getMessage());
     }
 
     public static ResponseEntity<?> convert(NameLibraryNotFound e) {
-        return ResponseEntity.status(NOT_FOUND).body(
-                "A Biblioteca com o nome " + e.getName() + " não  foi encontrada.");
+        return ResponseEntity.status(NOT_FOUND).body(e.getMessage());
     }
 
     public static ResponseEntity<?> convert(ErrorSavingLibrary e) {

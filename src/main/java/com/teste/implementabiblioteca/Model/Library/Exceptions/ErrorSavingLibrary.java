@@ -4,7 +4,7 @@ public class ErrorSavingLibrary extends LibraryExceptions {
     private final String message ;
 
     public ErrorSavingLibrary() {
-        message = "Não foi possivel inserir o autor.";
+        message = "Preencha novamente os campos.";
     }
 
     @Override

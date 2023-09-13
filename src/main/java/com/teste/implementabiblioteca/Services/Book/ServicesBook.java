@@ -2,7 +2,7 @@ package com.teste.implementabiblioteca.Services.Book;
 
 import com.teste.implementabiblioteca.Model.Book.Exceptions.BookNotFound;
 import com.teste.implementabiblioteca.Model.Book.Exceptions.ErrorSavingBook;
-import com.teste.implementabiblioteca.Model.Book.Exceptions.RegisterNotFound;
+import com.teste.implementabiblioteca.Model.Book.Exceptions.RegisterBookNotFound;
 import com.teste.implementabiblioteca.Model.Book.BookEntity;
 import com.teste.implementabiblioteca.Repository.RepositoryBook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +20,10 @@ public class ServicesBook {
         return book;
     }
 
-    public List<BookEntity> getAllBooks() throws RegisterNotFound {
+    public List<BookEntity> getAllBooks() throws RegisterBookNotFound {
         List<BookEntity> books = repository.getAllBooks();
         if (books.isEmpty()){
-            throw new RegisterNotFound();
+            throw new RegisterBookNotFound();
         }
         return books;
     }
