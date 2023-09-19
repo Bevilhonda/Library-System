@@ -27,16 +27,16 @@ public class Handler {
         }
     }
 
-    public static ResponseEntity<?> convert(LibraryNotFound e) {
-        return ResponseEntity.status(NOT_FOUND).body(e.getMessage());
+    public static ResponseEntity<?> convert(LibraryNotFound notFound) {
+        return ResponseEntity.status(NOT_FOUND).body(notFound.getMessage());
     }
 
-    public static ResponseEntity<?> convert(NameLibraryNotFound e) {
-        return ResponseEntity.status(NOT_FOUND).body(e.getMessage());
+    public static ResponseEntity<?> convert(NameLibraryNotFound nameNotFound) {
+        return ResponseEntity.status(NOT_FOUND).body(nameNotFound.getMessage());
     }
 
-    public static ResponseEntity<?> convert(ErrorSavingLibrary e) {
-        return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(e.getMessage());
+    public static ResponseEntity<?> convert(ErrorSavingLibrary errorSaving) {
+        return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(errorSaving.getMessage());
     }
 
 }

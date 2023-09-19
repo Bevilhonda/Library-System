@@ -1,7 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Address.Update;
 
 import com.teste.implementabiblioteca.Controller.Address.Update.DTO.DataAddressEntity;
-import com.teste.implementabiblioteca.Model.Address.Exceptions.AddressExceptions;
 import com.teste.implementabiblioteca.Services.Address.ServicesAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

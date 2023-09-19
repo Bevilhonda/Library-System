@@ -1,7 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Book.Search.AllBooks;
 
 import com.teste.implementabiblioteca.Controller.Book.Search.AllBooks.DTO.Response;
-import com.teste.implementabiblioteca.Model.Book.Exceptions.BookExceptions;
 import com.teste.implementabiblioteca.Model.Book.BookEntity;
 import com.teste.implementabiblioteca.Services.Book.ServicesBook;
 import org.springframework.beans.factory.annotation.Autowired;

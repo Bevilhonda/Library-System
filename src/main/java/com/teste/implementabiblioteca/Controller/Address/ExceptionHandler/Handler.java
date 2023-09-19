@@ -27,7 +27,7 @@ public class Handler {
         return ResponseEntity.status(NOT_FOUND).body(notFound.getMessage());
     }
 
-    public static ResponseEntity<?> Convert(ErrorSavingAddress e) {
-        return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(e.getMessage());
+    public static ResponseEntity<?> Convert(ErrorSavingAddress errorSaving) {
+        return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(errorSaving.getMessage());
     }
 }

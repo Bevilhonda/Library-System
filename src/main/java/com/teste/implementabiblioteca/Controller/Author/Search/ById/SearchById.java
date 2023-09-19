@@ -2,8 +2,6 @@ package com.teste.implementabiblioteca.Controller.Author.Search.ById;
 
 import com.teste.implementabiblioteca.Controller.Author.Search.ById.DTO.Response;
 import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
-import com.teste.implementabiblioteca.Model.Author.Exceptions.AuthorExceptions;
-import com.teste.implementabiblioteca.Model.Author.Exceptions.AuthorNotFound;
 import com.teste.implementabiblioteca.Services.Author.ServicesAuthor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

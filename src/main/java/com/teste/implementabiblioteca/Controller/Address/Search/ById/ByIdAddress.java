@@ -1,7 +1,5 @@
 package com.teste.implementabiblioteca.Controller.Address.Search.ById;
 
-import com.teste.implementabiblioteca.Model.Address.Exceptions.AddressExceptions;
-import com.teste.implementabiblioteca.Model.Address.Exceptions.AddressNotFound;
 import com.teste.implementabiblioteca.Controller.Address.Search.ById.DTO.Response;
 import com.teste.implementabiblioteca.Model.Address.AddressEntity;
 import com.teste.implementabiblioteca.Services.Address.ServicesAddress;

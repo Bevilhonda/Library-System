@@ -13,7 +13,7 @@ public class Handler {
             case "AuthorNotFound" -> {
                 return convert((AuthorNotFound) pattern);
                 /* quando a exceção for alguns dos casos ,
-                vai converter a exceção padrão chamada de pattern para o tipo personalizado
+                vai converter a exceção padrão,  chamada de pattern para o tipo personalizado
                  descrito na string */
             }
             case "ListEmptyException" -> {

@@ -1,6 +1,5 @@
 package com.teste.implementabiblioteca.Controller.Address.Insert;
 
-import com.teste.implementabiblioteca.Model.Address.Exceptions.AddressExceptions;
 import com.teste.implementabiblioteca.Controller.Address.Update.DTO.DataAddressEntity;
 
 import com.teste.implementabiblioteca.Services.Address.ServicesAddress;

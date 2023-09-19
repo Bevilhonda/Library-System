@@ -1,6 +1,5 @@
 package com.teste.implementabiblioteca.Controller.Library.Insert;
 
-import com.teste.implementabiblioteca.Model.Library.Exceptions.LibraryExceptions;
 import com.teste.implementabiblioteca.Controller.Library.Insert.DTO.DataLibraryEntity;
 import com.teste.implementabiblioteca.Services.Library.ServicesLibrary;
 import org.springframework.beans.factory.annotation.Autowired;

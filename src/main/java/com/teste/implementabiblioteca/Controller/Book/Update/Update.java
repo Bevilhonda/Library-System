@@ -1,6 +1,5 @@
 package com.teste.implementabiblioteca.Controller.Book.Update;
 
-import com.teste.implementabiblioteca.Model.Book.Exceptions.BookExceptions;
 import com.teste.implementabiblioteca.Services.Book.ServicesBook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

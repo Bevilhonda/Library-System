@@ -1,6 +1,5 @@
 package com.teste.implementabiblioteca.Controller.Book.Search.ById;
 
-import com.teste.implementabiblioteca.Model.Book.Exceptions.BookExceptions;
 import com.teste.implementabiblioteca.Controller.Book.Search.ById.DTO.Response;
 import com.teste.implementabiblioteca.Model.Book.BookEntity;
 import com.teste.implementabiblioteca.Services.Book.ServicesBook;

@@ -1,7 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Author.Insert;
 
 import com.teste.implementabiblioteca.Controller.Author.Insert.DTO.DataAuthorEntity;
-import com.teste.implementabiblioteca.Model.Author.Exceptions.AuthorExceptions;
 import com.teste.implementabiblioteca.Services.Author.ServicesAuthor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
