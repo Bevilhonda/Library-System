@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 import static com.teste.implementabiblioteca.Controller.Author.ExceptionHandler.Handler.map;
 import static org.springframework.http.HttpStatus.*;
 
@@ -17,7 +19,7 @@ public class InsertAuhtor {
     private ServicesAuthor service;
 
     @PostMapping("/InsertAuthor")
-    public ResponseEntity<?> insert(@RequestBody DataAuthorEntity author) {
+    public ResponseEntity<?> insert( @RequestBody @Valid DataAuthorEntity author) {
         try {
             service.insert(author.toModel());
 
