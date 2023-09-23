@@ -8,6 +8,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,8 +17,10 @@ import java.util.stream.Collectors;
 @ControllerAdvice // essa anotação serve para para capturar exceções de validação
 public class ConstraintExceptionMapper extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
-            MethodArgumentNotValidException errorValidation, HttpHeaders headers, HttpStatus status, WebRequest request) {
+            MethodArgumentNotValidException errorValidation, HttpHeaders headers, HttpStatus status,
+            WebRequest request) {
         Map<String, Object> errorsResponse = new HashMap<>();
+
         List<String> errorsValue = errorValidation.getBindingResult()
                 .getFieldErrors()
                 .stream()
@@ -45,7 +48,7 @@ public class ConstraintExceptionMapper extends ResponseEntityExceptionHandler {
      com metotos que pega cada tipo de erro, e o .getFieldErrors() é um metodo que pega a lista de erros
       gerados (FieldError) da exceção, que contém informações sobre os campos que
        falharam na validação. O método getDefaultMessage de FieldError retorna a mensagem de erro definida
-       nas anotações de validação , ou seja as mensagens que eu gravei em cada atributo na classse
+       nas anotações de validação , ou seja as mensagens que eu gravei em cada atributo na classe
         DataAuthorEntity */
 
     /* depois de mapear cada erro eles são colocados em uma lista , e adicionada no HASHMAP
