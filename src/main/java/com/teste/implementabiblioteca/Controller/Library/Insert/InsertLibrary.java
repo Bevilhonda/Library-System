@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 import static com.teste.implementabiblioteca.Controller.Library.ExceptionHandler.Handler.map;
 import static org.springframework.http.HttpStatus.*;
 
@@ -16,7 +18,7 @@ public class InsertLibrary {
     @Autowired
     private ServicesLibrary service;
     @PostMapping("/Insert")
-    public ResponseEntity<?> insert(@RequestBody DataLibraryEntity dataLibrary){
+    public ResponseEntity<?> insert(@RequestBody @Valid DataLibraryEntity dataLibrary){
         try {
              service.insert(dataLibrary.toModel());
 
