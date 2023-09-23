@@ -49,7 +49,7 @@ public class ConstraintExceptionMapper extends ResponseEntityExceptionHandler {
         DataAuthorEntity */
 
     /* depois de mapear cada erro eles são colocados em uma lista , e adicionada no HASHMAP
-    com a chave de nome " errors" e o valor da chave chamado errorValue
+    com a chave de nome "errorsResponse" e o valor da chave chamado errorValue
      */
     /* depois no corpo da resposta ResponseEntity é passado o Hashmap que foi chamado de
     errorsResponse
