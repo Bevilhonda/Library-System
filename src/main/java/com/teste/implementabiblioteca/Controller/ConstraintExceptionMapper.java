@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @ControllerAdvice // essa anotação serve para para capturar exceções de validação
@@ -19,7 +17,7 @@ public class ConstraintExceptionMapper extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException errorValidation, HttpHeaders headers, HttpStatus status,
             WebRequest request) {
-        Map<String, Object> errorsResponse = new HashMap<>();
+
 
         List<String> errorsValue = errorValidation.getBindingResult()
                 .getFieldErrors()
@@ -27,9 +25,9 @@ public class ConstraintExceptionMapper extends ResponseEntityExceptionHandler {
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .collect(Collectors.toList());
 
-        errorsResponse.put("errors", errorsValue);
+        ValidationErrorResponse response = new ValidationErrorResponse(errorsValue);
 
-        return ResponseEntity.badRequest().body(errorsResponse);
+        return ResponseEntity.badRequest().body(response);
     }
 
     /* ResponseEntityExceptionHandler,é uma classe que é fornecida pelo Spring Framework
