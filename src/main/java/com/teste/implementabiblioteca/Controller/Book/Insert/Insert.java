@@ -1,5 +1,6 @@
-package com.teste.implementabiblioteca.Controller.Book.Insert.DTO;
+package com.teste.implementabiblioteca.Controller.Book.Insert;
 
+import com.teste.implementabiblioteca.Controller.Book.Insert.DTO.DataBookEntity;
 import com.teste.implementabiblioteca.Services.Book.ServicesBook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class Insert {
     @Autowired
     private ServicesBook service;
     @PostMapping("/Insert/Book")
-    public ResponseEntity<?> insert(@RequestBody @Valid  DataBookEntity book){
+    public ResponseEntity<?> insert(@RequestBody @Valid DataBookEntity book){
         try {
              service.insert(book.toModel());
             return ResponseEntity.status(OK).build();
