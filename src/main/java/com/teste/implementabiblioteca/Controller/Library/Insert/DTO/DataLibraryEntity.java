@@ -16,8 +16,6 @@ public class DataLibraryEntity {
     String nome;
     @JsonProperty("fk_endereco")
     @NotNull(message = "O número do Id de endereço não pode ser nulo.")
-    @Min(value = 1, message = "O número mínimo do ID é 1.")
-    @Max(value = Long.MAX_VALUE, message = "O ID máximo do endereço é infinito.")
     Integer fk_endereco;
 
     public DataLibraryEntity(Integer id_biblioteca, String nome, Integer fk_endereco) {

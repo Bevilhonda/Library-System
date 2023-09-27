@@ -15,8 +15,6 @@ public class DataAddressEntity {
     private String rua;
     @JsonProperty("numero")
     @NotNull(message = "O número da casa não pode ser nulo.")
-    @Min(value = 1, message = "O número mínimo do endreço é 1.")
-    @Max(value = 9999, message = "O número máximo do endereço é 9999.")
     private Integer numero;
 
     @JsonProperty("bairro")

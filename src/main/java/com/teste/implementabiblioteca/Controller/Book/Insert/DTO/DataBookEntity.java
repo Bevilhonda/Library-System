@@ -14,18 +14,12 @@ public class DataBookEntity {
     private String titulo;
     @JsonProperty("edicao")
     @NotNull(message = "O número da edição não pode ser nulo.")
-    @Min(value = 1, message = "O número mínimo da edição é 1.")
-    @Max(value = 9999, message = "O número máximo da edição é 9999.")
     private Integer edicao;
     @JsonProperty("fk_autor")
     @NotNull(message = "O número do Id de autor não pode ser nulo.")
-    @Min(value = 1, message = "O número mínimo do ID é 1.")
-    @Max(value = Long.MAX_VALUE, message = "O ID máximo do usuário é infinito.")
     private Integer fk_autor;
     @JsonProperty("fk_biblioteca")
     @NotNull(message = "O número do Id de biblioteca não pode ser nulo.")
-    @Min(value = 1, message = "O número mínimo do ID é 1.")
-    @Max(value = Long.MAX_VALUE, message = "O ID máximo da biblioteca é infinito.")
     private Integer fk_biblioteca;
     @JsonProperty("data_publication")
     @NotNull(message = "A data de publicação não pode ser nula.")

@@ -3,18 +3,25 @@ package com.teste.implementabiblioteca.Controller.Address.Insert.DTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.teste.implementabiblioteca.Model.Address.AddressEntity;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class DataAddressEntity {
     @JsonProperty("id_endereco")
     private Integer id_endereco;
 
     @JsonProperty("rua")
+    @NotBlank(message = "O campo 'Rua' é obrigatório.")
     private String rua;
     @JsonProperty("numero")
+    @NotNull(message = "O número da casa não pode ser nulo.")
     private Integer numero;
 
     @JsonProperty("bairro")
+    @NotBlank(message = "O campo 'Bairro' é obrigatório.")
     private String bairro;
     @JsonProperty("cidade")
+    @NotBlank(message = "O campo 'Cidade' é obrigatório.")
     private String cidade;
     @JsonProperty("estado")
     private String estado;

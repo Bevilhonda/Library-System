@@ -3,12 +3,17 @@ package com.teste.implementabiblioteca.Controller.Library.Update.DTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.teste.implementabiblioteca.Model.Library.LibraryEntity;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class DataLibraryUpdate {
     @JsonProperty("id_biblioteca")
     Integer id_biblioteca;
     @JsonProperty("nome")
+    @NotBlank(message = "O campo 'Nome' é obrigatório.")
     String nome;
     @JsonProperty("fk_endereco")
+    @NotNull(message = "O número do Id de endereço não pode ser nulo.")
     Integer fk_endereco;
 
     public DataLibraryUpdate(Integer id_biblioteca, String nome, Integer fk_endereco) {
