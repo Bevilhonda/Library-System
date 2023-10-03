@@ -3,25 +3,23 @@ package com.teste.implementabiblioteca.Controller.Library.Insert.DTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.teste.implementabiblioteca.Model.Library.LibraryEntity;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-public class DataLibraryEntity {
+public class RequestData {
     @JsonProperty("id_biblioteca")
     Integer id_biblioteca;
     @JsonProperty("nome")
     @NotBlank(message = "O campo 'Nome' é obrigatório.")
     String nome;
-    @JsonProperty("fk_endereco")
-    @NotNull(message = "O número do Id de endereço não pode ser nulo.")
+    @JsonProperty("id_endereco")
+    @NotNull(message = "O número do Id de endereço é obrigatório.")
     Integer fk_endereco;
 
-    public DataLibraryEntity(Integer id_biblioteca, String nome, Integer fk_endereco) {
+    public RequestData(Integer id_biblioteca, String nome, Integer id_endereco) {
         this.id_biblioteca = id_biblioteca;
         this.nome = nome;
-        this.fk_endereco = fk_endereco;
+        this.fk_endereco = id_endereco;
     }
 
     public LibraryEntity toModel() {

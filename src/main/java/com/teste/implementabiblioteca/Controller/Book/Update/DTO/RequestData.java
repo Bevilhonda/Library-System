@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.time.LocalDate;
 
-public class DataBookUpdate {
+public class RequestData {
     @JsonProperty("id_Livro")
     private Integer id_Livro;
     @JsonProperty("titulo")
@@ -28,7 +28,7 @@ public class DataBookUpdate {
     @Past(message = "A data de publicação é inválida.")
     private LocalDate data_publication;
 
-    public DataBookUpdate(String title, int idAuthor, LocalDate publicationDate, int edition, int idLibrary, int idBook) {
+    public RequestData(String title, int idAuthor, LocalDate publicationDate, int edition, int idLibrary, int idBook) {
         this.id_Livro = idBook;
         this.titulo = title;
         this.edicao = edition;

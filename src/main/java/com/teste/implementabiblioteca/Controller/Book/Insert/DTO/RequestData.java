@@ -6,27 +6,27 @@ import com.teste.implementabiblioteca.Model.Book.BookEntity;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 
-public class DataBookEntity {
+public class RequestData {
     @JsonProperty("id_Livro")
     private Integer id_Livro;
     @JsonProperty("titulo")
     @NotBlank(message = "O campo 'Titulo' é obrigatório.")
     private String titulo;
     @JsonProperty("edicao")
-    @NotNull(message = "O número da edição não pode ser nulo.")
+    @NotNull(message = "O número da edição é obrigatório.")
     private Integer edicao;
-    @JsonProperty("fk_autor")
-    @NotNull(message = "O número do Id de autor não pode ser nulo.")
+    @JsonProperty("id_autor")
+    @NotNull(message = "O número do Id de autor é obrigatório.")
     private Integer fk_autor;
-    @JsonProperty("fk_biblioteca")
-    @NotNull(message = "O número do Id de biblioteca não pode ser nulo.")
+    @JsonProperty("id_biblioteca")
+    @NotNull(message = "O número do Id de biblioteca é obrigatório.")
     private Integer fk_biblioteca;
     @JsonProperty("data_publication")
-    @NotNull(message = "A data de publicação não pode ser nula.")
-    @Past(message = "A data de publicação é inválida.")
+    @NotNull(message = "A data de publicação é obrigatório.")
+    @Past(message = "A data de publicação não pode ser no futuro.")
     private LocalDate data_publication;
 
-    public DataBookEntity(String title, int idAuthor, LocalDate publicationDate, int edition, int idLibrary, int idBook) {
+    public RequestData(String title, int idAuthor, LocalDate publicationDate, int edition, int idLibrary, int idBook) {
         this.id_Livro = idBook;
         this.titulo = title;
         this.edicao = edition;

@@ -6,7 +6,7 @@ import com.teste.implementabiblioteca.Model.Library.LibraryEntity;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-public class DataLibraryUpdate {
+public class RequestData {
     @JsonProperty("id_biblioteca")
     Integer id_biblioteca;
     @JsonProperty("nome")
@@ -16,7 +16,7 @@ public class DataLibraryUpdate {
     @NotNull(message = "O número do Id de endereço não pode ser nulo.")
     Integer fk_endereco;
 
-    public DataLibraryUpdate(Integer id_biblioteca, String nome, Integer fk_endereco) {
+    public RequestData(Integer id_biblioteca, String nome, Integer fk_endereco) {
         this.id_biblioteca = id_biblioteca;
         this.nome = nome;
         this.fk_endereco = fk_endereco;
