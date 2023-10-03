@@ -2,13 +2,9 @@ package com.teste.implementabiblioteca.Controller;
 
 import java.util.List;
 
-public class ValidationErrorResponse {
-    private final List<String> errorsGenerat;
+public record ValidationErrorResponse(List<String> errorsGenerated) {
+    public static ValidationErrorResponse fromErrors(List<String> errors) {
+        return new ValidationErrorResponse(errors);
+    }
 
-    public ValidationErrorResponse(List<String> errors) {
-        this.errorsGenerat = errors;
-    }
-    public List<String> getErrorsGenerat() {
-        return errorsGenerat;
-    }
 }
