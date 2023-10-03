@@ -12,13 +12,13 @@ public class AddressEntity {
     }
 
     public AddressEntity(Integer idAddress, String street, Integer number,
-                         String city, String zone, String state) {
+                         String city, String neighborhood, String state) {
         this.cidade = city;
         this.rua = street;
         this.numero = number;
         this.id_endereco = idAddress;
         this.estado = state;
-        this.bairro = zone;
+        this.bairro = neighborhood;
     }
 
     @Id
@@ -44,7 +44,7 @@ public class AddressEntity {
         return numero;
     }
 
-    public String getZone() {
+    public String getNeighborhood() {
         return bairro;
     }
 

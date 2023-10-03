@@ -5,10 +5,8 @@ import com.teste.implementabiblioteca.Model.Book.BookEntity;
 import java.util.List;
 
 public class Response {
-    private final List<Response> list;
 
     public Response(List<Response> list) {
-        this.list = list;
     }
 
     public static List<Book> from(List<BookEntity> list ){

@@ -1,6 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Library.Insert;
 
-import com.teste.implementabiblioteca.Controller.Library.Insert.DTO.DataLibraryEntity;
+import com.teste.implementabiblioteca.Controller.Library.Insert.DTO.RequestData;
 import com.teste.implementabiblioteca.Services.Library.ServicesLibrary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ public class InsertLibrary {
     @Autowired
     private ServicesLibrary service;
     @PostMapping("/Insert")
-    public ResponseEntity<?> insert(@RequestBody @Valid DataLibraryEntity dataLibrary){
+    public ResponseEntity<?> insert(@RequestBody @Valid RequestData dataLibrary){
         try {
              service.insert(dataLibrary.toModel());
 

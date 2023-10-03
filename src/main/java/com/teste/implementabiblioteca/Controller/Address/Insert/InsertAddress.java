@@ -1,6 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Address.Insert;
 
-import com.teste.implementabiblioteca.Controller.Address.Update.DTO.DataAddressEntity;
+import com.teste.implementabiblioteca.Controller.Address.Update.DTO.RequestData;
 
 import com.teste.implementabiblioteca.Services.Address.ServicesAddress;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class InsertAddress {
     private ServicesAddress service;
 
     @PostMapping("/Insert/Address")
-    public ResponseEntity<?> insertAddress(@RequestBody @Valid DataAddressEntity newAddress) {
+    public ResponseEntity<?> insertAddress(@RequestBody @Valid RequestData newAddress) {
         try {
             service.insertAddress(newAddress.toModel());
 
