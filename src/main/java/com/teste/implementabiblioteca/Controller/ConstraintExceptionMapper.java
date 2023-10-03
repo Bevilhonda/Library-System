@@ -18,14 +18,13 @@ public class ConstraintExceptionMapper extends ResponseEntityExceptionHandler {
             MethodArgumentNotValidException errorValidation, HttpHeaders headers, HttpStatus status,
             WebRequest request) {
 
-
         List<String> errorsValue = errorValidation.getBindingResult()
                 .getFieldErrors()
                 .stream()
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .collect(Collectors.toList());
 
-        ValidationErrorResponse response = new ValidationErrorResponse(errorsValue);
+        ValidationErrorResponse response = ValidationErrorResponse.fromErrors(errorsValue);
 
         return ResponseEntity.badRequest().body(response);
     }
@@ -52,7 +51,5 @@ public class ConstraintExceptionMapper extends ResponseEntityExceptionHandler {
     /* depois de mapear cada erro eles são colocados em uma lista , e adicionada no HASHMAP
     com a chave de nome "errors" e o valor da chave chamado errorValue
      */
-    /* depois no corpo da resposta ResponseEntity é passado o Hashmap que foi chamado de
-    errorsResponse
-     */
+
 }
