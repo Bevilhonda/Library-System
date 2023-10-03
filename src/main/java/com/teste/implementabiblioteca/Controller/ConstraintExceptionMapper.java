@@ -24,7 +24,7 @@ public class ConstraintExceptionMapper extends ResponseEntityExceptionHandler {
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .collect(Collectors.toList());
 
-        ValidationErrorResponse response = ValidationErrorResponse.fromErrors(errorsValue);
+        ValidationErrors response = ValidationErrors.listErrors(errorsValue);
 
         return ResponseEntity.badRequest().body(response);
     }
