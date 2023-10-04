@@ -3,15 +3,15 @@ package com.teste.implementabiblioteca.Controller.Address.Search.ById.DTO;
 public class FullAddress {
     private final String street;
     private final Integer number;
-    private final String neighborhood;
+    private final String boroughs;
 
-    public FullAddress(String street, Integer number, String neighborhood) {
+    public FullAddress(String street, Integer number, String boroughs) {
         this.street = street;
         this.number = number;
-        this.neighborhood = neighborhood;
+        this.boroughs = boroughs;
     }
-    public static FullAddress createFullAddress(String street, Integer number, String neighborhood) {
-        return new FullAddress(street, number, neighborhood);
+    public static FullAddress createFullAddress(String street, Integer number, String boroughs) {
+        return new FullAddress(street, number, boroughs);
     }
 
     public String getStreet() {
@@ -22,7 +22,7 @@ public class FullAddress {
         return number;
     }
 
-    public String getNeighborhood() {
-        return neighborhood;
+    public String getBoroughs() {
+        return boroughs;
     }
 }

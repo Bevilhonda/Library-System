@@ -5,7 +5,7 @@ import com.teste.implementabiblioteca.Model.Address.AddressEntity;
 public record Response(Integer id_endereco, FullAddress fullAddress, String cidade, String estado) {
     public static Response from(AddressEntity address) {
         FullAddress fullAddress = FullAddress.createFullAddress
-                (address.getStreet(), address.getNumber(), address.getNeighborhood());
+                (address.getStreet(), address.getNumber(), address.getBoroughs());
 
         return new Response(address.getIdAddress(), fullAddress, address.getCity(), address.getState());
     }

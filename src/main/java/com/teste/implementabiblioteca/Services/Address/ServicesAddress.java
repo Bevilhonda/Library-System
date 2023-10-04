@@ -28,7 +28,7 @@ public class ServicesAddress {
 
     public void insertAddress(AddressEntity address) throws ErrorSavingAddress {
 
-        Integer insertAddress = repository.saveAddress( address.getStreet(), address.getNumber(), address.getNeighborhood(),
+        Integer insertAddress = repository.saveAddress( address.getStreet(), address.getNumber(), address.getBoroughs(),
                 address.getCity(), address.getState());
         if (insertAddress == null) {
             throw new ErrorSavingAddress();
@@ -42,7 +42,7 @@ public class ServicesAddress {
             throw new AddressNotFound(id);
         }
         repository.updateAddress(addressEntity.getStreet(), addressEntity.getNumber(),
-                addressEntity.getNeighborhood(),addressEntity.getCity(), addressEntity.getState(), id);
+                addressEntity.getBoroughs(),addressEntity.getCity(), addressEntity.getState(), id);
     }
     public void deleteAddress(Integer id) throws AddressNotFound {
 

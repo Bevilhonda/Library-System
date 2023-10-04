@@ -28,13 +28,13 @@ public class RequestData {
     private String estado;
 
     public RequestData(Integer idAddress, String street, Integer number,
-                       String city, String zone, String state) {
+                       String city, String boroughs, String state) {
         this.cidade = city;
         this.rua = street;
         this.numero = number;
         this.id_endereco = idAddress;
         this.estado = state;
-        this.bairro = zone;
+        this.bairro = boroughs;
     }
 
     public AddressEntity toModel() {
@@ -54,7 +54,7 @@ public class RequestData {
         return numero;
     }
 
-    public String getZone() {
+    public String getBoroughs() {
         return bairro;
     }
 
