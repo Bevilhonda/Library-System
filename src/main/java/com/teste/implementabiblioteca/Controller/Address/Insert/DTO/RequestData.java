@@ -9,12 +9,11 @@ import javax.validation.constraints.NotNull;
 public class RequestData {
     @JsonProperty("id_endereco")
     private Integer id_endereco;
-
     @JsonProperty("rua")
     @NotBlank(message = "O campo 'rua' é obrigatório.")
     private String rua;
     @JsonProperty("numero")
-    @NotNull(message = "O número da residência é obrigatório.")
+    @NotBlank(message = "O número da residência é obrigatório.")
     private Integer numero;
 
     @JsonProperty("bairro")
@@ -40,6 +39,7 @@ public class RequestData {
         return new AddressEntity(id_endereco, rua, numero,
                 cidade, bairro, estado);
     }
+
     public Integer getId_endereco() {
         return id_endereco;
     }
