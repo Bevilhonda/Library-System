@@ -24,9 +24,7 @@ public class ConstraintExceptionMapper extends ResponseEntityExceptionHandler {
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .collect(Collectors.toList());
 
-        ListsErrorsValidation response = ListsErrorsValidation.listErrors(errorsValue);
-
-        return ResponseEntity.badRequest().body(response);
+        return ResponseEntity.badRequest().body(errorsValue);
     }
 
     /* ResponseEntityExceptionHandler,é uma classe que é fornecida pelo Spring Framework
