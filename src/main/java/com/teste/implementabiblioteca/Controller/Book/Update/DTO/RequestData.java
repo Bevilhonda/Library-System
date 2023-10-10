@@ -38,7 +38,7 @@ public class RequestData {
     }
 
     public BookEntity toModel() {
-        return new BookEntity(titulo,fk_autor,data_publication,edicao,fk_biblioteca,id_Livro);
+        return new BookEntity(titulo, fk_autor, data_publication, edicao, fk_biblioteca, id_Livro);
     }
 
     public Integer getId_Livro() {

@@ -1,13 +1,8 @@
 package com.teste.implementabiblioteca.Controller.Author.Search.ByLastName.DTO;
 
-public class LastName {
-    private final String lastName;
-
-    public LastName(String lastName) {
-        this.lastName = lastName;
+public record LastName(String lastName) {
+    public static LastName createLastname(String lastName) {
+        return new LastName(lastName);
     }
 
-    public String getLastName() {
-        return lastName;
-    }
 }

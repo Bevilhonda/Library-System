@@ -4,7 +4,7 @@ import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 
 import java.util.List;
 
-public record Response (List<Author> responseList){
+public record Response(List<Author> responseList) {
 
     public static Response from(List<AuthorEntity> authorlist) {
 

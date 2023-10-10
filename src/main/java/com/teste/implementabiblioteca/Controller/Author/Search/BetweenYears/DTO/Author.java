@@ -4,32 +4,11 @@ import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 
 import java.time.LocalDate;
 
-public class Author {
-    private final Integer id;
-    private final Name nameAndLastname;
-    private final LocalDate data_nascimento;
-
-    public Author(Integer id, Name nameLastname, LocalDate data_nascimento) {
-        this.id = id;
-        this.nameAndLastname = nameLastname;
-        this.data_nascimento = data_nascimento;
-    }
+public record Author(Integer id, Name nameLastname, LocalDate data_nascimento) {
 
     public static Author from(AuthorEntity authorEntity) {
-        return new Author(authorEntity.getIdAuthor(),
-                        new Name(authorEntity.getName()+ " " + authorEntity.getLastname())
-                        ,authorEntity.getDateBirth());
-    }
+        Name name = Name.createName(authorEntity.getName());
 
-    public Integer getId() {
-        return id;
-    }
-
-    public Name getNameAndLastname() {
-        return nameAndLastname;
-    }
-
-    public LocalDate getData_nascimento() {
-        return data_nascimento;
+        return new Author(authorEntity.getIdAuthor(), name, authorEntity.getDateBirth());
     }
 }

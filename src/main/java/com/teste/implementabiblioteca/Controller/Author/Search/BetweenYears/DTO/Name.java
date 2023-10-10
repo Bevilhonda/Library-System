@@ -1,13 +1,7 @@
 package com.teste.implementabiblioteca.Controller.Author.Search.BetweenYears.DTO;
 
-public class Name {
-    private final String fullname;
-
-    public Name(String fullname) {
-        this.fullname = fullname;
-    }
-
-    public String getFullname() {
-        return fullname;
+public record Name(String fullname) {
+    public static Name createName(String fullname) {
+        return new Name(fullname);
     }
 }
