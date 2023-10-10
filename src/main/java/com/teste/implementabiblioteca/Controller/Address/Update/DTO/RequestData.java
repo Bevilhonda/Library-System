@@ -14,7 +14,7 @@ public class RequestData {
     @NotBlank(message = "O campo 'Rua' é obrigatório.")
     private String rua;
     @JsonProperty("numero")
-    @NotNull(message = "O número da residência é obrigatório.")
+    @NotBlank(message = "O número da residência é obrigatório.")
     private Integer numero;
 
     @JsonProperty("bairro")
