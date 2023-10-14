@@ -30,7 +30,7 @@ public class ServicesBook {
 
     public void insert(BookEntity book) throws ErrorSavingBook {
 
-        Integer insertData = repository.insert(book.geTitle(),book.getData_publication(),book.getEdition(),
+        Integer insertData = repository.insert(book.getTitle(),book.getData_publication(),book.getEdition(),
                 book.getFkAuthor(),book.getFkLibrary());
         if (insertData == null) {
             throw new ErrorSavingBook();
@@ -43,7 +43,7 @@ public class ServicesBook {
             throw new BookNotFound(id);
         }
 
-        repository.update(book.geTitle(),book.getData_publication(),
+        repository.update(book.getTitle(),book.getData_publication(),
                 book.getEdition(),id);
     }
 

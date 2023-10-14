@@ -33,7 +33,7 @@ public class BookEntity {
     private Integer fk_biblioteca;
     private LocalDate data_publication;
 
-    public String geTitle() {
+    public String getTitle() {
         return titulo;
     }
 
