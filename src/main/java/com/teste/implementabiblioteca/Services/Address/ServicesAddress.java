@@ -3,6 +3,7 @@ package com.teste.implementabiblioteca.Services.Address;
 import com.teste.implementabiblioteca.Model.Address.Exceptions.AddressNotFound;
 import com.teste.implementabiblioteca.Model.Address.Exceptions.ErrorSavingAddress;
 import com.teste.implementabiblioteca.Model.Address.AddressEntity;
+import com.teste.implementabiblioteca.Model.Address.Exceptions.RegisterAddressNotFound;
 import com.teste.implementabiblioteca.Repository.RepositoryAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,12 @@ public class ServicesAddress {
         return addressEntity;
     }
 
-    public List<AddressEntity> getAll() {
-        return null;
+    public List<AddressEntity> getAllAddress() throws RegisterAddressNotFound {
+        List<AddressEntity> listAddress = repository.getAllAddress();
+        if (listAddress == null){
+            throw new RegisterAddressNotFound();
+        }
+        return listAddress;
     }
 
     public void insertAddress(AddressEntity address) throws ErrorSavingAddress {

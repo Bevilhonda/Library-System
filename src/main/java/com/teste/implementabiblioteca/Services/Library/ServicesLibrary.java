@@ -4,6 +4,7 @@ package com.teste.implementabiblioteca.Services.Library;
 import com.teste.implementabiblioteca.Model.Library.Exceptions.ErrorSavingLibrary;
 import com.teste.implementabiblioteca.Model.Library.Exceptions.LibraryNotFound;
 import com.teste.implementabiblioteca.Model.Library.Exceptions.NameLibraryNotFound;
+import com.teste.implementabiblioteca.Model.Library.Exceptions.RegisterLibraryNotFound;
 import com.teste.implementabiblioteca.Model.Library.LibraryEntity;
 import com.teste.implementabiblioteca.Repository.RepositoryLibrary;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,15 @@ public class ServicesLibrary {
         }
         return name;
     }
+
+    public List<LibraryEntity> getAllLibrary() throws RegisterLibraryNotFound{
+        List<LibraryEntity> list = repository.getAllLibrary();
+        if (list == null){
+            throw new RegisterLibraryNotFound();
+        }
+        return list;
+    }
+
 
     public void insert(LibraryEntity library) throws ErrorSavingLibrary {
         Integer dataLibrary = repository.insert(library.getName(), library.getFkAddress());
