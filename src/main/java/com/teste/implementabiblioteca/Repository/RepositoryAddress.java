@@ -8,14 +8,12 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 @Transactional
 @Service
 public interface RepositoryAddress extends JpaRepository<AddressEntity, Integer> {
-
-    @Query(value = "select * from Endereco where id_endereco = :id_endereco ", nativeQuery = true)
-    AddressEntity getAddress(Integer id_endereco);
 
     @Modifying
     @Query(value = "Insert into Endereco( rua,numero,bairro,cidade,estado) values " +
@@ -29,5 +27,11 @@ public interface RepositoryAddress extends JpaRepository<AddressEntity, Integer>
     @Modifying
     @Query(value = "Delete from Endereco where id_endereco = :id_endereco",nativeQuery = true)
     Integer deleteAddress(Integer id_endereco);
+
+    @Query(value = "select * from Endereco where id_endereco = :id_endereco ", nativeQuery = true)
+    AddressEntity getAddress(Integer id_endereco);
+
+    @Query(value = "Select * from Endereco",nativeQuery = true )
+    List<AddressEntity> getAllAddress();
 
 }

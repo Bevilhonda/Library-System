@@ -22,8 +22,7 @@ public interface RepositoryLibrary extends JpaRepository<LibraryEntity, Integer>
     List<LibraryEntity> getAllName(String nome);
 
 
-    @Query(value = "select * from Biblioteca join Endereco on " +
-            "(Biblioteca.fk_endereco = Endereco.id_endereco) ", nativeQuery = true)
+    @Query(value = "select * from Biblioteca ", nativeQuery = true)
     List<LibraryEntity> getAllLibrary();
 
     @Modifying
