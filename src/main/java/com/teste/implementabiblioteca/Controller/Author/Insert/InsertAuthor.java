@@ -14,7 +14,7 @@ import static com.teste.implementabiblioteca.Controller.Author.ExceptionHandler.
 import static org.springframework.http.HttpStatus.*;
 
 @RestController
-public class Insert {
+public class InsertAuthor {
     @Autowired
     private ServicesAuthor service;
 

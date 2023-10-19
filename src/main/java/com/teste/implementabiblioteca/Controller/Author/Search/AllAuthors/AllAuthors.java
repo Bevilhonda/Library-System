@@ -1,6 +1,5 @@
 package com.teste.implementabiblioteca.Controller.Author.Search.AllAuthors;
 
-
 import com.teste.implementabiblioteca.Controller.Author.Search.AllAuthors.DTO.Response;
 import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 import com.teste.implementabiblioteca.Services.Author.ServicesAuthor;
@@ -18,7 +17,6 @@ import static org.springframework.http.HttpStatus.*;
 public class AllAuthors {
     @Autowired
     private ServicesAuthor services;
-
     @GetMapping("/Authors")
     public ResponseEntity<?> getAllAuthors() {
         try {
