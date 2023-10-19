@@ -14,7 +14,7 @@ public class Handler {
             case "BookNotFound" -> {
                 return convert((BookNotFound) standard);
             }
-            case "ListEmpty" -> {
+            case "RegisterBookNotFound" -> {
                 return convert((RegisterBookNotFound) standard);
             }
             case "ErrorSavingBook" -> {
@@ -40,4 +40,5 @@ public class Handler {
 
         return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(errorSavingBook.getMessage());
     }
+
 }
