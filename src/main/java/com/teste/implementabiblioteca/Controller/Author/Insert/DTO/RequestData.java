@@ -20,7 +20,7 @@ public class RequestData {
     @NotBlank(message = "O campo 'Sobrenome' é obrigatório.")
     private String lastname;
     @JsonProperty("data_nascimento")
-    @NotBlank(message = "O campo 'Data de Nascimento' é obrigatório.")
+    @NotNull(message = "O campo 'Data de Nascimento' é obrigatório.")
     @Past(message = "A data de nascimento não pode ser no futuro.")
     private LocalDate dateBirth;
 
