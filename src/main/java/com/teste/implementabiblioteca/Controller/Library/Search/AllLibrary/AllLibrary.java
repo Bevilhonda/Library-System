@@ -27,7 +27,6 @@ public class AllLibrary {
 
         } catch (Throwable e) {
             return map(e);
-
         }
     }
 }
