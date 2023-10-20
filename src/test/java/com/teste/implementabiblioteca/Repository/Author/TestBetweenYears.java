@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataJpaTest
 @RunWith(SpringRunner.class)
 @ComponentScan()
-public class BetweenYears {
+public class TestBetweenYears {
     @Autowired
     RepositoryAuthor repository;
 
