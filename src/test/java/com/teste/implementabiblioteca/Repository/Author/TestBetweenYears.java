@@ -23,7 +23,7 @@ public class TestBetweenYears {
 
 
     @Test
-    void selectDateBirth() {
+    void selectByDateBirth() {
 
         LocalDate dateBirth1 = LocalDate.parse("1989-06-15");
         LocalDate dateBirth2 = LocalDate.parse("1999-12-25");

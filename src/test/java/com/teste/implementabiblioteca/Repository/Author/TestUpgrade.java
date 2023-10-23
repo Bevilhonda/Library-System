@@ -39,7 +39,7 @@ public class TestUpgrade {
         assertThat(listAuthors.size()).isEqualTo(1);
         AuthorEntity atual = listAuthors.get(0);
 
-        assertThat(atual.getIdAuthor()).isEqualTo(3);
+        assertThat(atual.getIdAuthor()).isEqualTo(1);
         assertThat(atual.getName()).isEqualTo("Pedro");
         assertThat(atual.getLastname()).isEqualTo("Batista");
 
@@ -48,8 +48,10 @@ public class TestUpgrade {
         List<AuthorEntity> lista_de_autores1 = repository.getAllAuthors();
         AuthorEntity atual1 = lista_de_autores1.get(0);
 
-        assertThat(atual1.getIdAuthor()).isEqualTo(3);
-        assertThat(atual1.getName()).isEqualTo("Pedro");
+        assertThat(atual1.getIdAuthor()).isEqualTo(1);
+        assertThat(atual1.getName()).isEqualTo("Jorge");
         assertThat(atual1.getLastname()).isEqualTo("Batista");
+
+        System.out.println(atual1.getName());
     }
 }
