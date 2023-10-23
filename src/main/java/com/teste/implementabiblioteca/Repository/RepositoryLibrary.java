@@ -16,10 +16,10 @@ import java.util.List;
 public interface RepositoryLibrary extends JpaRepository<LibraryEntity, Integer> {
 
     @Query(value = "select * from Biblioteca where id_biblioteca = :id_biblioteca ", nativeQuery = true)
-    LibraryEntity getLibrary(Integer id_biblioteca);
+    LibraryEntity getLibraryById(Integer id_biblioteca);
 
     @Query(value = "select * from Biblioteca where nome = :nome ", nativeQuery = true)
-    List<LibraryEntity> getAllName(String nome);
+    List<LibraryEntity> getLibraryByName(String nome);
 
 
     @Query(value = "select * from Biblioteca ", nativeQuery = true)
@@ -37,5 +37,5 @@ public interface RepositoryLibrary extends JpaRepository<LibraryEntity, Integer>
 
     @Modifying
     @Query(value = "Delete from Biblioteca where id_biblioteca = :id_biblioteca",nativeQuery = true)
-    void deleteLibrary(Integer id_biblioteca);
+    Integer deleteLibrary(Integer id_biblioteca);
 }
