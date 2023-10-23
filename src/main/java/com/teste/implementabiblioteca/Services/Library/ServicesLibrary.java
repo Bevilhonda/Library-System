@@ -19,7 +19,7 @@ public class ServicesLibrary {
 
     public LibraryEntity getById(Integer id) throws LibraryNotFound {
 
-        LibraryEntity library = repository.getLibrary(id);
+        LibraryEntity library = repository.getLibraryById(id);
 
         if (library == null) {
             throw new LibraryNotFound(id);
@@ -29,7 +29,7 @@ public class ServicesLibrary {
 
     public List<LibraryEntity> getLibraryByName(String nome) throws NameLibraryNotFound {
 
-        List<LibraryEntity> name = repository.getAllName(nome);
+        List<LibraryEntity> name = repository.getLibraryByName(nome);
 
         if (name.isEmpty()) {
             throw new NameLibraryNotFound(nome);
@@ -55,7 +55,7 @@ public class ServicesLibrary {
     }
 
     public void update(Integer id, LibraryEntity library) throws LibraryNotFound {
-        LibraryEntity dataLibrary = repository.getLibrary(id);
+        LibraryEntity dataLibrary = repository.getLibraryById(id);
         if (dataLibrary == null) {
             throw new LibraryNotFound(id);
         }
@@ -63,7 +63,7 @@ public class ServicesLibrary {
     }
 
     public void delete(Integer id) throws LibraryNotFound {
-        LibraryEntity library = repository.getLibrary(id);
+        LibraryEntity library = repository.getLibraryById(id);
 
         if (library == null) {
             throw new LibraryNotFound(id);

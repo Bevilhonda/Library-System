@@ -24,7 +24,7 @@ public class TestGetAddress {
 
     @Test
     void getAddress() {
-        Integer addressTest = repository.saveAddress
+        Integer saveAddress = repository.saveAddress
                 (
                         "Teodoro Machado",
                         20,
@@ -33,8 +33,8 @@ public class TestGetAddress {
                         "Paraná"
                 );
 
-        assertNotNull(addressTest);
-        assertEquals(addressTest, 1);
+        assertNotNull(saveAddress);
+        assertEquals(saveAddress, 1);
 
         List<AddressEntity> listAddress = repository.getAllAddress();
 

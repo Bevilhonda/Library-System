@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -35,6 +36,7 @@ class TestSave {
         assertNotNull(addressTest); // verifica se realmente inseriu o endereço
         assertEquals(1, addressTest.intValue()); /*  se o metodo save funcionou ,
         vai retornar o valor 1 e vai comparar com o valor de addressTest */
+        assertThat(address.getIdAddress()).isEqualTo(1);
 
 
         System.out.println(address.getStreet());
