@@ -10,7 +10,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -35,13 +34,13 @@ public class TestRepositoryAuthor {
 
         List<AuthorEntity> autorlist = repository.getAllAuthors();
 
-        Assertions.assertThat(autorlist.size()).isEqualTo(1);
+        assertThat(autorlist.size()).isEqualTo(1);
 
         AuthorEntity atual = autorlist.get(0);
 
-        Assertions.assertThat(atual.getName()).isEqualTo("Lucas");
-        Assertions.assertThat(atual.getLastname()).isEqualTo("Batista");
-        Assertions.assertThat(atual.getDateBirth()).isEqualTo(dateBirth);
+        assertThat(atual.getName()).isEqualTo("Lucas");
+        assertThat(atual.getLastname()).isEqualTo("Batista");
+        assertThat(atual.getDateBirth()).isEqualTo(dateBirth);
     }
 
     @Test

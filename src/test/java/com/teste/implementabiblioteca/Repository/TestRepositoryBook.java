@@ -23,8 +23,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class TestRepositoryBook {
     @Autowired
     RepositoryBook repository;
-
-
     @Test
     void save() {
         LocalDate dataPublication = LocalDate.parse("2018-10-15");

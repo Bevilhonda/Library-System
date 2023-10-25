@@ -22,7 +22,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class TestRepositoryLibrary {
     @Autowired
     RepositoryLibrary repository;
-
     @Test
     void save() {
         repository.insert("Biblioteca Maringá", 1);
