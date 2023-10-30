@@ -99,7 +99,7 @@ public class TestRepositoryAuthor {
         repository.save("Pedro", "Batista", dateBirth2);
 
         List<AuthorEntity> listAuthor = repository.getByDate(dateBirth1, dateBirth2);
-        Assertions.assertThat(listAuthor.get(0).getDateBirth()).isEqualTo(dateBirth1);
+        assertThat(listAuthor.get(0).getDateBirth()).isEqualTo(dateBirth1);
     }
 
     @Test

@@ -22,8 +22,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class TestRepositoryLibrary {
     @Autowired
     RepositoryLibrary repository;
+
     @Test
-    void save() {
+    void insert() {
         repository.insert("Biblioteca Maringá", 1);
 
         LibraryEntity library = repository.getLibraryById(1);
@@ -36,14 +37,6 @@ public class TestRepositoryLibrary {
     void update() {
 
         repository.insert("Biblioteca Maringá", 1);
-
-        /*
-        LibraryEntity library1 = repository.getLibraryById(1);
-
-        assertThat(library1.getName()).isEqualTo("Biblioteca Maringá");
-        assertThat(library1.getFkAddress()).isEqualTo(1);
-
-         */
 
         repository.update("Livraria Brasil", 1, 1);
 

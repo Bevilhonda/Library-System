@@ -23,6 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class TestRepositoryAddress {
     @Autowired
     RepositoryAddress repository;
+
     @Test
     void save() {
         repository.saveAddress("Teodoro Machado", 20, "Centro", "Maringá", "Paraná");
@@ -35,27 +36,28 @@ public class TestRepositoryAddress {
         assertThat(address.getCity()).isEqualTo("Maringá");
         assertThat(address.getState()).isEqualTo("Paraná");
     }
+
     @Test
     void update() {
+        String street = "Barão", boroughs = "Tokio", city = "Curitiba", state = "Paraná";
+        Integer number = 200;
 
-        repository.saveAddress("Teodoro Machado",20,"Centro","Maringá","Paraná");
+        repository.saveAddress("Teodoro Machado", 20, "Centro", "Maringá", "Paraná");
 
-        String rua = "Barão", bairro = "Tokio", cidade = "Curitiba",estado = "Paraná";
-        Integer numero = 20;
-
-        repository.updateAddress(rua,numero,bairro,cidade,estado,1);
+        repository.updateAddress(street, number, city, boroughs, state, 1);
 
         AddressEntity address = repository.getAddress(1);
 
         assertThat(address.getStreet()).isEqualTo("Barão");
-        assertThat(address.getNumber()).isEqualTo(20);
+        assertThat(address.getNumber()).isEqualTo(200);
         assertThat(address.getBoroughs()).isEqualTo("Tokio");
         assertThat(address.getCity()).isEqualTo("Curitiba");
         assertThat(address.getState()).isEqualTo("Paraná");
     }
+
     @Test
     void getAddress() {
-        repository.saveAddress("Teodoro Machado",20,"Centro","Maringá","Paraná");
+        repository.saveAddress("Teodoro Machado", 20, "Centro", "Maringá", "Paraná");
 
         List<AddressEntity> listAddress = repository.getAllAddress();
 
@@ -68,6 +70,7 @@ public class TestRepositoryAddress {
         assertThat(addressActual.getCity()).isEqualTo("Maringá");
         assertThat(addressActual.getState()).isEqualTo("Paraná");
     }
+
     @Test
     void getAllAddress() {
         repository.saveAddress("Teodoro Machado", 20, "Centro", "Maringá", "Paraná");
@@ -91,18 +94,19 @@ public class TestRepositoryAddress {
         assertThat(address2.getCity()).isEqualTo("Londrina");
         assertThat(address2.getState()).isEqualTo("Paraná");
     }
+
     @Test
     void delete() {
-        repository.saveAddress("Martins",20,"Centro","Maringá","Paraná");
+        repository.saveAddress("Martins", 20, "Centro", "Maringá", "Paraná");
 
         List<AddressEntity> listAddress = repository.getAllAddress();
 
-        AssertionsForClassTypes.assertThat(listAddress.size()).isEqualTo(1);
+        assertThat(listAddress.size()).isEqualTo(1);
 
         repository.deleteAddress(1);
 
         List<AddressEntity> listAddress2 = repository.getAllAddress();
 
-        AssertionsForClassTypes.assertThat(listAddress2.size()).isEqualTo(0);
+        assertThat(listAddress2.size()).isEqualTo(0);
     }
 }

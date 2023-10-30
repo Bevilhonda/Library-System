@@ -8,26 +8,26 @@ import com.teste.implementabiblioteca.Model.Address.Exceptions.RegisterAddressNo
 import com.teste.implementabiblioteca.Repository.RepositoryAddress;
 import com.teste.implementabiblioteca.Services.Address.ServicesAddress;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
 @DataJpaTest
+@RunWith(SpringRunner.class)
 @ComponentScan()
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
 public class TestServicesAddress {
     @Autowired
     ServicesAddress services;
-    @Autowired
-    RepositoryAddress repository;
-
     @Test
     void getById() throws AddressNotFound {
         AddressEntity address = new AddressEntity
@@ -97,7 +97,11 @@ public class TestServicesAddress {
         assertThat(list.size()).isEqualTo(1);
 
         assertThat(list.get(0).getIdAddress()).isEqualTo(1);
-        assertThat(list.get(0).getStreet()).isEqualTo("Lucas");
+        assertThat(list.get(0).getStreet()).isEqualTo(address2.getStreet());
+        assertThat(list.get(0).getNumber()).isEqualTo(address2.getNumber());
+        assertThat(list.get(0).getBoroughs()).isEqualTo(address2.getBoroughs());
+        assertThat(list.get(0).getCity()).isEqualTo(address2.getCity());
+        assertThat(list.get(0).getState()).isEqualTo(address2.getState());
     }
 
     @Test
@@ -149,5 +153,6 @@ public class TestServicesAddress {
                 .isInstanceOf(RegisterAddressNotFound.class)
                 .hasMessageContaining("Nenhum endereço foi cadastrado.");
     }
+    // ErrorSaving ? try catch no controler ?
 }
 
