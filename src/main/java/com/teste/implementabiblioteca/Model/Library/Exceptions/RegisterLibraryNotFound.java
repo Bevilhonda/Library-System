@@ -6,7 +6,8 @@ public class RegisterLibraryNotFound extends LibraryExceptions{
     public RegisterLibraryNotFound(){
         message = "Nenhuma Biblioteca foi cadastrada.";
     }
-    public String message(){
+
+    public String getMessage(){
         return message;
     }
 

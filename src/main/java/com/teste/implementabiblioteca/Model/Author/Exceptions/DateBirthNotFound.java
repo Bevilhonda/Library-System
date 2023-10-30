@@ -8,7 +8,7 @@ public class DateBirthNotFound extends AuthorExceptions {
         this.startDate = start;
         this.finalDate = finalDate;
         message = "Não foi encontrado autor nascido entre: "
-                + getStartDate() + "á: " + getFinalDate();
+                + getStartDate() + " á: " + getFinalDate();
     }
 
     public String getStartDate() {
