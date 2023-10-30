@@ -22,17 +22,17 @@ public interface RepositoryBook extends JpaRepository<BookEntity, Integer> {
     @Query(value = "select * from Livro ", nativeQuery = true)
     List<BookEntity> getAllBooks();
 
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Query(value = "Insert into Livro (titulo,data_publication,edicao,fk_autor,fk_biblioteca)" +
             "values (:titulo ,:data_publication ,:edicao ,:fk_autor ,:fk_biblioteca )", nativeQuery = true)
     Integer insert(String titulo, LocalDate data_publication, Integer edicao, Integer fk_autor, Integer fk_biblioteca);
 
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Query(value = "Update Livro set titulo = :titulo , data_publication = :data_publication , edicao = :edicao " +
             "where id_Livro = :id_Livro ", nativeQuery = true)
     Integer update(String titulo, LocalDate data_publication, Integer edicao, Integer id_Livro);
 
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Query(value = "Delete from Livro where id_Livro = :id_Livro ", nativeQuery = true)
     Integer delete(Integer id_Livro);
 }

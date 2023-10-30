@@ -25,17 +25,17 @@ public interface RepositoryAuthor extends JpaRepository<AuthorEntity, Integer> {
     @Query(value = "Select * from Autor where sobrenome = :sobrenome", nativeQuery = true)
     List<AuthorEntity> getByLastName(String sobrenome);
 
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Query(value = "insert into Autor ( nome, sobrenome, data_nascimento)" +
             " values ( :nome , :sobrenome, :data_nascimento)", nativeQuery = true)
     Integer save(String nome, String sobrenome, LocalDate data_nascimento);
 
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Query(value = "UPDATE Autor set nome = :nome , sobrenome = :sobrenome , data_nascimento = :data_nascimento " +
             " where id_autor = :id_autor", nativeQuery = true)
     Integer updateAuthor(String nome, String sobrenome, LocalDate data_nascimento, Integer id_autor);
 
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Query(value = "Delete from Autor where id_autor = :id_autor", nativeQuery = true)
     Integer deleteAuthor(Integer id_autor);
 

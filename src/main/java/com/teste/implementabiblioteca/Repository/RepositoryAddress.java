@@ -15,16 +15,16 @@ import java.util.List;
 @Service
 public interface RepositoryAddress extends JpaRepository<AddressEntity, Integer> {
 
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Query(value = "Insert into Endereco( rua,numero,bairro,cidade,estado) values " +
             "(:rua,:numero,:bairro,:cidade,:estado)",nativeQuery = true)
     Integer saveAddress( String rua , Integer numero, String bairro, String cidade, String estado);
-    @Modifying
-    @Query(value = "UPDATE Endereco set rua = :rua , numero = :numero , bairro = :bairro ," +
-            " cidade = :cidade , estado = :estado  where id_endereco = :id_endereco", nativeQuery = true)
-    Integer updateAddress(String rua , Integer numero, String bairro, String cidade, String estado, Integer id_endereco);
+    @Modifying(clearAutomatically = true)
+    @Query(value = "UPDATE Endereco set rua = :rua , numero = :numero , cidade = :cidade ," +
+            " bairro = :bairro , estado = :estado  where id_endereco = :id_endereco", nativeQuery = true)
+    Integer updateAddress(String rua , Integer numero, String cidade, String bairro, String estado, Integer id_endereco);
 
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Query(value = "Delete from Endereco where id_endereco = :id_endereco",nativeQuery = true)
     Integer deleteAddress(Integer id_endereco);
 
