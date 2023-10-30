@@ -25,33 +25,33 @@ public class ServicesAddress {
 
     public List<AddressEntity> getAllAddress() throws RegisterAddressNotFound {
         List<AddressEntity> listAddress = repository.getAllAddress();
-        if (listAddress == null){
+        if (listAddress.isEmpty()) {
             throw new RegisterAddressNotFound();
         }
         return listAddress;
     }
 
-    public void insertAddress(AddressEntity address) throws ErrorSavingAddress {
+    public void insertAddress(AddressEntity address) {
 
-        Integer insertAddress = repository.saveAddress( address.getStreet(), address.getNumber(), address.getBoroughs(),
-                address.getCity(), address.getState());
-        if (insertAddress == null) {
-            throw new ErrorSavingAddress();
-        }
+        repository.saveAddress(address.getStreet(), address.getNumber(),
+                address.getBoroughs(),address.getCity(), address.getState());
+
     }
 
     public void updateAddress(Integer id, AddressEntity addressEntity) throws AddressNotFound {
-        AddressEntity addressId = repository.getAddress(id);
+        AddressEntity address = repository.getAddress(id);
 
-        if (id == null) {
+        if (address == null) {
             throw new AddressNotFound(id);
         }
         repository.updateAddress(addressEntity.getStreet(), addressEntity.getNumber(),
-                addressEntity.getBoroughs(),addressEntity.getCity(), addressEntity.getState(), id);
+                addressEntity.getCity(),addressEntity.getBoroughs(), addressEntity.getState(), id);
     }
+
     public void deleteAddress(Integer id) throws AddressNotFound {
 
         AddressEntity address = repository.getAddress(id);
+
         if (address == null) {
             throw new AddressNotFound(id);
         }
