@@ -26,8 +26,10 @@ public class ServicesAuthor {
     }
 
     public List<AuthorEntity> getAllAuthors() throws RegisterNotFound {
+
         List<AuthorEntity> listAuthor = repository.getAllAuthors();
-        if (listAuthor == null ){
+
+        if (listAuthor.isEmpty() ){
             throw new RegisterNotFound();
         }
         return listAuthor;
@@ -56,11 +58,8 @@ public class ServicesAuthor {
 
     public void insert(AuthorEntity author) throws ErrorSavingAuthor {
 
-        Integer insertData = repository.save(author.getName(),
-                author.getLastname(), author.getDateBirth());
-        if (insertData == null) {
-            throw new ErrorSavingAuthor();
-        }
+        repository.save(author.getName(),author.getLastname(), author.getDateBirth());
+
     }
 
     public void updateAuthor(Integer id, AuthorEntity authorEntity) throws AuthorNotFound {

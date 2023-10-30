@@ -29,17 +29,19 @@ public class ServicesLibrary {
 
     public List<LibraryEntity> getLibraryByName(String nome) throws NameLibraryNotFound {
 
-        List<LibraryEntity> name = repository.getLibraryByName(nome);
+        List<LibraryEntity> listNames = repository.getLibraryByName(nome);
 
-        if (name.isEmpty()) {
+        if (listNames.isEmpty()) {
             throw new NameLibraryNotFound(nome);
         }
-        return name;
+        return listNames;
     }
 
     public List<LibraryEntity> getAllLibrary() throws RegisterLibraryNotFound{
+
         List<LibraryEntity> list = repository.getAllLibrary();
-        if (list == null){
+
+        if (list.isEmpty()){
             throw new RegisterLibraryNotFound();
         }
         return list;
@@ -47,11 +49,8 @@ public class ServicesLibrary {
 
 
     public void insert(LibraryEntity library) throws ErrorSavingLibrary {
-        Integer dataLibrary = repository.insert(library.getName(), library.getFkAddress());
-        if (dataLibrary == null) {
-            throw new ErrorSavingLibrary();
-        }
 
+        repository.insert(library.getName(), library.getFkAddress());
     }
 
     public void update(Integer id, LibraryEntity library) throws LibraryNotFound {
