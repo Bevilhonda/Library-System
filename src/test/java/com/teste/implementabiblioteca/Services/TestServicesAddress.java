@@ -3,9 +3,7 @@ package com.teste.implementabiblioteca.Services;
 
 import com.teste.implementabiblioteca.Model.Address.AddressEntity;
 import com.teste.implementabiblioteca.Model.Address.Exceptions.AddressNotFound;
-import com.teste.implementabiblioteca.Model.Address.Exceptions.ErrorSavingAddress;
 import com.teste.implementabiblioteca.Model.Address.Exceptions.RegisterAddressNotFound;
-import com.teste.implementabiblioteca.Repository.RepositoryAddress;
 import com.teste.implementabiblioteca.Services.Address.ServicesAddress;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -153,6 +151,5 @@ public class TestServicesAddress {
                 .isInstanceOf(RegisterAddressNotFound.class)
                 .hasMessageContaining("Nenhum endereço foi cadastrado.");
     }
-    // ErrorSaving ? try catch no controler ?
 }
 

@@ -1,6 +1,6 @@
 package com.teste.implementabiblioteca.Services;
 
-import com.teste.implementabiblioteca.Model.Author.Exceptions.AuthorNotFound;
+
 import com.teste.implementabiblioteca.Model.Book.BookEntity;
 import com.teste.implementabiblioteca.Model.Book.Exceptions.BookNotFound;
 import com.teste.implementabiblioteca.Model.Book.Exceptions.RegisterBookNotFound;
@@ -142,5 +142,4 @@ public class TestServicesBook {
                 .isInstanceOf(RegisterBookNotFound.class)
                 .hasMessageContaining("Nenhum Livro foi cadastrado.");
     }
-    // E o Insert book = ErrorSavingBook  ? , try catch no controler ?
 }

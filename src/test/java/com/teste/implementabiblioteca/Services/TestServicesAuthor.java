@@ -1,6 +1,5 @@
 package com.teste.implementabiblioteca.Services;
 
-import com.teste.implementabiblioteca.Model.Address.Exceptions.AddressNotFound;
 import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 import com.teste.implementabiblioteca.Model.Author.Exceptions.*;
 import com.teste.implementabiblioteca.Services.Author.ServicesAuthor;
@@ -204,6 +203,4 @@ public class TestServicesAuthor {
                 .hasMessageContaining(
                         "Não foi encontrado autor nascido entre: 1990-01-01 á: 2000-01-01");
     }
-
-    // E o Insert author = ErrorSavingAuthor  ? , try catch no controler ?
 }
