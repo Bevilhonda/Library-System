@@ -56,7 +56,7 @@ public class ServicesAuthor {
         return authors;
     }
 
-    public void insert(AuthorEntity author) throws ErrorSavingAuthor {
+    public void insert(AuthorEntity author) {
 
         repository.save(author.getName(),author.getLastname(), author.getDateBirth());
 
