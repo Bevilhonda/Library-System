@@ -53,7 +53,7 @@ class AllAuthorsTest {
     }
     /* o modo como foi configurado a resposta de cada campo no Response , será o modo de como criar
     a pesquisa de cada campo , por exemplo :
-    meu Json está configurado para aparecer desta forma :
+    meu Json está configurado para aparecer desta forma:
     {
     "responseList": [
         {
