@@ -1,5 +1,6 @@
-package com.teste.implementabiblioteca.Controller.Author.Search.AllAuthors;
+package com.teste.implementabiblioteca.Controller.Author.Search;
 
+import com.teste.implementabiblioteca.Controller.Author.Search.AllAuthors.AllAuthors;
 import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 import com.teste.implementabiblioteca.Model.Author.Exceptions.RegisterNotFound;
 import com.teste.implementabiblioteca.Services.Author.ServicesAuthor;
