@@ -29,7 +29,7 @@ class ByLastnameTest {
     @Autowired
     private MockMvc mockMvc;
     @MockBean
-    private ServicesAuthor servicesAuthor;
+    private ServicesAuthor services;
 
     @Test
     void byLastName() throws Exception, LastNameNotFound {
@@ -41,7 +41,7 @@ class ByLastnameTest {
         list.add(author1);
         list.add(author2);
 
-        when(servicesAuthor.getByLastName("Santos")).thenReturn(list);
+        when(services.getByLastName("Santos")).thenReturn(list);
         this.mockMvc.perform(get("/Author/LastName/Santos"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.list", Matchers.hasSize(2)))
