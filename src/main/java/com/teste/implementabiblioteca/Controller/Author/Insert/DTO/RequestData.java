@@ -24,6 +24,13 @@ public class RequestData {
     @Past(message = "A data de nascimento não pode ser no futuro.")
     private LocalDate dateBirth;
 
+    public RequestData(String name, String lastname, LocalDate dateBirth) {
+        this.name = name;
+        this.lastname = lastname;
+        this.dateBirth = dateBirth;
+    }
+
+
     public AuthorEntity toModel() {
         return new AuthorEntity(idAuthor, name, lastname, dateBirth);
     }

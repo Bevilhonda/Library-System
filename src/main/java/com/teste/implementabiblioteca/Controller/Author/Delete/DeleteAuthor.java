@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import static com.teste.implementabiblioteca.Controller.Author.ExceptionHandler.Handler.map;
 import static org.springframework.http.HttpStatus.*;
 
-
 @RestController
 public class DeleteAuthor {
     @Autowired
@@ -17,9 +16,10 @@ public class DeleteAuthor {
     @DeleteMapping("/DeleteAuthor/{id}")
     public ResponseEntity<?> deleteAuthor(@PathVariable Integer id) {
         try {
-             service.delete(id);
+            service.delete(id);
 
             return ResponseEntity.status(OK).build();
+
         } catch (Throwable e) {
             return map(e);
         }
