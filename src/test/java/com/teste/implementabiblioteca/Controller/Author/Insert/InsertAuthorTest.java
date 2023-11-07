@@ -38,8 +38,9 @@ public class InsertAuthorTest {
         LocalDate dateBirth = LocalDate.parse("1999-01-01");
         RequestData request = new RequestData("Jorge", "Batista", dateBirth);
 
-        this.mockMvc.perform(post("/InsertAuthor")
-                        .content(objectMapper.writeValueAsString(request))
+
+        this.mockMvc.perform(post("/InsertAuthor")//simula uma solicitação para o endpoint "/InsertAuthor")
+                        .content(objectMapper.writeValueAsString(request))//convert para
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
