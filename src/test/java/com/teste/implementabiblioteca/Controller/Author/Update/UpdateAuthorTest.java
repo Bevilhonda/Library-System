@@ -20,10 +20,9 @@ import java.time.LocalDate;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(UpdateAuthor.class)
@@ -39,12 +38,6 @@ class UpdateAuthorTest {
     @Test
     public void updateTest() throws Exception, AuthorNotFound {
 
-        /*LocalDate dateBirthActual = LocalDate.parse("2000-02-15");
-
-        AuthorEntity author = new AuthorEntity(1,"Pedro","Santos",dateBirthActual);
-
-         */
-
         LocalDate dateBirth = LocalDate.parse("2000-02-15");
         RequestData requestAuthor = new RequestData(1, "Jorge", "Santos", dateBirth);
 
@@ -55,8 +48,26 @@ class UpdateAuthorTest {
                 .andReturn();
 
         ArgumentCaptor<AuthorEntity> authorCaptor = ArgumentCaptor.forClass(AuthorEntity.class);
-        verify(service, times(1)).updateAuthor(eq(1), any(AuthorEntity.class));
+        verify(service, times(1)).updateAuthor(eq(1), authorCaptor.capture());
+
         assertThat(authorCaptor.getValue().getName()).isEqualTo("Jorge");
 
+    }
+    @Test
+    public void updateTestException() throws Exception, AuthorNotFound {
+
+        LocalDate dateBirth = LocalDate.parse("2000-02-15");
+        RequestData requestAuthor = new RequestData(1, null, "Santos", dateBirth);
+
+        mockMvc.perform(put("/UpdateAuthor/{id}", 1)
+                        .content(objectMapper.writeValueAsString(requestAuthor))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"O campo 'Nome' é obrigatório.\"]"));
+
+        verify(service, never()).updateAuthor(eq(1), any(AuthorEntity.class));
+        //verifica se o método service.updateAuthor não foi chamado em nenhum momento
+        // durante o teste. O método never() é usado para indicar que o
+        // método não deve ser chamado em nenhuma situação.
     }
 }
