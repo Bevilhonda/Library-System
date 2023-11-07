@@ -34,9 +34,10 @@ class DeleteAuthorTest {
         mockMvc.perform(MockMvcRequestBuilders.delete("/DeleteAuthor/{id}", 1))
                 .andExpect(status().isOk());
 
-        Mockito.verify(service).delete(1);
+        Mockito.verify(service).delete(1);// Verifica se o metodo delete foi chamado com o ID certo
 
         Mockito.verify(service, times(1)).delete(1);
+        // Verifica se o metodo foi chamado apenas uma vez
 
     }
 }
