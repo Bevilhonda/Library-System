@@ -15,9 +15,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -46,5 +46,19 @@ class InsertAddressTest {
         verify(services, times(1)).insertAddress(addressCaptor.capture());
 
         assertThat(addressCaptor.getValue().getCity()).isEqualTo("Maringá");
+    }
+    @Test
+    void exceptionAddress() throws Exception {
+
+        RequestData request = new RequestData(
+                1, null, 20, "Centro", "Maringá", "Paraná");
+
+        this.mockMvc.perform(post("/Insert/Address")
+                        .content(objectMapper.writeValueAsString(request))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"O campo 'Rua' é obrigatório.\"]"));
+
+        verify(services, never()).insertAddress(any(AddressEntity.class));
     }
 }

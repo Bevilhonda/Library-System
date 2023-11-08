@@ -17,9 +17,9 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -47,6 +47,18 @@ class UpdateAddressTest {
         verify(services,times(1)).updateAddress(eq(1),addressCaptor.capture());
 
         assertThat(addressCaptor.getValue().getStreet()).isEqualTo("Palmas");
+    }
+    @Test
+    void validationException() throws Exception, AddressNotFound {
+        RequestData requestAddress = new RequestData(
+                1, null, 12, "Maringá", "Centro", "Paraná");
 
+        mockMvc.perform(put("/UpdateAddress/{id}",1)
+                        .content(objectMapper.writeValueAsBytes(requestAddress))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"O campo 'Rua' é obrigatório.\"]"));
+
+        verify(services,never()).updateAddress(eq(1),any(AddressEntity.class));
     }
 }
