@@ -1,6 +1,5 @@
 package com.teste.implementabiblioteca.Controller.Author.Delete;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.teste.implementabiblioteca.Model.Author.Exceptions.AuthorNotFound;
 import com.teste.implementabiblioteca.Services.Author.ServicesAuthor;
 import org.junit.jupiter.api.Test;
@@ -14,7 +13,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.mockito.Mockito.times;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -24,15 +22,14 @@ class DeleteAuthorTest {
     private MockMvc mockMvc;
     @MockBean
     private ServicesAuthor service;
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @Test
     void deleteAuthor() throws Exception, AuthorNotFound {
 
 
         mockMvc.perform(MockMvcRequestBuilders.delete("/DeleteAuthor/{id}", 1))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andReturn();
 
         Mockito.verify(service).delete(1);// Verifica se o metodo delete foi chamado com o ID certo
 
