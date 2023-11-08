@@ -26,10 +26,10 @@ public class TestServicesAuthor {
     ServicesAuthor services;
 
     @Test
-    void insert() throws ErrorSavingAuthor, AuthorNotFound {
+    void insert() throws AuthorNotFound {
         LocalDate dateBirth = LocalDate.parse("2018-10-15");
         AuthorEntity author = new AuthorEntity(
-                null, "Jorge", "Batista", dateBirth);
+            null, "Jorge", "Batista", dateBirth);
 
         services.insert(author);
         AuthorEntity authorActual = services.getById(1);
@@ -39,12 +39,12 @@ public class TestServicesAuthor {
     }
 
     @Test
-    void update() throws ErrorSavingAuthor, AuthorNotFound, RegisterNotFound {
+    void update() throws AuthorNotFound, RegisterNotFound {
         LocalDate dateBirth = LocalDate.parse("2018-10-15");
         AuthorEntity author = new AuthorEntity(
-                null, "Jorge", "Batista", dateBirth);
+            null, "Jorge", "Batista", dateBirth);
         AuthorEntity authorActual = new AuthorEntity(
-                null, "Pedro", "Santos", dateBirth);
+            null, "Pedro", "Santos", dateBirth);
 
         services.insert(author);
 
@@ -59,10 +59,10 @@ public class TestServicesAuthor {
     }
 
     @Test
-    void getById() throws ErrorSavingAuthor, AuthorNotFound {
+    void getById() throws AuthorNotFound {
         LocalDate dateBirth = LocalDate.parse("2018-10-15");
         AuthorEntity author = new AuthorEntity(
-                null, "Jorge", "Batista", dateBirth);
+            null, "Jorge", "Batista", dateBirth);
 
         services.insert(author);
 
@@ -73,12 +73,12 @@ public class TestServicesAuthor {
     }
 
     @Test
-    void getAll() throws ErrorSavingAuthor, RegisterNotFound {
+    void getAll() throws RegisterNotFound {
         LocalDate dateBirth = LocalDate.parse("2018-10-15");
         AuthorEntity author = new AuthorEntity(
-                null, "Jorge", "Batista", dateBirth);
+            null, "Jorge", "Batista", dateBirth);
         AuthorEntity author2 = new AuthorEntity(
-                null, "Pedro", "Santos", dateBirth);
+            null, "Pedro", "Santos", dateBirth);
         services.insert(author);
         services.insert(author2);
 
@@ -91,14 +91,14 @@ public class TestServicesAuthor {
     }
 
     @Test
-    void getByDate() throws ErrorSavingAuthor, DateBirthNotFound {
+    void getByDate() throws DateBirthNotFound {
         LocalDate dateBirth1 = LocalDate.parse("1989-06-15");
         LocalDate dateBirth2 = LocalDate.parse("1999-12-25");
 
         AuthorEntity author = new AuthorEntity(
-                null, "Jorge", "Batista", dateBirth1);
+            null, "Jorge", "Batista", dateBirth1);
         AuthorEntity author2 = new AuthorEntity(
-                null, "Pedro", "Santos", dateBirth2);
+            null, "Pedro", "Santos", dateBirth2);
 
         services.insert(author);
         services.insert(author2);
@@ -112,10 +112,10 @@ public class TestServicesAuthor {
     }
 
     @Test
-    void getByLastName() throws ErrorSavingAuthor, LastNameNotFound {
+    void getByLastName() throws LastNameNotFound {
         LocalDate dateBirth = LocalDate.parse("2018-10-15");
         AuthorEntity author = new AuthorEntity(
-                null, "Jorge", "Batista", dateBirth);
+            null, "Jorge", "Batista", dateBirth);
 
         services.insert(author);
 
@@ -127,14 +127,14 @@ public class TestServicesAuthor {
     }
 
     @Test
-    void delete() throws ErrorSavingAuthor, RegisterNotFound, AuthorNotFound {
+    void delete() throws RegisterNotFound, AuthorNotFound {
         LocalDate dateBirth1 = LocalDate.parse("1989-06-15");
         LocalDate dateBirth2 = LocalDate.parse("1999-12-25");
 
         AuthorEntity author = new AuthorEntity(
-                null, "Jorge", "Batista", dateBirth1);
+            null, "Jorge", "Batista", dateBirth1);
         AuthorEntity author2 = new AuthorEntity(
-                null, "Pedro", "Santos", dateBirth2);
+            null, "Pedro", "Santos", dateBirth2);
 
         services.insert(author);
         services.insert(author2);
@@ -156,51 +156,41 @@ public class TestServicesAuthor {
     @Test
     void exceptionAuthorNotFound() {
 
-        Throwable exception = catchThrowable(() -> {
-            services.getById(1);
-        });
+        Throwable exception = catchThrowable(() -> services.getById(1));
 
         assertThat(exception)
-                .isInstanceOf(AuthorNotFound.class)
-                .hasMessageContaining("O Autor com o id 1 não  foi encontrado.");
+            .isInstanceOf(AuthorNotFound.class)
+            .hasMessageContaining("O Autor com o id 1 não  foi encontrado.");
     }
 
     @Test
     void exceptionLastNameNotFound() {
 
-        Throwable exception = catchThrowable(() -> {
-            services.getByLastName("Santos");
-        });
+        Throwable exception = catchThrowable(() -> services.getByLastName("Santos"));
 
         assertThat(exception)
-                .isInstanceOf(LastNameNotFound.class)
-                .hasMessageContaining("Não foi encontrado nenhum autor com o sobrenome Santos");
+            .isInstanceOf(LastNameNotFound.class)
+            .hasMessageContaining("Não foi encontrado nenhum autor com o sobrenome Santos");
     }
 
     @Test
     void exceptionRegisterNotFound() {
 
-        Throwable exception = catchThrowable(() -> {
-            services.getAllAuthors();
-
-        });
+        Throwable exception = catchThrowable(() -> services.getAllAuthors());
 
         assertThat(exception)
-                .isInstanceOf(RegisterNotFound.class)
-                .hasMessageContaining("Nenhum autor foi cadastrado.");
+            .isInstanceOf(RegisterNotFound.class)
+            .hasMessageContaining("Nenhum autor foi cadastrado.");
     }
 
     @Test
     void exceptionDateBirthNotFound() {
 
-        Throwable exception = catchThrowable(() -> {
-            services.getByDateBirth("1990-01-01", "2000-01-01");
-
-        });
+        Throwable exception = catchThrowable(() -> services.getByDateBirth("1990-01-01", "2000-01-01"));
 
         assertThat(exception)
-                .isInstanceOf(DateBirthNotFound.class)
-                .hasMessageContaining(
-                        "Não foi encontrado autor nascido entre: 1990-01-01 á: 2000-01-01");
+            .isInstanceOf(DateBirthNotFound.class)
+            .hasMessageContaining(
+                "Não foi encontrado autor nascido entre: 1990-01-01 á: 2000-01-01");
     }
 }

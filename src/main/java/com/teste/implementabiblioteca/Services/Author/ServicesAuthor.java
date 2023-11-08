@@ -65,6 +65,7 @@ public class ServicesAuthor {
     public void updateAuthor(Integer id, AuthorEntity authorEntity) throws AuthorNotFound {
 
         AuthorEntity author = repository.getAuthor(id);
+
         if (author == null){
             throw new AuthorNotFound(id);
         }
