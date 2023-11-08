@@ -19,9 +19,9 @@ import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -49,6 +49,21 @@ class UpdateTest {
         ArgumentCaptor<BookEntity> bookCaptor = ArgumentCaptor.forClass(BookEntity.class);
         verify(services, times(1)).update(eq(1), bookCaptor.capture());
         assertThat(bookCaptor.getValue().getTitle()).isEqualTo("Java");
+    }
+    @Test
+    void validationException() throws Exception, BookNotFound {
+        LocalDate dataPublication = LocalDate.parse("1990-12-25");
+        RequestData requestData = new RequestData(
+                null, 1, dataPublication, 1, 1, 1);
+
+        this.mockMvc.perform(put("/UpdateBook/{id}", 1)
+                        .content(objectMapper.writeValueAsString(requestData))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"O campo 'Titulo' é obrigatório.\"]"))
+                .andReturn();
+
+        verify(services, never()).update(eq(1),any(BookEntity.class));
 
     }
 }

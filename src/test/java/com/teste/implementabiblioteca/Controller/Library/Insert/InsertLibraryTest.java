@@ -2,6 +2,7 @@ package com.teste.implementabiblioteca.Controller.Library.Insert;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.teste.implementabiblioteca.Controller.Library.Insert.DTO.RequestData;
+import com.teste.implementabiblioteca.Model.Book.BookEntity;
 import com.teste.implementabiblioteca.Model.Library.Exceptions.ErrorSavingLibrary;
 import com.teste.implementabiblioteca.Model.Library.LibraryEntity;
 import com.teste.implementabiblioteca.Services.Library.ServicesLibrary;
@@ -16,9 +17,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -45,5 +46,16 @@ class InsertLibraryTest {
         ArgumentCaptor<LibraryEntity> libraryCaptor = ArgumentCaptor.forClass(LibraryEntity.class);
         verify(services, times(1)).insert(libraryCaptor.capture());
         assertThat(libraryCaptor.getValue().getName()).isEqualTo("Londrina");
+    }
+    @Test
+    void validationException() throws Exception, ErrorSavingLibrary {
+        RequestData request = new RequestData(1,null,1);
+
+        this.mockMvc.perform(post("/Insert")
+                .content(objectMapper.writeValueAsString(request))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"O campo 'Nome' é obrigatório.\"]"));
+        verify(services,never()).insert(any(LibraryEntity.class));
     }
 }
