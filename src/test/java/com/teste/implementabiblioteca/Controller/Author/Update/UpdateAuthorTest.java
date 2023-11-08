@@ -54,7 +54,7 @@ class UpdateAuthorTest {
 
     }
     @Test
-    public void updateTestException() throws Exception, AuthorNotFound {
+    public void validationException() throws Exception, AuthorNotFound {
 
         LocalDate dateBirth = LocalDate.parse("2000-02-15");
         RequestData requestAuthor = new RequestData(1, null, "Santos", dateBirth);

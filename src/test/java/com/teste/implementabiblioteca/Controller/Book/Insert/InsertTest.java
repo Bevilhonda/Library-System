@@ -17,9 +17,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -36,18 +36,34 @@ class InsertTest {
     void insert() throws Exception {
         LocalDate dataPublication = LocalDate.parse("1990-12-12");
         RequestData request = new RequestData(
-                "Css",1,dataPublication,1,1,1);
+                "Css", 1, dataPublication, 1, 1, 1);
 
         this.mockMvc.perform(post("/Insert/Book")
-                .content(objectMapper.writeValueAsBytes(request))
-                .contentType(MediaType.APPLICATION_JSON))
+                        .content(objectMapper.writeValueAsBytes(request))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
 
         ArgumentCaptor<BookEntity> bookCaptor = ArgumentCaptor.forClass(BookEntity.class);
-        verify(services,times(1)).insert(bookCaptor.capture());
+        verify(services, times(1)).insert(bookCaptor.capture());
 
         assertThat(bookCaptor.getValue().getTitle()).isEqualTo("Css");
+
+    }
+
+    @Test
+    void validationException() throws Exception {
+        LocalDate dataPublication = LocalDate.parse("1990-12-12");
+        RequestData request = new RequestData(
+                null, 1, dataPublication, 1, 1, 1);
+
+        this.mockMvc.perform(post("/Insert/Book")
+                        .content(objectMapper.writeValueAsBytes(request))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"O campo 'Titulo' é obrigatório.\"]"));
+
+        verify(services, never()).insert(any(BookEntity.class));
 
     }
 }

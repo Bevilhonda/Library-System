@@ -57,7 +57,7 @@ public class InsertAuthorTest {
     }
 
     @Test
-    void testExceptionInsert() throws Exception {
+    void validationException() throws Exception {
         LocalDate dateBirth = LocalDate.parse("1999-01-01");
         RequestData request = new RequestData(null, "Batista", dateBirth);
 

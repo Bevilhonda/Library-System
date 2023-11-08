@@ -48,7 +48,7 @@ class InsertAddressTest {
         assertThat(addressCaptor.getValue().getCity()).isEqualTo("Maringá");
     }
     @Test
-    void exceptionAddress() throws Exception {
+    void validationException() throws Exception {
 
         RequestData request = new RequestData(
                 1, null, 20, "Centro", "Maringá", "Paraná");
