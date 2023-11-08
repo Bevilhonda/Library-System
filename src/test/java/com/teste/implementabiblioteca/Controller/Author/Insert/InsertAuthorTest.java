@@ -19,6 +19,7 @@ import java.time.LocalDate;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -52,6 +53,20 @@ public class InsertAuthorTest {
         assertThat(authorCaptor.getValue().getName()).isEqualTo("Jorge");
         assertThat(authorCaptor.getValue().getLastname()).isEqualTo("Batista");
         assertThat(authorCaptor.getValue().getDateBirth()).isEqualTo(dateBirth);
+
+    }
+
+    @Test
+    void testExceptionInsert() throws Exception {
+        LocalDate dateBirth = LocalDate.parse("1999-01-01");
+        RequestData request = new RequestData(null, "Batista", dateBirth);
+
+        this.mockMvc.perform(post("/InsertAuthor")
+                        .content(objectMapper.writeValueAsString(request))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"O campo 'Nome' é obrigatório.\"]"));
+        verify(service, never()).insert(any(AuthorEntity.class));
 
     }
 }
