@@ -13,7 +13,7 @@ public class RequestData {
     @NotBlank(message = "O campo 'Nome' é obrigatório.")
     String nome;
     @JsonProperty("fk_endereco")
-    @NotNull(message = "O número do Id de endereço não pode ser nulo.")
+    @NotNull(message = "O número do Id de endereço é obrigatório.")
     Integer fk_endereco;
 
     public RequestData(Integer id_biblioteca, String nome, Integer fk_endereco) {

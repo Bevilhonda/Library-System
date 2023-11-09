@@ -15,20 +15,20 @@ public class RequestData {
     @NotBlank(message = "O campo 'Titulo' é obrigatório.")
     private String titulo;
     @JsonProperty("edicao")
-    @NotNull(message = "O número da edição não pode ser nulo.")
+    @NotNull(message = "O número da edição é obrigatório.")
     private Integer edicao;
     @JsonProperty("fk_autor")
-    @NotNull(message = "O número do Id de autor não pode ser nulo.")
+    @NotNull(message = "O número do Id de autor é obrigatório.")
     private Integer fk_autor;
     @JsonProperty("fk_biblioteca")
-    @NotNull(message = "O número do Id de biblioteca não pode ser nulo.")
+    @NotNull(message = "O número do Id de biblioteca é obrigatório.")
     private Integer fk_biblioteca;
     @JsonProperty("data_publication")
-    @NotNull(message = "A data de publicação não pode ser nula.")
+    @NotNull(message = "A data de publicação é obrigatório.")
     @Past(message = "A data de publicação é inválida.")
     private LocalDate data_publication;
 
-    public RequestData(String title, int idAuthor, LocalDate publicationDate, int edition, int idLibrary, int idBook) {
+    public RequestData(String title, Integer idAuthor, LocalDate publicationDate, Integer edition, Integer idLibrary, Integer idBook) {
         this.id_Livro = idBook;
         this.titulo = title;
         this.edicao = edition;

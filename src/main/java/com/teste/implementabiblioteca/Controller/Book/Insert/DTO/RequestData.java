@@ -26,7 +26,7 @@ public class RequestData {
     @Past(message = "A data de publicação não pode ser no futuro.")
     private LocalDate data_publication;
 
-    public RequestData(String title, int idAuthor, LocalDate publicationDate, int edition, int idLibrary, int idBook) {
+    public RequestData(String title, Integer idAuthor, LocalDate publicationDate, Integer edition, Integer idLibrary, Integer idBook) {
         this.id_Livro = idBook;
         this.titulo = title;
         this.edicao = edition;
