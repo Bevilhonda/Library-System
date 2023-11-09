@@ -19,9 +19,6 @@ public class Handler {
             case "ListEmptyException" -> {
                 return convert((LastNameNotFound) pattern);
             }
-            case "ErrorSavingAuthor" -> {
-                return convert((ErrorSavingAuthor) pattern);
-            }
             case "DateBirthNotFound" -> {
                 return convert((DateBirthNotFound) pattern);
             }
@@ -40,6 +37,7 @@ public class Handler {
             }
         }
     }
+
     public static ResponseEntity<?> convert(AuthorNotFound notFound) {
         return ResponseEntity.status(NOT_FOUND).body(notFound.getMessage());
     }
@@ -48,12 +46,10 @@ public class Handler {
         return ResponseEntity.status(NOT_FOUND).body(lastNameNotFound.getMessage());
     }
 
-    public static ResponseEntity<?> convert(ErrorSavingAuthor e) {
-        return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(e.getMessage());
-    }
     public static ResponseEntity<?> convert(DateBirthNotFound birthNotFound) {
         return ResponseEntity.status(NOT_FOUND).body(birthNotFound.getMessage());
     }
+
     public static ResponseEntity<?> convert(RegisterNotFound emptyRegistration) {
         return ResponseEntity.status(NOT_FOUND).body(emptyRegistration.getMessage());
     }

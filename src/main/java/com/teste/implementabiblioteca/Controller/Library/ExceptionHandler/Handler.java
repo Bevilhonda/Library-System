@@ -1,6 +1,5 @@
 package com.teste.implementabiblioteca.Controller.Library.ExceptionHandler;
 
-import com.teste.implementabiblioteca.Model.Library.Exceptions.ErrorSavingLibrary;
 import com.teste.implementabiblioteca.Model.Library.Exceptions.LibraryNotFound;
 import com.teste.implementabiblioteca.Model.Library.Exceptions.NameLibraryNotFound;
 import com.teste.implementabiblioteca.Model.Library.Exceptions.RegisterLibraryNotFound;
@@ -17,9 +16,6 @@ public class Handler {
             }
             case "NameLibraryNotFound" -> {
                 return convert((NameLibraryNotFound) standard);
-            }
-            case "ErrorSavingLibrary" -> {
-                return convert((ErrorSavingLibrary) standard);
             }
             case "RegisterLibraryNotFound" -> {
                 return convert((RegisterLibraryNotFound) standard);
@@ -39,9 +35,6 @@ public class Handler {
         return ResponseEntity.status(NOT_FOUND).body(nameNotFound.getMessage());
     }
 
-    public static ResponseEntity<?> convert(ErrorSavingLibrary errorSaving) {
-        return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(errorSaving.getMessage());
-    }
     public static ResponseEntity<?> convert(RegisterLibraryNotFound errorSaving) {
         return ResponseEntity.status(NOT_FOUND).body(errorSaving.getMessage());
     }
