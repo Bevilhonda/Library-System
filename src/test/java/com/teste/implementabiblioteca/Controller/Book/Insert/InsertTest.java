@@ -1,5 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Book.Insert;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.teste.implementabiblioteca.Controller.Book.Insert.DTO.RequestData;
 import com.teste.implementabiblioteca.Model.Book.BookEntity;
@@ -52,7 +53,7 @@ class InsertTest {
     }
 
     @Test
-    void validationException() throws Exception {
+    void validationMissingParameterTitle() throws Exception {
         LocalDate dataPublication = LocalDate.parse("1990-12-12");
         RequestData request = new RequestData(
                 null, 1, dataPublication, 1, 1, 1);
@@ -65,5 +66,59 @@ class InsertTest {
 
         verify(services, never()).insert(any(BookEntity.class));
 
+    }
+    @Test
+    void validationMissingParameterDatePublication() throws Exception {
+
+        RequestData request = new RequestData(
+                "Java", 1, null, 1, 1, 1);
+
+        this.mockMvc.perform(post("/Insert/Book")
+                .content(objectMapper.writeValueAsString(request))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"A data de publicação é obrigatório.\"]"));
+
+        verify(services, never()).insert(any(BookEntity.class));
+    }
+    @Test
+    void validationMissingParameterEdition() throws Exception {
+        LocalDate datePublication = LocalDate.parse("2000-12-12");
+        RequestData request = new RequestData(
+                "Java",1,datePublication,null,1,1);
+
+        this.mockMvc.perform(post("/Insert/Book")
+                .content(objectMapper.writeValueAsString(request))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"O número da edição é obrigatório.\"]"));
+
+        verify(services,never()).insert(any(BookEntity.class));
+    }
+    @Test
+    void validationMissingParameterIdLibrary() throws Exception {
+        LocalDate datePublication = LocalDate.parse("1995-12-25");
+        RequestData request = new RequestData(
+                "Html",1,datePublication,1,null,1);
+
+        this.mockMvc.perform(post("/Insert/Book")
+                .content(objectMapper.writeValueAsString(request))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"O número do Id de biblioteca é obrigatório.\"]"));
+        verify(services,never()).insert(any(BookEntity.class));
+    }
+    @Test
+    void validationMissingParameterIdAuthor() throws Exception {
+        LocalDate datePublication = LocalDate.parse("1995-12-25");
+        RequestData request = new RequestData(
+                "Html",null,datePublication,1,1,1);
+
+        this.mockMvc.perform(post("/Insert/Book")
+                        .content(objectMapper.writeValueAsString(request))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"O número do Id de autor é obrigatório.\"]"));
+        verify(services,never()).insert(any(BookEntity.class));
     }
 }

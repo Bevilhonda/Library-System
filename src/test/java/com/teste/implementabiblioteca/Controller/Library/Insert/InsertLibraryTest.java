@@ -2,8 +2,6 @@ package com.teste.implementabiblioteca.Controller.Library.Insert;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.teste.implementabiblioteca.Controller.Library.Insert.DTO.RequestData;
-import com.teste.implementabiblioteca.Model.Book.BookEntity;
-import com.teste.implementabiblioteca.Model.Library.Exceptions.ErrorSavingLibrary;
 import com.teste.implementabiblioteca.Model.Library.LibraryEntity;
 import com.teste.implementabiblioteca.Services.Library.ServicesLibrary;
 import org.junit.jupiter.api.Test;
@@ -33,7 +31,7 @@ class InsertLibraryTest {
     private ObjectMapper objectMapper;
 
     @Test
-    void insert() throws Exception, ErrorSavingLibrary {
+    void insert() throws Exception {
         RequestData request = new RequestData(
                 1, "Londrina", 1);
 
@@ -48,7 +46,7 @@ class InsertLibraryTest {
         assertThat(libraryCaptor.getValue().getName()).isEqualTo("Londrina");
     }
     @Test
-    void validationException() throws Exception, ErrorSavingLibrary {
+    void validationMissingParameterName() throws Exception {
         RequestData request = new RequestData(1,null,1);
 
         this.mockMvc.perform(post("/Insert")
@@ -56,6 +54,17 @@ class InsertLibraryTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
                 .andExpect(content().json("[\"O campo 'Nome' é obrigatório.\"]"));
+        verify(services,never()).insert(any(LibraryEntity.class));
+    }
+    @Test
+    void validationMissingParameterIdAddress() throws Exception {
+        RequestData request = new RequestData(1,"Maringá",null);
+
+        this.mockMvc.perform(post("/Insert")
+                        .content(objectMapper.writeValueAsString(request))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"O número do Id de endereço é obrigatório.\"]"));
         verify(services,never()).insert(any(LibraryEntity.class));
     }
 }

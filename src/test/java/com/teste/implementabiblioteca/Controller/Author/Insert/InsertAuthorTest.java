@@ -57,7 +57,7 @@ public class InsertAuthorTest {
     }
 
     @Test
-    void validationException() throws Exception {
+    void validationMissingParametersName() throws Exception {
         LocalDate dateBirth = LocalDate.parse("1999-01-01");
         RequestData request = new RequestData(null, "Batista", dateBirth);
 
@@ -66,7 +66,46 @@ public class InsertAuthorTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
                 .andExpect(content().json("[\"O campo 'Nome' é obrigatório.\"]"));
-        verify(service, never()).insert(any(AuthorEntity.class));
 
+        verify(service, never()).insert(any(AuthorEntity.class));
+    }
+    @Test
+    void validationMissingParametersLastName() throws Exception {
+        LocalDate dateBirth = LocalDate.parse("1999-01-01");
+        RequestData request = new RequestData("Pedro", null, dateBirth);
+
+        this.mockMvc.perform(post("/InsertAuthor")
+                        .content(objectMapper.writeValueAsString(request))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"O campo 'Sobrenome' é obrigatório.\"]"));
+
+        verify(service, never()).insert(any(AuthorEntity.class));
+    }
+    @Test
+    void validationMissingParametersDateBirth() throws Exception {
+        LocalDate dateBirth = LocalDate.parse("1999-01-01");
+        RequestData request = new RequestData("Pedro", "Santos", null);
+
+        this.mockMvc.perform(post("/InsertAuthor")
+                        .content(objectMapper.writeValueAsString(request))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"O campo 'Data de Nascimento' é obrigatório.\"]"));
+
+        verify(service, never()).insert(any(AuthorEntity.class));
+    }
+    @Test
+    void validationMissingParametersDate() throws Exception {
+        LocalDate dateBirth = LocalDate.parse("2030-01-01");
+        RequestData request = new RequestData("Pedro", "Santos", dateBirth);
+
+        this.mockMvc.perform(post("/InsertAuthor")
+                        .content(objectMapper.writeValueAsString(request))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"A data de nascimento não pode ser no futuro.\"]"));
+
+        verify(service, never()).insert(any(AuthorEntity.class));
     }
 }

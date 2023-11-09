@@ -14,6 +14,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -48,7 +50,7 @@ class InsertAddressTest {
         assertThat(addressCaptor.getValue().getCity()).isEqualTo("Maringá");
     }
     @Test
-    void validationException() throws Exception {
+    void validationMissingParametersStreet() throws Exception {
 
         RequestData request = new RequestData(
                 1, null, 20, "Centro", "Maringá", "Paraná");
@@ -58,6 +60,48 @@ class InsertAddressTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
                 .andExpect(content().json("[\"O campo 'Rua' é obrigatório.\"]"));
+
+        verify(services, never()).insertAddress(any(AddressEntity.class));
+    }
+    @Test
+    void validationMissingParametersNumber() throws Exception {
+
+        RequestData request = new RequestData(
+                1, "Vasco", null, "Centro", "Maringá", "Paraná");
+
+        this.mockMvc.perform(post("/Insert/Address")
+                        .content(objectMapper.writeValueAsString(request))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"O número da residência é obrigatório.\"]"));
+
+        verify(services, never()).insertAddress(any(AddressEntity.class));
+    }
+    @Test
+    void validationMissingParametersBoroughs() throws Exception {
+
+        RequestData request = new RequestData(
+                1, "Vasco", 20, null, "Maringá", "Paraná");
+
+        this.mockMvc.perform(post("/Insert/Address")
+                        .content(objectMapper.writeValueAsString(request))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"O campo 'bairro' é obrigatório.\"]"));
+
+        verify(services, never()).insertAddress(any(AddressEntity.class));
+    }
+    @Test
+    void validationMissingParametersCity() throws Exception {
+
+        RequestData request = new RequestData(
+                1, "Vasco", 20, "Centro", null, "Paraná");
+
+        this.mockMvc.perform(post("/Insert/Address")
+                        .content(objectMapper.writeValueAsString(request))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"O campo 'cidade' é obrigatório.\"]"));
 
         verify(services, never()).insertAddress(any(AddressEntity.class));
     }
