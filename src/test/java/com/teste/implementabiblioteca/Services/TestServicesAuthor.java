@@ -160,7 +160,7 @@ public class TestServicesAuthor {
 
         assertThat(exception)
             .isInstanceOf(AuthorNotFound.class)
-            .hasMessageContaining("O Autor com o id 1 não  foi encontrado.");
+            .hasMessageContaining("O Autor com o id 1 não foi encontrado.");
     }
 
     @Test
