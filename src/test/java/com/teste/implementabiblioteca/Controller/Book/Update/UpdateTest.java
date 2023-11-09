@@ -51,7 +51,71 @@ class UpdateTest {
         assertThat(bookCaptor.getValue().getTitle()).isEqualTo("Java");
     }
     @Test
-    void validationException() throws Exception, BookNotFound {
+    void validationMissingParameterIdAuthor() throws Exception, BookNotFound {
+        LocalDate dataPublication = LocalDate.parse("1990-12-25");
+        RequestData requestData = new RequestData(
+                "Html", null, dataPublication, 1, 1, 1);
+
+        this.mockMvc.perform(put("/UpdateBook/{id}", 1)
+                        .content(objectMapper.writeValueAsString(requestData))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"O número do Id de autor é obrigatório.\"]"))
+                .andReturn();
+
+        verify(services, never()).update(eq(1),any(BookEntity.class));
+
+    }
+    @Test
+    void validationMissingParameterDatePublication() throws Exception, BookNotFound {
+        LocalDate dataPublication = LocalDate.parse("1990-12-25");
+        RequestData requestData = new RequestData(
+                "Java", 1, null, 1, 1, 1);
+
+        this.mockMvc.perform(put("/UpdateBook/{id}", 1)
+                        .content(objectMapper.writeValueAsString(requestData))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"A data de publicação é obrigatório.\"]"))
+                .andReturn();
+
+        verify(services, never()).update(eq(1),any(BookEntity.class));
+
+    }
+    @Test
+    void validationMissingParameterIdEdition() throws Exception, BookNotFound {
+        LocalDate dataPublication = LocalDate.parse("1990-12-25");
+        RequestData requestData = new RequestData(
+                "Css", 1, dataPublication, null, 1, 1);
+
+        this.mockMvc.perform(put("/UpdateBook/{id}", 1)
+                        .content(objectMapper.writeValueAsString(requestData))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"O número da edição é obrigatório.\"]"))
+                .andReturn();
+
+        verify(services, never()).update(eq(1),any(BookEntity.class));
+
+    }
+    @Test
+    void validationMissingParameterIdLibrary() throws Exception, BookNotFound {
+        LocalDate dataPublication = LocalDate.parse("1990-12-25");
+        RequestData requestData = new RequestData(
+                "Kotlin", 1, dataPublication, 1, null, 1);
+
+        this.mockMvc.perform(put("/UpdateBook/{id}", 1)
+                        .content(objectMapper.writeValueAsString(requestData))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"O número do Id de biblioteca é obrigatório.\"]"))
+                .andReturn();
+
+        verify(services, never()).update(eq(1),any(BookEntity.class));
+
+    }
+    @Test
+    void validationMissingParameterTitle() throws Exception, BookNotFound {
         LocalDate dataPublication = LocalDate.parse("1990-12-25");
         RequestData requestData = new RequestData(
                 null, 1, dataPublication, 1, 1, 1);

@@ -73,7 +73,7 @@ class UpdateAuthorTest {
     }
 
     @Test
-    public void validationException() throws Exception, AuthorNotFound {
+    public void validationMissingParametersName() throws Exception, AuthorNotFound {
 
         LocalDate dateBirth = LocalDate.parse("2000-02-15");
         RequestData requestAuthor = new RequestData(1, null, "Santos", dateBirth);
@@ -88,5 +88,35 @@ class UpdateAuthorTest {
         //verifica se o método service.updateAuthor não foi chamado em nenhum momento
         // durante o teste. O método never() é usado para indicar que o
         // método não deve ser chamado em nenhuma situação.
+    }
+    @Test
+    public void validationMissingParametersLastName() throws Exception, AuthorNotFound {
+
+        LocalDate dateBirth = LocalDate.parse("2000-02-15");
+        RequestData requestAuthor = new RequestData(1, "Jorge", null, dateBirth);
+
+        mockMvc.perform(put("/UpdateAuthor/{id}", 1)
+                        .content(objectMapper.writeValueAsString(requestAuthor))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"O campo 'Sobrenome' é obrigatório.\"]"));
+
+        verify(service, never()).updateAuthor(eq(1), any(AuthorEntity.class));
+
+    }
+    @Test
+    public void validationMissingParametersDateBirth() throws Exception, AuthorNotFound {
+
+        LocalDate dateBirth = LocalDate.parse("2000-02-15");
+        RequestData requestAuthor = new RequestData(1, "Jorge", "Santos", null);
+
+        mockMvc.perform(put("/UpdateAuthor/{id}", 1)
+                        .content(objectMapper.writeValueAsString(requestAuthor))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"O campo 'Data de Nascimento' é obrigatório.\"]"));
+
+        verify(service, never()).updateAuthor(eq(1), any(AuthorEntity.class));
+
     }
 }

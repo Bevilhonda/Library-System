@@ -2,7 +2,7 @@ package com.teste.implementabiblioteca.Controller.Library.Update;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.teste.implementabiblioteca.Controller.Library.Update.DTO.RequestData;
-import com.teste.implementabiblioteca.Model.Library.Exceptions.ErrorSavingLibrary;
+import com.teste.implementabiblioteca.Model.Book.BookEntity;
 import com.teste.implementabiblioteca.Model.Library.Exceptions.LibraryNotFound;
 import com.teste.implementabiblioteca.Model.Library.LibraryEntity;
 import com.teste.implementabiblioteca.Services.Library.ServicesLibrary;
@@ -17,11 +17,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -35,7 +35,7 @@ class UpdateLibraryTest {
     private ObjectMapper objectMapper;
 
     @Test
-    void update() throws Exception, ErrorSavingLibrary, LibraryNotFound {
+    void update() throws Exception, LibraryNotFound {
         RequestData request = new RequestData(1, "Maringá", 2);
 
         this.mockMvc.perform(put("/UpdateLibrary/{id}", 1)
@@ -48,4 +48,29 @@ class UpdateLibraryTest {
         verify(services, times(1)).update(eq(1), libraryCaptor.capture());
         assertThat(libraryCaptor.getValue().getName()).isEqualTo("Maringá");
     }
+    @Test
+    void validationMissingParameterName() throws Exception, LibraryNotFound {
+        RequestData request = new RequestData(1, null, 2);
+
+        this.mockMvc.perform(put("/UpdateLibrary/{id}", 1)
+                        .content(objectMapper.writeValueAsBytes(request))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"O campo 'Nome' é obrigatório.\"]"));
+
+        verify(services, never()).update(eq(1),any(LibraryEntity.class));
+    }
+    @Test
+    void validationMissingParameterIdAddress() throws Exception, LibraryNotFound {
+        RequestData request = new RequestData(1, "Maringá", null);
+
+        this.mockMvc.perform(put("/UpdateLibrary/{id}", 1)
+                        .content(objectMapper.writeValueAsBytes(request))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"O número do Id de endereço é obrigatório.\"]"));
+
+        verify(services, never()).update(eq(1),any(LibraryEntity.class));
+    }
+
 }
