@@ -1,7 +1,6 @@
 package com.teste.implementabiblioteca.Services.Address;
 
 import com.teste.implementabiblioteca.Model.Address.Exceptions.AddressNotFound;
-import com.teste.implementabiblioteca.Model.Address.Exceptions.ErrorSavingAddress;
 import com.teste.implementabiblioteca.Model.Address.AddressEntity;
 import com.teste.implementabiblioteca.Model.Address.Exceptions.RegisterAddressNotFound;
 import com.teste.implementabiblioteca.Repository.RepositoryAddress;

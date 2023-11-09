@@ -1,7 +1,6 @@
 package com.teste.implementabiblioteca.Services.Library;
 
 
-import com.teste.implementabiblioteca.Model.Library.Exceptions.ErrorSavingLibrary;
 import com.teste.implementabiblioteca.Model.Library.Exceptions.LibraryNotFound;
 import com.teste.implementabiblioteca.Model.Library.Exceptions.NameLibraryNotFound;
 import com.teste.implementabiblioteca.Model.Library.Exceptions.RegisterLibraryNotFound;
@@ -48,7 +47,7 @@ public class ServicesLibrary {
     }
 
 
-    public void insert(LibraryEntity library) throws ErrorSavingLibrary {
+    public void insert(LibraryEntity library)  {
 
         repository.insert(library.getName(), library.getFkAddress());
     }

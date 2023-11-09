@@ -1,7 +1,6 @@
 package com.teste.implementabiblioteca.Services.Book;
 
 import com.teste.implementabiblioteca.Model.Book.Exceptions.BookNotFound;
-import com.teste.implementabiblioteca.Model.Book.Exceptions.ErrorSavingBook;
 import com.teste.implementabiblioteca.Model.Book.Exceptions.RegisterBookNotFound;
 import com.teste.implementabiblioteca.Model.Book.BookEntity;
 import com.teste.implementabiblioteca.Repository.RepositoryBook;

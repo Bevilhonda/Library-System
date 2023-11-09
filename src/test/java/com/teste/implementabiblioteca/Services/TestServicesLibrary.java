@@ -1,7 +1,6 @@
 package com.teste.implementabiblioteca.Services;
 
 
-import com.teste.implementabiblioteca.Model.Library.Exceptions.ErrorSavingLibrary;
 import com.teste.implementabiblioteca.Model.Library.Exceptions.LibraryNotFound;
 import com.teste.implementabiblioteca.Model.Library.Exceptions.NameLibraryNotFound;
 import com.teste.implementabiblioteca.Model.Library.Exceptions.RegisterLibraryNotFound;
@@ -28,7 +27,7 @@ public class TestServicesLibrary {
     private ServicesLibrary services;
 
     @Test
-    void insert() throws ErrorSavingLibrary {
+    void insert() {
         LibraryEntity library = new LibraryEntity(null, "Maringá", 1);
 
         services.insert(library);
@@ -36,21 +35,23 @@ public class TestServicesLibrary {
         assertThat(library.getName()).isEqualTo("Maringá");
         assertThat(library.getFkAddress()).isEqualTo(1);
     }
+
     @Test
-    void update() throws ErrorSavingLibrary, LibraryNotFound, RegisterLibraryNotFound {
+    void update() throws LibraryNotFound, RegisterLibraryNotFound {
         LibraryEntity library = new LibraryEntity(null, "Maringá", 1);
         LibraryEntity library1 = new LibraryEntity(null, "Londrina", 2);
 
         services.insert(library);
 
-        services.update(1,library1);
+        services.update(1, library1);
         List<LibraryEntity> list = services.getAllLibrary();
 
         assertThat(list.get(0).getName()).isEqualTo(library1.getName());
         assertThat(list.get(0).getFkAddress()).isEqualTo(library1.getFkAddress());
     }
+
     @Test
-    void getById() throws ErrorSavingLibrary, LibraryNotFound {
+    void getById() throws LibraryNotFound {
         LibraryEntity library = new LibraryEntity(null, "Maringá", 1);
 
         services.insert(library);
@@ -61,8 +62,9 @@ public class TestServicesLibrary {
         assertThat(libraryActual.getName()).isEqualTo(library.getName());
         assertThat(libraryActual.getFkAddress()).isEqualTo(library.getFkAddress());
     }
+
     @Test
-    void getAllLibrarys() throws ErrorSavingLibrary, RegisterLibraryNotFound {
+    void getAllLibrarys() throws RegisterLibraryNotFound {
         LibraryEntity library1 = new LibraryEntity(null, "Maringá", 1);
         LibraryEntity library2 = new LibraryEntity(null, "Londrina", 2);
 
@@ -76,8 +78,9 @@ public class TestServicesLibrary {
         assertThat(list.get(0).getName()).isEqualTo(library1.getName());
         assertThat(list.get(0).getFkAddress()).isEqualTo(library1.getFkAddress());
     }
+
     @Test
-    void getByName() throws ErrorSavingLibrary, NameLibraryNotFound {
+    void getByName() throws NameLibraryNotFound {
         LibraryEntity library1 = new LibraryEntity(null, "Maringá", 1);
         LibraryEntity library2 = new LibraryEntity(null, "Londrina", 2);
         LibraryEntity library3 = new LibraryEntity(null, "Maringá", 3);
@@ -99,7 +102,7 @@ public class TestServicesLibrary {
     }
 
     @Test
-    void delete() throws ErrorSavingLibrary, RegisterLibraryNotFound, LibraryNotFound {
+    void delete() throws RegisterLibraryNotFound, LibraryNotFound {
         LibraryEntity library1 = new LibraryEntity(null, "Maringá", 1);
         LibraryEntity library2 = new LibraryEntity(null, "Londrina", 2);
 
@@ -120,7 +123,7 @@ public class TestServicesLibrary {
     }
 
     @Test
-    void exceptionLibraryNotFound(){
+    void exceptionLibraryNotFound() {
         Throwable exception = catchThrowable(() -> {
             services.getById(1);
         });
@@ -131,7 +134,7 @@ public class TestServicesLibrary {
     }
 
     @Test
-    void exceptionNameLibraryNotFound(){
+    void exceptionNameLibraryNotFound() {
         Throwable exception = catchThrowable(() -> {
             services.getLibraryByName("Maringá");
         });
@@ -152,5 +155,34 @@ public class TestServicesLibrary {
         assertThat(exception)
                 .isInstanceOf(RegisterLibraryNotFound.class)
                 .hasMessageContaining("Nenhuma Biblioteca foi cadastrada.");
+    }
+
+    @Test
+    void exceptionUpdate() {
+        Integer id = 20;
+        LibraryEntity library = new LibraryEntity(1, "Maringá", 1);
+
+        Throwable exception = catchThrowable(() -> {
+            services.update(id, library);
+
+        });
+
+        assertThat(exception)
+                .isInstanceOf(LibraryNotFound.class)
+                .hasMessageContaining("A Biblioteca com o id 20 não  foi encontrada.");
+    }
+
+    @Test
+    void exceptionDelete() {
+        Integer id = 20;
+
+        Throwable exception = catchThrowable(() -> {
+            services.delete(id);
+
+        });
+
+        assertThat(exception)
+                .isInstanceOf(LibraryNotFound.class)
+                .hasMessageContaining("A Biblioteca com o id 20 não  foi encontrada.");
     }
 }

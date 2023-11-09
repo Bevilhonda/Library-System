@@ -142,4 +142,31 @@ public class TestServicesBook {
                 .isInstanceOf(RegisterBookNotFound.class)
                 .hasMessageContaining("Nenhum Livro foi cadastrado.");
     }
+    @Test
+    void exceptionUpdate(){
+        LocalDate dataPublication = LocalDate.parse("1960-12-12");
+        Integer id = 12 ;
+        BookEntity book = new BookEntity(
+                null,1,dataPublication,1,1,1);
+
+        Throwable exception = catchThrowable(() -> {
+            services.update(id,book);
+        });
+
+        assertThat(exception)
+                .isInstanceOf(BookNotFound.class)
+                .hasMessageContaining("O Livro com o id 12 não  foi encontrado.");
+    }
+    @Test
+    void exceptionDelete(){
+
+        Integer id = 12 ;
+        Throwable exception = catchThrowable(() -> {
+            services.delete(id);
+        });
+
+        assertThat(exception)
+                .isInstanceOf(BookNotFound.class)
+                .hasMessageContaining("O Livro com o id 12 não  foi encontrado.");
+    }
 }

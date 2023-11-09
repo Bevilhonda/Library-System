@@ -130,7 +130,7 @@ public class TestServicesAddress {
     }
 
     @Test
-    void exceptionAddressNotFound() {
+    void exceptionIdNotFound() {
 
         Throwable exception = catchThrowable(() -> {
             services.getById(2);
@@ -141,7 +141,7 @@ public class TestServicesAddress {
                 .hasMessageContaining("O endereço com o id 2 não foi encontrado.");
     }
     @Test
-    void exceptionRegisterAddressNotFound() {
+    void exceptionAllAddress() {
 
         Throwable exception = catchThrowable(() -> {
             services.getAllAddress();
@@ -150,6 +150,32 @@ public class TestServicesAddress {
         assertThat(exception)
                 .isInstanceOf(RegisterAddressNotFound.class)
                 .hasMessageContaining("Nenhum endereço foi cadastrado.");
+    }
+    @Test
+    void exceptionUpdate() {
+        Integer idAddress = 13;
+        AddressEntity auxiliarAddress = new AddressEntity(
+                null, "Teodoro", 20, "Maringá", "Centro", "Paraná");
+
+        Throwable exception = catchThrowable(() -> {
+            services.updateAddress(idAddress,auxiliarAddress);
+        });
+
+        assertThat(exception)
+                .isInstanceOf(AddressNotFound.class)
+                .hasMessageContaining("O endereço com o id 13 não foi encontrado.");
+    }
+    @Test
+    void exceptionDelete() {
+        Integer idAddress = 13;
+
+        Throwable exception = catchThrowable(() -> {
+            services.deleteAddress(idAddress);
+        });
+
+        assertThat(exception)
+                .isInstanceOf(AddressNotFound.class)
+                .hasMessageContaining("O endereço com o id 13 não foi encontrado.");
     }
 }
 
