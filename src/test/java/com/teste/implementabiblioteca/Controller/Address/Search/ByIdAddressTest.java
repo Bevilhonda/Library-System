@@ -41,4 +41,12 @@ class ByIdAddressTest {
                         "$.fullAddress.boroughs").value("Centro"))
                 .andReturn();
     }
+    @Test
+    void getAddressById_AddressNotFound() throws AddressNotFound, Exception {
+        when(services.getById(1)).thenThrow(new AddressNotFound(1));
+
+        this.mockMvc.perform(get("/Address/1"))
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andReturn();
+    }
 }
