@@ -56,7 +56,7 @@ class UpdateAuthorTest {
     }
 
     @Test
-    public void test() throws Exception, AuthorNotFound {
+    public void validationMissingParametersUpdate() throws Exception, AuthorNotFound {
         LocalDate dateBirth = LocalDate.parse("2000-02-15");
         RequestData requestAuthor = new RequestData(4, "Jorge", "Santos", dateBirth);
 
@@ -68,7 +68,8 @@ class UpdateAuthorTest {
                 .content(objectMapper.writeValueAsString(requestAuthor))
                 .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isNotFound())
-            .andExpect(content().string("O Autor com o id " + requestAuthor.getIdAuthor() + " não  foi encontrado."))
+            .andExpect(content().string(
+                    "O Autor com o id " + requestAuthor.getIdAuthor() + " não  foi encontrado."))
             .andReturn();
     }
 

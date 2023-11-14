@@ -29,7 +29,7 @@ public class TestServicesAuthor {
     void insert() throws AuthorNotFound {
         LocalDate dateBirth = LocalDate.parse("2018-10-15");
         AuthorEntity author = new AuthorEntity(
-            null, "Jorge", "Batista", dateBirth);
+                null, "Jorge", "Batista", dateBirth);
 
         services.insert(author);
         AuthorEntity authorActual = services.getById(1);
@@ -42,9 +42,9 @@ public class TestServicesAuthor {
     void update() throws AuthorNotFound, RegisterNotFound {
         LocalDate dateBirth = LocalDate.parse("2018-10-15");
         AuthorEntity author = new AuthorEntity(
-            null, "Jorge", "Batista", dateBirth);
+                null, "Jorge", "Batista", dateBirth);
         AuthorEntity authorActual = new AuthorEntity(
-            null, "Pedro", "Santos", dateBirth);
+                null, "Pedro", "Santos", dateBirth);
 
         services.insert(author);
 
@@ -62,7 +62,7 @@ public class TestServicesAuthor {
     void getById() throws AuthorNotFound {
         LocalDate dateBirth = LocalDate.parse("2018-10-15");
         AuthorEntity author = new AuthorEntity(
-            null, "Jorge", "Batista", dateBirth);
+                null, "Jorge", "Batista", dateBirth);
 
         services.insert(author);
 
@@ -76,9 +76,9 @@ public class TestServicesAuthor {
     void getAll() throws RegisterNotFound {
         LocalDate dateBirth = LocalDate.parse("2018-10-15");
         AuthorEntity author = new AuthorEntity(
-            null, "Jorge", "Batista", dateBirth);
+                null, "Jorge", "Batista", dateBirth);
         AuthorEntity author2 = new AuthorEntity(
-            null, "Pedro", "Santos", dateBirth);
+                null, "Pedro", "Santos", dateBirth);
         services.insert(author);
         services.insert(author2);
 
@@ -96,9 +96,9 @@ public class TestServicesAuthor {
         LocalDate dateBirth2 = LocalDate.parse("1999-12-25");
 
         AuthorEntity author = new AuthorEntity(
-            null, "Jorge", "Batista", dateBirth1);
+                null, "Jorge", "Batista", dateBirth1);
         AuthorEntity author2 = new AuthorEntity(
-            null, "Pedro", "Santos", dateBirth2);
+                null, "Pedro", "Santos", dateBirth2);
 
         services.insert(author);
         services.insert(author2);
@@ -115,7 +115,7 @@ public class TestServicesAuthor {
     void getByLastName() throws LastNameNotFound {
         LocalDate dateBirth = LocalDate.parse("2018-10-15");
         AuthorEntity author = new AuthorEntity(
-            null, "Jorge", "Batista", dateBirth);
+                null, "Jorge", "Batista", dateBirth);
 
         services.insert(author);
 
@@ -132,9 +132,9 @@ public class TestServicesAuthor {
         LocalDate dateBirth2 = LocalDate.parse("1999-12-25");
 
         AuthorEntity author = new AuthorEntity(
-            null, "Jorge", "Batista", dateBirth1);
+                null, "Jorge", "Batista", dateBirth1);
         AuthorEntity author2 = new AuthorEntity(
-            null, "Pedro", "Santos", dateBirth2);
+                null, "Pedro", "Santos", dateBirth2);
 
         services.insert(author);
         services.insert(author2);
@@ -154,43 +154,68 @@ public class TestServicesAuthor {
     }
 
     @Test
-    void exceptionAuthorNotFound() {
+    void validationUpdate() {
+        LocalDate dateBirth1 = LocalDate.parse("1989-06-15");
+
+        AuthorEntity author = new AuthorEntity(
+                null, "Jorge", "Batista", dateBirth1);
+
+        Throwable exception = catchThrowable(() -> services.updateAuthor(1, author));
+
+        assertThat(exception)
+                .isInstanceOf(AuthorNotFound.class)
+                .hasMessageContaining("O Autor com o id 1 não foi encontrado.");
+
+    }
+
+    @Test
+    void validationDelete() {
+        Throwable exception = catchThrowable(() -> services.delete(1));
+
+        assertThat(exception)
+                .isInstanceOf(AuthorNotFound.class)
+                .hasMessageContaining("O Autor com o id 1 não foi encontrado.");
+    }
+
+    @Test
+    void exceptionGetById() {
 
         Throwable exception = catchThrowable(() -> services.getById(1));
 
         assertThat(exception)
-            .isInstanceOf(AuthorNotFound.class)
-            .hasMessageContaining("O Autor com o id 1 não foi encontrado.");
+                .isInstanceOf(AuthorNotFound.class)
+                .hasMessageContaining("O Autor com o id 1 não foi encontrado.");
     }
 
     @Test
-    void exceptionLastNameNotFound() {
+    void exceptionGetByLastName() {
 
         Throwable exception = catchThrowable(() -> services.getByLastName("Santos"));
 
         assertThat(exception)
-            .isInstanceOf(LastNameNotFound.class)
-            .hasMessageContaining("Não foi encontrado nenhum autor com o sobrenome Santos");
+                .isInstanceOf(LastNameNotFound.class)
+                .hasMessageContaining("Não foi encontrado nenhum autor com o sobrenome Santos");
     }
 
     @Test
-    void exceptionRegisterNotFound() {
+    void exceptionAllAuthors() {
 
         Throwable exception = catchThrowable(() -> services.getAllAuthors());
 
         assertThat(exception)
-            .isInstanceOf(RegisterNotFound.class)
-            .hasMessageContaining("Nenhum autor foi cadastrado.");
+                .isInstanceOf(RegisterNotFound.class)
+                .hasMessageContaining("Nenhum autor foi cadastrado.");
     }
 
     @Test
-    void exceptionDateBirthNotFound() {
+    void exceptionGetByDateBirth() {
 
-        Throwable exception = catchThrowable(() -> services.getByDateBirth("1990-01-01", "2000-01-01"));
+        Throwable exception = catchThrowable(() -> services.getByDateBirth(
+                "1990-01-01", "2000-01-01"));
 
         assertThat(exception)
-            .isInstanceOf(DateBirthNotFound.class)
-            .hasMessageContaining(
-                "Não foi encontrado autor nascido entre: 1990-01-01 á: 2000-01-01");
+                .isInstanceOf(DateBirthNotFound.class)
+                .hasMessageContaining(
+                        "Não foi encontrado autor nascido entre: 1990-01-01 á: 2000-01-01");
     }
 }

@@ -12,6 +12,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -29,8 +31,21 @@ class DeleteAddressTest {
                 .andExpect(status().isOk())
                 .andReturn();
 
-        Mockito.verify(services).deleteAddress(1);
+        verify(services).deleteAddress(1);
 
-        Mockito.verify(services, Mockito.times(1)).deleteAddress(1);
+        verify(services, Mockito.times(1)).deleteAddress(1);
+    }
+
+    @Test
+    void validationMissingParametersDeleteAddress() throws Exception, AddressNotFound {
+
+        doThrow(new AddressNotFound(4))
+                .when(services).deleteAddress(1);
+
+        mockMvc.perform(MockMvcRequestBuilders.delete("/Delete/{id}", 1))
+                .andExpect(status().isNotFound())
+                .andReturn();
+
+        verify(services, Mockito.times(1)).deleteAddress(1);
     }
 }
