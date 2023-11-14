@@ -1,6 +1,8 @@
 package com.teste.implementabiblioteca.Controller.Address.ExceptionHandler;
 
 import com.teste.implementabiblioteca.Model.Address.Exceptions.AddressNotFound;
+import com.teste.implementabiblioteca.Model.Address.Exceptions.RegisterAddressNotFound;
+import com.teste.implementabiblioteca.Model.Author.Exceptions.RegisterNotFound;
 import org.springframework.http.ResponseEntity;
 
 import static org.springframework.http.HttpStatus.*;
@@ -12,6 +14,9 @@ public class Handler {
             case "AddressNotFound" -> {
                 return Convert((AddressNotFound) pattern);
             }
+            case "RegisterAddressNotFound" -> {
+                return convert((RegisterAddressNotFound) pattern);
+            }
 
             default -> {
                 return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(pattern.getMessage());
@@ -21,5 +26,8 @@ public class Handler {
 
     public static ResponseEntity<?> Convert(AddressNotFound notFound) {
         return ResponseEntity.status(NOT_FOUND).body(notFound.getMessage());
+    }
+    public static ResponseEntity<?> convert(RegisterAddressNotFound emptyRegistration) {
+        return ResponseEntity.status(NOT_FOUND).body(emptyRegistration.getMessage());
     }
 }

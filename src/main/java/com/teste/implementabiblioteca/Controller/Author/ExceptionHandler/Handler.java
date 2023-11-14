@@ -22,7 +22,7 @@ public class Handler {
             case "DateBirthNotFound" -> {
                 return convert((DateBirthNotFound) pattern);
             }
-            case "ListNotFound" -> {
+            case "RegisterNotFound" -> {
                 return convert((RegisterNotFound) pattern);
             }
             default -> {
