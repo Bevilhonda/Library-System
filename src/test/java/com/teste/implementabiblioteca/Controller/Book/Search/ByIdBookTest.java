@@ -16,7 +16,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -39,5 +39,16 @@ class ByIdBookTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name.fullName").value("Java"))
                 .andReturn();
+    }
+    @Test
+    void requestValidationNotCompleted() throws Exception, BookNotFound {
+
+        when(services.getById(1)).thenThrow(new BookNotFound(1));
+
+        mockMvc.perform(get("/Book/1"))
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andReturn();
+
+        verify(services,times(1)).getById(1);
     }
 }

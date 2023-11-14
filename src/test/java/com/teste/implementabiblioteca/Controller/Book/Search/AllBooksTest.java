@@ -11,13 +11,14 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 @RunWith(SpringRunner.class)
@@ -46,5 +47,17 @@ class AllBooksTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.books[0].book.title")
                         .value("Java"));
 
+    }
+    @Test
+    void requestValidationNotCompleted() throws RegisterBookNotFound, Exception {
+        List<BookEntity> listEmpty = new ArrayList<>();
+
+        when(services.getAllBooks())
+                .thenThrow(new RegisterBookNotFound());
+
+        mockMvc.perform(get("/AllBooks"))
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andReturn();
+        verify(services,times(1)).getAllBooks();
     }
 }

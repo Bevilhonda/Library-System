@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.teste.implementabiblioteca.Controller.Address.Update.DTO.RequestData;
 import com.teste.implementabiblioteca.Model.Address.AddressEntity;
 import com.teste.implementabiblioteca.Model.Address.Exceptions.AddressNotFound;
+import com.teste.implementabiblioteca.Model.Book.BookEntity;
 import com.teste.implementabiblioteca.Services.Address.ServicesAddress;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -37,67 +38,87 @@ class UpdateAddressTest {
         RequestData requestAddress = new RequestData(
                 1, "Palmas", 12, "Maringá", "Centro", "Paraná");
 
-        mockMvc.perform(put("/UpdateAddress/{id}",1)
-                .content(objectMapper.writeValueAsBytes(requestAddress))
-                .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(put("/UpdateAddress/{id}", 1)
+                        .content(objectMapper.writeValueAsBytes(requestAddress))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
 
         ArgumentCaptor<AddressEntity> addressCaptor = ArgumentCaptor.forClass(AddressEntity.class);
-        verify(services,times(1)).updateAddress(eq(1),addressCaptor.capture());
+        verify(services, times(1)).updateAddress(eq(1), addressCaptor.capture());
 
         assertThat(addressCaptor.getValue().getStreet()).isEqualTo("Palmas");
     }
+
+    @Test
+    void validationMissingParametersUpdate() throws AddressNotFound, Exception {
+        RequestData requestAddress = new RequestData(
+                1, "Palmas", 12, "Maringá", "Centro", "Paraná");
+
+        doThrow(new AddressNotFound(1))
+                .when(services).updateAddress(any(), any());
+
+        mockMvc.perform(put("/UpdateAddress/{id}", 1)
+                        .content(objectMapper.writeValueAsString(requestAddress))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andExpect(content().string("O endereço com o id " + requestAddress.getIdAddress() + " não foi encontrado."))
+                .andReturn();
+    }
+
     @Test
     void validationMissingParametersNumber() throws Exception, AddressNotFound {
         RequestData requestAddress = new RequestData(
                 1, "Vasco", null, "Maringá", "Centro", "Paraná");
 
-        mockMvc.perform(put("/UpdateAddress/{id}",1)
+        mockMvc.perform(put("/UpdateAddress/{id}", 1)
                         .content(objectMapper.writeValueAsBytes(requestAddress))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
                 .andExpect(content().json("[\"O número da residência é obrigatório.\"]"));
 
-        verify(services,never()).updateAddress(eq(1),any(AddressEntity.class));
+        verify(services, never()).updateAddress(eq(1), any(AddressEntity.class));
     }
+
     @Test
     void validationMissingParametersStreet() throws Exception, AddressNotFound {
         RequestData requestAddress = new RequestData(
                 1, null, 12, "Maringá", "Centro", "Paraná");
 
-        mockMvc.perform(put("/UpdateAddress/{id}",1)
+        mockMvc.perform(put("/UpdateAddress/{id}", 1)
                         .content(objectMapper.writeValueAsBytes(requestAddress))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
                 .andExpect(content().json("[\"O campo 'Rua' é obrigatório.\"]"));
 
-        verify(services,never()).updateAddress(eq(1),any(AddressEntity.class));
+        verify(services, never()).updateAddress(eq(1), any(AddressEntity.class));
     }
+
     @Test
     void validationMissingParametersCity() throws Exception, AddressNotFound {
         RequestData requestAddress = new RequestData(
                 1, "Joaquin", 12, null, "Centro", "Paraná");
 
-        mockMvc.perform(put("/UpdateAddress/{id}",1)
+        mockMvc.perform(put("/UpdateAddress/{id}", 1)
                         .content(objectMapper.writeValueAsBytes(requestAddress))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
                 .andExpect(content().json("[\"O campo 'cidade' é obrigatório.\"]"));
 
-        verify(services,never()).updateAddress(eq(1),any(AddressEntity.class));
+        verify(services, never()).updateAddress(eq(1), any(AddressEntity.class));
     }
+
     @Test
     void validationMissingParametersBoroughs() throws Exception, AddressNotFound {
         RequestData requestAddress = new RequestData(
                 1, "Lirios", 12, "Maringá", null, "Paraná");
 
-        mockMvc.perform(put("/UpdateAddress/{id}",1)
+        mockMvc.perform(put("/UpdateAddress/{id}", 1)
                         .content(objectMapper.writeValueAsBytes(requestAddress))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
                 .andExpect(content().json("[\"O campo 'bairro' é obrigatório.\"]"));
 
-        verify(services,never()).updateAddress(eq(1),any(AddressEntity.class));
+        verify(services, never()).updateAddress(eq(1), any(AddressEntity.class));
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -25,17 +26,24 @@ class DeleteTest {
 
     @Test
     void delete() throws Exception, BookNotFound {
-        this.mockMvc.perform(MockMvcRequestBuilders.delete("/DeleteBook/{id}",1))
+        this.mockMvc.perform(MockMvcRequestBuilders.delete("/DeleteBook/{id}", 1))
                 .andExpect(status().isOk())
                 .andReturn();
 
         Mockito.verify(services).delete(1);
 
-        Mockito.verify(services,Mockito.times(1)).delete(1);
+        Mockito.verify(services, Mockito.times(1)).delete(1);
     }
-    @Test
-    void requestValidationNotCompleted(){
 
+    @Test
+    void requestValidationNotCompleted() throws BookNotFound, Exception {
+        doThrow(new BookNotFound(4))
+                .when(services).delete(1);
+
+        mockMvc.perform(MockMvcRequestBuilders.delete("/DeleteBook/{id}",1))
+                .andExpect(status().isNotFound())
+                .andReturn();
+        verify(services,times(1)).delete(1);
 
     }
 }
