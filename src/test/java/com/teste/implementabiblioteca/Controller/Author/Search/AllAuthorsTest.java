@@ -2,6 +2,7 @@ package com.teste.implementabiblioteca.Controller.Author.Search;
 
 import com.teste.implementabiblioteca.Controller.Author.Search.AllAuthors.AllAuthors;
 import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
+import com.teste.implementabiblioteca.Model.Author.Exceptions.AuthorNotFound;
 import com.teste.implementabiblioteca.Model.Author.Exceptions.RegisterNotFound;
 import com.teste.implementabiblioteca.Services.Author.ServicesAuthor;
 import org.hamcrest.Matchers;
@@ -12,12 +13,14 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
@@ -50,6 +53,18 @@ class AllAuthorsTest {
                         .value("Santos"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.responseList[0].data_nascimento")
                         .value("2018-10-15"))
+                .andReturn();
+    }
+    @Test
+    void requestValidationNotCompleted() throws RegisterNotFound, Exception {
+        List<AuthorEntity> listEmpty = new ArrayList<>();
+
+        when(services.getAllAuthors())
+                .thenThrow(new RegisterNotFound())
+                .thenReturn(listEmpty);
+
+        mockMvc.perform(get("/Authors"))
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
                 .andReturn();
     }
     /* o modo como foi configurado a resposta de cada campo no Response , será o modo de como criar

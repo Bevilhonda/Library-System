@@ -52,9 +52,9 @@ class UpdateAuthorTest {
         verify(service, times(1)).updateAuthor(eq(1), authorCaptor.capture());
 
         assertThat(authorCaptor.getValue().getName()).isEqualTo("Jorge");
+        // caminho feliz
 
     }
-
     @Test
     public void validationMissingParametersUpdate() throws Exception, AuthorNotFound {
         LocalDate dateBirth = LocalDate.parse("2000-02-15");
@@ -71,6 +71,8 @@ class UpdateAuthorTest {
             .andExpect(content().string(
                     "O Autor com o id " + requestAuthor.getIdAuthor() + " não  foi encontrado."))
             .andReturn();
+
+        // caminho triste
     }
 
     @Test

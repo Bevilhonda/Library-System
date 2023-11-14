@@ -3,6 +3,7 @@ package com.teste.implementabiblioteca.Controller.Author.Search;
 import com.teste.implementabiblioteca.Controller.Author.Search.ByLastName.ByLastname;
 import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 import com.teste.implementabiblioteca.Model.Author.Exceptions.LastNameNotFound;
+import com.teste.implementabiblioteca.Model.Author.Exceptions.RegisterNotFound;
 import com.teste.implementabiblioteca.Services.Author.ServicesAuthor;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -54,5 +55,18 @@ class ByLastnameTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.list[1].lastname.lastName")
                         .value("Santos"))
                 .andReturn();
+    }
+    @Test
+    void requestValidationNotCompleted() throws LastNameNotFound, Exception {
+        List<AuthorEntity> listEmpty = new ArrayList<>();
+
+        when(services.getByLastName("Santos"))
+                .thenThrow(new LastNameNotFound("Santos"))
+                .thenReturn(listEmpty);
+
+        mockMvc.perform(get("/Author/LastName/Santos"))
+                .andExpect(MockMvcResultMatchers.status().isInternalServerError())
+                .andReturn();
+
     }
 }

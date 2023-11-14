@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -26,7 +26,6 @@ class DeleteAuthorTest {
     @Test
     void deleteAuthor() throws Exception, AuthorNotFound {
 
-
         mockMvc.perform(MockMvcRequestBuilders.delete("/DeleteAuthor/{id}", 1))
                 .andExpect(status().isOk())
                 .andReturn();
@@ -35,6 +34,17 @@ class DeleteAuthorTest {
 
         Mockito.verify(service, times(1)).delete(1);
         // Verifica se o metodo foi chamado apenas uma vez
+
+    }
+    @Test
+    void requestValidationNotCompleted() throws AuthorNotFound, Exception {
+        doThrow(new AuthorNotFound(1))
+                .when(service).delete(1);
+
+        mockMvc.perform(MockMvcRequestBuilders.delete("/DeleteAuthor/{id}",1))
+                .andExpect(status().isNotFound())
+                .andReturn();
+        verify(service,times(1)).delete(1);
 
     }
 }

@@ -14,7 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
@@ -48,6 +47,7 @@ class InsertAddressTest {
         verify(services, times(1)).insertAddress(addressCaptor.capture());
 
         assertThat(addressCaptor.getValue().getCity()).isEqualTo("Maringá");
+
     }
     @Test
     void validationMissingParametersStreet() throws Exception {
@@ -63,6 +63,7 @@ class InsertAddressTest {
 
         verify(services, never()).insertAddress(any(AddressEntity.class));
     }
+
     @Test
     void validationMissingParametersNumber() throws Exception {
 
@@ -77,6 +78,7 @@ class InsertAddressTest {
 
         verify(services, never()).insertAddress(any(AddressEntity.class));
     }
+
     @Test
     void validationMissingParametersBoroughs() throws Exception {
 
@@ -91,6 +93,7 @@ class InsertAddressTest {
 
         verify(services, never()).insertAddress(any(AddressEntity.class));
     }
+
     @Test
     void validationMissingParametersCity() throws Exception {
 

@@ -50,4 +50,17 @@ class SearchByDateBirthTest {
                         .jsonPath("$.list[0].data_nascimento").value("1989-01-01"))
                 .andReturn();
     }
+    @Test
+    void requestValidationNotCompleted() throws DateBirthNotFound, Exception {
+
+        List<AuthorEntity> listEmpty = new ArrayList<>();
+
+        when(services.getByDateBirth("1989-01-01", "1999-01-01"))
+                .thenThrow(new DateBirthNotFound("1989-01-01", "1999-01-01"))
+                .thenReturn(listEmpty);
+
+        mockMvc.perform(get("/Autor/DateBirth/1989-01-01/1999-01-01"))
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andReturn();
+    }
 }

@@ -27,7 +27,7 @@ class SearchByIdTest {
     @Autowired
     private MockMvc mockMvc;// aqui está injetando o MockMvc
     @MockBean
-    private ServicesAuthor servicesAuthor;// criando uma simulação do service
+    private ServicesAuthor services;// criando uma simulação do service
     // graças a notação @MockBean
 
     @Test
@@ -36,7 +36,7 @@ class SearchByIdTest {
         LocalDate dateBirth = LocalDate.parse("2018-10-15");
         AuthorEntity author = new AuthorEntity(null, "Pedro", "Santos", dateBirth);
 
-        when(servicesAuthor.getById(1)).thenReturn(author);// when é do mock , e quando acessa a função getById(1) , retorna o autor
+        when(services.getById(1)).thenReturn(author);// when é do mock , e quando acessa a função getById(1) , retorna o autor
         this.mockMvc.perform(get("/Author/1"))// aqui esta simulando uma solicitação igual no postman
                 .andExpect(MockMvcResultMatchers.status().isOk())// verifica se o status da resposta é 200 (ok)
                 // daqui para baixo verifica se os campos são os mesmos do autor instanciado , como se fosse os asserts
@@ -45,5 +45,14 @@ class SearchByIdTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.data_nascimento").value("2018-10-15"))
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
                 .andReturn();//aqui encerra o teste e obtem o resultado do teste.
+    }
+    @Test
+    void requestValidationNotCompleted() throws AuthorNotFound, Exception {
+
+        when(services.getById(1)).thenThrow(new AuthorNotFound(1)); // thenThrow = Então lance
+
+        mockMvc.perform(get("/Author/1"))
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andReturn();
     }
 }
