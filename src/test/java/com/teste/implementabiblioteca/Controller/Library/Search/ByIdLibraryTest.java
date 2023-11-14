@@ -36,4 +36,14 @@ class ByIdLibraryTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.nome").value("Maringá"))
                 .andReturn();
     }
+    @Test
+    void requestValidationNotCompleted() throws LibraryNotFound, Exception {
+
+        when(services.getById(1))
+                .thenThrow(new LibraryNotFound(1));
+
+        mockMvc.perform(get("/Library/1"))
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andReturn();
+    }
 }

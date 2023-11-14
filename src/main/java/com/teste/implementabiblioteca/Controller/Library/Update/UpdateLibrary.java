@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
+import static com.teste.implementabiblioteca.Controller.Library.ExceptionHandler.Handler.map;
 import static org.springframework.http.HttpStatus.*;
 
 @RestController
@@ -26,7 +27,7 @@ public class UpdateLibrary {
             return ResponseEntity.status(OK).build();
 
         } catch (Throwable e) {
-            throw new RuntimeException(e);
+            return map(e);
         }
     }
 }

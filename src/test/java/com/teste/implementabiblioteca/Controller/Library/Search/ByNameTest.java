@@ -41,4 +41,16 @@ class ByNameTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[0].nome").value("Curitiba"))
                 .andReturn();
     }
+    @Test
+    void requestValidationNotCompleted() throws NameLibraryNotFound, Exception {
+        List<LibraryEntity> listEmpty = new ArrayList<>();
+
+        when(services.getLibraryByName("Maringá"))
+                .thenThrow(new NameLibraryNotFound("Maringá"))
+                .thenReturn(listEmpty);
+
+        mockMvc.perform(get("/Library/Name/Maringá"))
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andReturn();
+    }
 }

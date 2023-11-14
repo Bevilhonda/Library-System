@@ -49,7 +49,8 @@ class SearchByIdTest {
     @Test
     void requestValidationNotCompleted() throws AuthorNotFound, Exception {
 
-        when(services.getById(1)).thenThrow(new AuthorNotFound(1)); // thenThrow = Então lance
+        when(services.getById(1))
+                .thenThrow(new AuthorNotFound(1)); // thenThrow = Então lance
 
         mockMvc.perform(get("/Author/1"))
                 .andExpect(MockMvcResultMatchers.status().isNotFound())

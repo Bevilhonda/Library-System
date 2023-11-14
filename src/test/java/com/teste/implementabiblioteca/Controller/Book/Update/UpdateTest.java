@@ -1,5 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Book.Update;
 
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.teste.implementabiblioteca.Controller.Book.Update.DTO.RequestData;
 import com.teste.implementabiblioteca.Model.Book.BookEntity;
@@ -50,6 +51,26 @@ class UpdateTest {
         verify(services, times(1)).update(eq(1), bookCaptor.capture());
         assertThat(bookCaptor.getValue().getTitle()).isEqualTo("Java");
     }
+
+    @Test
+    void requestValidationNotCompleted() throws BookNotFound, Exception {
+        LocalDate dataPublication = LocalDate.parse("1990-12-25");
+        RequestData requestData = new RequestData(
+                "Java", 1, dataPublication, 1, 1, 1);
+
+        doThrow(new BookNotFound(1))
+                .when(services).update(any(), any());
+
+        mockMvc.perform(put("/UpdateBook/{id}", 1)
+                        .content(objectMapper.writeValueAsString(requestData))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andExpect(content()
+                        .string("O Livro com o id "
+                                + requestData.getId_Livro() + " não  foi encontrado."))
+                .andReturn();
+    }
+
     @Test
     void validationMissingParameterIdAuthor() throws Exception, BookNotFound {
         LocalDate dataPublication = LocalDate.parse("1990-12-25");
@@ -63,9 +84,10 @@ class UpdateTest {
                 .andExpect(content().json("[\"O número do Id de autor é obrigatório.\"]"))
                 .andReturn();
 
-        verify(services, never()).update(eq(1),any(BookEntity.class));
+        verify(services, never()).update(eq(1), any(BookEntity.class));
 
     }
+
     @Test
     void validationMissingParameterDatePublication() throws Exception, BookNotFound {
         LocalDate dataPublication = LocalDate.parse("1990-12-25");
@@ -79,9 +101,10 @@ class UpdateTest {
                 .andExpect(content().json("[\"A data de publicação é obrigatório.\"]"))
                 .andReturn();
 
-        verify(services, never()).update(eq(1),any(BookEntity.class));
+        verify(services, never()).update(eq(1), any(BookEntity.class));
 
     }
+
     @Test
     void validationMissingParameterIdEdition() throws Exception, BookNotFound {
         LocalDate dataPublication = LocalDate.parse("1990-12-25");
@@ -95,9 +118,10 @@ class UpdateTest {
                 .andExpect(content().json("[\"O número da edição é obrigatório.\"]"))
                 .andReturn();
 
-        verify(services, never()).update(eq(1),any(BookEntity.class));
+        verify(services, never()).update(eq(1), any(BookEntity.class));
 
     }
+
     @Test
     void validationMissingParameterIdLibrary() throws Exception, BookNotFound {
         LocalDate dataPublication = LocalDate.parse("1990-12-25");
@@ -111,9 +135,10 @@ class UpdateTest {
                 .andExpect(content().json("[\"O número do Id de biblioteca é obrigatório.\"]"))
                 .andReturn();
 
-        verify(services, never()).update(eq(1),any(BookEntity.class));
+        verify(services, never()).update(eq(1), any(BookEntity.class));
 
     }
+
     @Test
     void validationMissingParameterTitle() throws Exception, BookNotFound {
         LocalDate dataPublication = LocalDate.parse("1990-12-25");
@@ -127,7 +152,7 @@ class UpdateTest {
                 .andExpect(content().json("[\"O campo 'Titulo' é obrigatório.\"]"))
                 .andReturn();
 
-        verify(services, never()).update(eq(1),any(BookEntity.class));
+        verify(services, never()).update(eq(1), any(BookEntity.class));
 
     }
 }

@@ -45,4 +45,18 @@ class AllLibraryTest {
                         .value("Curitiba"))
                 .andReturn();
     }
+    @Test
+    void requesteValidationNotCompleted() throws RegisterLibraryNotFound, Exception {
+
+        List<LibraryEntity> listEmpty = new ArrayList<>();
+
+        when(services.getAllLibrary())
+                .thenThrow(new RegisterLibraryNotFound())
+                .thenReturn(listEmpty);
+
+        mockMvc.perform(get("/Librarys"))
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andReturn();
+
+    }
 }

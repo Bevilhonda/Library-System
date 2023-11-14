@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.teste.implementabiblioteca.Controller.Library.ExceptionHandler.Handler.map;
 import static org.springframework.http.HttpStatus.*;
 
 @RestController
@@ -23,7 +24,7 @@ public class ByIdLibrary {
             return ResponseEntity.status(OK).body(Response.from(library));
 
         } catch (Throwable e) {
-            throw new RuntimeException(e);
+            return map(e);
         }
     }
 }

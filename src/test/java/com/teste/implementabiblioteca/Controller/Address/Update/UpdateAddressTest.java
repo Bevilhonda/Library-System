@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.teste.implementabiblioteca.Controller.Address.Update.DTO.RequestData;
 import com.teste.implementabiblioteca.Model.Address.AddressEntity;
 import com.teste.implementabiblioteca.Model.Address.Exceptions.AddressNotFound;
-import com.teste.implementabiblioteca.Model.Book.BookEntity;
 import com.teste.implementabiblioteca.Services.Address.ServicesAddress;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
