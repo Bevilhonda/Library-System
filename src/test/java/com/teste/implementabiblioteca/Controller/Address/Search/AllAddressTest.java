@@ -62,7 +62,7 @@ class AllAddressTest {
                 .thenReturn(listEmpty);
 
         mockMvc.perform(get("/Address"))
-                .andExpect(MockMvcResultMatchers.status().isInternalServerError())
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
                 .andReturn();
     }
 }

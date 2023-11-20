@@ -65,7 +65,7 @@ class ByLastnameTest {
                 .thenReturn(listEmpty);
 
         mockMvc.perform(get("/Author/LastName/Santos"))
-                .andExpect(MockMvcResultMatchers.status().isInternalServerError())
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
                 .andReturn();
 
     }
