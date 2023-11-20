@@ -16,7 +16,7 @@ public class Handler {
                 vai converter a exceção padrão,  chamada de pattern para o tipo personalizado
                  descrito na string */
             }
-            case "ListEmptyException" -> {
+            case "LastNameNotFound" -> {
                 return convert((LastNameNotFound) pattern);
             }
             case "DateBirthNotFound" -> {
