@@ -19,7 +19,6 @@ dependencies {
     implementation 'mysql:mysql-connector-java:8.0.30'
 
     implementation 'junit:junit:4.13.1'
-    // implementation 'org.json:json:20230227' // adicionei essa dependencia para usar o objeto JSON
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
@@ -29,7 +28,7 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    //implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+
 }
 
 test {
