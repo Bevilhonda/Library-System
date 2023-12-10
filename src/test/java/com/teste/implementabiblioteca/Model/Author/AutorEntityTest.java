@@ -13,8 +13,6 @@ class AutorEntityTest {
   void AuthorEntityTest() {
         LocalDate data_nascimento_autor = LocalDate.parse("2018-10-15");
 
-        LocalDate data_nascimento_autor1 = LocalDate.parse("2018-10-14");
-
         AuthorEntity novo =
                 new AuthorEntity(
                         1,
