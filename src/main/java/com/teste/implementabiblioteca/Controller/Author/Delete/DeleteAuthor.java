@@ -9,6 +9,7 @@ import static com.teste.implementabiblioteca.Controller.Author.ExceptionHandler.
 import static org.springframework.http.HttpStatus.*;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class DeleteAuthor {
     @Autowired
     private ServicesAuthor service;

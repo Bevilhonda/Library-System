@@ -5,6 +5,7 @@ import com.teste.implementabiblioteca.Model.Address.AddressEntity;
 import com.teste.implementabiblioteca.Services.Address.ServicesAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,6 +15,7 @@ import static com.teste.implementabiblioteca.Controller.Address.ExceptionHandler
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class AllAddress {
     @Autowired
     private ServicesAddress services;
