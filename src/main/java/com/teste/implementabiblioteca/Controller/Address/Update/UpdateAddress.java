@@ -12,6 +12,7 @@ import static com.teste.implementabiblioteca.Controller.Address.ExceptionHandler
 import static org.springframework.http.HttpStatus.*;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class UpdateAddress {
     @Autowired
     private ServicesAddress service;

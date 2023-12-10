@@ -4,10 +4,7 @@ import com.teste.implementabiblioteca.Controller.Author.Update.DTO.RequestData;
 import com.teste.implementabiblioteca.Services.Author.ServicesAuthor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -15,6 +12,7 @@ import static com.teste.implementabiblioteca.Controller.Author.ExceptionHandler.
 import static org.springframework.http.HttpStatus.*;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class UpdateAuthor {
     @Autowired
     private ServicesAuthor service;
