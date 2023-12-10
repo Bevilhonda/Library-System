@@ -21,6 +21,10 @@ public interface RepositoryLibrary extends JpaRepository<LibraryEntity, Integer>
     @Query(value = "select * from Biblioteca where nome = :nome ", nativeQuery = true)
     List<LibraryEntity> getLibraryByName(String nome);
 
+    @Query(value = "select * from Biblioteca join Endereco on " +
+            "(Biblioteca.fk_endereco = Endereco.id_endereco);",nativeQuery = true)
+    List<LibraryEntity> getLibraryAndAddress();
+
 
     @Query(value = "select * from Biblioteca ", nativeQuery = true)
     List<LibraryEntity> getAllLibrary();
