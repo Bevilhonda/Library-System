@@ -4,7 +4,6 @@ import com.teste.implementabiblioteca.Model.Address.AddressEntity;
 import com.teste.implementabiblioteca.Model.Library.LibraryEntity;
 
 public record DataLibrarys(Integer idLibrary, String name, Integer address,CompleteAddress completeAddress) {
-
     public static DataLibrarys from(LibraryEntity library){
         AddressEntity addressEntity = new AddressEntity();
 
