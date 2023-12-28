@@ -21,8 +21,11 @@ public class LibraryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
+    @Column(name = "id_biblioteca")
     Integer id_biblioteca;
+    @Column(name = "nome")
     String nome;
+    @Column(name = "fk_endereco")
     Integer fk_endereco;
 
     public Integer getIdLibrary() {
@@ -36,4 +39,5 @@ public class LibraryEntity {
     public Integer getFkAddress() {
         return fk_endereco;
     }
+
 }
