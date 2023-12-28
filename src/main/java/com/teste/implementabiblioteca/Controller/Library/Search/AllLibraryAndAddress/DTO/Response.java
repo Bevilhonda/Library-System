@@ -2,8 +2,9 @@ package com.teste.implementabiblioteca.Controller.Library.Search.AllLibraryAndAd
 
 import java.util.List;
 
-public record Response(List<DataLibrarys> listAddress) {
-    public static Response from(List<DataLibrarys> librarysList) {
+public record Response(List<LibraryAddressDTO> listAddress) {
+    public static Response from(List<LibraryAddressDTO> librarysList) {
         return new Response(librarysList);
     }
 }
+
