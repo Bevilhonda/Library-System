@@ -1,7 +1,7 @@
 package com.teste.implementabiblioteca.Controller.Library.Search.AllLibraryAndAddress;
 
-import com.teste.implementabiblioteca.Controller.Library.Search.AllLibraryAndAddress.DTO.DataLibrarys;
 import com.teste.implementabiblioteca.Controller.Library.Search.AllLibraryAndAddress.DTO.Response;
+import com.teste.implementabiblioteca.Controller.Library.Search.AllLibraryAndAddress.DTO.LibraryAddressDTO;
 import com.teste.implementabiblioteca.Services.Library.ServicesLibrary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +24,7 @@ public class FullLibrary {
     @GetMapping("/FullLibrarys")
     public ResponseEntity<?> getAllLibrary(){
         try {
-            List<DataLibrarys> listLibrary = services.getAllLibraryAndAddress();
+            List<LibraryAddressDTO> listLibrary = services.getAllLibraryAndAddress();
 
             return ResponseEntity.status(OK).body(Response.from(listLibrary));
 
