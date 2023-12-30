@@ -103,7 +103,7 @@ public class TestRepositoryLibrary {
         repository.insert("Biblioteca Londrina", 2);
         repository.insert("Biblioteca Curitiba", 3);
 
-        repository.deleteLibrary(1);
+        repository.delete(1);
 
         List<LibraryEntity> listLibrary = repository.getAllLibrary();
         assertThat(listLibrary.size()).isEqualTo(2);
