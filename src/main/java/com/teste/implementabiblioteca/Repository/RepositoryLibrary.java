@@ -1,6 +1,7 @@
 package com.teste.implementabiblioteca.Repository;
 
 import com.teste.implementabiblioteca.Model.Library.LibraryEntity;
+import com.teste.implementabiblioteca.Controller.Library.Search.AllLibraryAndAddress.DTO.LibraryAddressProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -21,10 +22,10 @@ public interface RepositoryLibrary extends JpaRepository<LibraryEntity, Integer>
     @Query(value = "select * from Biblioteca where nome = :nome ", nativeQuery = true)
     List<LibraryEntity> getLibraryByName(String nome);
 
-    @Query(value = "select * from Biblioteca join Endereco on " +
-            "(Biblioteca.fk_endereco = Endereco.id_endereco);",nativeQuery = true)
-    List<LibraryEntity> getLibraryAndAddress();
-
+    @Query(value = "SELECT lib.id_biblioteca, lib.nome, lib.fk_endereco, end.rua, end.numero, end.bairro, end.cidade, end.estado " +
+            "FROM Biblioteca lib " +
+            "LEFT JOIN Endereco end ON lib.fk_endereco = end.id_endereco", nativeQuery = true)
+    List<LibraryAddressProjection> findAllBibliotecas();
 
     @Query(value = "select * from Biblioteca ", nativeQuery = true)
     List<LibraryEntity> getAllLibrary();
@@ -41,5 +42,5 @@ public interface RepositoryLibrary extends JpaRepository<LibraryEntity, Integer>
 
     @Modifying(clearAutomatically = true)
     @Query(value = "Delete from Biblioteca where id_biblioteca = :id_biblioteca",nativeQuery = true)
-    Integer deleteLibrary(Integer id_biblioteca);
+    Integer delete(Integer id_biblioteca);
 }
