@@ -21,7 +21,7 @@ public class FullLibrary {
     @Autowired
     private ServicesLibrary services;
 
-    @GetMapping("/FullLibrarys")
+    @GetMapping("/FullLibraries")
     public ResponseEntity<?> getAllLibrary(){
         try {
             List<LibraryAddressDTO> listLibrary = services.getAllLibraryAndAddress();
