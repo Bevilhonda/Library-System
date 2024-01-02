@@ -32,6 +32,16 @@ public class ServicesAddress {
         return listAddress;
     }
 
+    public List<AddressEntity> getAddressByCityName(String cidade) throws RegisterAddressNotFound {
+
+        List<AddressEntity> listAddressBYCity = repository.getAddressByNameCity(cidade);
+
+        if (listAddressBYCity.isEmpty()) {
+            throw new RegisterAddressNotFound();
+        }
+        return listAddressBYCity;
+    }
+
     public void insertAddress(AddressEntity address) {
 
         repository.saveAddress(address.getStreet(), address.getNumber(),
