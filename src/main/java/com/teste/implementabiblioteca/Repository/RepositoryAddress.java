@@ -34,4 +34,7 @@ public interface RepositoryAddress extends JpaRepository<AddressEntity, Integer>
     @Query(value = "Select * from Endereco",nativeQuery = true )
     List<AddressEntity> getAllAddress();
 
+    @Query(value = "Select * from Endereco where cidade = :cidade ", nativeQuery = true)
+    List<AddressEntity> getAddressByNameCity(String cidade);
+
 }
