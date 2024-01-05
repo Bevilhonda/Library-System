@@ -6,8 +6,6 @@ import com.teste.implementabiblioteca.Model.Library.Exceptions.LibraryNotFound;
 import com.teste.implementabiblioteca.Model.Library.Exceptions.NameLibraryNotFound;
 import com.teste.implementabiblioteca.Model.Library.Exceptions.RegisterLibraryNotFound;
 import com.teste.implementabiblioteca.Model.Library.LibraryEntity;
-import com.teste.implementabiblioteca.Controller.Library.Search.AllLibraryAndAddress.DTO.LibraryAddressDTO;
-import com.teste.implementabiblioteca.Controller.Library.Search.AllLibraryAndAddress.DTO.LibraryAddressProjection;
 import com.teste.implementabiblioteca.Repository.RepositoryAddress;
 import com.teste.implementabiblioteca.Repository.RepositoryLibrary;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,32 +51,10 @@ public class ServicesLibrary {
         return list;
     }
 
-    public List<LibraryAddressDTO> getAllLibraryAndAddress() throws RegisterLibraryNotFound{
-
-        List<LibraryAddressProjection> listLibraries = repository.findAllBibliotecas();
-
-        if (listLibraries.isEmpty()){
-            throw new RegisterLibraryNotFound();
-        }
-
-        List<LibraryAddressDTO> dataLibrarysList = listLibraries.stream().map(libraryEntity ->
-                new LibraryAddressDTO(
-                        libraryEntity.getId_biblioteca(),
-                        libraryEntity.getNome(),
-                        libraryEntity.getFk_endereco(),
-                        libraryEntity.getRua(),
-                        libraryEntity.getNumero(),
-                        libraryEntity.getBairro(),
-                        libraryEntity.getCidade(),
-                        libraryEntity.getEstado()
-                )).toList();
-
-        return dataLibrarysList;
-
-    }
     public void insert(LibraryEntity library) {
 
-        repository.insert(library.getName(), library.getFkAddress());
+        repository.saveLibrary(library.getNome(),library.getRua(),library.getNumero(),
+                library.getBairro(),library.getCidade(),library.getEstado());
     }
 
     public void update(Integer id, LibraryEntity library) throws LibraryNotFound {
@@ -86,7 +62,8 @@ public class ServicesLibrary {
         if (dataLibrary == null) {
             throw new LibraryNotFound(id);
         }
-        repository.update(library.getName(), library.getFkAddress(), id);
+        repository.update(library.getNome(),library.getRua(),library.getNumero(),
+                library.getBairro(),library.getCidade(),library.getEstado(), id);
     }
 
     public void delete(Integer id) throws LibraryNotFound {

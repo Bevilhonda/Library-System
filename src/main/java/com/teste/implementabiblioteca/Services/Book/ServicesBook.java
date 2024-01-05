@@ -45,8 +45,8 @@ public class ServicesBook {
             throw new BookNotFound(id);
         }
 
-        repository.update(book.getTitle(), book.getData_publication(),
-                book.getEdition(), id);
+        repository.update(book.getTitle(),book.getData_publication()
+                ,book.getEdition(),id);
     }
 
     public void delete(Integer id) throws BookNotFound {

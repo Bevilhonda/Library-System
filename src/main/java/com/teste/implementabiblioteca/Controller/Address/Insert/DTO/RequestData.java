@@ -2,10 +2,11 @@ package com.teste.implementabiblioteca.Controller.Address.Insert.DTO;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.teste.implementabiblioteca.Model.Address.AddressEntity;
+import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
+@Data
 public class RequestData {
     @JsonProperty("id_endereco")
     private Integer id_endereco;

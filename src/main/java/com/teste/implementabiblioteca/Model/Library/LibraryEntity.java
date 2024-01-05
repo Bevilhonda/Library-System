@@ -11,11 +11,15 @@ public class LibraryEntity {
 
     }
 
-    public LibraryEntity(Integer idLibrary, String name, Integer address) {
-        this.id_biblioteca = idLibrary;
-        this.nome = name;
-        this.fk_endereco = address;
-
+    public LibraryEntity(Integer id_biblioteca, String nome, String rua, Integer numero,
+                         String cidade, String bairro, String estado) {
+        this.id_biblioteca = id_biblioteca;
+        this.nome = nome;
+        this.rua = rua;
+        this.numero = numero;
+        this.cidade = cidade;
+        this.bairro = bairro;
+        this.estado = estado;
     }
 
     @Id
@@ -25,19 +29,42 @@ public class LibraryEntity {
     Integer id_biblioteca;
     @Column(name = "nome")
     String nome;
-    @Column(name = "fk_endereco")
-    Integer fk_endereco;
+    @Column(name = "rua")
+    String rua;
+    @Column(name = "numero")
+    Integer numero;
+    @Column(name = "cidade")
+    String cidade;
+    @Column(name = "bairro")
+    String bairro;
+    @Column(name = "estado")
+    String estado;
 
-    public Integer getIdLibrary() {
+    public Integer getId_biblioteca() {
         return id_biblioteca;
     }
 
-    public String getName() {
+    public String getNome() {
         return nome;
     }
 
-    public Integer getFkAddress() {
-        return fk_endereco;
+    public String getRua() {
+        return rua;
     }
 
+    public Integer getNumero() {
+        return numero;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
 }

@@ -1,9 +1,6 @@
 package com.teste.implementabiblioteca.Model.Address;
 
-import com.teste.implementabiblioteca.Model.Library.LibraryEntity;
-
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "Endereco")
@@ -14,14 +11,14 @@ public class AddressEntity {
 
     }
 
-    public AddressEntity(Integer idAddress, String street, Integer number,
-                         String city, String boroughs, String state) {
-        this.cidade = city;
-        this.rua = street;
-        this.numero = number;
-        this.id_endereco = idAddress;
-        this.estado = state;
-        this.bairro = boroughs;
+    public AddressEntity(Integer id_endereco, String rua, Integer numero,
+                         String cidade, String bairro, String estado) {
+        this.cidade = cidade;
+        this.rua = rua;
+        this.numero = numero;
+        this.id_endereco = id_endereco;
+        this.estado = estado;
+        this.bairro = bairro;
     }
 
     @Id
@@ -40,8 +37,6 @@ public class AddressEntity {
     private String cidade;
     @Column(name = "estado")
     private String estado;
-    @OneToMany(mappedBy = "fk_endereco")
-    private List<LibraryEntity> bibliotecas;
 
     public Integer getIdAddress() {
         return id_endereco;
@@ -66,4 +61,5 @@ public class AddressEntity {
     public String getState() {
         return estado;
     }
+
 }

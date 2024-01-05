@@ -28,7 +28,8 @@ class ByIdLibraryTest {
 
     @Test
     void getLibraryById() throws LibraryNotFound, Exception {
-        LibraryEntity library = new LibraryEntity(1, "Maringá", 1);
+        LibraryEntity library = new LibraryEntity(1, "Maringá","Tabata",12,"Centro",
+                "Maringá","Paraná");
 
         when(services.getById(1)).thenReturn(library);
         this.mockMvc.perform(get("/Library/1"))

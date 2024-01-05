@@ -1,6 +1,7 @@
 package com.teste.implementabiblioteca.Controller.Library.Update.DTO;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.teste.implementabiblioteca.Model.Address.AddressEntity;
 import com.teste.implementabiblioteca.Model.Library.LibraryEntity;
 
 import javax.validation.constraints.NotBlank;
@@ -12,18 +13,34 @@ public class RequestData {
     @JsonProperty("nome")
     @NotBlank(message = "O campo 'Nome' é obrigatório.")
     String nome;
-    @JsonProperty("fk_endereco")
-    @NotNull(message = "O número do Id de endereço é obrigatório.")
-    Integer fk_endereco;
+    @JsonProperty("rua")
+    @NotBlank(message = "O campo 'rua' é obrigatório.")
+    private String rua;
+    @JsonProperty("numero")
+    @NotNull(message = "O número da residência é obrigatório.")
+    private Integer numero;
+    @JsonProperty("bairro")
+    @NotBlank(message = "O campo 'bairro' é obrigatório.")
+    private String bairro;
+    @JsonProperty("cidade")
+    @NotBlank(message = "O campo 'cidade' é obrigatório.")
+    private String cidade;
+    @JsonProperty("estado")
+    private String estado;
 
-    public RequestData(Integer id_biblioteca, String nome, Integer fk_endereco) {
+    public RequestData(Integer id_biblioteca, String nome, String rua, Integer numero,
+                       String bairro, String cidade, String estado) {
         this.id_biblioteca = id_biblioteca;
         this.nome = nome;
-        this.fk_endereco = fk_endereco;
+        this.rua = rua;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
     }
 
     public LibraryEntity toModel(){
-        return new LibraryEntity(id_biblioteca,nome,fk_endereco);
+        return new LibraryEntity(id_biblioteca,nome,rua,numero,cidade,bairro,estado);
     }
 
     public Integer getId_biblioteca() {
@@ -34,7 +51,23 @@ public class RequestData {
         return nome;
     }
 
-    public Integer getFk_endereco() {
-        return fk_endereco;
+    public String getRua() {
+        return rua;
+    }
+
+    public Integer getNumero() {
+        return numero;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public String getEstado() {
+        return estado;
     }
 }

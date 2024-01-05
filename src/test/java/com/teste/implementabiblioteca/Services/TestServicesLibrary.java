@@ -28,45 +28,51 @@ public class TestServicesLibrary {
 
     @Test
     void insert() {
-        LibraryEntity library = new LibraryEntity(null, "Maringá", 1);
+        LibraryEntity library = new LibraryEntity(null, "Maringá","Tabata",12,"Centro",
+                "Maringá","Paraná");
 
         services.insert(library);
 
-        assertThat(library.getName()).isEqualTo("Maringá");
-        assertThat(library.getFkAddress()).isEqualTo(1);
+        assertThat(library.getNome()).isEqualTo("Maringá");
+
     }
 
     @Test
     void update() throws LibraryNotFound, RegisterLibraryNotFound {
-        LibraryEntity library = new LibraryEntity(null, "Maringá", 1);
-        LibraryEntity library1 = new LibraryEntity(null, "Londrina", 2);
+        LibraryEntity library = new LibraryEntity(null, "Maringá","Tabata",12,"Centro",
+                "Maringá","Paraná");
+        LibraryEntity library1 = new LibraryEntity(null, "Londrina","Tabata",12,"Centro",
+                "Maringá","Paraná");
 
         services.insert(library);
 
         services.update(1, library1);
         List<LibraryEntity> list = services.getAllLibrary();
 
-        assertThat(list.get(0).getName()).isEqualTo(library1.getName());
-        assertThat(list.get(0).getFkAddress()).isEqualTo(library1.getFkAddress());
+        assertThat(list.get(0).getNome()).isEqualTo(library1.getNome());
+
     }
 
     @Test
     void getById() throws LibraryNotFound {
-        LibraryEntity library = new LibraryEntity(null, "Maringá", 1);
+        LibraryEntity library = new LibraryEntity(null, "Maringá","Tabata",12,"Centro",
+                "Maringá","Paraná");
 
         services.insert(library);
 
         LibraryEntity libraryActual = services.getById(1);
 
-        assertThat(libraryActual.getIdLibrary()).isEqualTo(1);
-        assertThat(libraryActual.getName()).isEqualTo(library.getName());
-        assertThat(libraryActual.getFkAddress()).isEqualTo(library.getFkAddress());
+        assertThat(libraryActual.getId_biblioteca()).isEqualTo(1);
+        assertThat(libraryActual.getNome()).isEqualTo(library.getNome());
+
     }
 
     @Test
     void getAllLibrarys() throws RegisterLibraryNotFound {
-        LibraryEntity library1 = new LibraryEntity(null, "Maringá", 1);
-        LibraryEntity library2 = new LibraryEntity(null, "Londrina", 2);
+        LibraryEntity library1 = new LibraryEntity(null, "Maringá","Tabata",12,"Centro",
+                "Maringá","Paraná");
+        LibraryEntity library2 = new LibraryEntity(null,"Londrina","Tabata",12,"Centro",
+                "Maringá","Paraná");
 
         services.insert(library1);
         services.insert(library2);
@@ -74,16 +80,19 @@ public class TestServicesLibrary {
         List<LibraryEntity> list = services.getAllLibrary();
         assertThat(list.size()).isEqualTo(2);
 
-        assertThat(list.get(0).getIdLibrary()).isEqualTo(1);
-        assertThat(list.get(0).getName()).isEqualTo(library1.getName());
-        assertThat(list.get(0).getFkAddress()).isEqualTo(library1.getFkAddress());
+        assertThat(list.get(0).getId_biblioteca()).isEqualTo(1);
+        assertThat(list.get(0).getNome()).isEqualTo(library1.getNome());
+
     }
 
     @Test
     void getByName() throws NameLibraryNotFound {
-        LibraryEntity library1 = new LibraryEntity(null, "Maringá", 1);
-        LibraryEntity library2 = new LibraryEntity(null, "Londrina", 2);
-        LibraryEntity library3 = new LibraryEntity(null, "Maringá", 3);
+        LibraryEntity library1 = new LibraryEntity(null,"Maringá","Tabata",12,"Centro",
+                "Maringá","Paraná");
+        LibraryEntity library2 = new LibraryEntity(null,"Londrina","Tabata",12,"Centro",
+                "Maringá","Paraná");
+        LibraryEntity library3 = new LibraryEntity(null,"Londrina","Tabata",12,"Centro",
+                "Maringá","Paraná");
 
         services.insert(library1);
         services.insert(library2);
@@ -92,19 +101,21 @@ public class TestServicesLibrary {
         List<LibraryEntity> list = services.getLibraryByName("Maringá");
         assertThat(list.size()).isEqualTo(2);
 
-        assertThat(list.get(0).getIdLibrary()).isEqualTo(1);
-        assertThat(list.get(0).getName()).isEqualTo(library1.getName());
-        assertThat(list.get(0).getFkAddress()).isEqualTo(library1.getFkAddress());
+        assertThat(list.get(0).getId_biblioteca()).isEqualTo(1);
+        assertThat(list.get(0).getNome()).isEqualTo(library1.getNome());
 
-        assertThat(list.get(1).getIdLibrary()).isEqualTo(3);
-        assertThat(list.get(1).getName()).isEqualTo(library3.getName());
-        assertThat(list.get(1).getFkAddress()).isEqualTo(library3.getFkAddress());
+
+        assertThat(list.get(1).getId_biblioteca()).isEqualTo(3);
+        assertThat(list.get(1).getNome()).isEqualTo(library3.getNome());
+
     }
 
     @Test
     void delete() throws RegisterLibraryNotFound, LibraryNotFound {
-        LibraryEntity library1 = new LibraryEntity(null, "Maringá", 1);
-        LibraryEntity library2 = new LibraryEntity(null, "Londrina", 2);
+        LibraryEntity library1 = new LibraryEntity(null,"Maringá","Tabata",12,"Centro",
+                "Maringá","Paraná");
+        LibraryEntity library2 = new LibraryEntity(null,"Londrina","Tabata",12,"Centro",
+                "Maringá","Paraná");
 
         services.insert(library1);
         services.insert(library2);
@@ -117,9 +128,9 @@ public class TestServicesLibrary {
         List<LibraryEntity> list2 = services.getAllLibrary();
         assertThat(list2.size()).isEqualTo(1);
 
-        assertThat(list2.get(0).getIdLibrary()).isEqualTo(2);
-        assertThat(list2.get(0).getName()).isEqualTo(library2.getName());
-        assertThat(list2.get(0).getFkAddress()).isEqualTo(library2.getFkAddress());
+        assertThat(list2.get(0).getId_biblioteca()).isEqualTo(2);
+        assertThat(list2.get(0).getNome()).isEqualTo(library2.getNome());
+
     }
 
     @Test
@@ -160,7 +171,8 @@ public class TestServicesLibrary {
     @Test
     void exceptionUpdate() {
         Integer id = 20;
-        LibraryEntity library = new LibraryEntity(1, "Maringá", 1);
+        LibraryEntity library = new LibraryEntity(1, "Maringá","Tabata",12,"Centro",
+                "Maringá","Paraná");
 
         Throwable exception = catchThrowable(() -> {
             services.update(id, library);

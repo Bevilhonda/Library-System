@@ -13,13 +13,14 @@ public class BookEntity {
 
     }
 
-    public BookEntity(String title, int idAuthor, LocalDate publicationDate, int edition, int idLibrary, int idBook) {
+    public BookEntity(String title,LocalDate data_publication,Integer edicao,Integer fk_autor,
+                      Integer fk_biblioteca, Integer idBook) {
         this.id_Livro = idBook;
         this.titulo = title;
-        this.edicao = edition;
-        this.data_publication = publicationDate;
-        this.fk_autor = idAuthor;
-        this.fk_biblioteca = idLibrary;
+        this.edicao = edicao;
+        this.data_publication = data_publication;
+        this.fk_autor = fk_autor;
+        this.fk_biblioteca = fk_biblioteca;
 
     }
 

@@ -25,96 +25,122 @@ public class TestRepositoryLibrary {
 
     @Test
     void insert() {
-        repository.insert("Biblioteca Maringá", 1);
+        repository.saveLibrary("Biblioteca Maringá","Madre Paula",13,
+                "Centro","Maringá","Paraná");
 
         LibraryEntity library = repository.getLibraryById(1);
 
-        assertThat(library.getName()).isEqualTo("Biblioteca Maringá");
-        assertThat(library.getFkAddress()).isEqualTo(1);
+        assertThat(library.getId_biblioteca()).isEqualTo(1);
+        assertThat(library.getNome()).isEqualTo("Biblioteca Maringá");
+        assertThat(library.getRua()).isEqualTo("Madre Paula");
+        assertThat(library.getNumero()).isEqualTo(13);
+        assertThat(library.getBairro()).isEqualTo("Centro");
+        assertThat(library.getCidade()).isEqualTo("Maringá");
+        assertThat(library.getEstado()).isEqualTo("Paraná");
+
     }
 
     @Test
     void update() {
 
-        repository.insert("Biblioteca Maringá", 1);
+        repository.saveLibrary("Biblioteca Maringá","Madre Paula",13,
+                "Centro","Maringá","Paraná");
 
-        repository.update("Livraria Brasil", 1, 1);
+        repository.update("Livraria Brasil","Madre",20,"Centro",
+                "Maringá","Paraná",1);
 
         LibraryEntity library = repository.getLibraryById(1);
 
-        assertThat(library.getName()).isEqualTo("Livraria Brasil");
-        assertThat(library.getFkAddress()).isEqualTo(1);
+        assertThat(library.getNome()).isEqualTo("Livraria Brasil");
+        assertThat(library.getId_biblioteca()).isEqualTo(1);
+        assertThat(library.getRua()).isEqualTo("Madre");
+        assertThat(library.getNumero()).isEqualTo(20);
+        assertThat(library.getBairro()).isEqualTo("Centro");
+        assertThat(library.getCidade()).isEqualTo("Maringá");
+        assertThat(library.getEstado()).isEqualTo("Paraná");
+
     }
 
     @Test
     void getById() {
-        repository.insert("Biblioteca Maringá", 1);
-        repository.insert("Biblioteca Londrina", 2);
+        repository.saveLibrary("Biblioteca Maringá","Madre Paula",13,
+                "Centro","Maringá","Paraná");
+        repository.saveLibrary("Biblioteca Londrina","Madre",20,
+                "Centro","Londrina","Paraná");
 
         List<LibraryEntity> listLibrary = repository.getAllLibrary();
         assertThat(listLibrary.size()).isEqualTo(2);
 
-        assertThat(listLibrary.get(0).getIdLibrary()).isEqualTo(1);
-        assertThat(listLibrary.get(0).getName()).isEqualTo("Biblioteca Maringá");
-        assertThat(listLibrary.get(0).getFkAddress()).isEqualTo(1);
+        assertThat(listLibrary.get(0).getId_biblioteca()).isEqualTo(1);
+        assertThat(listLibrary.get(0).getNome()).isEqualTo("Biblioteca Maringá");
+        assertThat(listLibrary.get(0).getNumero()).isEqualTo(13);
 
-        assertThat(listLibrary.get(1).getIdLibrary()).isEqualTo(2);
-        assertThat(listLibrary.get(1).getName()).isEqualTo("Biblioteca Londrina");
-        assertThat(listLibrary.get(1).getFkAddress()).isEqualTo(2);
+        assertThat(listLibrary.get(1).getId_biblioteca()).isEqualTo(2);
+        assertThat(listLibrary.get(1).getNome()).isEqualTo("Biblioteca Londrina");
+        assertThat(listLibrary.get(1).getNumero()).isEqualTo(20);
     }
 
     @Test
     void allLibrarys() {
-        repository.insert("Biblioteca Maringá", 1);
-        repository.insert("Biblioteca Londrina", 2);
-        repository.insert("Biblioteca Curitiba", 3);
+        repository.saveLibrary("Biblioteca Maringá","Madre Paula",13,
+                "Centro","Maringá","Paraná");
+        repository.saveLibrary("Biblioteca Londrina","Madre",20,
+                "Centro","Londrina","Paraná");
+
 
         List<LibraryEntity> listLibrary = repository.getAllLibrary();
-        assertThat(listLibrary.size()).isEqualTo(3);
+        assertThat(listLibrary.size()).isEqualTo(2);
 
-        assertThat(listLibrary.get(0).getName()).isEqualTo("Biblioteca Maringá");
-        assertThat(listLibrary.get(0).getFkAddress()).isEqualTo(1);
-        assertThat(listLibrary.get(1).getName()).isEqualTo("Biblioteca Londrina");
-        assertThat(listLibrary.get(1).getFkAddress()).isEqualTo(2);
-        assertThat(listLibrary.get(2).getName()).isEqualTo("Biblioteca Curitiba");
-        assertThat(listLibrary.get(2).getFkAddress()).isEqualTo(3);
+        assertThat(listLibrary.get(0).getId_biblioteca()).isEqualTo(1);
+        assertThat(listLibrary.get(0).getNome()).isEqualTo("Biblioteca Maringá");
+        assertThat(listLibrary.get(0).getNumero()).isEqualTo(13);
+
+        assertThat(listLibrary.get(1).getId_biblioteca()).isEqualTo(2);
+        assertThat(listLibrary.get(1).getNome()).isEqualTo("Biblioteca Londrina");
+        assertThat(listLibrary.get(1).getNumero()).isEqualTo(20);
+
+
+
     }
 
     @Test
     void getByName() {
-        repository.insert("Biblioteca Maringá", 1);
-        repository.insert("Biblioteca Maringá", 2);
+        repository.saveLibrary("Biblioteca Maringá","Madre Paula",13,
+                "Centro","Maringá","Paraná");
+        repository.saveLibrary("Biblioteca Londrina","Madre",20,
+                "Centro","Londrina","Paraná");
 
         List<LibraryEntity> listLibrary = repository.getLibraryByName("Biblioteca Maringá");
-        assertThat(listLibrary.size()).isEqualTo(2);
+        assertThat(listLibrary.size()).isEqualTo(1);
 
-        assertThat(listLibrary.get(0).getIdLibrary()).isEqualTo(1);
-        assertThat(listLibrary.get(0).getName()).isEqualTo("Biblioteca Maringá");
-        assertThat(listLibrary.get(0).getFkAddress()).isEqualTo(1);
+        assertThat(listLibrary.get(0).getId_biblioteca()).isEqualTo(1);
+        assertThat(listLibrary.get(0).getNome()).isEqualTo("Biblioteca Maringá");
+        assertThat(listLibrary.get(0).getNumero()).isEqualTo(13);
 
-        assertThat(listLibrary.get(1).getIdLibrary()).isEqualTo(2);
-        assertThat(listLibrary.get(1).getName()).isEqualTo("Biblioteca Maringá");
-        assertThat(listLibrary.get(1).getFkAddress()).isEqualTo(2);
     }
 
     @Test
     void delete() {
-        repository.insert("Biblioteca Maringá", 1);
-        repository.insert("Biblioteca Londrina", 2);
-        repository.insert("Biblioteca Curitiba", 3);
+        repository.saveLibrary("Biblioteca Curitiba","Madre Paula",130,
+                "Centro","Maringá","Paraná");
+        repository.saveLibrary("Biblioteca Maringá","Madre",13,
+                "Centro","Londrina","Paraná");
+        repository.saveLibrary("Biblioteca Londrina","Madre",20,
+                "Centro","Londrina","Paraná");
 
         repository.delete(1);
 
         List<LibraryEntity> listLibrary = repository.getAllLibrary();
         assertThat(listLibrary.size()).isEqualTo(2);
 
-        assertThat(listLibrary.get(0).getIdLibrary()).isEqualTo(2);
-        assertThat(listLibrary.get(0).getName()).isEqualTo("Biblioteca Londrina");
-        assertThat(listLibrary.get(0).getFkAddress()).isEqualTo(2);
+        assertThat(listLibrary.get(0).getId_biblioteca()).isEqualTo(2);
+        assertThat(listLibrary.get(0).getNome()).isEqualTo("Biblioteca Maringá");
+        assertThat(listLibrary.get(0).getNumero()).isEqualTo(13);
 
-        assertThat(listLibrary.get(1).getIdLibrary()).isEqualTo(3);
-        assertThat(listLibrary.get(1).getName()).isEqualTo("Biblioteca Curitiba");
-        assertThat(listLibrary.get(1).getFkAddress()).isEqualTo(3);
+        assertThat(listLibrary.get(1).getId_biblioteca()).isEqualTo(3);
+        assertThat(listLibrary.get(1).getNome()).isEqualTo("Biblioteca Londrina");
+        assertThat(listLibrary.get(1).getNumero()).isEqualTo(20);
+
     }
 
 }

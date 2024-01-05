@@ -32,7 +32,7 @@ class ByIdBookTest {
     void getBookById() throws BookNotFound, Exception {
         LocalDate datePublication = LocalDate.parse("1968-01-01");
         BookEntity book = new BookEntity(
-                "Java",1,datePublication,1,1,1);
+                "Java",datePublication,1,1,1,1);
         when(services.getById(1)).thenReturn(book);
 
         mockMvc.perform(get("/Book/1"))

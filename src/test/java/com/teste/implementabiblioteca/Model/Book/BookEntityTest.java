@@ -15,11 +15,12 @@ class BookEntityTest {
         BookEntity book =
                 new BookEntity(
                         "Junit",
-                        1,
                         dataPublication,
                         1,
                         1,
+                        1,
                         1
+
                 );
         assertEquals("Junit",book.getTitle());
         assertEquals(1,book.getFkAuthor());

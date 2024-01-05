@@ -1,7 +1,6 @@
 package com.teste.implementabiblioteca.Repository;
 
 import com.teste.implementabiblioteca.Model.Library.LibraryEntity;
-import com.teste.implementabiblioteca.Controller.Library.Search.AllLibraryAndAddress.DTO.LibraryAddressProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -25,20 +24,23 @@ public interface RepositoryLibrary extends JpaRepository<LibraryEntity, Integer>
     @Query(value = "SELECT lib.id_biblioteca, lib.nome, lib.fk_endereco, end.rua, end.numero, end.bairro, end.cidade, end.estado " +
             "FROM Biblioteca lib " +
             "LEFT JOIN Endereco end ON lib.fk_endereco = end.id_endereco", nativeQuery = true)
-    List<LibraryAddressProjection> findAllBibliotecas();
+    List<LibraryEntity> findAllBibliotecas();
 
     @Query(value = "select * from Biblioteca ", nativeQuery = true)
     List<LibraryEntity> getAllLibrary();
 
     @Modifying(clearAutomatically = true)
-    @Query(value = "Insert into Biblioteca (nome,fk_endereco) values " +
-            "(:nome , :fk_endereco) ",nativeQuery = true)
-    Integer insert(String nome , Integer fk_endereco);
+    @Query(value = "Insert into Biblioteca (nome,rua,numero,bairro,cidade,estado) values " +
+            "(:nome,:rua,:numero,:bairro,:cidade,:estado) ",nativeQuery = true)
+    Integer saveLibrary(String nome ,String rua, Integer numero,String bairro,String cidade,
+                        String estado);
 
     @Modifying(clearAutomatically = true)
-    @Query(value = "Update Biblioteca set nome = :nome , fk_endereco = :fk_endereco " +
+    @Query(value = "Update Biblioteca set nome = :nome , rua = :rua , numero = :numero, " +
+            "bairro = :bairro , cidade = :cidade, estado = :estado " +
             "where id_biblioteca = :id_biblioteca ",nativeQuery = true)
-    Integer update(String nome, Integer fk_endereco,Integer id_biblioteca);
+    Integer update(String nome,String rua, Integer numero,String bairro,String cidade,
+                   String estado, Integer id_biblioteca);
 
     @Modifying(clearAutomatically = true)
     @Query(value = "Delete from Biblioteca where id_biblioteca = :id_biblioteca",nativeQuery = true)

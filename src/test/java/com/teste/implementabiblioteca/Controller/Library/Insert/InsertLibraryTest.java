@@ -33,7 +33,8 @@ class InsertLibraryTest {
     @Test
     void insert() throws Exception {
         RequestData request = new RequestData(
-                1, "Londrina", 1);
+                1, "Londrina","Tabata",12,"Centro",
+                "Maringá","Paraná");
 
         this.mockMvc.perform(post("/Insert")
                         .content(objectMapper.writeValueAsBytes(request))
@@ -43,11 +44,12 @@ class InsertLibraryTest {
 
         ArgumentCaptor<LibraryEntity> libraryCaptor = ArgumentCaptor.forClass(LibraryEntity.class);
         verify(services, times(1)).insert(libraryCaptor.capture());
-        assertThat(libraryCaptor.getValue().getName()).isEqualTo("Londrina");
+        assertThat(libraryCaptor.getValue().getNome()).isEqualTo("Londrina");
     }
     @Test
     void validationMissingParameterName() throws Exception {
-        RequestData request = new RequestData(1,null,1);
+        RequestData request = new RequestData(1, null,"Tabata",12,"Centro",
+                "Maringá","Paraná");
 
         this.mockMvc.perform(post("/Insert")
                 .content(objectMapper.writeValueAsString(request))
@@ -58,7 +60,8 @@ class InsertLibraryTest {
     }
     @Test
     void validationMissingParameterIdAddress() throws Exception {
-        RequestData request = new RequestData(1,"Maringá",null);
+        RequestData request = new RequestData(1, "Londrina",null,12,"Centro",
+                "Maringá","Paraná");
 
         this.mockMvc.perform(post("/Insert")
                         .content(objectMapper.writeValueAsString(request))

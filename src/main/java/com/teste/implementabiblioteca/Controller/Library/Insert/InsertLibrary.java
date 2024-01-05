@@ -19,7 +19,7 @@ import static org.springframework.http.HttpStatus.*;
 public class InsertLibrary {
     @Autowired
     private ServicesLibrary service;
-    @PostMapping("/Insert")
+    @PostMapping("/InsertLibrary")
     public ResponseEntity<?> insert(@RequestBody @Valid RequestData dataLibrary){
         try {
              service.insert(dataLibrary.toModel());

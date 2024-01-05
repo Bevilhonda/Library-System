@@ -31,7 +31,7 @@ public class TestServicesBook {
         LocalDate dataPublication = LocalDate.parse("2018-10-15");
 
         BookEntity book = new BookEntity(
-                "Java", 1, dataPublication, 1, 1, 1);
+                "Java",  dataPublication, 1, 1, 1,1);
         services.insert(book);
         assertThat(book.getTitle()).isEqualTo("Java");
         assertThat(book.getData_publication()).isEqualTo(dataPublication);
@@ -45,9 +45,9 @@ public class TestServicesBook {
         LocalDate dataPublication2 = LocalDate.parse("2020-02-20");
 
         BookEntity book = new BookEntity(
-                "Java", 1, dataPublication, 1, 1, 1);
+                "Java",  dataPublication, 1, 1, 1,1);
         BookEntity book1 = new BookEntity(
-                "Html", 1, dataPublication2, 2, 1, 1);
+                "Html",dataPublication2, 2, 1, 1,1);
         services.insert(book);
 
         services.update(1,book1);
@@ -66,7 +66,7 @@ public class TestServicesBook {
 
 
         BookEntity book = new BookEntity(
-                "Java", 1, dataPublication, 1, 1, 1);
+                "Java",dataPublication, 1, 1, 1,1);
 
         services.insert(book);
         services.getById(1);
@@ -83,9 +83,9 @@ public class TestServicesBook {
         LocalDate dataPublication2 = LocalDate.parse("2020-02-20");
 
         BookEntity book = new BookEntity(
-                "Java", 1, dataPublication, 1, 1, 1);
+                "Java",dataPublication, 1, 1, 1,1);
         BookEntity book1 = new BookEntity(
-                "Html", 1, dataPublication2, 2, 1, 1);
+                "Html",dataPublication2, 2, 1, 1,1);
         services.insert(book);
         services.insert(book1);
         List<BookEntity> list = services.getAllBooks();
@@ -103,9 +103,9 @@ public class TestServicesBook {
         LocalDate dataPublication2 = LocalDate.parse("2020-02-20");
 
         BookEntity book = new BookEntity(
-                "Java", 1, dataPublication, 1, 1, 1);
+                "Java",dataPublication, 1, 1, 1,1);
         BookEntity book1 = new BookEntity(
-                "Html", 1, dataPublication2, 2, 1, 1);
+                "Html",dataPublication2, 2, 1, 1,1);
         services.insert(book);
         services.insert(book1);
 
@@ -147,7 +147,7 @@ public class TestServicesBook {
         LocalDate dataPublication = LocalDate.parse("1960-12-12");
         Integer id = 12 ;
         BookEntity book = new BookEntity(
-                null,1,dataPublication,1,1,1);
+                null,dataPublication,1,1,1,1);
 
         Throwable exception = catchThrowable(() -> {
             services.update(id,book);

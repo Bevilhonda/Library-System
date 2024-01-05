@@ -5,15 +5,17 @@ import com.teste.implementabiblioteca.Model.Library.LibraryEntity;
 import java.util.List;
 
 public class Response {
-    private final List<Library> list;
+    public static List<Library> from(List<LibraryEntity> listLibrary) {
 
-    public Response(List<Library> list) {
-        this.list = list;
-    }
-
-    public static List<Library> from(List<LibraryEntity> listLibrary){
-        return listLibrary.stream().map(library -> new Library(library.getIdLibrary(),
-                library.getName(),library.getFkAddress())).toList();
+        return listLibrary
+                .stream()
+                .map(library -> new Library(
+                        library.getId_biblioteca(),
+                        library.getNome(),
+                        library.getRua(),
+                        library.getNumero(),
+                        library.getBairro(), library.getCidade(),
+                        library.getEstado())).toList();
 
     }
 }

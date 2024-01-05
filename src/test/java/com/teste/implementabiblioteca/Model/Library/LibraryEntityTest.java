@@ -9,11 +9,18 @@ class LibraryEntityTest {
     void LibraryEntityTest(){
 
         LibraryEntity library =
-                new LibraryEntity(1,"Maringá",2000);
+                new LibraryEntity(
+                        1,
+                        "Maringá",
+                        "Gregorio",
+                        12,
+                        "Maringá",
+                        "Centro",
+                        "Paraná");
 
-        assertEquals(1,library.getIdLibrary());
-        assertEquals("Maringá",library.getName());
-        assertEquals(2000,library.getFkAddress());
+        assertEquals(1,library.getId_biblioteca());
+        assertEquals("Maringá",library.getNome());
+        assertEquals(12,library.getNumero());
 
     }
 

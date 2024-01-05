@@ -29,8 +29,10 @@ class ByNameTest {
 
     @Test
     void getNameLibrary() throws NameLibraryNotFound, Exception {
-        LibraryEntity library1 = new LibraryEntity(1, "Curitiba", 1);
-        LibraryEntity library2 = new LibraryEntity(1, "Maringá", 1);
+        LibraryEntity library1 = new LibraryEntity(1, "Curitiba","Tabata",12,"Centro",
+                "Maringá","Paraná");
+        LibraryEntity library2 = new LibraryEntity(1, "Maringá","Tabata",12,"Centro",
+                "Maringá","Paraná");
         List<LibraryEntity> list = new ArrayList<>();
         list.add(library1);
         list.add(library2);

@@ -37,7 +37,12 @@ class InsertTest {
     void insert() throws Exception {
         LocalDate dataPublication = LocalDate.parse("1990-12-12");
         RequestData request = new RequestData(
-                "Css", 1, dataPublication, 1, 1, 1);
+                "Css",
+                dataPublication,
+                1,
+                1,
+                1,
+                1);
 
         this.mockMvc.perform(post("/Insert/Book")
                         .content(objectMapper.writeValueAsBytes(request))
@@ -56,7 +61,12 @@ class InsertTest {
     void validationMissingParameterTitle() throws Exception {
         LocalDate dataPublication = LocalDate.parse("1990-12-12");
         RequestData request = new RequestData(
-                null, 1, dataPublication, 1, 1, 1);
+                null,
+                dataPublication,
+                1,
+                1,
+                1,
+                1);
 
         this.mockMvc.perform(post("/Insert/Book")
                         .content(objectMapper.writeValueAsBytes(request))
@@ -71,7 +81,12 @@ class InsertTest {
     void validationMissingParameterDatePublication() throws Exception {
 
         RequestData request = new RequestData(
-                "Java", 1, null, 1, 1, 1);
+                "Java",
+                null,
+                1,
+                1,
+                1,
+                1);
 
         this.mockMvc.perform(post("/Insert/Book")
                 .content(objectMapper.writeValueAsString(request))
@@ -85,7 +100,12 @@ class InsertTest {
     void validationMissingParameterEdition() throws Exception {
         LocalDate datePublication = LocalDate.parse("2000-12-12");
         RequestData request = new RequestData(
-                "Java",1,datePublication,null,1,1);
+                "Java",
+                datePublication,
+                null,
+                1,
+                1,
+                1);
 
         this.mockMvc.perform(post("/Insert/Book")
                 .content(objectMapper.writeValueAsString(request))
@@ -99,7 +119,12 @@ class InsertTest {
     void validationMissingParameterIdLibrary() throws Exception {
         LocalDate datePublication = LocalDate.parse("1995-12-25");
         RequestData request = new RequestData(
-                "Html",1,datePublication,1,null,1);
+                "Html",
+                datePublication,
+                1,
+                null,
+                1,
+                1);
 
         this.mockMvc.perform(post("/Insert/Book")
                 .content(objectMapper.writeValueAsString(request))
@@ -112,7 +137,12 @@ class InsertTest {
     void validationMissingParameterIdAuthor() throws Exception {
         LocalDate datePublication = LocalDate.parse("1995-12-25");
         RequestData request = new RequestData(
-                "Html",null,datePublication,1,1,1);
+                "Html",
+                null,
+                1,
+                1,
+                1,
+                1);
 
         this.mockMvc.perform(post("/Insert/Book")
                         .content(objectMapper.writeValueAsString(request))

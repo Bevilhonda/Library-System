@@ -38,7 +38,8 @@ class UpdateLibraryTest {
 
     @Test
     void update() throws Exception, LibraryNotFound {
-        RequestData request = new RequestData(1, "Maringá", 2);
+        RequestData request = new RequestData(1, "Maringá","Tabata",12,"Centro",
+                "Maringá","Paraná");
 
         this.mockMvc.perform(put("/UpdateLibrary/{id}", 1)
                         .content(objectMapper.writeValueAsBytes(request))
@@ -48,12 +49,13 @@ class UpdateLibraryTest {
         ArgumentCaptor<LibraryEntity> libraryCaptor = ArgumentCaptor.forClass(LibraryEntity.class);
 
         verify(services, times(1)).update(eq(1), libraryCaptor.capture());
-        assertThat(libraryCaptor.getValue().getName()).isEqualTo("Maringá");
+        assertThat(libraryCaptor.getValue().getNome()).isEqualTo("Maringá");
     }
 
     @Test
     void requestValidationUpgradeNotCompleted() throws LibraryNotFound, Exception {
-        RequestData request = new RequestData(1, "Maringá", 2);
+        RequestData request = new RequestData(1, "Maringá","Tabata",12,"Centro",
+                "Maringá","Paraná");
 
         doThrow(new LibraryNotFound(1))
                 .when(services).update(any(), any());
@@ -70,7 +72,8 @@ class UpdateLibraryTest {
 
     @Test
     void validationMissingParameterName() throws Exception, LibraryNotFound {
-        RequestData request = new RequestData(1, null, 2);
+        RequestData request = new RequestData(1, null,"Tabata",12,"Centro",
+                "Maringá","Paraná");
 
         this.mockMvc.perform(put("/UpdateLibrary/{id}", 1)
                         .content(objectMapper.writeValueAsBytes(request))
@@ -83,7 +86,8 @@ class UpdateLibraryTest {
 
     @Test
     void validationMissingParameterIdAddress() throws Exception, LibraryNotFound {
-        RequestData request = new RequestData(1, "Maringá", null);
+        RequestData request = new RequestData(1, "Maringá","Tabata",12,"Centro",
+                "Maringá","Paraná");
 
         this.mockMvc.perform(put("/UpdateLibrary/{id}", 1)
                         .content(objectMapper.writeValueAsBytes(request))

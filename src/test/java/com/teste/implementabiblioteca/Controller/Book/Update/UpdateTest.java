@@ -39,7 +39,10 @@ class UpdateTest {
     void update() throws Exception, BookNotFound {
         LocalDate dataPublication = LocalDate.parse("1990-12-25");
         RequestData requestData = new RequestData(
-                "Java", 1, dataPublication, 1, 1, 1);
+                "Java",
+                dataPublication,
+                1,
+                1);
 
         this.mockMvc.perform(put("/UpdateBook/{id}", 1)
                         .content(objectMapper.writeValueAsString(requestData))
@@ -56,7 +59,10 @@ class UpdateTest {
     void requestValidationNotCompleted() throws BookNotFound, Exception {
         LocalDate dataPublication = LocalDate.parse("1990-12-25");
         RequestData requestData = new RequestData(
-                "Java", 1, dataPublication, 1, 1, 1);
+                "Java",
+                dataPublication,
+                1,
+                1);
 
         doThrow(new BookNotFound(1))
                 .when(services).update(any(), any());
@@ -75,7 +81,10 @@ class UpdateTest {
     void validationMissingParameterIdAuthor() throws Exception, BookNotFound {
         LocalDate dataPublication = LocalDate.parse("1990-12-25");
         RequestData requestData = new RequestData(
-                "Html", null, dataPublication, 1, 1, 1);
+                "Html",
+                null,
+                1,
+                1);
 
         this.mockMvc.perform(put("/UpdateBook/{id}", 1)
                         .content(objectMapper.writeValueAsString(requestData))
@@ -92,7 +101,10 @@ class UpdateTest {
     void validationMissingParameterDatePublication() throws Exception, BookNotFound {
         LocalDate dataPublication = LocalDate.parse("1990-12-25");
         RequestData requestData = new RequestData(
-                "Java", 1, null, 1, 1, 1);
+                "Java",
+                dataPublication,
+                null,
+                1);
 
         this.mockMvc.perform(put("/UpdateBook/{id}", 1)
                         .content(objectMapper.writeValueAsString(requestData))
@@ -109,7 +121,11 @@ class UpdateTest {
     void validationMissingParameterIdEdition() throws Exception, BookNotFound {
         LocalDate dataPublication = LocalDate.parse("1990-12-25");
         RequestData requestData = new RequestData(
-                "Css", 1, dataPublication, null, 1, 1);
+                "Css",
+                dataPublication,
+                null,
+                1
+                );
 
         this.mockMvc.perform(put("/UpdateBook/{id}", 1)
                         .content(objectMapper.writeValueAsString(requestData))
@@ -126,7 +142,11 @@ class UpdateTest {
     void validationMissingParameterIdLibrary() throws Exception, BookNotFound {
         LocalDate dataPublication = LocalDate.parse("1990-12-25");
         RequestData requestData = new RequestData(
-                "Kotlin", 1, dataPublication, 1, null, 1);
+                "Kotlin",
+                dataPublication,
+                1,
+                null
+                );
 
         this.mockMvc.perform(put("/UpdateBook/{id}", 1)
                         .content(objectMapper.writeValueAsString(requestData))
@@ -143,7 +163,11 @@ class UpdateTest {
     void validationMissingParameterTitle() throws Exception, BookNotFound {
         LocalDate dataPublication = LocalDate.parse("1990-12-25");
         RequestData requestData = new RequestData(
-                null, 1, dataPublication, 1, 1, 1);
+                null,
+                dataPublication,
+                1,
+                1
+                );
 
         this.mockMvc.perform(put("/UpdateBook/{id}", 1)
                         .content(objectMapper.writeValueAsString(requestData))

@@ -33,10 +33,10 @@ class AllBooksTest {
     void getAllBooks() throws RegisterBookNotFound, Exception {
         LocalDate datePublication1 = LocalDate.parse("1968-01-01");
         BookEntity book1 = new BookEntity(
-                "Java",1,datePublication1,1,1,1);
+                "Java",datePublication1,1,1,1,1);
         LocalDate datePublication2 = LocalDate.parse("1968-01-01");
         BookEntity book2 = new BookEntity(
-                "Html",1,datePublication2,2,2,2);
+                "Html",datePublication2,2,2,2,2);
         List<BookEntity> list = new ArrayList<>();
         list.add(book1);
         list.add(book2);
