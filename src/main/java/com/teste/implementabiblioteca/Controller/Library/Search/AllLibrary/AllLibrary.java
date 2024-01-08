@@ -22,9 +22,10 @@ public class AllLibrary {
     private ServicesLibrary services;
 
     @GetMapping("/Libraries")
-    public ResponseEntity<?> getAllLibrary(){
+    public ResponseEntity<?> getAllLibrary() {
         try {
             List<LibraryEntity> listLibrary = services.getAllLibrary();
+
             return ResponseEntity.status(OK).body(Response.from(listLibrary));
 
         } catch (Throwable e) {

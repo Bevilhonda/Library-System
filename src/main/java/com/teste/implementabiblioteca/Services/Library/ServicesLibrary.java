@@ -1,7 +1,6 @@
 package com.teste.implementabiblioteca.Services.Library;
 
 
-
 import com.teste.implementabiblioteca.Model.Library.Exceptions.LibraryNotFound;
 import com.teste.implementabiblioteca.Model.Library.Exceptions.NameLibraryNotFound;
 import com.teste.implementabiblioteca.Model.Library.Exceptions.RegisterLibraryNotFound;
@@ -53,8 +52,8 @@ public class ServicesLibrary {
 
     public void insert(LibraryEntity library) {
 
-        repository.saveLibrary(library.getNome(),library.getRua(),library.getNumero(),
-                library.getBairro(),library.getCidade(),library.getEstado());
+        repository.saveLibrary(library.getNome(), library.getRua(), library.getNumero(),
+                library.getBairro(), library.getCidade(), library.getEstado());
     }
 
     public void update(Integer id, LibraryEntity library) throws LibraryNotFound {
@@ -62,8 +61,8 @@ public class ServicesLibrary {
         if (dataLibrary == null) {
             throw new LibraryNotFound(id);
         }
-        repository.update(library.getNome(),library.getRua(),library.getNumero(),
-                library.getBairro(),library.getCidade(),library.getEstado(), id);
+        repository.update(library.getNome(), library.getRua(), library.getNumero(),
+                library.getBairro(), library.getCidade(), library.getEstado(), id);
     }
 
     public void delete(Integer id) throws LibraryNotFound {
