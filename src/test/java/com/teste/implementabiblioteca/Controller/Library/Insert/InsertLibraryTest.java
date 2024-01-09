@@ -36,7 +36,7 @@ class InsertLibraryTest {
                 1, "Londrina","Tabata",12,"Centro",
                 "Maringá","Paraná");
 
-        this.mockMvc.perform(post("/Insert")
+        this.mockMvc.perform(post("/InsertLibrary")
                         .content(objectMapper.writeValueAsBytes(request))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -51,7 +51,7 @@ class InsertLibraryTest {
         RequestData request = new RequestData(1, null,"Tabata",12,"Centro",
                 "Maringá","Paraná");
 
-        this.mockMvc.perform(post("/Insert")
+        this.mockMvc.perform(post("/InsertLibrary")
                 .content(objectMapper.writeValueAsString(request))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
@@ -63,11 +63,11 @@ class InsertLibraryTest {
         RequestData request = new RequestData(1, "Londrina",null,12,"Centro",
                 "Maringá","Paraná");
 
-        this.mockMvc.perform(post("/Insert")
+        this.mockMvc.perform(post("/InsertLibrary")
                         .content(objectMapper.writeValueAsString(request))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("[\"O número do Id de endereço é obrigatório.\"]"));
+                .andExpect(content().json("[\"O campo 'rua' é obrigatório.\"]"));
         verify(services,never()).insert(any(LibraryEntity.class));
     }
 }

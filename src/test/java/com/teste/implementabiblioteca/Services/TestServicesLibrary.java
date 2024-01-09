@@ -87,25 +87,25 @@ public class TestServicesLibrary {
 
     @Test
     void getByName() throws NameLibraryNotFound {
-        LibraryEntity library1 = new LibraryEntity(null,"Maringá","Tabata",12,"Centro",
-                "Maringá","Paraná");
-        LibraryEntity library2 = new LibraryEntity(null,"Londrina","Tabata",12,"Centro",
-                "Maringá","Paraná");
-        LibraryEntity library3 = new LibraryEntity(null,"Londrina","Tabata",12,"Centro",
-                "Maringá","Paraná");
+        LibraryEntity library1 = new LibraryEntity(null,"Maringá","Tabata",12,"Maringá",
+                "Centro","Paraná");
+        LibraryEntity library2 = new LibraryEntity(null,"Maringá","Tabata",12,"Curitiba",
+                "Zona sul","Paraná");
+        LibraryEntity library3 = new LibraryEntity(null,"Maringá","Miragem",12,"Londrina",
+                "Zona norte","Paraná");
 
         services.insert(library1);
         services.insert(library2);
         services.insert(library3);
 
         List<LibraryEntity> list = services.getLibraryByName("Maringá");
-        assertThat(list.size()).isEqualTo(2);
+        assertThat(list.size()).isEqualTo(3);
 
         assertThat(list.get(0).getId_biblioteca()).isEqualTo(1);
         assertThat(list.get(0).getNome()).isEqualTo(library1.getNome());
 
 
-        assertThat(list.get(1).getId_biblioteca()).isEqualTo(3);
+        assertThat(list.get(1).getId_biblioteca()).isEqualTo(2);
         assertThat(list.get(1).getNome()).isEqualTo(library3.getNome());
 
     }

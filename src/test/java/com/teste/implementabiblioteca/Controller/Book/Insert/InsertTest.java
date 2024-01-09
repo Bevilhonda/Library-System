@@ -122,8 +122,8 @@ class InsertTest {
                 "Html",
                 datePublication,
                 1,
-                null,
                 1,
+                null,
                 1);
 
         this.mockMvc.perform(post("/Insert/Book")
@@ -138,9 +138,9 @@ class InsertTest {
         LocalDate datePublication = LocalDate.parse("1995-12-25");
         RequestData request = new RequestData(
                 "Html",
+                datePublication,
+                1,
                 null,
-                1,
-                1,
                 1,
                 1);
 

@@ -70,7 +70,7 @@ class UpdateAuthorTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound())
                 .andExpect(content().string(
-                        "O Autor com o id " + requestAuthor.getIdAuthor() + " não  foi encontrado."))
+                        "O Autor com o id " + requestAuthor.getIdAuthor() + " não foi encontrado."))
                 .andReturn();
         // caminho triste
     }

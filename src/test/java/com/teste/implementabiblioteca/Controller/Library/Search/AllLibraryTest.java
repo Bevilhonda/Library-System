@@ -40,10 +40,10 @@ class AllLibraryTest {
         list.add(library2);
 
         when(services.getAllLibrary()).thenReturn(list);
-        this.mockMvc.perform(get("/Librarys"))
+        this.mockMvc.perform(get("/Libraries"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.libraryList", Matchers.hasSize(2)))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.libraryList[0].name")
+                .andExpect(MockMvcResultMatchers.jsonPath("$.libraryList[0].nome")
                         .value("Curitiba"))
                 .andReturn();
     }

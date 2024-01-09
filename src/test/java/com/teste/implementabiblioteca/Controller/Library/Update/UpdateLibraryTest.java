@@ -86,14 +86,14 @@ class UpdateLibraryTest {
 
     @Test
     void validationMissingParameterIdAddress() throws Exception, LibraryNotFound {
-        RequestData request = new RequestData(1, "Maringá","Tabata",12,"Centro",
+        RequestData request = new RequestData(1, "Maringá",null,12,"Centro",
                 "Maringá","Paraná");
 
         this.mockMvc.perform(put("/UpdateLibrary/{id}", 1)
                         .content(objectMapper.writeValueAsBytes(request))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("[\"O número do Id de endereço é obrigatório.\"]"));
+                .andExpect(content().json("[\"O campo 'rua' é obrigatório.\"]"));
 
         verify(services, never()).update(eq(1), any(LibraryEntity.class));
     }

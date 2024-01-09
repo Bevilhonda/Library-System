@@ -90,7 +90,7 @@ class UpdateTest {
                         .content(objectMapper.writeValueAsString(requestData))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("[\"O número do Id de autor é obrigatório.\"]"))
+                .andExpect(content().json("[\"A data de publicação é obrigatório.\"]"))
                 .andReturn();
 
         verify(services, never()).update(eq(1), any(BookEntity.class));
@@ -110,7 +110,7 @@ class UpdateTest {
                         .content(objectMapper.writeValueAsString(requestData))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("[\"A data de publicação é obrigatório.\"]"))
+                .andExpect(content().json("[\"O número da edição é obrigatório.\"]"))
                 .andReturn();
 
         verify(services, never()).update(eq(1), any(BookEntity.class));
@@ -142,17 +142,17 @@ class UpdateTest {
     void validationMissingParameterIdLibrary() throws Exception, BookNotFound {
         LocalDate dataPublication = LocalDate.parse("1990-12-25");
         RequestData requestData = new RequestData(
-                "Kotlin",
+                null,
                 dataPublication,
                 1,
-                null
+                1
                 );
 
         this.mockMvc.perform(put("/UpdateBook/{id}", 1)
                         .content(objectMapper.writeValueAsString(requestData))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("[\"O número do Id de biblioteca é obrigatório.\"]"))
+                .andExpect(content().json("[\"O campo 'Titulo' é obrigatório.\"]"))
                 .andReturn();
 
         verify(services, never()).update(eq(1), any(BookEntity.class));
