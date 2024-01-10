@@ -1,6 +1,7 @@
 package com.teste.implementabiblioteca.Services.Library;
 
 
+import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 import com.teste.implementabiblioteca.Model.Library.Exceptions.LibraryNotFound;
 import com.teste.implementabiblioteca.Model.Library.Exceptions.NameLibraryNotFound;
 import com.teste.implementabiblioteca.Model.Library.Exceptions.RegisterLibraryNotFound;
@@ -48,6 +49,16 @@ public class ServicesLibrary {
             throw new RegisterLibraryNotFound();
         }
         return list;
+    }
+
+    public List<AuthorEntity> getAllAuthorsByNameLibrary(String nome) throws NameLibraryNotFound {
+
+        List<AuthorEntity> listAuthors = repository.getListAuthorsInTheLibrary(nome);
+        if (listAuthors.isEmpty()) {
+            throw new NameLibraryNotFound(nome);
+        }
+
+        return listAuthors;
     }
 
     public void insert(LibraryEntity library) {
