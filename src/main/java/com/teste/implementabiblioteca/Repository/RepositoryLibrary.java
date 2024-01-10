@@ -1,5 +1,6 @@
 package com.teste.implementabiblioteca.Repository;
 
+import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 import com.teste.implementabiblioteca.Model.Library.LibraryEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -28,6 +29,14 @@ public interface RepositoryLibrary extends JpaRepository<LibraryEntity, Integer>
 
     @Query(value = "select * from Biblioteca ", nativeQuery = true)
     List<LibraryEntity> getAllLibrary();
+
+    @Query(value = "SELECT DISTINCT Autor.nome, Autor.sobrenome" +
+            "FROM Autor" +
+            "LEFT JOIN Livro ON Autor.id_autor = Livro.fk_autor" +
+            "LEFT JOIN Biblioteca ON Livro.fk_biblioteca = Biblioteca.id_biblioteca" +
+            "WHERE Biblioteca.nome = :nome " , nativeQuery = true)
+    List<AuthorEntity> getListAuthorsInTheLibrary(String nome);
+
 
     @Modifying(clearAutomatically = true)
     @Query(value = "Insert into Biblioteca (nome,rua,numero,bairro,cidade,estado) values " +
