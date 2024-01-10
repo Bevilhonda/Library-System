@@ -1,7 +1,6 @@
 package com.teste.implementabiblioteca.Controller.Library.Search.AllLibrary;
 
 import com.teste.implementabiblioteca.Controller.Library.Search.AllLibrary.DTO.Response;
-import com.teste.implementabiblioteca.Model.Library.Exceptions.RegisterLibraryNotFound;
 import com.teste.implementabiblioteca.Model.Library.LibraryEntity;
 import com.teste.implementabiblioteca.Services.Library.ServicesLibrary;
 import org.springframework.beans.factory.annotation.Autowired;
