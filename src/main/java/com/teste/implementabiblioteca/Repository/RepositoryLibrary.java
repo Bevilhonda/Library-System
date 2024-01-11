@@ -30,13 +30,6 @@ public interface RepositoryLibrary extends JpaRepository<LibraryEntity, Integer>
     @Query(value = "select * from Biblioteca ", nativeQuery = true)
     List<LibraryEntity> getAllLibrary();
 
-    @Query(value = "SELECT DISTINCT Autor.nome, Autor.sobrenome" +
-            "FROM Autor" +
-            "LEFT JOIN Livro ON Autor.id_autor = Livro.fk_autor" +
-            "LEFT JOIN Biblioteca ON Livro.fk_biblioteca = Biblioteca.id_biblioteca" +
-            "WHERE Biblioteca.nome = :nome " , nativeQuery = true)
-    List<AuthorEntity> getListAuthorsInTheLibrary(String nome);
-
 
     @Modifying(clearAutomatically = true)
     @Query(value = "Insert into Biblioteca (nome,rua,numero,bairro,cidade,estado) values " +
