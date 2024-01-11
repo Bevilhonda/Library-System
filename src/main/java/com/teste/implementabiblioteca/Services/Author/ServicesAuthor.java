@@ -2,6 +2,7 @@ package com.teste.implementabiblioteca.Services.Author;
 
 import com.teste.implementabiblioteca.Model.Author.Exceptions.*;
 import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
+import com.teste.implementabiblioteca.Model.Library.Exceptions.LibraryNotFound;
 import com.teste.implementabiblioteca.Repository.RepositoryAuthor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,6 +55,17 @@ public class ServicesAuthor {
             throw new DateBirthNotFound(startDate, finalDate);
         }
         return authors;
+    }
+
+    public List<AuthorEntity> getAllAuthorsByNameLibrary(Integer id) throws LibraryNotFound {
+
+        List<AuthorEntity> listAuthors = repository.getListAuthorsInTheLibrary(id);
+
+        if (listAuthors.isEmpty()) {
+            throw new LibraryNotFound(id);
+        }
+
+        return listAuthors;
     }
 
     public void insert(AuthorEntity author) {

@@ -3,7 +3,6 @@ package com.teste.implementabiblioteca.Controller.Author.Search;
 import com.teste.implementabiblioteca.Controller.Author.Search.ByLastName.ByLastname;
 import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 import com.teste.implementabiblioteca.Model.Author.Exceptions.LastNameNotFound;
-import com.teste.implementabiblioteca.Model.Author.Exceptions.RegisterNotFound;
 import com.teste.implementabiblioteca.Services.Author.ServicesAuthor;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -31,7 +30,6 @@ class ByLastnameTest {
     private MockMvc mockMvc;
     @MockBean
     private ServicesAuthor services;
-
     @Test
     void byLastName() throws Exception, LastNameNotFound {
         LocalDate dateBirth = LocalDate.parse("2018-10-15");
