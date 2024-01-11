@@ -1,4 +1,4 @@
-package com.teste.implementabiblioteca.Controller.Library.Search.AllAuthorsRegisteredInTheLibrary.DTO;
+package com.teste.implementabiblioteca.Controller.Author.Search.AuthorsInTheLibrary.DTO;
 
 import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 

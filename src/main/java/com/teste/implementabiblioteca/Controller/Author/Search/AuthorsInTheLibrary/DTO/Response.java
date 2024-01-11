@@ -1,4 +1,4 @@
-package com.teste.implementabiblioteca.Controller.Library.Search.AllAuthorsRegisteredInTheLibrary.DTO;
+package com.teste.implementabiblioteca.Controller.Author.Search.AuthorsInTheLibrary.DTO;
 
 import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 
@@ -9,7 +9,7 @@ public record Response(List<AuthorsList> authors) {
     public static Response from(List<AuthorEntity> list){
         List<AuthorsList> authorsLists =
                 list.stream()
-                        .map(author -> AuthorsList.from(author)).toList();
+                        .map(AuthorsList::from).toList();
 
         return new Response(authorsLists);
     }

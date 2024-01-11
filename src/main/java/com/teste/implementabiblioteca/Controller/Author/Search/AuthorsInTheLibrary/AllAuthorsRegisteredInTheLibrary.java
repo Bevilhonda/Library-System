@@ -1,8 +1,8 @@
-package com.teste.implementabiblioteca.Controller.Library.Search.AllAuthorsRegisteredInTheLibrary;
+package com.teste.implementabiblioteca.Controller.Author.Search.AuthorsInTheLibrary;
 
-import com.teste.implementabiblioteca.Controller.Library.Search.AllAuthorsRegisteredInTheLibrary.DTO.Response;
+import com.teste.implementabiblioteca.Controller.Author.Search.AuthorsInTheLibrary.DTO.Response;
 import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
-import com.teste.implementabiblioteca.Services.Library.ServicesLibrary;
+import com.teste.implementabiblioteca.Services.Author.ServicesAuthor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,12 +19,12 @@ import static org.springframework.http.HttpStatus.OK;
 @CrossOrigin(origins = "http://localhost:3000")
 public class AllAuthorsRegisteredInTheLibrary {
     @Autowired
-    private ServicesLibrary services;
+    private ServicesAuthor services;
 
-    @GetMapping("/AllAuthorsInLibrarySelected/{name}")
-    public ResponseEntity<?> getAuthorsInLibrarySelected(@PathVariable String nome) {
+    @GetMapping("/SearchAuthors/{id}")
+    public ResponseEntity<?> getAuthorsInLibrarySelected(@PathVariable Integer id) {
         try {
-            List<AuthorEntity> listAuthors = services.getAllAuthorsByNameLibrary(nome);
+            List<AuthorEntity> listAuthors = services.getAllAuthorsByNameLibrary(id);
 
             return ResponseEntity.status(OK).body(Response.from(listAuthors));
 
