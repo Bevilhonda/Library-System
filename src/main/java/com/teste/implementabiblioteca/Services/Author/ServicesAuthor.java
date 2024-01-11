@@ -57,7 +57,7 @@ public class ServicesAuthor {
         return authors;
     }
 
-    public List<AuthorEntity> getAllAuthorsByNameLibrary(Integer id) throws LibraryNotFound {
+    public List<AuthorEntity> getAuthorsByNameLibrary(Integer id) throws LibraryNotFound {
 
         List<AuthorEntity> listAuthors = repository.getListAuthorsInTheLibrary(id);
 

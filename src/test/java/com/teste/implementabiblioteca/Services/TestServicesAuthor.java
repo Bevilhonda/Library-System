@@ -2,12 +2,12 @@ package com.teste.implementabiblioteca.Services;
 
 import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 import com.teste.implementabiblioteca.Model.Author.Exceptions.*;
+import com.teste.implementabiblioteca.Model.Book.BookEntity;
 import com.teste.implementabiblioteca.Model.Library.Exceptions.LibraryNotFound;
-import com.teste.implementabiblioteca.Repository.RepositoryAuthor;
-import com.teste.implementabiblioteca.Repository.RepositoryBook;
-import com.teste.implementabiblioteca.Repository.RepositoryLibrary;
+import com.teste.implementabiblioteca.Model.Library.LibraryEntity;
 import com.teste.implementabiblioteca.Services.Author.ServicesAuthor;
-import org.assertj.core.api.AssertionsForClassTypes;
+import com.teste.implementabiblioteca.Services.Book.ServicesBook;
+import com.teste.implementabiblioteca.Services.Library.ServicesLibrary;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -30,11 +30,9 @@ public class TestServicesAuthor {
     @Autowired
     ServicesAuthor services;
     @Autowired
-    RepositoryLibrary repositoryLibrary;
+    ServicesLibrary servicesLibrary;
     @Autowired
-    RepositoryBook repositoryBook;
-    @Autowired
-    RepositoryAuthor repositoryAuthor;
+    ServicesBook servicesBook;
 
     @Test
     void insert() throws AuthorNotFound {
@@ -138,20 +136,23 @@ public class TestServicesAuthor {
     }
     @Test
     void getAllAuthorsByNameLibrary() throws LibraryNotFound{
-        repositoryLibrary.saveLibrary("Biblioteca Maringá","Madre Paula",13,
+
+        LibraryEntity library = new LibraryEntity(1,"Biblioteca Maringá","Madre Paula",13,
                 "Centro","Maringá","Paraná");
+        servicesLibrary.insert(library);
 
-        LocalDate data_nascimento_autor = LocalDate.parse("2018-10-15");
-
-        repositoryAuthor.save("Pedro", "Batista", data_nascimento_autor);
+        LocalDate dateBirth = LocalDate.parse("2018-10-15");
+        AuthorEntity author = new AuthorEntity(
+                null, "Pedro", "Batista", dateBirth);
+        services.insert(author);
 
         LocalDate dataPublication = LocalDate.parse("2018-10-15");
+        BookEntity book = new BookEntity("Java", dataPublication, 1, 1, 1,1);
+        servicesBook.insert(book);
 
-        repositoryBook.insert("Java", dataPublication, 1, 1, 1);
-
-        List<AuthorEntity> listAuthors = services.getAllAuthorsByNameLibrary(1);
-        AssertionsForClassTypes.assertThat(listAuthors.size()).isEqualTo(1);
-        AssertionsForClassTypes.assertThat(listAuthors.get(0).getLastname()).isEqualTo("Batista");
+        List<AuthorEntity> listAuthors = services.getAuthorsByNameLibrary(1);
+        assertThat(listAuthors.size()).isEqualTo(1);
+        assertThat(listAuthors.get(0).getLastname()).isEqualTo("Batista");
     }
 
     @Test
