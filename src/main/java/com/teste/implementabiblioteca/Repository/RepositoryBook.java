@@ -22,6 +22,13 @@ public interface RepositoryBook extends JpaRepository<BookEntity, Integer> {
     @Query(value = "select * from Livro ", nativeQuery = true)
     List<BookEntity> getAllBooks();
 
+    @Query(value = "SELECT DISTINCT Livro.* " +
+            "FROM Livro " +
+            "JOIN Autor ON Livro.fk_autor =  Autor.id_autor " +
+            "JOIN Biblioteca ON Livro.fk_biblioteca = Biblioteca.id_biblioteca " +
+            "WHERE Biblioteca.id_biblioteca = :idBook",nativeQuery = true)
+    List<BookEntity> getBookInTheLibrary(Integer idBook);
+
     @Modifying(clearAutomatically = true)
     @Query(value = "Insert into Livro (titulo,data_publication,edicao,fk_autor,fk_biblioteca)" +
             "values (:titulo ,:data_publication ,:edicao ,:fk_autor ,:fk_biblioteca )", nativeQuery = true)
