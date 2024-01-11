@@ -3,6 +3,7 @@ package com.teste.implementabiblioteca.Services.Book;
 import com.teste.implementabiblioteca.Model.Book.Exceptions.BookNotFound;
 import com.teste.implementabiblioteca.Model.Book.Exceptions.RegisterBookNotFound;
 import com.teste.implementabiblioteca.Model.Book.BookEntity;
+import com.teste.implementabiblioteca.Model.Library.Exceptions.LibraryNotFound;
 import com.teste.implementabiblioteca.Repository.RepositoryBook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,15 @@ public class ServicesBook {
             throw new RegisterBookNotFound();
         }
         return books;
+    }
+
+    public List<BookEntity> getBooksByNameLibrary(Integer id) throws LibraryNotFound {
+
+        List<BookEntity> listBook = repository.getBookInTheLibrary(id);
+        if (listBook.isEmpty()){
+            throw new LibraryNotFound(id);
+        }
+        return listBook;
     }
 
     public void insert(BookEntity book) {
