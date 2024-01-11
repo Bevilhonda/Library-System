@@ -22,9 +22,9 @@ public class AllAuthorsRegisteredInTheLibrary {
     private ServicesAuthor services;
 
     @GetMapping("/SearchAuthors/{id}")
-    public ResponseEntity<?> getAuthorsInLibrarySelected(@PathVariable Integer id) {
+    public ResponseEntity<?> getAuthorsInLibrary(@PathVariable Integer id) {
         try {
-            List<AuthorEntity> listAuthors = services.getAllAuthorsByNameLibrary(id);
+            List<AuthorEntity> listAuthors = services.getAuthorsByNameLibrary(id);
 
             return ResponseEntity.status(OK).body(Response.from(listAuthors));
 

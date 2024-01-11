@@ -40,7 +40,7 @@ class AllAuthorsRegisteredInTheLibraryTest {
         List<AuthorEntity> listAuthors = new ArrayList<>();
         listAuthors.add(author1);
 
-        when(services.getAllAuthorsByNameLibrary(1)).thenReturn(listAuthors);
+        when(services.getAuthorsByNameLibrary(1)).thenReturn(listAuthors);
         this.mockMvc.perform(get("/SearchAuthors/1"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.authors", Matchers.hasSize(1)))
@@ -57,7 +57,7 @@ class AllAuthorsRegisteredInTheLibraryTest {
     void requestValidationNotCompleted() throws Exception, LibraryNotFound {
         List<AuthorEntity> listEmpty = new ArrayList<>();
 
-        when(services.getAllAuthorsByNameLibrary(1))
+        when(services.getAuthorsByNameLibrary(1))
                 .thenThrow(new LibraryNotFound(1))
                 .thenReturn(listEmpty);
 
