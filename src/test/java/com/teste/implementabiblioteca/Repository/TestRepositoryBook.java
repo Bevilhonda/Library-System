@@ -1,6 +1,8 @@
 package com.teste.implementabiblioteca.Repository;
 
+import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 import com.teste.implementabiblioteca.Model.Book.BookEntity;
+import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class TestRepositoryBook {
     @Autowired
     RepositoryBook repository;
+    @Autowired
+    RepositoryAuthor repositoryAuthor;
+    @Autowired
+    RepositoryLibrary repositoryLibrary;
     @Test
     void save() {
         LocalDate dataPublication = LocalDate.parse("2018-10-15");
@@ -95,6 +101,23 @@ public class TestRepositoryBook {
         assertThat(book2.getEdition()).isEqualTo(2);
         assertThat(book2.getFkAuthor()).isEqualTo(1);
         assertThat(book2.getFkLibrary()).isEqualTo(1);
+    }
+    @Test
+    void getBookByIdLibrary(){
+        repositoryLibrary.saveLibrary("Biblioteca Maringá","Madre Paula",13,
+                "Centro","Maringá","Paraná");
+
+        LocalDate data_nascimento_autor = LocalDate.parse("2018-10-15");
+
+        repositoryAuthor.save("Pedro", "Batista", data_nascimento_autor);
+
+        LocalDate dataPublication = LocalDate.parse("2018-10-15");
+
+        repository.insert("Java", dataPublication, 1, 1, 1);
+
+        List<BookEntity> listBook = repository.getBookInTheLibrary(1);
+        AssertionsForClassTypes.assertThat(listBook.size()).isEqualTo(1);
+        AssertionsForClassTypes.assertThat(listBook.get(0).getTitle()).isEqualTo("Java");
     }
     @Test
     void delete() {
