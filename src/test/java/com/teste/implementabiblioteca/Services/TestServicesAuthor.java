@@ -2,7 +2,12 @@ package com.teste.implementabiblioteca.Services;
 
 import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 import com.teste.implementabiblioteca.Model.Author.Exceptions.*;
+import com.teste.implementabiblioteca.Model.Library.Exceptions.LibraryNotFound;
+import com.teste.implementabiblioteca.Repository.RepositoryAuthor;
+import com.teste.implementabiblioteca.Repository.RepositoryBook;
+import com.teste.implementabiblioteca.Repository.RepositoryLibrary;
 import com.teste.implementabiblioteca.Services.Author.ServicesAuthor;
+import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -24,6 +29,12 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 public class TestServicesAuthor {
     @Autowired
     ServicesAuthor services;
+    @Autowired
+    RepositoryLibrary repositoryLibrary;
+    @Autowired
+    RepositoryBook repositoryBook;
+    @Autowired
+    RepositoryAuthor repositoryAuthor;
 
     @Test
     void insert() throws AuthorNotFound {
@@ -124,6 +135,23 @@ public class TestServicesAuthor {
         assertThat(list.get(0).getLastname()).isEqualTo("Batista");
         assertThat(list.get(0).getName()).isEqualTo(author.getName());
         assertThat(list.get(0).getDateBirth()).isEqualTo(author.getDateBirth());
+    }
+    @Test
+    void getAllAuthorsByNameLibrary() throws LibraryNotFound{
+        repositoryLibrary.saveLibrary("Biblioteca Maringá","Madre Paula",13,
+                "Centro","Maringá","Paraná");
+
+        LocalDate data_nascimento_autor = LocalDate.parse("2018-10-15");
+
+        repositoryAuthor.save("Pedro", "Batista", data_nascimento_autor);
+
+        LocalDate dataPublication = LocalDate.parse("2018-10-15");
+
+        repositoryBook.insert("Java", dataPublication, 1, 1, 1);
+
+        List<AuthorEntity> listAuthors = services.getAllAuthorsByNameLibrary(1);
+        AssertionsForClassTypes.assertThat(listAuthors.size()).isEqualTo(1);
+        AssertionsForClassTypes.assertThat(listAuthors.get(0).getLastname()).isEqualTo("Batista");
     }
 
     @Test

@@ -24,6 +24,10 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class TestRepositoryAuthor {
     @Autowired
     RepositoryAuthor repository;
+    @Autowired
+    RepositoryLibrary repositoryLibrary;
+    @Autowired
+    RepositoryBook repositoryBook;
 
     @Test
     public void save() {
@@ -93,7 +97,6 @@ public class TestRepositoryAuthor {
 
         LocalDate dateBirth1 = LocalDate.parse("1989-06-15");
         LocalDate dateBirth2 = LocalDate.parse("1999-12-25");
-        LocalDate dateBirth3 = LocalDate.parse("2000-02-20");
 
         repository.save("Ricardo", "Batista", dateBirth1);
         repository.save("Pedro", "Batista", dateBirth2);
@@ -115,6 +118,24 @@ public class TestRepositoryAuthor {
 
         Assertions.assertThat(listAuthors.size()).isEqualTo(3);
         Assertions.assertThat(listAuthors.get(0).getLastname()).isEqualTo("Batista");
+    }
+    @Test
+    void getListAuthorsInTheLibrary(){
+        repositoryLibrary.saveLibrary("Biblioteca Maringá","Madre Paula",13,
+                "Centro","Maringá","Paraná");
+
+        LocalDate data_nascimento_autor = LocalDate.parse("2018-10-15");
+
+        repository.save("Pedro", "Batista", data_nascimento_autor);
+
+        LocalDate dataPublication = LocalDate.parse("2018-10-15");
+
+        repositoryBook.insert("Java", dataPublication, 1, 1, 1);
+
+        List<AuthorEntity> listAuthors = repository.getListAuthorsInTheLibrary(1);
+        assertThat(listAuthors.size()).isEqualTo(1);
+        assertThat(listAuthors.get(0).getLastname()).isEqualTo("Batista");
+
     }
 
     @Test

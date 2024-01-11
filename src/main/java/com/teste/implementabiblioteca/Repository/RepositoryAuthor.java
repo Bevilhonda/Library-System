@@ -25,6 +25,13 @@ public interface RepositoryAuthor extends JpaRepository<AuthorEntity, Integer> {
     @Query(value = "Select * from Autor where sobrenome = :sobrenome", nativeQuery = true)
     List<AuthorEntity> getByLastName(String sobrenome);
 
+    @Query(value = "SELECT DISTINCT Autor.* " +
+            "FROM Autor " +
+            "LEFT JOIN Livro ON Autor.id_autor = Livro.fk_autor " +
+            "LEFT JOIN Biblioteca ON Livro.fk_biblioteca = Biblioteca.id_biblioteca " +
+            "WHERE Biblioteca.id_biblioteca = :idBiblioteca " , nativeQuery = true)
+    List<AuthorEntity> getListAuthorsInTheLibrary(Integer idBiblioteca);
+
     @Modifying(clearAutomatically = true)
     @Query(value = "insert into Autor ( nome, sobrenome, data_nascimento)" +
             " values ( :nome , :sobrenome, :data_nascimento)", nativeQuery = true)
