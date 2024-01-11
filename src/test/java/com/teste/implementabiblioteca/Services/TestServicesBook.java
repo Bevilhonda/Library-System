@@ -1,10 +1,15 @@
 package com.teste.implementabiblioteca.Services;
 
 
+import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 import com.teste.implementabiblioteca.Model.Book.BookEntity;
 import com.teste.implementabiblioteca.Model.Book.Exceptions.BookNotFound;
 import com.teste.implementabiblioteca.Model.Book.Exceptions.RegisterBookNotFound;
+import com.teste.implementabiblioteca.Model.Library.Exceptions.LibraryNotFound;
+import com.teste.implementabiblioteca.Model.Library.LibraryEntity;
+import com.teste.implementabiblioteca.Services.Author.ServicesAuthor;
 import com.teste.implementabiblioteca.Services.Book.ServicesBook;
+import com.teste.implementabiblioteca.Services.Library.ServicesLibrary;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -25,6 +30,10 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 public class TestServicesBook {
     @Autowired
     private ServicesBook services;
+    @Autowired
+    ServicesAuthor servicesAuthor;
+    @Autowired
+    ServicesLibrary servicesLibrary;
 
     @Test
     void insert() {
@@ -96,6 +105,26 @@ public class TestServicesBook {
         assertThat(list.get(0).getFkAuthor()).isEqualTo(1);
         assertThat(list.get(0).getFkLibrary()).isEqualTo(1);
         assertThat(list.get(0).getEdition()).isEqualTo(1);
+    }
+    @Test
+    void getBookInTheLibrary() throws LibraryNotFound {
+        LibraryEntity library = new LibraryEntity(1,"Biblioteca Maringá","Madre Paula",13,
+                "Centro","Maringá","Paraná");
+        servicesLibrary.insert(library);
+
+        LocalDate dateBirth = LocalDate.parse("2018-10-15");
+        AuthorEntity author = new AuthorEntity(
+                null, "Pedro", "Batista", dateBirth);
+        servicesAuthor.insert(author);
+
+        LocalDate dataPublication = LocalDate.parse("2018-10-15");
+        BookEntity book = new BookEntity("Java", dataPublication, 1, 1, 1,1);
+        services.insert(book);
+
+        List<BookEntity> listBook = services.getBooksByNameLibrary(1);
+        assertThat(listBook.size()).isEqualTo(1);
+        assertThat(listBook.get(0).getTitle()).isEqualTo("Java");
+
     }
     @Test
     void delete() throws RegisterBookNotFound, BookNotFound {
