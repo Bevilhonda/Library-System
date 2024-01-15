@@ -2,10 +2,10 @@ package com.teste.implementabiblioteca.Controller.Author.Search.AuthorsInTheLibr
 
 import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 
-public record AuthorsList(String nome , String sobrenome) {
+public record ListAuthors(String nome , String sobrenome) {
 
-    public static AuthorsList from(AuthorEntity author){
-         return new AuthorsList(
+    public static ListAuthors from(AuthorEntity author){
+         return new ListAuthors(
                  author.getName(),
                  author.getLastname());
     }
