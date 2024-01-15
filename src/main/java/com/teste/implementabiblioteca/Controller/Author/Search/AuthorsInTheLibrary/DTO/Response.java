@@ -4,12 +4,12 @@ import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 
 import java.util.List;
 
-public record Response(List<AuthorsList> authors) {
+public record Response(List<ListAuthors> authors) {
 
     public static Response from(List<AuthorEntity> list){
-        List<AuthorsList> authorsLists =
+        List<ListAuthors> authorsLists =
                 list.stream()
-                        .map(AuthorsList::from).toList();
+                        .map(ListAuthors::from).toList();
 
         return new Response(authorsLists);
     }

@@ -6,7 +6,7 @@ import java.util.List;
 
 public record Response(List<Book> books) {
     public static Response from(List<BookEntity> list ){
-        List<Book> books = list.stream().map(book ->  Book.from(book)).toList();
+        List<Book> books = list.stream().map(Book::from).toList();
 
         return new Response(books);
     }
