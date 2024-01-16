@@ -3,7 +3,6 @@ package com.teste.implementabiblioteca.Controller.Author.Search.AuthorsInTheLibr
 import com.teste.implementabiblioteca.Model.Author.AuthorEntity;
 
 public record ListAuthors(String nome , String sobrenome) {
-
     public static ListAuthors from(AuthorEntity author){
          return new ListAuthors(
                  author.getName(),
