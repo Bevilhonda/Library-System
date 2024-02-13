@@ -12,19 +12,19 @@ public class RequestData {
     @JsonProperty("id_biblioteca")
     Integer id_biblioteca;
     @JsonProperty("nome")
-    @NotBlank(message = "O campo 'Nome' é obrigatório.")
+    @NotBlank(message = "Falta digitar o nome da Biblioteca.")
     String nome;
     @JsonProperty("rua")
-    @NotBlank(message = "O campo 'rua' é obrigatório.")
+    @NotBlank(message = "Falta Digitar o nome da Rua ou Avenida.")
     private String rua;
     @JsonProperty("numero")
-    @NotNull(message = "O número da residência é obrigatório.")
+    @NotNull(message = "Falta digitar o numero do endereço.")
     private Integer numero;
     @JsonProperty("bairro")
-    @NotBlank(message = "O campo 'bairro' é obrigatório.")
+    @NotBlank(message = "Falta digitar o nome do Bairro.")
     private String bairro;
     @JsonProperty("cidade")
-    @NotBlank(message = "O campo 'cidade' é obrigatório.")
+    @NotBlank(message = "Falta escolher a Cidade.")
     private String cidade;
     @JsonProperty("estado")
     private String estado;

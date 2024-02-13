@@ -48,26 +48,74 @@ class InsertLibraryTest {
     }
     @Test
     void validationMissingParameterName() throws Exception {
-        RequestData request = new RequestData(1, null,"Tabata",12,"Centro",
-                "Maringá","Paraná");
+        RequestData request = new RequestData(
+                1,
+                null,
+                "Tabata",
+                12,
+                "Centro",
+                "Maringá",
+                "Paraná");
 
         this.mockMvc.perform(post("/InsertLibrary")
                 .content(objectMapper.writeValueAsString(request))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("[\"O campo 'Nome' é obrigatório.\"]"));
+                .andExpect(content().json("[\"Falta digitar o nome da Biblioteca.\"]"));
         verify(services,never()).insert(any(LibraryEntity.class));
     }
     @Test
-    void validationMissingParameterIdAddress() throws Exception {
-        RequestData request = new RequestData(1, "Londrina",null,12,"Centro",
-                "Maringá","Paraná");
+    void validationMissingParameterStreetName() throws Exception {
+        RequestData request = new RequestData(
+                1,
+                "Londrina",
+                null,
+                12,
+                "Centro",
+                "Maringá",
+                "Paraná");
 
         this.mockMvc.perform(post("/InsertLibrary")
                         .content(objectMapper.writeValueAsString(request))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("[\"O campo 'rua' é obrigatório.\"]"));
+                .andExpect(content().json("[\"Falta Digitar o nome da Rua ou Avenida.\"]"));
+        verify(services,never()).insert(any(LibraryEntity.class));
+    }
+    @Test
+    void validationMissingParameterBoroughName() throws Exception {
+        RequestData request = new RequestData(
+                1,
+                "Londrina",
+                "Jorge Silva",
+                12,
+                null,
+                "Maringá",
+                "Paraná");
+
+        this.mockMvc.perform(post("/InsertLibrary")
+                        .content(objectMapper.writeValueAsString(request))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"Falta digitar o nome do Bairro.\"]"));
+        verify(services,never()).insert(any(LibraryEntity.class));
+    }
+    @Test
+    void validationMissingParameterCityName() throws Exception {
+        RequestData request = new RequestData(
+                1,
+                "Londrina",
+                "Jorge Silva",
+                12,
+                "centro",
+                null,
+                "Paraná");
+
+        this.mockMvc.perform(post("/InsertLibrary")
+                        .content(objectMapper.writeValueAsString(request))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("[\"Falta escolher a Cidade.\"]"));
         verify(services,never()).insert(any(LibraryEntity.class));
     }
 }

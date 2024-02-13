@@ -15,6 +15,7 @@ import java.util.List;
 import static com.teste.implementabiblioteca.Controller.Library.ExceptionHandler.Handler.map;
 import static org.springframework.http.HttpStatus.OK;
 
+
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class AllAuthorsRegisteredInTheLibrary {

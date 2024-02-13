@@ -14,13 +14,13 @@ public class RequestData {
     @JsonProperty("id_autor")
     private Integer idAuthor;
     @JsonProperty("nome")
-    @NotBlank(message = "O campo 'Nome' é obrigatório.")
+    @NotBlank(message = "Digite o nome do Autor.")
     private String name;
     @JsonProperty("sobrenome")
-    @NotBlank(message = "O campo 'Sobrenome' é obrigatório.")
+    @NotBlank(message = "Digite o sobrenome do Autor.")
     private String lastname;
     @JsonProperty("data_nascimento")
-    @NotNull(message = "O campo 'Data de Nascimento' é obrigatório.")
+    @NotNull(message = "A Data de Nascimento é obrigatória.")
     @Past(message = "A data de nascimento não pode ser no futuro.")
     private LocalDate dateBirth;
 

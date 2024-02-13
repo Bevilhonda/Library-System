@@ -65,7 +65,7 @@ public class InsertAuthorTest {
                         .content(objectMapper.writeValueAsString(request))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("[\"O campo 'Nome' é obrigatório.\"]"));
+                .andExpect(content().json("[\"Digite o nome do Autor.\"]"));
 
         verify(service, never()).insert(any(AuthorEntity.class));
     }
@@ -78,7 +78,7 @@ public class InsertAuthorTest {
                         .content(objectMapper.writeValueAsString(request))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("[\"O campo 'Sobrenome' é obrigatório.\"]"));
+                .andExpect(content().json("[\"Digite o sobrenome do Autor.\"]"));
 
         verify(service, never()).insert(any(AuthorEntity.class));
     }
@@ -91,7 +91,7 @@ public class InsertAuthorTest {
                         .content(objectMapper.writeValueAsString(request))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("[\"O campo 'Data de Nascimento' é obrigatório.\"]"));
+                .andExpect(content().json("[\"A Data de Nascimento é obrigatória.\"]"));
 
         verify(service, never()).insert(any(AuthorEntity.class));
     }

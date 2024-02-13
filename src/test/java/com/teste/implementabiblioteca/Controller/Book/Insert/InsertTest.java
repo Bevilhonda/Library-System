@@ -1,6 +1,5 @@
 package com.teste.implementabiblioteca.Controller.Book.Insert;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.teste.implementabiblioteca.Controller.Book.Insert.DTO.RequestData;
 import com.teste.implementabiblioteca.Model.Book.BookEntity;
@@ -44,7 +43,7 @@ class InsertTest {
                 1,
                 1);
 
-        this.mockMvc.perform(post("/Insert/Book")
+        this.mockMvc.perform(post("/InsertBook")
                         .content(objectMapper.writeValueAsBytes(request))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -68,11 +67,11 @@ class InsertTest {
                 1,
                 1);
 
-        this.mockMvc.perform(post("/Insert/Book")
+        this.mockMvc.perform(post("/InsertBook")
                         .content(objectMapper.writeValueAsBytes(request))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("[\"O campo 'Titulo' é obrigatório.\"]"));
+                .andExpect(content().json("[\"Falta digitar o titulo do Livro.\"]"));
 
         verify(services, never()).insert(any(BookEntity.class));
 
@@ -88,11 +87,11 @@ class InsertTest {
                 1,
                 1);
 
-        this.mockMvc.perform(post("/Insert/Book")
+        this.mockMvc.perform(post("/InsertBook")
                 .content(objectMapper.writeValueAsString(request))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("[\"A data de publicação é obrigatório.\"]"));
+                .andExpect(content().json("[\"Escolha a data de publicação.\"]"));
 
         verify(services, never()).insert(any(BookEntity.class));
     }
@@ -107,11 +106,11 @@ class InsertTest {
                 1,
                 1);
 
-        this.mockMvc.perform(post("/Insert/Book")
+        this.mockMvc.perform(post("/InsertBook")
                 .content(objectMapper.writeValueAsString(request))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("[\"O número da edição é obrigatório.\"]"));
+                .andExpect(content().json("[\"Escolha o número da edição.\"]"));
 
         verify(services,never()).insert(any(BookEntity.class));
     }
@@ -126,7 +125,7 @@ class InsertTest {
                 null,
                 1);
 
-        this.mockMvc.perform(post("/Insert/Book")
+        this.mockMvc.perform(post("/InsertBook")
                 .content(objectMapper.writeValueAsString(request))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
@@ -144,11 +143,11 @@ class InsertTest {
                 1,
                 1);
 
-        this.mockMvc.perform(post("/Insert/Book")
+        this.mockMvc.perform(post("/InsertBook")
                         .content(objectMapper.writeValueAsString(request))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("[\"O número do Id de autor é obrigatório.\"]"));
+                .andExpect(content().json("[\"Escolha um autor.\"]"));
         verify(services,never()).insert(any(BookEntity.class));
     }
 }

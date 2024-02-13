@@ -19,7 +19,7 @@ import static org.springframework.http.HttpStatus.*;
 public class Insert {
     @Autowired
     private ServicesBook service;
-    @PostMapping("/Insert/Book")
+    @PostMapping("/InsertBook")
     public ResponseEntity<?> insert(@RequestBody @Valid RequestData book){
         try {
              service.insert(book.toModel());
