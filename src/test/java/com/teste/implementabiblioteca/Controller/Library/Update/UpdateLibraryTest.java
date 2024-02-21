@@ -79,7 +79,7 @@ class UpdateLibraryTest {
                         .content(objectMapper.writeValueAsBytes(request))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("[\"O campo 'Nome' é obrigatório.\"]"));
+                .andExpect(content().json("[\"Falta escolher o Nome da Biblioteca.\"]"));
 
         verify(services, never()).update(eq(1), any(LibraryEntity.class));
     }
@@ -93,7 +93,7 @@ class UpdateLibraryTest {
                         .content(objectMapper.writeValueAsBytes(request))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("[\"O campo 'rua' é obrigatório.\"]"));
+                .andExpect(content().json("[\"Falta escolher a Rua da Biblioteca.\"]"));
 
         verify(services, never()).update(eq(1), any(LibraryEntity.class));
     }
