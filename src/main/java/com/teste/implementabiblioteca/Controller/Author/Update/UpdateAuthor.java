@@ -18,7 +18,8 @@ public class UpdateAuthor {
     private ServicesAuthor service;
 
     @PutMapping("/UpdateAuthor/{id}")
-    public ResponseEntity<?> updateAuthor(@PathVariable Integer id, @RequestBody @Valid RequestData novoautor) {
+    public ResponseEntity<?> updateAuthor(
+            @PathVariable Integer id, @RequestBody @Valid RequestData novoautor) {
         try {
             service.updateAuthor(id, novoautor.toModel());
 
