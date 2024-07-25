@@ -28,11 +28,11 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
 public class TestServicesAuthor {
     @Autowired
-    ServicesAuthor services;
+    private ServicesAuthor services;
     @Autowired
-    ServicesLibrary servicesLibrary;
+    private ServicesLibrary servicesLibrary;
     @Autowired
-    ServicesBook servicesBook;
+    private ServicesBook servicesBook;
 
     @Test
     void insert() throws AuthorNotFound {
