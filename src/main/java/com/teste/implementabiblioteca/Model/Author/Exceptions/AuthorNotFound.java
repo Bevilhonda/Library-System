@@ -1,10 +1,8 @@
 package com.teste.implementabiblioteca.Model.Author.Exceptions;
 
-import lombok.Getter;
-
 public class AuthorNotFound extends AuthorExceptions {
 
-    @Getter
+
     private final Integer id;
     private final String message;
 
@@ -17,5 +15,9 @@ public class AuthorNotFound extends AuthorExceptions {
     @Override
     public String getMessage() {
         return message;
+    }
+
+    public Integer getId() {
+        return id;
     }
 }

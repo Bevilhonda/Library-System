@@ -89,6 +89,7 @@ public class ServicesAuthor {
     public void delete(Integer id) throws AuthorNotFound {
 
         AuthorEntity idAuthor = repository.getAuthor(id);
+
         if (idAuthor == null) {
             throw new AuthorNotFound(id);
         }
