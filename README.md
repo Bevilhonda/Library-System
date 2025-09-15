@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="images/banner.png" alt="Library System API Banner">
+</p>
+
 # 📚 Library System API
 
 API REST desenvolvida em **Java 17** com **Spring Boot** para gerenciamento de bibliotecas.  
