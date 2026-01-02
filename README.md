@@ -87,6 +87,10 @@ A aplicação estará disponível em:
 
 ## 👨‍💻 Autor
 Desenvolvido por **Marcelo Bevilacqua de Andrade** 🚀  
+Com ajuda e orientações de um profissional desenvolvi essa API para praticar Java + Spring boot.
+
+Iniciei a criação da interface utilizando React que em breve estará disponível 
+em algum servidor apenas para estudos.
 🔗 [Meu GitHub](https://github.com/Bevilhonda)
 
 ---
